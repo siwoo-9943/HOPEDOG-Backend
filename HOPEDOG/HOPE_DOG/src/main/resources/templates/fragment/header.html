@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>헤더</title>
+    <link rel="stylesheet" href="/css/fragment/header.css">
+    <link rel="stylesheet" th:href="@{/css/fragment/header.css}" />
+</head>
+<body>
+<header class="header">
+    <div class="logo-nav">
+        <div class="logo">
+            <a th:href="@{/main}">
+                <img th:src="@{/img/header-logo.png}" alt="로고이미지">
+            </a>
+        </div>
+        <nav>
+            <ul class="nav-items">
+                <li class="nav-item">
+                    <a th:href="@{/dogmap}">유기견 보호소</a>
+                    <div class="dropdown-content">
+                        <a th:href="@{/dogmap}">유기견 보호소</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/volun/main}">봉사</a>
+                    <div class="dropdown-content">
+                        <a th:href="@{/volun/main}">봉사 메인</a>
+                        <a th:href="@{/volun/apply}">봉사 신청</a>
+                        <a th:href="@{/volun/carpool}">카풀</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/donation/main}">기부</a>
+                    <div class="dropdown-content">
+                        <a th:href="@{/donation/board}">기부 게시판</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/adopt/main}">입양</a>
+                    <div class="dropdown-content">
+                        <a th:href="@{/adopt/safe}">안심 입양</a>
+                        <a th:href="@{/adopt/temp}">임시 보호</a>
+                        <a th:href="@{/adopt/review}">후기</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/community/main}">커뮤니티</a>
+                    <div class="dropdown-content">
+                        <a th:href="@{/community/board}">자유게시판</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/notice/list}">공지사항</a>
+                    <div class="dropdown-content">
+                        <a th:href="@{/notice/list}">공지</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="user-section">
+        <!-- 비로그인 상태 -->
+        <ul class="user-actions" th:if="${session.user == null}">
+            <li class="user-action"><a th:href="@{/member/login}">로그인</a></li>
+            <li class="user-action"><a th:href="@{/member/signup}">회원가입</a></li>
+        </ul>
+
+        <!-- 일반 회원 로그인 상태 -->
+        <ul class="user-actions" th:if="${session.user != null && session.user.role == 'USER'}">
+            <li class="user-action"><a th:href="@{/member/mypage}">마이페이지</a></li>
+            <li class="user-action"><a th:href="@{/member/logout}">로그아웃</a></li>
+        </ul>
+
+        <!-- 센터 회원 로그인 상태 -->
+        <ul class="user-actions" th:if="${session.user != null && session.user.role == 'CENTER'}">
+            <li class="user-action"><a th:href="@{/center/mypage}">센터마이페이지</a></li>
+            <li class="user-action"><a th:href="@{/member/logout}">로그아웃</a></li>
+        </ul>
+    </div>
+</header>
+</body>
+</html>
