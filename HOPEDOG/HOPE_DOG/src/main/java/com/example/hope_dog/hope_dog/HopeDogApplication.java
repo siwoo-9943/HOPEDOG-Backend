@@ -1,4 +1,4 @@
-package com.example.hope_dog;
+package com.example.hope_dog.hope_dog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
