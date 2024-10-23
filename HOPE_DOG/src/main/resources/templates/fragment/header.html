@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>헤더</title>
-    <link rel="stylesheet" href="/css/fragment/header.css">
-    <link rel="stylesheet" th:href="@{/css/fragment/header.css}" />
+    <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
 </head>
 <body>
 <header class="header">
     <div class="logo-nav">
         <div class="logo">
             <a th:href="@{/main}">
-                <img th:src="@{/img/header-logo.png}" alt="로고이미지">
+                <img th:src="@{/img/header_logo.png}" alt="로고이미지">
             </a>
         </div>
         <nav>
@@ -63,12 +62,12 @@
         <!-- 비로그인 상태 -->
         <ul class="user-actions" th:if="${session.user == null}">
             <li class="user-action"><a th:href="@{/member/login}">로그인</a></li>
-            <li class="user-action"><a th:href="@{/member/signup}">회원가입</a></li>
+            <li class="user-action"><a th:href="@{/member/join-select}">회원가입</a></li>
         </ul>
 
         <!-- 일반 회원 로그인 상태 -->
         <ul class="user-actions" th:if="${session.user != null && session.user.role == 'USER'}">
-            <li class="user-action"><a th:href="@{/member/mypage}">마이페이지</a></li>
+            <li class="user-action"><a th:href="@{/mypage/mypage}">마이페이지</a></li>
             <li class="user-action"><a th:href="@{/member/logout}">로그아웃</a></li>
         </ul>
 
