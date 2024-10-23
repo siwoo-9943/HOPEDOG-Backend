@@ -101,16 +101,14 @@ a{
   width: 8%;
 }
 
-.note-profile-imgbox {
+.note-profile-namebox {
   width: 25%;
 }
 
-.note-profile-img {
-  background-color: pink;
-  margin: 0 10px;
-  width: 80px;
-  height: 80px;
-  border-radius: 40px;
+.note-profile-name {
+  margin : 10px;
+  text-align: center;
+  align-items: center;
 }
 
 .note-note-content {
