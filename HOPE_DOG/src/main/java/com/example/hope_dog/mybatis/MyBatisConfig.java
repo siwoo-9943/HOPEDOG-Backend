@@ -1,4 +1,4 @@
-package com.example.finalapp.mybatis;
+package com.example.hope_dog.mybatis;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
