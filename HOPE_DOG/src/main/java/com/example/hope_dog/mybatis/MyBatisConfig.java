@@ -1,4 +1,4 @@
-package com.example.finalapp.mybatis;
+package com.example.hope_dog.mybatis;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -37,7 +37,7 @@ public class MyBatisConfig {
         sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath*:/mapper/**/*.xml"));
 
         sqlSessionFactoryBean.setConfigLocation(applicationContext.getResource("classpath:/config/config.xml"));
-        sqlSessionFactoryBean.setTypeAliasesPackage("com.example.finalapp.dto");
+        sqlSessionFactoryBean.setTypeAliasesPackage("com.example.hope_dog.dto");
 
         SqlSessionFactory sqlSessionFactory = sqlSessionFactoryBean.getObject();
         sqlSessionFactory.getConfiguration().setMapUnderscoreToCamelCase(true);
