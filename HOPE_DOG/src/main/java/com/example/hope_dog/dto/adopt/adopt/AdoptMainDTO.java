@@ -13,5 +13,6 @@ public class AdoptMainDTO {
     private Long adoptNo;
     private String adoptTitle;
     private Date adoptRegidate;
+    private String adoptStatus;
     private int centerMemberNo;
 }

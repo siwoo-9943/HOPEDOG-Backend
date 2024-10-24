@@ -4,7 +4,6 @@ import com.example.hope_dog.dto.adopt.adopt.AdoptMainDTO;
 import com.example.hope_dog.service.adopt.adopt.AdoptService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,8 +21,8 @@ public class AdoptController {
     //입양/임보/후기 메인페이지
     @GetMapping("/main")        //열릴페도메인 localhost:8060/adopt/main
     public String Main(Model model) {
-//        List<AdoptMainDTO> adoptList = adoptService.getAdoptList();
-//        model.addAttribute("adoptList", adoptList);
+        List<AdoptMainDTO> adoptList = adoptService.getAdoptList();
+        model.addAttribute("adoptList", adoptList);
         return "adopt/adopt-main";  //localhost:8060/adopt/main로 접속했을시 열릴 html
     }
 
