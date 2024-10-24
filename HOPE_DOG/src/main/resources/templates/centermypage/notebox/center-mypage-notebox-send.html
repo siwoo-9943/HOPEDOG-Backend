@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>마이페이지-쪽지</title>
-  <link rel="stylesheet" th:href="@{/css/centermypage/center-mypage-notebox-write.css}">
+  <title>보낸 쪽지함</title>
+  <link rel="stylesheet" th:href="@{/css/centermypage/center-mypage-notebox.css}">
   <link rel="stylesheet" th:href="@{/css/main/header.css}">
   <link rel="stylesheet" th:href="@{/css/main/footer.css}">
 </head>
@@ -21,9 +21,9 @@
       <nav>
         <ul class="nav-items">
           <li class="nav-item">
-            <a href="../dogmap/dogmap.html">유기견 보호소</a>
+            <a href="../../dogmap/dogmap.html">유기견 보호소</a>
             <div class="dropdown-content">
-              <a href="../dogmap/dogmap.html">유기견 보호소</a>
+              <a href="../../dogmap/dogmap.html">유기견 보호소</a>
             </div>
           </li>
           <ul class="nav-items">
@@ -36,13 +36,13 @@
               </div>
             </li>
             <li class="nav-item">
-              <a href="../donation/donation-main-guest.html">기부</a>
+              <a href="../../donation/donation-main-guest.html">기부</a>
               <div class="dropdown-content">
-                <a href="../donation/donation-main-guest.html">기부 게시판</a>
+                <a href="../../donation/donation-main-guest.html">기부 게시판</a>
               </div>
             </li>
             <li class="nav-item">
-              <a href="../adopt/adopt-main.html">입양</a>
+              <a href="../../adopt/adopt-main.html">입양</a>
               <div class="dropdown-content">
                 <a href="../adopt/adopt-adopt.html">안심 입양</a>
                 <a href="../adopt/adopt-protection.html">임시 보호</a>
@@ -56,9 +56,9 @@
               </div>
             </li>
             <li class="nav-item">
-              <a href="../notice/notice-list.html">공지사항</a>
+              <a href="../../notice/notice-list.html">공지사항</a>
               <div class="dropdown-content">
-                <a href="../notice/notice-list.html">공지</a>
+                <a href="../../notice/notice-list.html">공지</a>
               </div>
             </li>
           </ul>
@@ -72,50 +72,67 @@
     </div>
   </header>
   <main>
+    <!-- 마이페이지 목록 -->
     <div class="center-member-profile-navbox">
       <nav>
         <ul class="center-member-profile-nav-ul">
-          <li id="profile"><a href="./center-mypage-profile-update.html"> 개인정보수정</a></li>
-          <li id="mywrite"><a href="./center-mypage-writeinfo-my.html"> 작성글조회</a></li>
-          <li id="volunteer"><a href="./center-mypage-volun-list.html"> 봉사</a></li>
-          <li id="adopt"><a href="./center-mypage-adopt-adopt-list.html"> 입양</a></li>
+          <li id="profile"><a href="../center-mypage-profile-update.html"> 개인정보수정</a></li>
+          <li id="mywrite"><a href="../center-mypage-writeinfo-my.html"> 작성글조회</a></li>
+          <li id="volunteer"><a href="../center-mypage-volun-list.html"> 봉사</a></li>
+          <li id="adopt"><a href="../center-mypage-adopt-adopt-list.html"> 입양</a></li>
           <li id="notebox"><a href="./center-mypage-notebox-send.html"> 쪽지함</a></li>
           <div id="choice"></div>
-          <li id="withdrawal"><a href="./center-mypage-withdrawal.html"> 회원탈퇴</a></li>
+          <li id="withdrawal"><a href="../center-mypage-withdrawal.html"> 회원탈퇴</a></li>
         </ul>
       </nav>
     </div>
-
-    <div class="note-wrap">
-      <div class="note-title">
-        <h1>쪽지 쓰기</h1>
-      </div>
-      <form method="get" id="noteForm">
-        <div class="note-write-wrap">
-          <div class="note-write">
-            <div class="note-title">
-              <input id="note-board-title" name="noteTitle" type="text" placeholder="제목을 입력해 주세요" />
+    <!-- 게시판 제목 -->
+    <div class="center-member-profile-navboard">
+      <nav>
+        <ul class="center-member-profile-navboard-ul">
+          <li><a href="./center-mypage-notebox-send.html">보낸쪽지함</a></li>
+          <div id="choice"></div>
+          <li><a href="center-mypage-notebox-receive.html">받은쪽지함</a></li>
+        </ul>
+      </nav>
+    </div>
+    <!-- 쪽지 목록 -->
+    <div class="center-member-profile-noteboard-container">
+      <ul>
+        <li th:each="note : ${noteboxSendList}">
+          <div class="notebox-list-contents">
+            <div class="note-profile-namebox">
+              <div class="note-profile-name">
+                <span th:text="${note.noteboxSendS}">이름</span>
+              </div>
             </div>
-            <div class="note-title">
-              <input id="note-board-nickname" name="notename" type="text" placeholder="보내실 분의 닉네임을 입력해 주세요" />
+            <div class="note-note-content">
+              <div class="note-title">
+                <a th:href="@{/center-mypage-notebox-writedetail.html(id=${note.noteboxSendTitle})}">
+                  <b th:text="${note.noteboxSendTitle}">제목</b>
+                </a>
+              </div>
+              <div class="note-body" th:text="${note.noteboxSendContent}">내용입니다</div>
             </div>
-            <div class="note-cont">
-              <textarea id="note-board-content" name="notbContent" inputmode="text" placeholder="내용을 입력하세요"></textarea>
-            </div>
+            <div class="note-note-date" th:text="${note.noteboxSendRegiDate}">날짜</div>
           </div>
-        </div>
-        <div class="volun-admain-btuall">
-          <button class="volun-admain-btu" type="button" onclick="goBack()">
-            <span class="volun-admain-btu-sp">이전</span>
-          </button>
-          <button class="volun-admain-btu" type="button">
-            <a href="#"><span class="volun-admain-btu-sp">보내기</span></a>
-          </button>
-        </div>
-      </form>
+        </li>
+      </ul>
+      <div class="send-button">
+        <a href="center-mypage-notebox-write.html"><button>쪽지보내기</button></a>
+      </div>
     </div>
 
-
+    <!-- 페이지네이션 -->
+    <div class="pagination">
+      <button class="prev">◀</button>
+      <button class="page">1</button>
+      <button class="page">2</button>
+      <button class="page">3</button>
+      <button class="page">4</button>
+      <button class="page">5</button>
+      <button class="next">▶</button>
+    </div>
   </main>
   <footer>
     <div class="footer-links">
@@ -127,7 +144,6 @@
       © NEXT LEVEL. All Rights Reserved</h6>
   </footer>
 </body>
-<script th:src="@{/js/centermypage/center-mypage-notebox-write.js}"></script>
 <script defer th:src="@{/js/main/main.js}"></script>
 <script defer th:src="@{/js/main/header.js}"></script>
 <script defer th:src="@{/js/main/footer.js}"></script>
