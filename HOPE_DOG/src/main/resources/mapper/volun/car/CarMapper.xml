@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.hopedog.mapper.volun.car.CarMapper">
+
+<!--글 목록-->
+    <insert id="insertCarpool" parameterType="CarpoolWriteDTO">
+        <selectKey keyProperty="carNo" resultType="Long" order="BEFORE">
+            SELECT SEQ_CAR.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_CAR (CAR_NO, CAR_CATE, CAR_TITLE, CAR_CONTENT, CAR_REGIDATE, CAR_WRITER)
+        VALUES (#{carNo}, #{carCate}, #{carTitle}, #{carContent}, SYSDATE, #{writerId})
+    </insert>
+
+
+<!--조회-->
+    <select id="selectCarpoolById" parameterType="Long" resultType="CarpoolViewDTO">
+        SELECT CAR_NO, CAR_CATE, CAR_TITLE, CAR_CONTENT, CAR_REGIDATE, CAR_UPDATEDATE,
+               C.CAR_WRITER, U.LOGIN_ID
+        FROM TBL_CAR C JOIN TBL_USER U ON C.CAR_WRITER = U.USER_ID
+        WHERE C.CAR_NO = #{carNo}
+    </select>
