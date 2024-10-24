@@ -182,10 +182,11 @@ div.board_content {
 
 .info-cell {
 	font-size: 14px;
-  flex: 1;
+  	flex: 1;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	overflow: hidden; /* 넘치는 부분을 숨김 */
 }
 
 .checkbox-line {
