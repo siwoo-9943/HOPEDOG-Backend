@@ -6,9 +6,11 @@ import com.example.hope_dog.service.member.MemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.HashMap;
@@ -20,6 +22,7 @@ import java.util.Map;
 @RequestMapping("/member")
 public class MemberController {
     private final MemberService memberService;
+
 
     /**
      * 회원가입 페이지 이동
@@ -41,35 +44,73 @@ public class MemberController {
      * 회원가입 처리
      */
     @PostMapping("/join")
-    public String join(@ModelAttribute MemberDTO memberDTO) {
+    @ResponseBody
+    public ResponseEntity<?> join(@RequestBody MemberDTO memberDTO, HttpSession session) {
         log.info("memberDTO = {}", memberDTO);
         memberService.join(memberDTO);
-
-        return "redirect:/member/login";
+        // 세션에 닉네임 저장
+        session.setAttribute("memberNickname", memberDTO.getMemberNickname());
+        return ResponseEntity.ok().build();
     }
+
+    /**
+     * 회원가입 완료 페이지
+     */
+    @GetMapping("/joinOk")
+    public String joinOk(HttpSession session, Model model) {
+        // 세션에서 닉네임 가져오기
+        String memberNickname = (String) session.getAttribute("memberNickname");
+        // Model에 닉네임 추가
+        model.addAttribute("memberNickname", memberNickname);
+        // 세션에서 닉네임 제거 (더 이상 필요하지 않으므로)
+        session.removeAttribute("memberNickname");
+        return "member/joinOk";
+    }
+
+
 
     /**
      * 로그인 처리
      */
     @PostMapping("/login")
-    public RedirectView login(
+    public String login(
             @RequestParam("memberId") String memberId,
             @RequestParam("memberPw") String memberPw,
-            HttpSession session) {
+            HttpSession session,
+            RedirectAttributes redirectAttributes) {
+        try {
+            MemberSessionDTO loginInfo = memberService.login(memberId, memberPw);
 
-        log.info("로그인 시도 : {}", memberId);
+            session.setAttribute("memberNo", loginInfo.getMemberNo());
+            session.setAttribute("memberId", loginInfo.getMemberId());
+            session.setAttribute("memberName", loginInfo.getMemberName());
+            session.setAttribute("memberNickname", loginInfo.getMemberNickname());
+            session.setAttribute("memberEmail", loginInfo.getMemberEmail());
+            session.setAttribute("memberLoginStatus", loginInfo.getMemberLoginStatus());
+            session.setAttribute("memberTwoFactorEnabled", loginInfo.getMemberTwoFactorEnabled());
 
-        MemberSessionDTO loginInfo = memberService.login(memberId, memberPw);
+            return "redirect:/main/main";
+        } catch (IllegalArgumentException e) {
+            log.error("로그인 실패: {}", e.getMessage());
+            redirectAttributes.addFlashAttribute("loginError", e.getMessage());
+            return "redirect:/member/login";
+        }
+    }
 
-        session.setAttribute("memberNo", loginInfo.getMemberNo());
-        session.setAttribute("memberId", loginInfo.getMemberId());
-        session.setAttribute("memberName", loginInfo.getMemberName());
-        session.setAttribute("memberNickname", loginInfo.getMemberNickname());
-        session.setAttribute("memberEmail", loginInfo.getMemberEmail());
-        session.setAttribute("memberLoginStatus", loginInfo.getMemberLoginStatus());
+    /**
+     * 예외 처리를 위한 핸들러
+     */
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
 
-
-        return new RedirectView("/board/list");
+    /**
+     * 로그인 선택 페이지
+     */
+    @GetMapping("/login-select")
+    public String loginSelect() {
+        return "member/login-select";
     }
 
 
@@ -91,7 +132,7 @@ public class MemberController {
         log.info("로그아웃");
         session.invalidate();
 
-        return new RedirectView("/member/login");
+        return new RedirectView("/main/main");
     }
 
 
@@ -228,10 +269,35 @@ public class MemberController {
     /**
      * 약관동의 후 회원가입 페이지로 이동
      */
-    @GetMapping("/join")
+    @GetMapping("/member/join")
     public String joinForm(@RequestParam(required = false, defaultValue = "false") Boolean emailAgreed) {
         log.info("이메일 수신 동의 여부: {}", emailAgreed);
         return "member/join";
+    }
+
+
+    /**
+     * 닉네임 중복 체크
+     */
+    @GetMapping("/check-nickname")
+    public ResponseEntity<Map<String, Boolean>> checkNickname(
+            @RequestParam("nickname") String nickname
+    ) {
+        boolean isAvailable = memberService.checkNickname(nickname);
+        Map<String, Boolean> response = Map.of("available", isAvailable);
+        return ResponseEntity.ok(response);
+    }
+
+    /**
+     * 이메일 중복 체크
+     */
+    @GetMapping("/check-email")
+    public ResponseEntity<Map<String, Boolean>> checkEmail(
+            @RequestParam("email") String email
+    ) {
+        boolean isAvailable = memberService.checkEmail(email);
+        Map<String, Boolean> response = Map.of("available", isAvailable);
+        return ResponseEntity.ok(response);
     }
 
 }

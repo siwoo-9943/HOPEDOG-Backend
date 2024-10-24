@@ -39,4 +39,20 @@ public class MemberService {
         return Optional.ofNullable(memberMapper.selectLoginInfo(memberId, memberPw))
                 .orElseThrow(() -> new IllegalStateException("존재하지 않는 회원정보"));
     }
+
+//  닉네임 중복체크
+    public boolean checkNickname(String nickname) {
+        if (nickname == null || nickname.trim().isEmpty()) {
+            throw new IllegalArgumentException("닉네임은 필수 입력값입니다.");
+        }
+        // 추가 유효성 검사 가능
+        return memberMapper.checkNickname(nickname) == 0;
+    }
+//  이메일 중복체크
+    public boolean checkEmail(String email) {
+        if (email == null || !email.contains("@")) {
+            throw new IllegalArgumentException("유효하지 않은 이메일 형식입니다.");
+        }
+        return memberMapper.checkEmail(email) == 0;
+    }
 }

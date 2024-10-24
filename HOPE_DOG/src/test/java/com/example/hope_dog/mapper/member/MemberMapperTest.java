@@ -48,4 +48,57 @@ class MemberMapperTest {
         assertThat(memberNo).isNotNull();
     }
 
+//    닉네임이 중복되지 않았을 때
+    @Test
+    void checkNickname_NotExists() {
+        // given
+        String newNickname = "newNickname";
+
+        // when
+        int result = memberMapper.checkNickname(newNickname);
+
+        // then
+        assertThat(result).isZero();
+    }
+
+    //    닉네임이 중복되었을 때
+    @Test
+    void checkNickname_Exists() {
+        // given
+        memberMapper.insertMember(memberDTO);
+
+        // when
+        int result = memberMapper.checkNickname(memberDTO.getMemberNickname());
+
+        // then
+        assertThat(result).isOne();
+    }
+
+    //    이메일이 중복되지 않았을 때
+    @Test
+    void checkEmail_NotExists() {
+        // given
+        String newEmail = "new@example.com";
+
+        // when
+        int result = memberMapper.checkEmail(newEmail);
+
+        // then
+        assertThat(result).isZero();
+    }
+
+    //    이메일이 중복되었을 때
+    @Test
+    void checkEmail_Exists() {
+        // given
+        memberMapper.insertMember(memberDTO);
+
+        // when
+        int result = memberMapper.checkEmail(memberDTO.getMemberEmail());
+
+        // then
+        assertThat(result).isOne();
+    }
+
+
 }

@@ -4,7 +4,6 @@ import com.example.hope_dog.dto.member.MemberDTO;
 import com.example.hope_dog.dto.member.MemberSessionDTO;
 import com.example.hope_dog.mapper.member.MemberMapper;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -12,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -48,7 +48,6 @@ class MemberServiceTest {
     }
 
     @Test
-    @DisplayName("회원 가입 테스트")
     void joinTest() {
         // given
         doNothing().when(memberMapper).insertMember(any());
@@ -61,7 +60,6 @@ class MemberServiceTest {
     }
 
     @Test
-    @DisplayName("회원 번호 조회 테스트 - 성공")
     void findMemberNoSuccessTest() {
         // given
         Long expectedMemberNo = 1L;
@@ -76,7 +74,6 @@ class MemberServiceTest {
     }
 
     @Test
-    @DisplayName("회원 번호 조회 테스트 - 실패")
     void findMemberNoFailTest() {
         // given
         when(memberMapper.selectMemberNo(TEST_ID, TEST_PW)).thenReturn(null);
@@ -88,7 +85,6 @@ class MemberServiceTest {
     }
 
     @Test
-    @DisplayName("로그인 테스트 - 성공")
     void loginSuccessTest() {
         // given
         MemberSessionDTO expectedSession = new MemberSessionDTO();
@@ -105,7 +101,6 @@ class MemberServiceTest {
     }
 
     @Test
-    @DisplayName("로그인 테스트 - 실패")
     void loginFailTest() {
         // given
         when(memberMapper.selectLoginInfo(TEST_ID, TEST_PW)).thenReturn(null);
@@ -114,5 +109,84 @@ class MemberServiceTest {
         assertThrows(IllegalStateException.class,
                 () -> memberService.login(TEST_ID, TEST_PW));
         verify(memberMapper, times(1)).selectLoginInfo(TEST_ID, TEST_PW);
+    }
+
+
+    @Test
+    void checkNickname_Available() {
+        // given
+        String nickname = "testNick";
+        when(memberMapper.checkNickname(nickname)).thenReturn(0);
+
+        // when
+        boolean result = memberService.checkNickname(nickname);
+
+        // then
+        assertThat(result).isTrue();
+        verify(memberMapper).checkNickname(nickname);
+    }
+
+    @Test
+    void checkNickname_NotAvailable() {
+        // given
+        String nickname = "testNick";
+        when(memberMapper.checkNickname(nickname)).thenReturn(1);
+
+        // when
+        boolean result = memberService.checkNickname(nickname);
+
+        // then
+        assertThat(result).isFalse();
+        verify(memberMapper).checkNickname(nickname);
+    }
+
+    @Test
+    void checkNickname_EmptyString() {
+        // given
+        String nickname = "";
+
+        // when & then
+        assertThatThrownBy(() -> memberService.checkNickname(nickname))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("닉네임은 필수 입력값입니다.");
+    }
+
+    @Test
+    void checkEmail_Available() {
+        // given
+        String email = "test@example.com";
+        when(memberMapper.checkEmail(email)).thenReturn(0);
+
+        // when
+        boolean result = memberService.checkEmail(email);
+
+        // then
+        assertThat(result).isTrue();
+        verify(memberMapper).checkEmail(email);
+    }
+
+    @Test
+    void checkEmail_NotAvailable() {
+        // given
+        String email = "test@example.com";
+        when(memberMapper.checkEmail(email)).thenReturn(1);
+
+        // when
+        boolean result = memberService.checkEmail(email);
+
+        // then
+        assertThat(result).isFalse();
+        verify(memberMapper).checkEmail(email);
+    }
+
+    @Test
+    void checkEmail_InvalidFormat() {
+        // given
+        String email = "invalid-email";
+
+        // when & then
+        assertThatThrownBy(() -> memberService.checkEmail(email))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("유효하지 않은 이메일 형식입니다.");
     }
 }

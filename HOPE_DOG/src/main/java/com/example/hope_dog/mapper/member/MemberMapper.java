@@ -14,4 +14,12 @@ public interface MemberMapper {
 
     // 로그인 정보 조회
     MemberSessionDTO selectLoginInfo(@Param("memberId") String memberId, @Param("memberPw") String memberPw);
+
+
+    // 닉네임 중복 체크
+    int checkNickname(@Param("memberNickname") String memberNickname);
+
+    // 이메일 중복 체크
+    int checkEmail(@Param("memberEmail") String memberEmail);
+
 }

@@ -43,11 +43,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // 폼 제출 이벤트 (다음 버튼 클릭)
+    // 폼 제출 이벤트 (컨트롤러에 매핑된 경로로 이동)
     termsForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        if (confirm('입력하신 내용으로 약관에 동의하시겠습니까?')) {
-            window.location.href = 'signup.html';
-        }
+        e.preventDefault();  // 폼 기본 제출 방지
+
+        const emailAgreed = optionalAgreementCheckbox.checked;  // 이메일 동의 여부 확인
+        const url = `http://localhost:8060/member/join?emailAgreed=${emailAgreed}`;  // emailAgreed 값을 쿼리 파라미터로 추가
+
+        // 해당 경로로 이동
+        window.location.href = url;
     });
 });

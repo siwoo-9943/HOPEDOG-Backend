@@ -14,4 +14,5 @@ public class MemberSessionDTO {
     private String memberName;
     private String memberNickname;
     private String memberLoginStatus;
+    private String memberTwoFactorEnabled;
 }

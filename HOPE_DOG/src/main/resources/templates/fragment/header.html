@@ -9,7 +9,7 @@
 <header class="header">
     <div class="logo-nav">
         <div class="logo">
-            <a th:href="@{/main}">
+            <a th:href="@{/main/main}">
                 <img th:src="@{/img/header_logo.png}" alt="로고이미지">
             </a>
         </div>
@@ -60,19 +60,19 @@
     </div>
     <div class="user-section">
         <!-- 비로그인 상태 -->
-        <ul class="user-actions" th:if="${session.user == null}">
-            <li class="user-action"><a th:href="@{/member/login}">로그인</a></li>
+        <ul class="user-actions" th:if="${session.memberNo == null}">
+            <li class="user-action"><a th:href="@{/member/login-select}">로그인</a></li>
             <li class="user-action"><a th:href="@{/member/join-select}">회원가입</a></li>
         </ul>
 
         <!-- 일반 회원 로그인 상태 -->
-        <ul class="user-actions" th:if="${session.user != null && session.user.role == 'USER'}">
+        <ul class="user-actions" th:if="${session.memberNo != null && session.memberLoginStatus == 'HOPEDOG'}">
             <li class="user-action"><a th:href="@{/mypage/mypage}">마이페이지</a></li>
             <li class="user-action"><a th:href="@{/member/logout}">로그아웃</a></li>
         </ul>
 
         <!-- 센터 회원 로그인 상태 -->
-        <ul class="user-actions" th:if="${session.user != null && session.user.role == 'CENTER'}">
+        <ul class="user-actions" th:if="${session.memberNo != null && session.memberLoginStatus == 'CENTER'}">
             <li class="user-action"><a th:href="@{/center/mypage}">센터마이페이지</a></li>
             <li class="user-action"><a th:href="@{/member/logout}">로그아웃</a></li>
         </ul>
