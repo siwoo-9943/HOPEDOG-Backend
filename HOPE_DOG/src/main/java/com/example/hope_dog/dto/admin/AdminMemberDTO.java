@@ -9,7 +9,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class MemberDTO {
+public class AdminMemberDTO {
     private Long memberNo;
     private String memberId;
     private String memberEmail;

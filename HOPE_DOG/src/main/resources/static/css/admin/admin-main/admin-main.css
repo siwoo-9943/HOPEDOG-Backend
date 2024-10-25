@@ -186,7 +186,8 @@ div.board_content {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	overflow: hidden; /* 넘치는 부분을 숨김 */
+	white-space: nowrap;        /* 텍스트를 한 줄로 표시 */
+	overflow: hidden;           /* 넘치는 부분을 숨김 */
 }
 
 .checkbox-line {

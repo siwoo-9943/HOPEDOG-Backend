@@ -1,8 +1,9 @@
 package com.example.hope_dog.controller.admin;
 
+import com.example.hope_dog.dto.admin.AdminPostDTO;
 import com.example.hope_dog.dto.admin.AdminSessionDTO;
-import com.example.hope_dog.dto.admin.MemberDTO;
-import com.example.hope_dog.dto.admin.ReportDTO;
+import com.example.hope_dog.dto.admin.AdminMemberDTO;
+import com.example.hope_dog.dto.admin.AdminReportDTO;
 import com.example.hope_dog.service.admin.AdminService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -42,11 +43,13 @@ public class AdminController {
 
     @GetMapping("/main")
     public String main(Model model) {
-        List<MemberDTO> memberList = adminService.selectMemberList();
-        List<ReportDTO> reportList = adminService.selectReportList();
+        List<AdminMemberDTO> memberList = adminService.selectMemberList();
+        List<AdminReportDTO> reportList = adminService.selectReportList();
+        List<AdminPostDTO> postList = adminService.selectPostList();
 
         model.addAttribute("memberList", memberList);
         model.addAttribute("reportList", reportList);
+        model.addAttribute("postList", postList);
 
         return "admin/admin-main/admin-main"; // 뷰 이름 반환
     }

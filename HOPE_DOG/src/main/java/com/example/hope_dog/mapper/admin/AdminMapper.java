@@ -1,9 +1,9 @@
 package com.example.hope_dog.mapper.admin;
 
-import com.example.hope_dog.dto.admin.AdminDTO;
+import com.example.hope_dog.dto.admin.AdminMemberDTO;
+import com.example.hope_dog.dto.admin.AdminPostDTO;
 import com.example.hope_dog.dto.admin.AdminSessionDTO;
-import com.example.hope_dog.dto.admin.MemberDTO;
-import com.example.hope_dog.dto.admin.ReportDTO;
+import com.example.hope_dog.dto.admin.AdminReportDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -16,7 +16,9 @@ public interface AdminMapper {
 
     Optional<AdminSessionDTO> selectLoginInfo(@Param("adminId") String adminId, @Param("adminPw") String adminPw);
 
-    List<MemberDTO> selectMemberList();
+    List<AdminMemberDTO> selectMemberList();
 
-    List<ReportDTO> selectReportList();
+    List<AdminReportDTO> selectReportList();
+
+    List<AdminPostDTO> selectPostList();
 }

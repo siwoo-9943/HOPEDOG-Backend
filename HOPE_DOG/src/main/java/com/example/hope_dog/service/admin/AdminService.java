@@ -1,8 +1,9 @@
 package com.example.hope_dog.service.admin;
 
+import com.example.hope_dog.dto.admin.AdminMemberDTO;
+import com.example.hope_dog.dto.admin.AdminPostDTO;
 import com.example.hope_dog.dto.admin.AdminSessionDTO;
-import com.example.hope_dog.dto.admin.MemberDTO;
-import com.example.hope_dog.dto.admin.ReportDTO;
+import com.example.hope_dog.dto.admin.AdminReportDTO;
 import com.example.hope_dog.mapper.admin.AdminMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,11 +25,15 @@ public class AdminService {
         return adminMapper.selectLoginInfo(adminId, adminPw).orElseThrow(() -> new IllegalStateException("존재하지 않는 관리자 정보"));
     }
 
-    public List<MemberDTO> selectMemberList(){
+    public List<AdminMemberDTO> selectMemberList(){
         return adminMapper.selectMemberList();
     }
 
-    public List<ReportDTO> selectReportList(){
+    public List<AdminReportDTO> selectReportList(){
         return adminMapper.selectReportList();
+    }
+
+    public List<AdminPostDTO> selectPostList(){
+        return adminMapper.selectPostList();
     }
 }
