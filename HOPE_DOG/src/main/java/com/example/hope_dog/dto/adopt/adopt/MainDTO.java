@@ -9,10 +9,10 @@ import java.util.Date;
 
 @Getter @Setter @ToString
 @NoArgsConstructor
-public class AdoptMainDTO {
+public class MainDTO {
     private Long adoptNo;
     private String adoptTitle;
     private Date adoptRegidate;
     private String adoptStatus;
-    private int centerMemberNo;
+    private String centerMemberName;
 }
