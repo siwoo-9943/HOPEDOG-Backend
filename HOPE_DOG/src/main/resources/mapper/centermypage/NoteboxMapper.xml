@@ -8,4 +8,9 @@
         WHERE NOTEBOX_SEND_R = #{centerMemberNo}
     </select>
 
+    <select id="selectReceive" parameterType="Long" resultType="NoteboxReceiveListDTO">
+        SELECT NOTEBOX_RECEIVE_NO, NOTEBOX_RECEIVE_TITLE, NOTEBOX_RECEIVE_CONTENT, NOTEBOX_RECEIVE_REGIDATE, NOTEBOX_RECEIVE_S, NOTEBOX_RECEIVE_R
+        FROM TBL_NOTEBOX_RECEIVE
+        WHERE NOTEBOX_RECEIVE_S = #{centerMemberNo}
+    </select>
 </mapper>
