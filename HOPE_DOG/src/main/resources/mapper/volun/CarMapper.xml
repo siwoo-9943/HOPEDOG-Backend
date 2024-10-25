@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.hope_dog.mapper.volun.CarMapper">
+    <select id="selectAllCars" resultType="CarDTO">
+        SELECT CAR_NO, CAR_CATE, CAR_TITLE, CAR_CONTENT, CAR_REGIDATE, CAR_UPDATEDATE,
+               CAR_WRITER
+        FROM TBL_CAR
+        ORDER BY CAR_REGIDATE DESC;  -- 최신 글이 위에 오도록 정렬
+    </select>
+</mapper>
