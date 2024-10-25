@@ -22,6 +22,6 @@ public class CarController {
     public String Main(Model model) {
         List<CarDTO> carList = carService.getCarList(); // 데이터 조회
         model.addAttribute("carList", carList); // 모델에 추가
-        return "volun/car/volun-car-main-member"; // 반환할 HTML 파일 경로
+        return "volun/car/volun-car-main"; // 반환할 HTML 파일 경로
     }
 }

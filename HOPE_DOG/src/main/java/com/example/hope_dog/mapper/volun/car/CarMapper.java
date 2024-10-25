@@ -9,6 +9,6 @@ import java.util.List;
 public interface CarMapper {
     public List<CarDTO> CarMain();
 
-    public List<CarDTO> selectAllCars();
+   List<CarDTO> selectAllCars();
 
 }
