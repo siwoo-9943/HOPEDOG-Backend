@@ -8,6 +8,4 @@ import java.util.List;
 @Mapper
 public interface AdoptMapper {
     List<AdoptMainDTO> adoptMain();
-
-    public void AdoptMain(AdoptMainDTO adoptMainDTO);
 }
