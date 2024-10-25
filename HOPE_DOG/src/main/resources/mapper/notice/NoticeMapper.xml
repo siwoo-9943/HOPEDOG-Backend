@@ -1,7 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.hope_dog.mapper.notice.NoticeMapper">
+    <select id="noticeList" resultType="NoticeListDTO">
+        SELECT
+            N.NOTICE_TITLE,
+            N.NOTICE_REGIDATE,
+            A.ADMIN_ID
+        FROM
+            TBL_NOTICE N
+                JOIN
+            TBL_ADMIN A ON N.ADMIN_NO = A.ADMIN_NO
+        ORDER BY
+            N.NOTICE_REGIDATE DESC
+    </select>
 
+    <select id="noticeView" resultType="NoticeViewDTO">
+        SELECT
+            N.NOTICE_NO,
+            N.ADMIN_NO,
+            N.NOTICE_CATE,
+            N.NOTICE_TITLE,
+            N.NOTICE_CONTENT,
+            N.NOTICE_REGIDATE,
+            N.NOTICE_UPDATEDATE,
+            A.ADMIN_ID
+        FROM
+            TBL_NOTICE N
+                JOIN
+            TBL_ADMIN A ON N.ADMIN_NO = A.ADMIN_NO
+        ORDER BY
+            N.NOTICE_REGIDATE DESC
+    </select>
     <!--    <insert id="insertBoard" parameterType="BoardWriteDTO">-->
     <!--        <selectKey keyProperty="boardId" resultType="Long" order="BEFORE">-->
     <!--            SELECT SEQ_BOARD.NEXTVAL FROM DUAL-->
@@ -16,24 +45,24 @@
     <!--        WHERE BOARD_ID = #{boardId}-->
     <!--    </update>-->
 
-    <select id="selectById" parameterType="Long" resultType="NoticeViewDTO">
-        SELECT NOTICE_NO, NOTICE_CATE, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_REGIDATE, NOTICE_UPDATEDATE
-            ADMIN_NO, A.ADMIN_ID
-        FROM TBL_NOTICE N JOIN TBL_ADMIN A
-                               ON N.ADMIN_NO = #{noticeNo} AND N.ADMIN.NO = A.ADMIN_NO
-        ORDER BY NOTICE_REGIDATE DESC
-    </select>
+<!--    <select id="selectById" parameterType="Long" resultType="NoticeViewDTO">-->
+<!--        SELECT NOTICE_NO, NOTICE_CATE, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_REGIDATE, NOTICE_UPDATEDATE-->
+<!--            ADMIN_NO, A.ADMIN_ID-->
+<!--        FROM TBL_NOTICE N JOIN TBL_ADMIN A-->
+<!--                               ON N.ADMIN_NO = #{noticeNo} AND N.ADMIN.NO = A.ADMIN_NO-->
+<!--        ORDER BY NOTICE_REGIDATE DESC-->
+<!--    </select>-->
 
-    <select id="selectAll" resultType="NoticeListDTO">
-        SELECT NOTICE_NO, NOTICE_TITLE, A.ADMIN_NO
-        FROM TBL_NOTICE N JOIN TBL_ADMIN A
-                               ON N.ADMIN_NO = A.ADMIN_NO
-        ORDER BY NOTICE_NO DESC
-    </select>
+<!--    <select id="selectAll" resultType="NoticeListDTO">-->
+<!--        SELECT NOTICE_NO, NOTICE_TITLE, A.ADMIN_NO-->
+<!--        FROM TBL_NOTICE N JOIN TBL_ADMIN A-->
+<!--                               ON N.ADMIN_NO = A.ADMIN_NO-->
+<!--        ORDER BY NOTICE_NO DESC-->
+<!--    </select>-->
 
-    <select id="selectTotal" resultType="int">
-        SELECT COUNT(NOTICE_NO) FROM TBL_NOTICE
-    </select>
+<!--    <select id="selectTotal" resultType="int">-->
+<!--        SELECT COUNT(NOTICE_NO) FROM TBL_NOTICE-->
+<!--    </select>-->
 
 <!--    <select id="selectAllPage" parameterType="Criteria" resultType="NoticeListDTO">-->
 <!--    <![CDATA[-->

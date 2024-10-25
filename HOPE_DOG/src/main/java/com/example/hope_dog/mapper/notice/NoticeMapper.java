@@ -10,17 +10,23 @@ import java.util.Optional;
 
 @Mapper
 public interface NoticeMapper {
+
+    List<NoticeListDTO> noticeList();
+
+    List<NoticeViewDTO> noticeView();
+
+
 //    void insertBoard(BoardWriteDTO boardWriteDTO);
 
 //    void updateBoard(BoardUpdateDTO boardUpdateDTO);
-
-    Optional<NoticeViewDTO> selectById(Long noticeNo);
-
-    List<NoticeListDTO> selectAll();
-
-    int selectTotal();
-
-    List<NoticeListDTO> selectAllPage(Criteria criteria);
+//
+//    Optional<NoticeViewDTO> selectById(Long noticeNo);
+//
+//    List<NoticeListDTO> selectAll();
+//
+//    int selectTotal();
+//
+//    List<NoticeListDTO> selectAllPage(Criteria criteria);
 
 //    void deleteBoard(Long boardId);
 

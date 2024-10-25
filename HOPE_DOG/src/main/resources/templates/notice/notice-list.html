@@ -87,77 +87,18 @@
         </div>
         <!--게시글-->
         <div class="notice-ul-all">
-          <div class="notice-ul-main">
-            <div class="notice-title"><a href="../../html/notice/notice-detail.html">입양 공지사항</div></a>
-            <div class="notice-author">관리자</div>
-            <div class="notice-date">2024-10-08</div>
+          <div class="notice-ul-main" th:each="notice : ${noticeList}">
+            <div class="notice-title">
+              <a th:href="@{/notice/notice-detail.html}" th:text="${notice.noticeTitle}"></a>
+            </div>
+            <div class="notice-author" th:text="${notice.adminId}"></div>
+            <div class="notice-date" th:text="${#dates.format(notice.noticeRegidate, 'yyyy-MM-dd')}"></div>
           </div>
         </div>
-        <div class="notice-ul-all">
-          <div class="notice-ul-main">
-            <div class="notice-title"><a href="../../html/notice/notice-detail.html">임시보호 공지사항</div></a>
-            <div class="notice-author">관리자</div>
-            <div class="notice-date">2024-10-08</div>
-          </div>
-        </div>
-        <div class="notice-ul-all">
-          <div class="notice-ul-main">
-            <div class="notice-title"><a href="../../html/notice/notice-detail.html">희멍의 집 공지사항</div></a>
-            <div class="notice-author">관리자</div>
-            <div class="notice-date">2024-10-08</div>
-          </div>
-        </div>
-        <div class="notice-ul-all">
-          <div class="notice-ul-main">
-            <div class="notice-title"><a href="../../html/notice/notice-detail.html">봉사 공지사항</div></a>
-            <div class="notice-author">관리자</div>
-            <div class="notice-date">2024-10-08</div>
-          </div>
-        </div>
-        <div class="notice-ul-all">
-          <div class="notice-ul-main">
-            <div class="notice-title"><a href="../../html/notice/notice-detail.html">입양 공지사항</div></a>
-            <div class="notice-author">관리자</div>
-            <div class="notice-date">2024-10-08</div>
-          </div>
-        </div>
-        <div class="notice-ul-all">
-          <div class="notice-ul-main">
-            <div class="notice-title"><a href="../../html/notice/notice-detail.html">임시보호 공지사항</div></a>
-            <div class="notice-author">관리자</div>
-            <div class="notice-date">2024-10-08</div>
-          </div>
-        </div>
-        <div class="notice-ul-all">
-          <div class="notice-ul-main">
-            <div class="notice-title"><a href="../../html/notice/notice-detail.html">희멍의 집 공지사항</div></a>
-            <div class="notice-author">관리자</div>
-            <div class="notice-date">2024-10-08</div>
-          </div>
-        </div>
-        <div class="notice-ul-all">
-          <div class="notice-ul-main">
-            <div class="notice-title"><a href="../../html/notice/notice-detail.html">봉사 공지사항</div></a>
-            <div class="notice-author">관리자</div>
-            <div class="notice-date">2024-10-08</div>
-          </div>
-        </div>
-        <div class="notice-ul-all">
-          <div class="notice-ul-main">
-            <div class="notice-title"><a href="../../html/notice/notice-detail.html">입양 공지사항</div></a>
-            <div class="notice-author">관리자</div>
-            <div class="notice-date">2024-10-08</div>
-          </div>
-        </div>
-        <div class="notice-ul-all">
-          <div class="notice-ul-main">
-            <div class="notice-title"><a href="../../html/notice/notice-detail.html">임시보호 공지사항</div></a>
-            <div class="notice-author">관리자</div>
-            <div class="notice-date">2024-10-08</div>
-          </div>
-        </div>
-      </div>
-      <!-- 검색 창-->
+
+
+
+        <!-- 검색 창-->
         <div class="bottom-search">
           <form method="get" name="search" action="/zboard/zboard.php">
             <select name="search-type" id="search-type">

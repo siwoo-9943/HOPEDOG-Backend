@@ -1,5 +1,6 @@
 package com.example.hope_dog.service.notice;
 
+import com.example.hope_dog.dto.adopt.adopt.AdoptMainDTO;
 import com.example.hope_dog.dto.notice.NoticeViewDTO;
 import com.example.hope_dog.dto.notice.NoticeListDTO;
 import com.example.hope_dog.dto.notice.file.FileDTO;
@@ -30,8 +31,17 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class NoticeService {
     private final NoticeMapper noticeMapper;
-    private final FileMapper fileMapper;
-    private final FileService fileService;
+
+    public List<NoticeListDTO> getNoticeList() {
+
+        return noticeMapper.noticeList();
+    }
+
+    public List<NoticeViewDTO> getNoticeViewList() {
+        return noticeMapper.noticeView();
+    }
+//    private final FileMapper fileMapper;
+//    private final FileService fileService;
 
 //    @Value("C:/upload")
 //    private String fileDir;
@@ -103,21 +113,21 @@ public class NoticeService {
 //        return new SimpleDateFormat("yyyy/MM/dd").format(new Date());
 //    }
 
-    public NoticeViewDTO findById(Long noticeNo){
-        return noticeMapper.selectById(noticeNo).orElseThrow(() -> new IllegalStateException("유효하지 않은 게시물 번호"));
-    }
-
-    public List<NoticeListDTO> findAll() {
-        return noticeMapper.selectAll();
-    }
-
-    public int findTotal(){
-        return noticeMapper.selectTotal();
-    }
-
-    public List<NoticeListDTO> findAllPage(Criteria criteria){
-        return noticeMapper.selectAllPage(criteria);
-    }
+//    public NoticeViewDTO findById(Long noticeNo){
+//        return noticeMapper.selectById(noticeNo).orElseThrow(() -> new IllegalStateException("유효하지 않은 게시물 번호"));
+//    }
+//
+//    public List<NoticeListDTO> findAll() {
+//        return noticeMapper.selectAll();
+//    }
+//
+//    public int findTotal(){
+//        return noticeMapper.selectTotal();
+//    }
+//
+//    public List<NoticeListDTO> findAllPage(Criteria criteria){
+//        return noticeMapper.selectAllPage(criteria);
+//    }
 
 
 
