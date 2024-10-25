@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Map;
@@ -219,32 +220,44 @@ public class CenterMemberController {
 
 
     /**
-     * 회원가입 처리
+     * 센터 회원가입 처리
      */
-    @PostMapping("/join")
+    @PostMapping("/center-join")
     @ResponseBody
-    public ResponseEntity<?> join(@RequestBody CenterMemberDTO memberDTO, HttpSession session) {
-        log.info("memberDTO = {}", memberDTO);
-        centerMemberService.join(CenterMemberDTO);
-        // 세션에 닉네임 저장
-        session.setAttribute("centerMemberName", memberDTO.getCenterMemberName());
-        return ResponseEntity.ok().build();
+    public ResponseEntity<?> join(@ModelAttribute CenterMemberDTO centerMemberDTO,
+                                  @RequestParam("businessFile") MultipartFile file,
+                                  HttpSession session) {
+        try {
+            // 파일 처리를 위해 DTO에 파일 설정
+            centerMemberDTO.setBusinessFile(file);
+
+            // 회원가입 처리
+            centerMemberService.join(centerMemberDTO);
+
+            // 세션에 이름 저장 (가입 완료 페이지에서 사용)
+            session.setAttribute("centerMemberName", centerMemberDTO.getCenterMemberName());
+
+            return ResponseEntity.ok().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
+            log.error("회원가입 처리 중 오류 발생", e);
+            return ResponseEntity.internalServerError().body("회원가입 처리 중 오류가 발생했습니다.");
+        }
     }
-
-
 
     /**
      * 회원가입 완료 페이지
      */
-    @GetMapping("/joinOk")
+    @GetMapping("/center-joinOk")
     public String joinOk(HttpSession session, Model model) {
-        // 세션에서 닉네임 가져오기
-        String memberNickname = (String) session.getAttribute("memberNickname");
-        // Model에 닉네임 추가
-        model.addAttribute("memberNickname", memberNickname);
-        // 세션에서 닉네임 제거 (더 이상 필요하지 않으므로)
-        session.removeAttribute("memberNickname");
-        return "member/joinOk";
+        // 세션에서 이름 가져오기
+        String centerMemberName = (String) session.getAttribute("centerMemberName");
+        // Model에 이름 추가
+        model.addAttribute("centerMemberName", centerMemberName);
+        // 세션에서 이름 제거
+        session.removeAttribute("centerMemberName");
+        return "center/center-joinOk";
     }
 
 }
