@@ -2,14 +2,14 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>약관동의</title>
-    <link rel="stylesheet" th:href="@{/css/member/terms.css}" />
+    <title>센터약관동의</title>
+    <link rel="stylesheet" th:href="@{/css/center/center-terms.css}" />
+
 </head>
 <body>
-
 <div class="container">
-    <h1>회원 약관동의</h1>
-    <form id="termsForm" th:action="@{/member/join}" method="get">
+    <h1>센터 약관동의</h1>
+    <form id="termsForm" th:action="@{/center/center-join}" method="get">
         <div class="term-item">
             <label>
                 <input type="checkbox" id="allAgree"> 전체 동의하기
@@ -43,6 +43,6 @@
         <input type="hidden" name="emailAgreed" id="emailAgreed" value="false">
     </form>
 </div>
-<script th:src="@{/js/member/terms.js}"></script>
+<script th:src="@{/js/center/center-terms.js}"></script>
 </body>
 </html>
