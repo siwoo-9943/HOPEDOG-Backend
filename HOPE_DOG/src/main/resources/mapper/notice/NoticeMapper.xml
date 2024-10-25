@@ -5,7 +5,8 @@
         SELECT
             N.NOTICE_TITLE,
             N.NOTICE_REGIDATE,
-            A.ADMIN_ID
+            A.ADMIN_ID,
+            N.NOTICE_NO
         FROM
             TBL_NOTICE N
                 JOIN
@@ -28,8 +29,7 @@
             TBL_NOTICE N
                 JOIN
             TBL_ADMIN A ON N.ADMIN_NO = A.ADMIN_NO
-        ORDER BY
-            N.NOTICE_REGIDATE DESC
+        WHERE N.NOTICE_NO = #{noticeNo}
     </select>
     <!--    <insert id="insertBoard" parameterType="BoardWriteDTO">-->
     <!--        <selectKey keyProperty="boardId" resultType="Long" order="BEFORE">-->

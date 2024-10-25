@@ -86,13 +86,12 @@
           <div class="notice-container-audate">작성일</div>
         </div>
         <!--게시글-->
-        <div class="notice-ul-all">
-          <div class="notice-ul-main" th:each="notice : ${noticeList}">
-            <div class="notice-title">
-              <a th:href="@{/notice/notice-detail.html}" th:text="${notice.noticeTitle}"></a>
-            </div>
+        <div th:each="notice : ${noticeList}" class="notice-ul-all">
+          <div class="notice-ul-main">
+            <div class="notice-title" th:text="${notice.noticeTitle}"></div>
             <div class="notice-author" th:text="${notice.adminId}"></div>
             <div class="notice-date" th:text="${#dates.format(notice.noticeRegidate, 'yyyy-MM-dd')}"></div>
+            <div class="noticeNo" th:text="${notice.noticeNo}" style="display: none;"></div>
           </div>
         </div>
 
@@ -139,5 +138,6 @@
 </body>
 
 <script defer src="../../js/header.js"></script>
+<script defer th:src="@{/js/notice/notice-list.js}"></script>
 
 </html>

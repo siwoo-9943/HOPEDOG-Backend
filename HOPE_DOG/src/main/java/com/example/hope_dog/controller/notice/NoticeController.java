@@ -1,5 +1,6 @@
 package com.example.hope_dog.controller.notice;
 
+import com.example.hope_dog.dto.adopt.adopt.AdoptDetailDTO;
 import com.example.hope_dog.dto.adopt.adopt.AdoptMainDTO;
 import com.example.hope_dog.dto.notice.NoticeListDTO;
 import com.example.hope_dog.dto.notice.NoticeViewDTO;
@@ -35,13 +36,12 @@ public class NoticeController {
     }
 
     @GetMapping("/view")
-    public String view(Model model) {
-        List<NoticeViewDTO> noticeViewList = noticeService.getNoticeViewList();
+    public String View(@RequestParam("noticeNo") Long noticeNo,Model model) {
+        List<NoticeViewDTO> noticeViewList = noticeService.getNoticeViewList(noticeNo);
         model.addAttribute("noticeViewList", noticeViewList);
 
         return "notice/notice-detail";
     }
-
 
 
 //    @GetMapping("/write")

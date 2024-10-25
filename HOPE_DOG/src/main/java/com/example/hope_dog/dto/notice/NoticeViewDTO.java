@@ -16,9 +16,8 @@ public class NoticeViewDTO {
     private String noticeTitle;
     private String noticeContent;
     private Date noticeRegidate;
-    private Date uploadPath;
-    private String uuid;
-    private Long adminNo; //계정
-    private Long userId; //유저번호
+    private Date noticeUpdatedate;
+    private String adminId;
+    private Long adminNo;
 }
 

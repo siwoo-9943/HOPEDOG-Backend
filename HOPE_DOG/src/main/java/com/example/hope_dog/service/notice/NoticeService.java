@@ -1,30 +1,14 @@
 package com.example.hope_dog.service.notice;
 
-import com.example.hope_dog.dto.adopt.adopt.AdoptMainDTO;
 import com.example.hope_dog.dto.notice.NoticeViewDTO;
 import com.example.hope_dog.dto.notice.NoticeListDTO;
-import com.example.hope_dog.dto.notice.file.FileDTO;
-import com.example.hope_dog.dto.notice.page.Criteria;
 import com.example.hope_dog.mapper.notice.NoticeMapper;
-import com.example.hope_dog.mapper.notice.file.FileMapper;
-import com.example.hope_dog.service.notice.NoticeService;
-import com.example.hope_dog.service.notice.file.FileService;
 import lombok.RequiredArgsConstructor;
 //import net.coobird.thumbnailator.Thumbnails;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @Transactional
@@ -37,8 +21,8 @@ public class NoticeService {
         return noticeMapper.noticeList();
     }
 
-    public List<NoticeViewDTO> getNoticeViewList() {
-        return noticeMapper.noticeView();
+    public List<NoticeViewDTO> getNoticeViewList(Long noticeNo) {
+        return noticeMapper.noticeView(noticeNo);
     }
 //    private final FileMapper fileMapper;
 //    private final FileService fileService;

@@ -2,18 +2,16 @@ package com.example.hope_dog.mapper.notice;
 
 import com.example.hope_dog.dto.notice.NoticeListDTO;
 import com.example.hope_dog.dto.notice.NoticeViewDTO;
-import com.example.hope_dog.dto.notice.page.Criteria;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-import java.util.Optional;
 
 @Mapper
 public interface NoticeMapper {
 
     List<NoticeListDTO> noticeList();
 
-    List<NoticeViewDTO> noticeView();
+    List<NoticeViewDTO> noticeView(Long noticeNo);
 
 
 //    void insertBoard(BoardWriteDTO boardWriteDTO);
