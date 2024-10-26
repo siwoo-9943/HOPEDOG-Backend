@@ -1,8 +1,8 @@
-package com.example.hope_dog.controller.member;
+package com.example.hope_dog.controller.centermember;
 
-import com.example.hope_dog.dto.member.MemberDTO;
-import com.example.hope_dog.dto.member.MemberSessionDTO;
-import com.example.hope_dog.service.member.MemberService;
+import com.example.hope_dog.dto.centerMember.CenterMemberDTO;
+import com.example.hope_dog.dto.centerMember.CenterMemberSessionDTO;
+import com.example.hope_dog.service.centermember.CenterMemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,130 +10,75 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.HashMap;
 import java.util.Map;
 
-@Controller
 @Slf4j
+@Controller
 @RequiredArgsConstructor
-@RequestMapping("/member")
-public class MemberController {
-    private final MemberService memberService;
+@RequestMapping("/center")
+public class CenterMemberController {
+
+    private final CenterMemberService centerMemberService;
+
+//    /**
+//     * 센터 회원가입 페이지 이동
+//     */
+//    @GetMapping("/center-join")  // 수정
+//    public String joinForm() {
+//        return "center/center-join";  // 이미 correct
+//    }
 
 
-    /**
-     * 회원가입 페이지 이동
-     */
-    @GetMapping("/join")
-    public String join() {
-        return "member/join";
-    }
-
-    /**
-     * 로그인 페이지 이동
-     */
-    @GetMapping("/login")
-    public String login() {
-        return "member/login";
-    }
 
     /**
-     * 회원가입 처리
+     * 센터 로그인 페이지 이동
      */
-    @PostMapping("/join")
-    @ResponseBody
-    public ResponseEntity<?> join(@RequestBody MemberDTO memberDTO, HttpSession session) {
-        log.info("memberDTO = {}", memberDTO);
-        memberService.join(memberDTO);
-        // 세션에 닉네임 저장
-        session.setAttribute("memberNickname", memberDTO.getMemberNickname());
-        return ResponseEntity.ok().build();
-    }
-
-    /**
-     * 회원가입 완료 페이지
-     */
-    @GetMapping("/joinOk")
-    public String joinOk(HttpSession session, Model model) {
-        // 세션에서 닉네임 가져오기
-        String memberNickname = (String) session.getAttribute("memberNickname");
-        // Model에 닉네임 추가
-        model.addAttribute("memberNickname", memberNickname);
-        // 세션에서 닉네임 제거 (더 이상 필요하지 않으므로)
-        session.removeAttribute("memberNickname");
-        return "member/joinOk";
+    @GetMapping("/center-login")  // 수정
+    public String loginForm() {
+        return "center/center-login";  // 이미 correct
     }
 
 
-
     /**
-     * 로그인 처리
+     * 센터 로그인 처리
      */
-    @PostMapping("/login")
-    public String login(
-            @RequestParam("memberId") String memberId,
-            @RequestParam("memberPw") String memberPw,
-            HttpSession session,
-            RedirectAttributes redirectAttributes) {
+    @PostMapping("/center-login")
+    public String login(@RequestParam("centerId") String centerMemberId,    // name 속성 지정
+                        @RequestParam("centerPw") String centerMemberPw,     // name 속성 지정
+                        HttpSession session,
+                        RedirectAttributes redirectAttributes) {
         try {
-            MemberSessionDTO loginInfo = memberService.login(memberId, memberPw);
-
-            session.setAttribute("memberNo", loginInfo.getMemberNo());
-            session.setAttribute("memberId", loginInfo.getMemberId());
-            session.setAttribute("memberName", loginInfo.getMemberName());
-            session.setAttribute("memberNickname", loginInfo.getMemberNickname());
-            session.setAttribute("memberEmail", loginInfo.getMemberEmail());
-            session.setAttribute("memberLoginStatus", loginInfo.getMemberLoginStatus());
-            session.setAttribute("memberTwoFactorEnabled", loginInfo.getMemberTwoFactorEnabled());
-
+            CenterMemberSessionDTO sessionDTO = centerMemberService.login(centerMemberId, centerMemberPw);
+            session.setAttribute("centerMemberNo", sessionDTO.getCenterMemberNo());
+            session.setAttribute("centerMemberId", sessionDTO.getCenterMemberId());
             return "redirect:/main/main";
         } catch (IllegalArgumentException e) {
-            log.error("로그인 실패: {}", e.getMessage());
             redirectAttributes.addFlashAttribute("loginError", e.getMessage());
-            return "redirect:/member/login";
+            return "redirect:/center/center-login";
         }
     }
 
     /**
-     * 예외 처리를 위한 핸들러
-     */
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException e) {
-        return ResponseEntity.badRequest().body(e.getMessage());
-    }
-
-    /**
-     * 로그인 선택 페이지
-     */
-    @GetMapping("/login-select")
-    public String loginSelect() {
-        log.info("로그인 선택 페이지 요청");
-        return "member/login-select";
-    }
-
-
-    /**
-     * 회원가입 유형 선택 페이지
-     */
-    @GetMapping("/join-select")
-    public String joinSelect() {
-        log.info("회원가입 선택 페이지 요청");
-        return "member/join-select";
-    }
-
-
-    /**
      * 로그아웃 처리
      */
-    @GetMapping("/logout")
-    public RedirectView logout(HttpSession session) {
-        log.info("로그아웃");
+    @GetMapping("/center-logout")  // 수정
+    public String logout(HttpSession session) {
         session.invalidate();
+        return "redirect:/main/main";  // 수정
+    }
 
-        return new RedirectView("/main/main");
+
+    /**
+     * 이메일 중복 체크
+     */
+    @GetMapping("/check-email")
+    @ResponseBody
+    public ResponseEntity<Map<String, Boolean>> checkEmail(@RequestParam(name = "email") String email) {
+        boolean available = centerMemberService.checkEmail(email);
+        return ResponseEntity.ok(Map.of("available", available));
     }
 
 
@@ -254,49 +199,65 @@ public class MemberController {
 
 
 
-    /**
-     * 약관동의 페이지
-     */
-    @GetMapping("/terms")
+    @GetMapping("/center-terms")
     public String terms(Model model) {
         Map<String, String> terms = Map.of(
                 "serviceTerms", SERVICE_TERMS,
                 "privacyTerms", PRIVACY_TERMS
         );
         model.addAttribute("terms", terms);
-        return "member/terms";
+        return "center/center-terms";
     }
 
     /**
      * 약관동의 후 회원가입 페이지로 이동
      */
-    @GetMapping("/member/join")
-    public String joinForm(@RequestParam(required = false, defaultValue = "false") Boolean emailAgreed) {
+    @GetMapping("/center-join")
+    public String joinForm(@RequestParam(name = "emailAgreed", required = false, defaultValue = "false") Boolean emailAgreed) {
         log.info("이메일 수신 동의 여부: {}", emailAgreed);
-        return "member/join";
+        return "center/center-join";
     }
 
 
     /**
-     * 닉네임 중복 체크
+     * 센터 회원가입 처리
      */
-    @GetMapping("/check-nickname")
-    public ResponseEntity<Map<String, Boolean>> checkNickname(
-            @RequestParam("nickname") String nickname
-    ) {
-        boolean isAvailable = memberService.checkNickname(nickname);
-        Map<String, Boolean> response = Map.of("available", isAvailable);
-        return ResponseEntity.ok(response);
-    }
-
-    /**
-     * 이메일 중복 체크
-     */
-    @GetMapping("/check-email")
+    @PostMapping("/center-join")
     @ResponseBody
-    public ResponseEntity<Map<String, Boolean>> checkEmail(@RequestParam(name = "email") String email) {
-        boolean available = memberService.checkEmail(email);
-        return ResponseEntity.ok(Map.of("available", available));
+    public ResponseEntity<?> join(@ModelAttribute CenterMemberDTO centerMemberDTO,
+                                  @RequestParam("businessFile") MultipartFile file,
+                                  HttpSession session) {
+        try {
+            // 파일 처리를 위해 DTO에 파일 설정
+            centerMemberDTO.setBusinessFile(file);
+
+            // 회원가입 처리
+            centerMemberService.join(centerMemberDTO);
+
+            // 세션에 이름 저장 (가입 완료 페이지에서 사용)
+            session.setAttribute("centerMemberName", centerMemberDTO.getCenterMemberName());
+
+            return ResponseEntity.ok().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
+            log.error("회원가입 처리 중 오류 발생", e);
+            return ResponseEntity.internalServerError().body("회원가입 처리 중 오류가 발생했습니다.");
+        }
+    }
+
+    /**
+     * 회원가입 완료 페이지
+     */
+    @GetMapping("/center-joinOk")
+    public String joinOk(HttpSession session, Model model) {
+        // 세션에서 이름 가져오기
+        String centerMemberName = (String) session.getAttribute("centerMemberName");
+        // Model에 이름 추가
+        model.addAttribute("centerMemberName", centerMemberName);
+        // 세션에서 이름 제거
+        session.removeAttribute("centerMemberName");
+        return "center/center-joinOk";
     }
 
 }

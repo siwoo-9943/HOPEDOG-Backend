@@ -39,19 +39,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // 취소 버튼 클릭 이벤트
     cancelBtn.addEventListener('click', function() {
         if (confirm('약관 동의를 취소하시겠습니까?')) {
-            window.location.href = '/main/main';
+            window.location.href = '/main/main';  // 메인으로 이동 (이미 correct)
         }
     });
 
 
-    // 폼 제출 이벤트 (컨트롤러에 매핑된 경로로 이동)
+// 폼 제출 이벤트 (컨트롤러에 매핑된 경로로 이동)
     termsForm.addEventListener('submit', function(e) {
         e.preventDefault();  // 폼 기본 제출 방지
 
         const emailAgreed = optionalAgreementCheckbox.checked;  // 이메일 동의 여부 확인
-        const url = `http://localhost:8060/member/join?emailAgreed=${emailAgreed}`;  // emailAgreed 값을 쿼리 파라미터로 추가
 
-        // 해당 경로로 이동
-        window.location.href = url;
+        // 경로 수정
+        window.location.href = `/center/center-join?emailAgreed=${emailAgreed}`;
     });
 });
