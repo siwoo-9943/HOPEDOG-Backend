@@ -9,16 +9,15 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class NoteboxReciveListDTO {
+public class NoteboxReceiveListDTO {
     private Long noteboxReceiveNo;
     private String noteboxReceiveTitle;
     private String noteboxReceiveContent;
     private String noteboxReceiveRegiDate;
-    private Boolean noteboxReceiveRead;
-    private String noteboxReceiveReadDate;
-    private String noteboxReceiveS;
-    private String noteboxReceiveR;
 
-    private Long centerMemberNo;
-    private String sendMember;
+    private String noteboxReceiveS;
+    private String noteboxSendName;
+
+    private String ReadStatus;
+
 }
