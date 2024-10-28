@@ -24,9 +24,10 @@
 
     <!-- 로그인 정보 조회 이 쿼리는 로그인에 성공한 회원의 세션 정보를 조회하는 SQL 구문입니다.-->
     <select id="selectLoginInfo" resultType="MemberSessionDTO">
-        SELECT MEMBER_NO,MEMBER_ID,MEMBER_EMAIL,MEMBER_NAME,MEMBER_NICKNAME,MEMBER_LOGIN_STATUS,MEMBER_TWO_FACTOR_ENABLED
+        SELECT MEMBER_NO, MEMBER_ID, MEMBER_EMAIL, MEMBER_NAME, MEMBER_NICKNAME,
+               MEMBER_LOGIN_STATUS, MEMBER_TWO_FACTOR_ENABLED, MEMBER_PW
         FROM TBL_MEMBER
-        WHERE MEMBER_ID = #{memberId} AND MEMBER_PW = #{memberPw}
+        WHERE MEMBER_ID = #{memberId}
     </select>
 
     <!--멤버 닉네임 중복확인 쿼리-->
@@ -50,5 +51,30 @@
                  WHERE CENTER_MEMBER_EMAIL = #{memberEmail}
              )
     </select>
+
+    <!-- 아이디 찾기 -->
+    <select id="findMemberId" resultType="String">
+        SELECT MEMBER_ID
+        FROM TBL_MEMBER
+        WHERE MEMBER_NAME = #{memberName}
+          AND MEMBER_PHONE_NUMBER = #{memberPhoneNumber}
+    </select>
+
+
+<!--    비밀번호 찾기 쿼리문-->
+    <select id="findMemberByNameIdEmail" resultType="MemberDTO">
+        SELECT *
+        FROM TBL_MEMBER
+        WHERE MEMBER_NAME = #{memberName}
+          AND MEMBER_ID = #{memberId}
+          AND MEMBER_EMAIL = #{memberEmail}
+    </select>
+
+    <update id="updateMemberPassword">
+        UPDATE TBL_MEMBER
+        SET MEMBER_PW = #{memberPw}
+        WHERE MEMBER_NO = #{memberNo}
+    </update>
+
 
 </mapper>
