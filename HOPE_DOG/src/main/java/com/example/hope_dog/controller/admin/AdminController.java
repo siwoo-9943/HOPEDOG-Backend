@@ -52,4 +52,13 @@ public class AdminController {
 
         return "admin/admin-main/admin-main"; // 뷰 이름 반환
     }
+
+    @GetMapping("/postList")
+    public String postList(Model model) {
+        List<AdminPostDTO> postList = adminService.selectPostList();
+
+        model.addAttribute("postList", postList);
+
+        return "admin/admin-post/admin-post-list";
+    }
 }
