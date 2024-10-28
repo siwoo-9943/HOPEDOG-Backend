@@ -63,24 +63,41 @@ document.addEventListener('DOMContentLoaded', function() {
     // 이메일 중복 확인
     emailCheckBtn.addEventListener('click', function() {
         const email = emailInput.value.trim();
+
+        // 이메일 입력값 확인: 값이 비어 있으면 에러 메시지를 표시하고 함수를 종료합니다.
         if (email === '') {
             showError(emailInput, '이메일을 입력해주세요.');
             return;
         }
 
+        // 서버로 /member/check-email API 요청을 보냄 이때, 사용자가 입력한 이메일을 URL에 포함하여 서버에 전송
+        // fetch 함수를 사용해서 서버 응답을 기다림
+        // fetch는 JavaScript에서 서버로 네트워크 요청을 보내고 응답을 받을 수 있도록 해주는 매서드
+
         fetch('/member/check-email?email=' + encodeURIComponent(email))
             .then(response => response.json())
             .then(data => {
+                // 서버 응답이 JSON 형식으로 반환되면, 이를 data 변수에 저장
                 if (data.available) {
+                    // data.available 값이 true일 경우:
+                    // "사용 가능한 이메일입니다."라는 메시지를 사용자에게 알리고,
+                    // isEmailAvailable 변수를 true로 설정하여 사용 가능한 상태로 표시
+                    // hideError 함수를 호출해 이전에 표시된 오류 메시지를 제거
                     alert('사용 가능한 이메일입니다.');
                     isEmailAvailable = true;
                     hideError(emailInput);
+
                 } else {
+                    // data.available 값이 false일 경우:
+                    // "이미 사용 중인 이메일입니다."라는 오류 메시지를 표시하고,
+                    // isEmailAvailable 변수를 false로 설정하여 중복된 상태로 표시
                     showError(emailInput, '이미 사용 중인 이메일입니다.');
                     isEmailAvailable = false;
                 }
             })
             .catch(error => {
+                // 오류 처리: 서버 요청 중 오류가 발생하면, 콘솔에 오류를 기록하고
+                // 사용자에게 "중복 확인 중 오류가 발생했습니다."라는 메시지를 표시
                 console.error('Error:', error);
                 alert('중복 확인 중 오류가 발생했습니다.');
             });
