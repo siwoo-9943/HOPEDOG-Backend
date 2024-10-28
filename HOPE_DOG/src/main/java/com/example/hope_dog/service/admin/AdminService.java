@@ -1,9 +1,6 @@
 package com.example.hope_dog.service.admin;
 
-import com.example.hope_dog.dto.admin.AdminMemberDTO;
-import com.example.hope_dog.dto.admin.AdminPostDTO;
-import com.example.hope_dog.dto.admin.AdminSessionDTO;
-import com.example.hope_dog.dto.admin.AdminReportDTO;
+import com.example.hope_dog.dto.admin.*;
 import com.example.hope_dog.mapper.admin.AdminMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -35,5 +32,9 @@ public class AdminService {
 
     public List<AdminPostDTO> selectPostList(){
         return adminMapper.selectPostList();
+    }
+
+    public List<AdminCommentDTO> selectCommentList(){
+        return adminMapper.selectCommentList();
     }
 }
