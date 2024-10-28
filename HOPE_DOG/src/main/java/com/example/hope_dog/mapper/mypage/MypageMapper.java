@@ -1,17 +1,25 @@
 package com.example.hope_dog.mapper.mypage;
 
+import com.example.hope_dog.dto.adopt.adopt.AdoptDetailDTO;
 import com.example.hope_dog.dto.member.MemberDTO;
 import com.example.hope_dog.dto.member.MemberSessionDTO;
+import com.example.hope_dog.dto.mypage.MypageAdoptListDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface MypageMapper {
     // 사용자 ID로 회원 정보를 가져오는 메서드
     MemberSessionDTO findMemberById(@Param("memberId") String memberId);
+
     MemberSessionDTO findMemberByNo(@Param("memberNo") String memberNo);
+
     MemberSessionDTO findMemberByEmail(@Param("memberEmail") String memberEmail);
+
     MemberSessionDTO findMemberByName(@Param("memberName") String memberName);
+
     MemberSessionDTO findMemberByNickname(@Param("memberNickname") String memberNickname);
     //    public class MemberSessionDTO {
 //        private Long memberNo;
@@ -22,5 +30,7 @@ public interface MypageMapper {
 //        private String memberLoginStatus;
 //        private String memberTwoFactorEnabled;
 //    }
+
+    List<MypageAdoptListDTO> mypageAdoptList(Long memberNo);
 }
 

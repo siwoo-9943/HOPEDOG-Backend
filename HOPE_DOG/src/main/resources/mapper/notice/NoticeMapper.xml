@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.hope_dog.mapper.notice.NoticeMapper">
+<!--    공지 글 목록페이지-->
     <select id="noticeList" resultType="NoticeListDTO">
         SELECT
             N.NOTICE_TITLE,
@@ -14,7 +15,7 @@
         ORDER BY
             N.NOTICE_REGIDATE DESC
     </select>
-
+<!--    공지 글 상세페이지-->
     <select id="noticeView" resultType="NoticeViewDTO">
         SELECT
             N.NOTICE_NO,

@@ -14,4 +14,14 @@
         WHERE
         MEMBER_ID = #{memberId}
     </select>
+
+    <select id="mypageAdoptList" resultType="MypageDTO">
+        SELECT
+            ADOPT_TITLE,
+            ADOPT_STATUS,
+            ADOPT_PERIODEND
+        FROM TBL_ADOPT
+        WHERE
+            MEMBER_NO = #{memberNo}
+    </select>
 </mapper>

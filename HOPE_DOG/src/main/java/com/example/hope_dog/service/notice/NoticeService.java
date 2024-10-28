@@ -10,17 +10,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
-@Transactional
-@RequiredArgsConstructor
+@Service // 비즈니스 로직 처리
+@Transactional // 트랜잭션을 지원
+@RequiredArgsConstructor // final 필드에 대한 생성자 자동 생성
 public class NoticeService {
     private final NoticeMapper noticeMapper;
 
+    //List
     public List<NoticeListDTO> getNoticeList() {
-
         return noticeMapper.noticeList();
     }
 
+    //View
     public List<NoticeViewDTO> getNoticeViewList(Long noticeNo) {
         return noticeMapper.noticeView(noticeNo);
     }

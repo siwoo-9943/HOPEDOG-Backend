@@ -45,4 +45,17 @@ public class MypageController {
 
         return "mypage/mypage-profile";
     }
+
+    @GetMapping("/adopt")
+    public String adoptList(HttpSession session, Model model) {
+        String memberNo = (String) session.getAttribute("memberNo");
+
+        // 로그인 상태 확인
+//        if (memberNo == null) {
+//            return "redirect:/member/login"; // 로그인하지 않은 경우 로그인 페이지로 리다이렉트
+//        }
+        MemberSessionDTO memberInfo = mypageService.getMemberInfo(memberNo);
+
+        return "mypage/mypage-adopt";
+    }
 }

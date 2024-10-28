@@ -33,7 +33,7 @@ public class DonationController {
     }
 
     @GetMapping("/view")
-    public String View(@RequestParam("donaNo") Long donaNo,Model model) {
+    public String View(@RequestParam("donaNo") Long donaNo,Model model) { // 메소드 매개변수
         List<DonationViewDTO> donationViewList = donationService.getDonationViewList(donaNo);
         model.addAttribute("donationViewList", donationViewList);
 
@@ -42,18 +42,18 @@ public class DonationController {
 
 
 //    @GetMapping("/write")
-//    public String boardWrite(@SessionAttribute(value = "userId", required = false) Long userId) {
-//        return userId == null ? "redirect:/user/login" : "board/write";
+//    public String noticeWrite(@SessionAttribute(value = "userId", required = false) Long userId) {
+//        return userId == null ? "redirect:/user/login" : "notice/write";
 //    }
 //
 //    @PostMapping("/write")
-//    public String boardWrite(BoardWriteDTO boardWriteDTO, @SessionAttribute("userId") Long userId
-//            , RedirectAttributes redirectAttributes, @RequestParam("boardFile") List<MultipartFile> files) {
-//        boardWriteDTO.setUserId(userId);
-//        log.info("boardWriteDTO = ", boardWriteDTO);
+//    public String boardWrite(NoticeWriteDTO noticeWriteDTO, @SessionAttribute("userId") Long userId
+//            , RedirectAttributes redirectAttributes, @RequestParam("noticeFile") List<MultipartFile> files) {
+//        noticeWriteDTO.setUserId(userId);
+//        log.info("noticeWriteDTO = ", noticeWriteDTO);
 //
 //        try {
-//            boardService.registerBoardWithFiles(boardWriteDTO, files);
+//            noticeService.registerBoardWithFiles(noticeWriteDTO, files);
 //        } catch (IOException e) {
 //            throw new RuntimeException(e);
 //        }
