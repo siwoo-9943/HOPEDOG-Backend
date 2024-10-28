@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package com.example.hope_dog.controller.centermember;
 
 import com.example.hope_dog.dto.centerMember.CenterMemberSessionDTO;
@@ -159,5 +159,4 @@ class CenterMemberControllerTest {
 //                .andDo(print());
 //    }
 }
-=======
->>>>>>> main
+

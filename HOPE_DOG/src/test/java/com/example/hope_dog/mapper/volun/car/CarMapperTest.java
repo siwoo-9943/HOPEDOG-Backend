@@ -33,7 +33,7 @@
 //        carDTO.setCarTitle("Test Car");
 //
 //        //when
-//        carMapper.CarMain(carDTO);
+//        carMapper.selectAllCars(CarDTO);
 //
 //        //then
 //        assertThat(carDTO.getCarNo()).isNotNull();

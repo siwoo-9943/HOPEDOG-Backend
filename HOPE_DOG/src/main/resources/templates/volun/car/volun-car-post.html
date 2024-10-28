@@ -13,76 +13,79 @@
 
 <body>
 <header th:replace="~{fragment/header :: header}"></header>
-  <main>
-    <!-- 카풀 메인  크기 -->
-    <div class="volun-main-size">
-      <!-- 봉사, 카풀 게시판 바 -->
-      <div class="volun-nav">
-        <div class="volun-navList"><a th:href="@{/adopt/main}"> 봉사</a></div>
-        <div class="volun-navList1"><a th:href="@{/car/main}"> 카풀</a></div>
-      </div>
+<main>
+  <!-- 카풀 메인  크기 -->
+  <div class="volun-main-size">
+    <!-- 봉사, 카풀 게시판 바 -->
+    <div class="volun-nav">
+      <div class="volun-navList"><a th:href="@{/adopt/main}"> 봉사</a></div>
+      <div class="volun-navList1"><a th:href="@{/car/main}"> 카풀</a></div>
+    </div>
 
-      <!-- 제목/작성자/등록일 크기 -->
-      <div class="volun-detail-box1">
-        <div class="volun-detail-title" th:text="${car.carTitle}"></div>
-        <div class="volun-detail-info"><span>작성자 :
+    <!-- 제목/작성자/등록일 크기 -->
+    <div class="volun-detail-box1">
+      <div class="volun-detail-title" th:text="${car.carTitle}"></div>
+      <div class="volun-detail-info"><span>작성자 :
           <span th:if="${car.carWriter % 2 != 0}" th:text="${car.memberNickname}"></span>
           <span th:if="${car.carWriter % 2 == 0}" th:text="${car.centerMemberName}"></span>
         </span>
-          <span >등록일 : <span th:text="${#dates.format(car.carRegiDate, 'yyyy-MM-dd')}"></span></span>
-        </div>
+        <span >등록일 : <span th:text="${#dates.format(car.carRegiDate, 'yyyy-MM-dd')}"></span></span>
       </div>
+    </div>
 
-      <!-- 글내용 크기 -->
-      <div class="volun-detail-box2">
-        <div class="volun-detail-content">
-          <div class="volun-detail-basicinfo">
-            <div class="volun-detail-basicinfo-title"></div>
-            <div th:text="${car.carContent}"></div>
-
-          </div>
+    <!-- 글내용 크기 -->
+    <div class="volun-detail-box2">
+      <div class="volun-detail-content">
+        <div class="volun-detail-basicinfo">
+          <div class="volun-detail-basicinfo-title"></div>
+          <div th:text="${car.carContent}"></div>
 
         </div>
+
       </div>
+    </div>
 
-      <br>
+    <br>
 
-      <!-- 수정 , 삭제 , 신고 버튼 -->
-      <div class="volun-detail-box3">
-        <div>
-          <button class="volun-modify-button" onclick="modifyAlert()">수정</button>　
-          <button class="volun-delete-button" onclick="deleteAlert()">삭제</button>
+    <!-- 수정 , 삭제 , 신고 버튼 -->
+    <div class="volun-detail-box3">
+      <div>
+        <button class="volun-modify-button" onclick="modifyAlert()">수정</button>　
+        <button class="volun-delete-button" onclick="deleteAlert()">삭제</button>
+      </div>
+      <button class="volun-end-button" onclick="endAlert()">신고</button>
+    </div>
+
+    <br>
+
+    <!-- 댓글창 -->
+    <div class="volun-detail-box4">
+      <div>
+<!--        댓글 작성자-->
+        <div class="volun-detail-name">
+          <span th:if="${car.carWriter % 2 != 0}" th:text="${car.memberNickname}"></span>
+          <span th:if="${car.carWriter % 2 == 0}" th:text="${car.centerMemberName}"></span>
         </div>
-        <button class="volun-end-button" onclick="endAlert()">신고</button>
+<!--        댓글-->
+        <div class="volun-detail-comment"></div>
+<!--        작성일-->
+        <div class="volun-detail-date"></div>
       </div>
-      
       <br>
+    </div>
 
-      <!-- 댓글창 -->
-      <div class="volun-detail-box4">
-        <div th:each="comment : ${carComments}" class="volun-detail-commentbox">
-          <div class="volun-detail-name">
-            <span th:if="${car.carWriter % 2 != 0}" th:text="${car.memberNickname}"></span>
-            <span th:if="${car.carWriter % 2 == 0}" th:text="${car.centerMemberName}"></span>
-          </div>
-          <div class="volun-detail-comment" th:text="${comment.carComment}"></div>
-          <div class="volun-detail-date" th:text="${#dates.format(comment.carCommentRegiDate, 'yyyy-MM-dd')}"></div>
-        </div>
-        <br>
-      </div>
+    <br>
 
-      <br>
+    <!-- 댓글입력 -->
+    <form onsubmit="return Comment()">
+      <input class="volun-detail-commentregi" type="text" id="commentInput" placeholder="욕설 및 혐오감을 주는 댓글은 삼가주세요">　
+      <button type="submit" class="volun-commentregi-button">등록</button>
+    </form>
 
-      <!-- 댓글입력 -->
-      <form onsubmit="return Comment()">
-        <input class="volun-detail-commentregi" type="text" id="commentInput" placeholder="욕설 및 혐오감을 주는 댓글은 삼가주세요">　
-        <button type="submit" class="volun-commentregi-button">등록</button>
-      </form>
-
-      <br>
-  </main>
+    <br>
+</main>
 </body>
-      
+
 <footer>
   <div class="footer-links">
     <a href="../member/term.html">이용약관</a> |
