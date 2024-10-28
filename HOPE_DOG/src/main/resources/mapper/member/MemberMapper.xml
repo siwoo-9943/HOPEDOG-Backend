@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.hope_dog.mapper.member.MemberMapper">
-<!--    회원정보를 삽입하는 insert쿼리  id는 insertMember이고 parameterType으로 MemberDTO 객체가 파라미터로 전달되며
+<!--    회원정보를 삽입하는 insert쿼리  id는 insertMember이고 parameterType으로 AdminMemberDTO 객체가 파라미터로 전달되며
 필드 속 객체에 매핑됨 -->
     <insert id="insertMember" parameterType="MemberDTO">
 --      SELECT SEQ_MEMBER 구문을통해 memberNo 필드에 값을 설정함 before키워드로 insert되기전에 실행됨
