@@ -3,6 +3,8 @@ package com.example.hope_dog.controller.adopt;
 import com.example.hope_dog.dto.adopt.adopt.AdoptDetailDTO;
 import com.example.hope_dog.dto.adopt.adopt.AdoptMainDTO;
 import com.example.hope_dog.dto.adopt.adopt.MainDTO;
+import com.example.hope_dog.dto.page.Criteria;
+import com.example.hope_dog.dto.page.Page;
 import com.example.hope_dog.service.adopt.adopt.AdoptService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,11 +31,17 @@ public class AdoptController {
 
 //    입양메인
     @GetMapping("/adopt")
-    public String adoptList(Model model) {
-        List<AdoptMainDTO> adoptMainList = adoptService.getAdoptMainList();
+    public String adoptList(Criteria criteria, Model model){
+        List<AdoptMainDTO> adoptMainList = adoptService.findAllPage(criteria);
+        int total = adoptService.findTotal();
+        Page page = new Page(criteria, total);
+
         model.addAttribute("AdoptMainList", adoptMainList);
-        return "adopt/adopt/adopt-adopt"; // 실제 뷰 이름
+        model.addAttribute("page", page);
+
+        return "adopt/adopt/adopt-adopt";
     }
+
 
 
     //입양상세글

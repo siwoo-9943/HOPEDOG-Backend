@@ -4,6 +4,7 @@ import com.example.hope_dog.dto.adopt.adopt.AdoptDetailDTO;
 import com.example.hope_dog.dto.adopt.adopt.AdoptMainDTO;
 import com.example.hope_dog.dto.adopt.adopt.AdoptRequestDTO;
 import com.example.hope_dog.dto.adopt.adopt.MainDTO;
+import com.example.hope_dog.dto.page.Criteria;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -21,11 +22,12 @@ public interface AdoptMapper {
     List<AdoptRequestDTO> adoptRequest();
 
     //입양 메인
-    List<AdoptMainDTO> adoptMain();
+//    List<AdoptMainDTO> adoptMain();
 
+    List<AdoptMainDTO> selectAll();
 
+    int selectTotal();
 
-
-
+    List<AdoptMainDTO> selectAllPage(Criteria criteria);
 
 }

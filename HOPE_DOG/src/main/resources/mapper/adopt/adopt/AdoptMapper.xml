@@ -21,14 +21,44 @@
         FROM TBL_ADOPT a JOIN TBL_CENTER_MEMBER c ON a.CENTER_MEMBER_NO = c.CENTER_MEMBER_NO
         WHERE ADOPT_NO = #{adoptNo}
     </select>
-
-    <!-- 입양만 있는 메인페이지 게시글 불러오기 -->
-    <select id="adoptMain" resultType="AdoptMainDTO">
-        SELECT ADOPT_NO, ADOPT_TITLE, ADOPT_INTRODUCE, ADOPT_NAME, ADOPT_GENDER, ADOPT_NEUTERING, ADOPT_BIRTH,
-               ADOPT_WEIGHT, ADOPT_REGIDATE, ADOPT_PERIODEND, CENTER_MEMBER_NO, ADOPT_STATUS
-        FROM TBL_ADOPT
-        ORDER BY ADOPT_REGIDATE DESC
+    
+    <!-- 입양 전체게시글 수 -->
+    <select id="selectTotal" resultType="int">
+        SELECT COUNT(ADOPT_NO) FROM TBL_ADOPT
     </select>
+
+    <!-- 입양 전체게시글-->
+    <select id="adoptMain" resultType="AdoptMainDTO">
+         SELECT ADOPT_NO, ADOPT_TITLE, ADOPT_INTRODUCE, ADOPT_NAME, ADOPT_GENDER,
+         ADOPT_NEUTERING, ADOPT_BIRTH, ADOPT_WEIGHT, ADOPT_REGIDATE,
+         ADOPT_PERIODEND, CENTER_MEMBER_NO, ADOPT_STATUS
+         FROM TBL_ADOPT
+         ORDER BY ADOPT_REGIDATE DESC
+    </select>
+
+
+    <!-- 입양 페이지마다 표시할 게시글-->
+    <select id="selectAllPage" parameterType="Criteria" resultType="AdoptMainDTO">
+    <![CDATA[
+        SELECT ADOPT_NO, ADOPT_TITLE, ADOPT_INTRODUCE, ADOPT_NAME, ADOPT_GENDER,
+               ADOPT_NEUTERING, ADOPT_BIRTH, ADOPT_WEIGHT, ADOPT_REGIDATE,
+               ADOPT_PERIODEND, CENTER_MEMBER_NO, ADOPT_STATUS
+        FROM (
+                 SELECT ADOPT_NO, ADOPT_TITLE, ADOPT_INTRODUCE, ADOPT_NAME,
+                        ADOPT_GENDER, ADOPT_NEUTERING, ADOPT_BIRTH, ADOPT_WEIGHT,
+                        ADOPT_REGIDATE, ADOPT_PERIODEND, CENTER_MEMBER_NO, ADOPT_STATUS,
+                        ROWNUM AS RNUM
+                 FROM (
+                          SELECT ADOPT_NO, ADOPT_TITLE, ADOPT_INTRODUCE, ADOPT_NAME,
+                                 ADOPT_GENDER, ADOPT_NEUTERING, ADOPT_BIRTH, ADOPT_WEIGHT,
+                                 ADOPT_REGIDATE, ADOPT_PERIODEND, CENTER_MEMBER_NO, ADOPT_STATUS
+                          FROM TBL_ADOPT
+                          ORDER BY ADOPT_REGIDATE DESC
+                      )
+             )
+        WHERE RNUM > (#{page} - 1) * #{amount} AND RNUM <= #{page} * #{amount}
+        ]]>
+</select>
 
 
 
