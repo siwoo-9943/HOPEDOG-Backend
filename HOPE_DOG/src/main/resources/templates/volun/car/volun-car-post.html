@@ -5,86 +5,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>카풀 게시글(회원)</title>
-  <link rel="stylesheet" href="../../css/volun/volun-car-post-member.css">
-  <link rel="stylesheet" href="../../css/main/header.css">
-  <link rel="stylesheet" href="../../css/main/footer.css">
+  <link rel="stylesheet" th:href="@{/css/volun/car/volun-car-post-member.css}" />
+  <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+  <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
+
 </head>
 
 <body>
-  <header class="header">
-    <div class="logo-nav">
-      <div class="logo">
-        <a href="../../html/main/main.html">
-          <img src="../../img/header-logo.png" alt="로고이미지">
-        </a>
-      </div>
-      <nav>
-        <ul class="nav-items">
-          <li class="nav-item">
-            <a href="../dogmap/dogmap.html">유기견 보호소</a>
-            <div class="dropdown-content">
-              <a href="../dogmap/dogmap.html">유기견 보호소</a>
-            </div>
-          </li>
-          <ul class="nav-items">
-            <li class="nav-item">
-              <a href="../volun/volun-main.html">봉사</a>
-              <div class="dropdown-content">
-                <a href="../volun/volun-main.html">봉사 메인</a>
-                <a href="../volun/volun-volun-main.html">봉사 신청</a>
-                <a href="../../html/volun/volun-car-main-guest.html">카풀</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a href="../donation/donation-main-guest.html">기부</a>
-              <div class="dropdown-content">
-                <a href="../donation/donation-main-guest.html">기부 게시판</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a href="../adopt/adopt-main.html">입양</a>
-              <div class="dropdown-content">
-                <a href="../adopt/adopt-adopt.html">안심 입양</a>
-                <a href="../adopt/adopt-protection.html">임시 보호</a>
-                <a href="../adopt/adopt-review.html">후기</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a href="../commu/comu-main-guest.html">커뮤니티</a>
-              <div class="dropdown-content">
-                <a href="../commu/comu-main-guest.html">자유게시판</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a href="../notice/notice-list.html">공지사항</a>
-              <div class="dropdown-content">
-                <a href="../notice/notice-list.html">공지</a>
-              </div>
-            </li>
-          </ul>
-      </nav>
-    </div>
-    <div class="user-section">
-      <ul class="user-actions">
-        <li class="user-action"><a href="../member/login-select.html">로그인</a></li>
-        <li class="user-action"><a href="../member/signup-select.html">회원가입</a></li>
-      </ul>
-    </div>
-  </header>
+<header th:replace="~{fragment/header :: header}"></header>
   <main>
     <!-- 카풀 메인  크기 -->
     <div class="volun-main-size">
       <!-- 봉사, 카풀 게시판 바 -->
       <div class="volun-nav">
-        <div class="volun-navList">봉사</div>
-        <div class="volun-navList1">카풀</div>
+        <div class="volun-navList"><a th:href="@{/adopt/main}"> 봉사</a></div>
+        <div class="volun-navList1"><a th:href="@{/car/main}"> 카풀</a></div>
       </div>
 
       <!-- 제목/작성자/등록일 크기 -->
       <div class="volun-detail-box1">
-        <div class="volun-detail-title">10월18일 남양주 행복한유기견 센터 카풀멤버 구해요</div>
-        <div class="volun-detail-info"><span>작성자 : 안성재</span>
-          <sapn>등록일 : 2024-10-10</sapn>
+        <div class="volun-detail-title" th:text="${car.carTitle}"></div>
+        <div class="volun-detail-info"><span>작성자 :
+          <span th:if="${car.carWriter % 2 != 0}" th:text="${car.memberNickname}"></span>
+          <span th:if="${car.carWriter % 2 == 0}" th:text="${car.centerMemberName}"></span>
+        </span>
+          <span >등록일 : <span th:text="${#dates.format(car.carRegiDate, 'yyyy-MM-dd')}"></span></span>
         </div>
       </div>
 
@@ -93,9 +38,8 @@
         <div class="volun-detail-content">
           <div class="volun-detail-basicinfo">
             <div class="volun-detail-basicinfo-title"></div>
-            <div>10월 18일에 카풀 멤버 구합니다.</div>
-            <div>시간과 장소는 연락 후에 정하겠습니다.</div>
-            <div>자차 없으신 분 연락 주세요.</div>
+            <div th:text="${car.carContent}"></div>
+
           </div>
 
         </div>
@@ -116,17 +60,15 @@
 
       <!-- 댓글창 -->
       <div class="volun-detail-box4">
-        <div class="volun-detail-commentbox">
-          <div class="volun-detail-name">행복이</div>
-          <div class="volun-detail-comment">저요!</div>
-          <div class="volun-detail-date">2024-10-10</div>
+        <div th:each="comment : ${carComments}" class="volun-detail-commentbox">
+          <div class="volun-detail-name">
+            <span th:if="${car.carWriter % 2 != 0}" th:text="${car.memberNickname}"></span>
+            <span th:if="${car.carWriter % 2 == 0}" th:text="${car.centerMemberName}"></span>
+          </div>
+          <div class="volun-detail-comment" th:text="${comment.carComment}"></div>
+          <div class="volun-detail-date" th:text="${#dates.format(comment.carCommentRegiDate, 'yyyy-MM-dd')}"></div>
         </div>
         <br>
-        <div class="volun-detail-commentbox">
-          <div class="volun-detail-name">아가다</div>
-          <div class="volun-detail-comment">저요!</div>
-          <div class="volun-detail-date">2024-10-10</div>
-        </div>
       </div>
 
       <br>

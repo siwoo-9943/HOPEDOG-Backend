@@ -20,14 +20,14 @@
       <!-- 봉사/카풀 게시판 바 -->
       <div class="volun-header">
         <ul id="volun-header2">
-          <li>봉사</li>
-          <li>카풀</li>
+          <li><a th:href="@{/adopt/main}">봉사</a></li>
+          <li><a th:href="@{/car/main}">카풀</a></li>
         </ul>
       </div>
       <div class="volun-header">
         <ul id="volun-header2">
-          <li>태워줄게요</li>
-          <li>태워주세요</li>
+          <li><a th:href="@{/car/filter(cate='태워주세요')}">태워주세요</a></li>
+          <li><a th:href="@{/car/filter(cate='태워줄게요')}">태워줄게요</a></li>
         </ul>
       </div>
       <!--게시글 칼럼 구분-->
@@ -39,11 +39,16 @@
       </div>
       <!--게시글-->
       <div class="volun-catalog-all">
-        <div class="volun-catalog-main">
-          <div class="volun-cate" th:text="${post.carCate}"></div>
-          <div class="volun-title" th:text="${}"><a href="../../html/volun/volun-car-post-member.html">10월 18일 남양주 행복한 유기견 센터 카풀 구해요</a></div>
-          <div class="volun-author">프린세스</div>
-          <div class="volun-date">2024-10-08</div>
+        <div class="volun-catalog-main" th:each = "car : ${carList}">
+          <div class="volun-cate" th:text="${car.carCate}"></div>
+          <div class="volun-title">
+            <a th:href="@{/car/post/{no}(no=${car.carNo})}" th:text="${car.carTitle}"></a>
+          </div>
+          <div class="volun-author">
+            <span th:if="${car.carWriter % 2 != 0}" th:text="${car.memberNickname}"></span>
+            <span th:if="${car.carWriter % 2 == 0}" th:text="${car.centerMemberName}"></span>
+          </div>
+          <div class="volun-date" th:text="${#dates.format(car.carRegiDate, 'yyyy-MM-dd')}"></div>
         </div>
       </div>
 
@@ -90,6 +95,7 @@
     통신판매업신고번호 2017-서울용산-066 | 사업자정보확인호스팅사업자 NT넥스트레벨 대표이메일 nextlevel_224@next.com<br>
     © NEXT LEVEL. All Rights Reserved</h6>
 </footer>
+<script defer th:src="@{/js/volun/car/volun-car-main.js}"></script>
 <script defer src="../../js/main/header.js"></script>
 
 </html>

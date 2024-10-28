@@ -17,4 +17,8 @@ public class CarDTO {
     private Date carRegiDate;   // 게시글 작성일
     private Date carUpdateDate; // 수정일
     private Long carWriter;      // 게시글 작성자
+    private Long memberNo;      //일반회원넘버
+    private String memberNickname;  //일반회원 닉네임
+    private Long centerMemberNo;    //센터회원 넘버
+    private String centerMemberName;    //센터회원 이름
 }
