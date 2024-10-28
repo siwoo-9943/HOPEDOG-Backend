@@ -106,19 +106,25 @@ document.addEventListener('DOMContentLoaded', function() {
     // Cool SMS 인증 관련 코드
     phoneVerifyBtn.addEventListener('click', function() {
         const phoneNumber = document.getElementById('memberPhoneNumber').value.trim();
+
+        // 휴대폰 번호 입력 확인: 값이 비어 있으면 에러 메시지를 표시하고 함수를 종료합니다.
         if (phoneNumber === '') {
             showError(document.getElementById('memberPhoneNumber'), '휴대폰 번호를 입력해주세요.');
             return;
         }
 
+        // 휴대폰 번호 형식 검사: 올바른 형식인지 확인하기 위해 정규 표현식을 사용합니다.
         const phonePattern = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
         if (!phonePattern.test(phoneNumber)) {
             showError(document.getElementById('memberPhoneNumber'), '올바른 전화번호 형식이 아닙니다.');
             return;
         }
 
+        // 서버로 전송하기 위해 휴대폰 번호에서 '-'를 제거한 형태로 저장합니다.
         const cleanPhoneNumber = phoneNumber.replace(/-/g, '');
 
+        // 서버로 /api/sms/send API 요청을 보냅니다. 이때, 클린된 휴대폰 번호를 JSON으로 전송합니다.
+        // fetch는 서버에 네트워크 요청을 보내고 응답을 받을 수 있게 하는 JavaScript 메서드입니다.
         fetch('/api/sms/send', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -126,15 +132,23 @@ document.addEventListener('DOMContentLoaded', function() {
         })
             .then(response => response.json())
             .then(data => {
+                // 서버 응답이 JSON 형식으로 반환되면 이를 data 변수에 저장
                 if (data.success) {
+                    // data.success 값이 true일 경우:
+                    // "인증번호가 발송되었습니다."라는 메시지를 사용자에게 알림
+                    // 인증번호 입력 필드의 비활성화 속성을 제거하고, 타이머를 시작합니다.
                     alert('인증번호가 발송되었습니다.');
                     document.getElementById('phoneVerifyCode').removeAttribute('disabled');
                     startTimer();
                 } else {
+                    // data.success 값이 false일 경우:
+                    // 서버에서 반환한 오류 메시지를 표시하거나 기본 오류 메시지를 표시
                     alert(data.message || '인증번호 발송에 실패했습니다.');
                 }
             })
             .catch(error => {
+                // 오류 처리: 서버 요청 중 오류가 발생하면, 콘솔에 오류를 기록하고
+                // 사용자에게 "인증번호 발송 중 오류가 발생했습니다."라는 메시지를 표시
                 console.error('Error:', error);
                 alert('인증번호 발송 중 오류가 발생했습니다.');
             });
