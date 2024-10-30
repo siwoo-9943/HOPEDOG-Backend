@@ -1,13 +1,17 @@
 package com.example.hope_dog.controller.volun.car;
 
 import com.example.hope_dog.dto.volun.car.CarDTO;
+import com.example.hope_dog.dto.volun.car.CarDetailDTO;
 import com.example.hope_dog.service.volun.car.CarService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -38,17 +42,24 @@ public class CarController {
         return "volun/car/volun-car-main";
     }
 
-    //게시글 상세페이지
-//    @GetMapping("/post/{no}")
-//    public String postCar(@PathVariable("no") Long no, Model model) {
-//        CarDTO carDetail = carService.getCarPost(no);
-//        model.addAttribute("car", carDetail);
-//        return "volun/car/volun-car-post";
-//    }
-
-    // 게시글과 댓글 조회
-    @GetMapping("/carNo")
-    public CarDTO getCarWithComments(@PathVariable Long carNo) {
-        return carService.getCarWithComments(carNo);
+    //검색기능
+    @GetMapping("/search")
+    public String searchCars(@RequestParam("search-type") String searchType,
+    @RequestParam("keyword")String keyword,Model model) {
+        List<CarDTO> carList = carService.searchCars(searchType, keyword);
+        model.addAttribute("carList", carList);
+        return "volun/car/volun-car-main";
     }
+
+
+
+    //게시글 상세
+    @GetMapping("/post/{carNo}")
+    public String carDetail(@PathVariable("carNo") Long carNo, Model model) {
+        CarDetailDTO carDetail = carService.getCarDetail(carNo);
+        model.addAttribute("carDetail", carDetail);
+        return "volun/car/volun-car-post";
+    }
+
+
 }

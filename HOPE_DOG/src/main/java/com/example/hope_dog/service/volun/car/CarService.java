@@ -2,22 +2,28 @@ package com.example.hope_dog.service.volun.car;
 
 import com.example.hope_dog.dto.centerMember.CenterMemberDTO;
 import com.example.hope_dog.dto.member.MemberDTO;
+import com.example.hope_dog.dto.volun.car.CarCommentDTO;
 import com.example.hope_dog.dto.volun.car.CarDTO;
+import com.example.hope_dog.dto.volun.car.CarDetailDTO;
 import com.example.hope_dog.mapper.volun.car.CarMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.MergedAnnotations;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class CarService {
 
-
     private final CarMapper carMapper;
+
     //목록조회 메서드
     public List<CarDTO> getCarList() {
         //carmapper로 정보 조회
@@ -46,6 +52,7 @@ public class CarService {
         return carList;
     }
 
+
     // 카테고리에 따른 게시글 조회
     public List<CarDTO> getCarListByCate(String cate) {
         List<CarDTO> carList = carMapper.selectCate(cate);
@@ -70,34 +77,59 @@ public class CarService {
 
         return carList;
     }
-    //게시글 상세페이지 작성자
-//    public CarDTO getCarPost(Long no) {
-//        CarDTO car = carMapper.selectCarById(no);
-//
-//        if (car.getCarWriter() % 2 == 0) {
-//            // 센터회원인 경우 작성자 센터회원 정보 조회
-//            CenterMemberDTO centerMember = carMapper.selectCenterMemberByNo(car.getCarWriter());
-//            if (centerMember != null) {
-//                car.setCenterMemberName(centerMember.getCenterMemberName());
-//            }
-//        } else {
-//            // 일반회원인 경우
-//            MemberDTO member = carMapper.selectMemberByNo(car.getCarWriter());
-//            if (member != null) {
-//                car.setMemberNickname(member.getMemberNickname());
-//            }
-//        }
-//
-//        return car;
-//    }
-//
-//    @Autowired
-//    public CarService(CarMapper carMapper) {
-//        this.carMapper = carMapper;
-//    }
 
-    // 게시글과 댓글 조회
-    public CarDTO getCarWithComments(Long carNo) {
-        return carMapper.selectCarWithComment(carNo);
+    //검색
+    public List<CarDTO> searchCars(String searchType, String keyword) {
+        Map<String, Object> params = new HashMap<>();
+
+        if ("title".equals(searchType)) {
+            params.put("carTitle", keyword);
+        } else if ("nickname".equals(searchType)) {
+            params.put("carWriter", keyword); // 필요 시 닉네임을 번호로 변환 후 사용
+        }
+
+        return carMapper.retrieve(params);
     }
-}
+
+    //게시글 상세 조회
+
+    public CarDetailDTO getCarDetail(Long carNo) {
+        CarDetailDTO carDetail = carMapper.selectCarDetail(carNo);
+
+        // 게시글 작성자 구별 (기존과 동일)
+        if (carDetail.getCarWriter() % 2 == 0) {
+            CenterMemberDTO centerMember = carMapper.selectCenterMemberByNo(carDetail.getCarWriter());
+            if (centerMember != null) {
+                carDetail.setCenterMemberName(centerMember.getCenterMemberName());
+            }
+        } else {
+            MemberDTO member = carMapper.selectMemberByNo(carDetail.getCarWriter());
+            if (member != null) {
+                carDetail.setMemberNickname(member.getMemberNickname());
+            }
+        }
+
+        // 댓글 리스트 가져오기
+        List<CarCommentDTO> comments = carMapper.selectCommentsByCarNo(carNo);
+        for (CarCommentDTO comment : comments) {
+            // 댓글 작성자 구별
+            if (comment.getCarCommentWriter() % 2 == 0) {
+                CenterMemberDTO centerMember = carMapper.selectCenterMemberByNo(comment.getCarCommentWriter());
+                if (centerMember != null) {
+                    comment.setCenterMemberName(centerMember.getCenterMemberName());
+                }
+            } else {
+                MemberDTO member = carMapper.selectMemberByNo(comment.getCarCommentWriter());
+                if (member != null) {
+                    comment.setMemberNickname(member.getMemberNickname());
+                }
+            }
+        }
+
+        carDetail.setComments(comments); // 댓글 리스트를 DTO에 추가
+        return carDetail;
+    }
+
+
+    }
+

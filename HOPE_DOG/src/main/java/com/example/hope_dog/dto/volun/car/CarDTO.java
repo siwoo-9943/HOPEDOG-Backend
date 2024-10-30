@@ -24,7 +24,4 @@ public class CarDTO {
     private Long centerMemberNo;    //센터회원 넘버
     private String centerMemberName;    //센터회원 이름
 
-    private List<CarCommentDTO> comments; // 댓글 리스트
-//    하나의 게시글에 여러 댓글이 달리 수 있어서 게시글 ｄｔｏ내에 댓글 ｄｔｏ리스트를 포함시켜서
-//    한번의  호출로 게시글과 해당 댓글을 같이 가져올 수 있음
 }

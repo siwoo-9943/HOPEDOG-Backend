@@ -54,16 +54,15 @@
 
       <!-- 검색 창-->
       <div class="bottom-search">
-        <form method="get" name="search" action="/zboard/zboard.php">
+        <form method="get" name="search" th:action="@{/car/search}"  onsubmit="searchCars(); return false;">
           <select name="search-type" id="search-type">
-            <option value="sub-memo">태워줄게요</option>
-            <option value="subject">태워주세요</option>
+            <option value="title">제목</option>
+            <option value="nickname">닉네임</option>
           </select>
           <span class="default">
-            <input type="hidden" name="id" value="publictransport"><input type="hidden" name="page-num" value="25">
-            <input type="text" name="keyword" id="keyword" value="">
-            <input type="submit" onfocus="blur()" value="검색"></span>
-          <!-- </span> -->
+            <input type="text" name="keyword" id="keyword" value="" placeholder="검색어를 입력하세요">
+            <input type="button" onfocus="blur()" value="검색"></span>
+           </span>
         </form>
       </div>
       <div class="volun-write">
@@ -96,6 +95,6 @@
     © NEXT LEVEL. All Rights Reserved</h6>
 </footer>
 <script defer th:src="@{/js/volun/car/volun-car-main.js}"></script>
-<script defer src="../../js/main/header.js"></script>
+
 
 </html>
