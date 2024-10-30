@@ -2,6 +2,7 @@ package com.example.hope_dog.service.donation;
 
 import com.example.hope_dog.dto.donation.DonationListDTO;
 import com.example.hope_dog.dto.donation.DonationViewDTO;
+import com.example.hope_dog.dto.donation.DonationWriteDTO;
 import com.example.hope_dog.mapper.donation.DonationMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,4 +25,10 @@ public class DonationService {
     public List<DonationViewDTO> getDonationViewList(Long donaNo) {
         return donationMapper.donationView(donaNo);
     }
+
+    // Write
+    public void insertDonation(DonationWriteDTO donationWriteDTO) {
+        donationMapper.insertDonation(donationWriteDTO);
+    }
+
 }

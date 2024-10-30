@@ -11,10 +11,10 @@ import java.util.Date;
 @Setter
 @ToString
 @NoArgsConstructor
-public class MypageAdoptListDTO {
-    private Long adoptNo;
-    private String adoptTitle;
-    private String adoptStatus;
-    private Date adoptPeriodend;
+public class MypageVolunDTO {
+    private Long volunNo;
+    private String volunTitle;
+    private String volunStatus;
+    private Date volunPeriodend;
     private Long memberNo;
 }

@@ -13,13 +13,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("/dona")
+@RequestMapping("/dona");;;
 public class DonationController {
 
     private final DonationService donationService;
@@ -41,11 +42,11 @@ public class DonationController {
     }
 
 
-//    @GetMapping("/write")
-//    public String noticeWrite(@SessionAttribute(value = "userId", required = false) Long userId) {
-//        return userId == null ? "redirect:/user/login" : "notice/write";
-//    }
-//
+    @GetMapping("/write")
+    public String donationWrite(@SessionAttribute(value = "centerMemberNo", required = false) Long centerMemberNo) {
+        return centerMemberNo == null ? "redirect:/user/login" : "donation/donation-write";
+    }
+
 //    @PostMapping("/write")
 //    public String boardWrite(NoticeWriteDTO noticeWriteDTO, @SessionAttribute("userId") Long userId
 //            , RedirectAttributes redirectAttributes, @RequestParam("noticeFile") List<MultipartFile> files) {

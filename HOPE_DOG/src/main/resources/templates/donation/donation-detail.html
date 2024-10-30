@@ -9,6 +9,7 @@
   <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
   <link rel="stylesheet" th:href="@{/css/main/main.css}">
   <script defer th:src="@{/js/main/main.js}"></script>
+  <script defer th:src="@{/js/dona/donation-detail.js}"></script>
 </head>
 
 <body>
@@ -19,20 +20,27 @@
     <div class="post-guest-main"  th:each="donation : ${donationViewList}">
       <div class="post-guest">
         <div class="topTitle" th:text="${donation.donaTitle}"></div>
-        <div id="line"></div>
+          <div id="line"></div>
+        <div class="dona-view-content">
 
-          <!--게시판 상단 (제목, 닉네임)-->
-        <div class="notice-detail-box">
-          <div class="notice-addetail-tcontent">작성자</div>
-          <div class="notice-addetail-ttxt" th:text="${donation.centerMemberName}">행복한유기견</div>
-        </div>
-        <div class="notice-addetail-content">
-          <div class="notice-addetail-tcontent">작성일</div>
-          <div class="notice-addetail-ttxt" th:text="${#dates.format(donation.donaRegidate, 'yyyy-MM-dd HH:mm')}"></div></div>
-        </div>
-        <div class="notice-addetail-maincont"  th:text="${donation.donaContent}">
-        </div>
 
+            <!--게시판 상단 (제목, 닉네임)-->
+          <div class="notice-detail-box">
+            <div class="notice-addetail-content">
+              <div class="notice-addetail-tcontent">작성자</div>
+              <div class="notice-addetail-ttxt" th:text="${donation.centerMemberName}"></div>
+            </div>
+            <div class="notice-addetail-content">
+              <div class="notice-addetail-tcontent">작성일</div>
+              <div class="notice-addetail-ttxt" th:text="${#dates.format(donation.donaRegidate, 'yyyy-MM-dd HH:mm')}"></div></div>
+            </div>
+
+            <div class="notice-addetail-maincont"  th:text="${donation.donaContent}"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="dona-bottom">
       <div class="dona-button">
         <div class="dona-admain-btuall">
           <button class="dona-admain-btu" type="button" onclick="location.href='../../html/donation/donation-modify.html'">
@@ -51,12 +59,12 @@
         </div>
       </div>
       <!-- 댓글창 -->
-      <div class="dona-detail-box4">
+      <se class="dona-detail-box4">
         <div class="dona-detail-commentbox">
           <div class="dona-detail-name">행복이</div>
           <div class="dona-detail-comment" id="dona-comment">저요</div>
           <div class="dona-detail-comment" id="dona-modifyInput" style="display:none;">
-            <input class="dona-modify-comment">  
+            <input class="dona-modify-comment">
             <button class="dona-comment-button" onclick="editCommentBtnClcik()">등록</button>
           </div>
           <div id="dona-comment-buttonBox">
@@ -69,7 +77,7 @@
           <div class="dona-detail-name">아가다</div>
           <div class="dona-detail-comment" id="dona-comment">저여!</div>
           <div class="dona-detail-comment" id="dona-modifyInput" style="display:none;">
-            <input class="dona-modify-comment">  
+            <input class="dona-modify-comment">
             <button class="dona-comment-button" onclick="editCommentBtnClcik()">등록</button>
           </div>
           <div id="dona-comment-buttonBox">
@@ -78,13 +86,12 @@
           </div>
           <div class="dona-detail-date">2024-10-14</div>
         </div>
-      </div>
-    </div>
+    </section>
   </main>
 </body>
 
 <footer th:replace="~{/fragment/footer :: footer}"></footer>
 
-<script defer th:src="@{/js/dona/donation-detail.js}"></script>
+
 
 </html>

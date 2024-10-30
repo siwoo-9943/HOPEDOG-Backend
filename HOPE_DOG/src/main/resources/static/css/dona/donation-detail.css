@@ -1,15 +1,34 @@
 .post-guest-main{
   width: 1080px;
   height: 600px;
+  justify-content: center;
+  align-items: center;
   background-color: white;
   margin: 0 auto;
 }
 
 .post-guest{
   width: 800px;
-  height: 400px;
+  /*height: 500px;*/
   justify-content: center;
   align-items: center;
+  margin: 0 auto;
+  /*background-color: #3c763d;*/
+}
+
+.notice-detail-box{
+  height: 100px;
+}
+.notice-addetail-maincont{
+  height: 330px;
+}
+
+.dona-bottom{
+  width: 800px;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  /*background-color: beige;*/
   margin: 0 auto;
 }
 
@@ -20,6 +39,10 @@
   margin: 5px auto;
 }
 
+.dona-view-content{
+  justify-content: center;
+  align-items: center;
+}
 
 /* 게시글 컨테이너 */
 .notice-addetail-main {
@@ -64,14 +87,12 @@
   align-items: center;
   /* border-bottom: 4px solid #9B805D; */
   padding-bottom: 10px; /* 여백 추가 */
-}
-
-.topTitle h1 {
   font-size: 30px;
   letter-spacing: -0.5px;
   line-height: 30px;
-  text-align: center;
+  font-weight: bold;
 }
+
 
 
 .topTitle-mainbox{

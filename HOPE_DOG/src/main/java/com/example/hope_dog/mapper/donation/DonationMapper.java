@@ -2,6 +2,7 @@ package com.example.hope_dog.mapper.donation;
 
 import com.example.hope_dog.dto.donation.DonationListDTO;
 import com.example.hope_dog.dto.donation.DonationViewDTO;
+import com.example.hope_dog.dto.donation.DonationWriteDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -13,5 +14,7 @@ public interface DonationMapper {
     List<DonationListDTO> donationList();
 
     List<DonationViewDTO> donationView(Long donaNo);
+
+    void insertDonation(DonationWriteDTO donationWriteDTO);
 
 }

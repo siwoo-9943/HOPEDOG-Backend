@@ -11,10 +11,10 @@ import java.util.Date;
 @Setter
 @ToString
 @NoArgsConstructor
-public class MypageAdoptListDTO {
+public class MypageProtectDTO {
     private Long adoptNo;
-    private String adoptTitle;
-    private String adoptStatus;
-    private Date adoptPeriodend;
+    private String protectTitle;
+    private String protectStatus;
+    private Date protectPeriodend;
     private Long memberNo;
 }

@@ -44,13 +44,14 @@
         ORDER BY
             CM.DONA_COMMENT_REGIDATE DESC
     </select>
-    <!--    <insert id="insertBoard" parameterType="BoardWriteDTO">-->
-    <!--        <selectKey keyProperty="boardId" resultType="Long" order="BEFORE">-->
-    <!--            SELECT SEQ_BOARD.NEXTVAL FROM DUAL-->
-    <!--        </selectKey>-->
-    <!--        INSERT INTO TBL_BOARD (BOARD_ID, TITLE, CONTENT, USER_ID)-->
-    <!--        VALUES (#{boardId}, #{title}, #{content}, #{userId})-->
-    <!--    </insert>-->
+
+        <insert id="insertDonation" parameterType="DonationWriteDTO">
+            <selectKey keyProperty="donaNo" resultType="Long" order="BEFORE">
+                SELECT SEQ_DONA_NO.NEXTVAL FROM DUAL
+            </selectKey>
+            INSERT INTO TBL_DONA (DONA_NO, DONA_TITLE, DONA_CONTENT, DONA_REGIDATE, CENTER_MEMBER_NO)
+            VALUES (#{donaNo}, #{donaTitle}, #{donaContent}, #{donaRegidate}, #{centerMemberNo})
+        </insert>
 
     <!--    <update id="updateBoard" parameterType="BoardUpdateDTO">-->
     <!--        UPDATE TBL_BOARD-->

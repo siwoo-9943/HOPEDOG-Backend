@@ -33,9 +33,9 @@
     <div class="member-inbox-navbox">
       <nav>
         <ul class="member-inbox-nav-ul">
-          <li id="member-inbox"><a href="../../html/mypage/mypage-inbox.html">받은 쪽지</li>
-            <div id="inbox-choice"></div></a>
-          <li id="member-outbox"><a href="../../html/mypage/mypage-outbox.html">보낸 쪽지</li></a>
+          <li id="member-inbox">받은 쪽지</li>
+            <div id="inbox-choice"></div>
+          <li id="member-outbox">보낸 쪽지</li>
         </ul>
       </nav>
     </div>
@@ -47,26 +47,28 @@
       <div>
         <ul class="member-notebox-titlebox">
           <li><b>상태</b></li>
-          <li><b>송신자</b></li>
           <li><b>수신자</b></li>
+          <li><b>송신자</b></li>
           <li><b>제목</b></li>
           <li><b>내용</b></li>
           <li><b>날짜</b></li>
         </ul>
       </div>
+
       <!-- 게시글 목록 -->
-      <div class="member-notebox-contentsbox">
+      <div class="member-notebox-contentsbox"  th:each="noteR : ${mypageNoteReceiveList}">
         <ul class="member-notebox-content">
           <li>
             <div>
               <ul class="member-notebox-contentbox">
-                <li>[읽음]</li>
-                <li>슈슈</li>
-                <li>아가다</li>
-                <li><a href="../../html/mypage/mypage-notebox-detail.html">아가다!</li></a>
-                <li><a href="../../html/mypage/mypage-notebox-detail.html">우리 코코 너무 예쁘지</li></a>
-                <li>24.07.29 14:20</li>
+                <li><div th:if="${noteR.noteboxReceiveRead} == 'N'" th:text="안읽음"></div></li>
+                <li><div th:text="${noteR.noteboxReceiveRName}"></div></li>
+                <li><div th:text="${noteR.noteboxReceiveSName}"></div></li>
+                <li><div th:text="${noteR.noteboxReceiveTitle}"></div></li>
+                <li><div th:text="${noteR.noteboxReceiveContent}"></div></li>
+                <li><div th:text="${#dates.format(noteR.noteboxReceiveRegidate, 'yyyy.MM.dd hh:mm:ss')}"></div></li>
               </ul>
+              <div class="memberNo" th:text="${noteR.memberNo}" style="display: none;"></div>
             </div>
           </li>
           <li>

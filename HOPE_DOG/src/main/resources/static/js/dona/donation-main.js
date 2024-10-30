@@ -5,3 +5,8 @@ document.querySelectorAll('.dona-ul-all').forEach(function(element) {
         location.href = `/dona/view?donaNo=${donaNo}`; // 상세 페이지로 이동
     });
 });
+
+
+document.querySelector('.dona-admain-btu').addEventListener('click', function() {
+    location.href = '/dona/write'; // 목록 페이지로 이동
+});
