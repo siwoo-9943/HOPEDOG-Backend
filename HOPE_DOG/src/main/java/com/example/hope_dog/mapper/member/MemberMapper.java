@@ -42,4 +42,8 @@ public interface MemberMapper {
 
     // 모든 회원 조회
     List<MemberDTO> selectAllMembers();
+
+    // 소셜 로그인 관련 메서드
+    MemberDTO findByProviderAndProviderId(@Param("provider") String provider,
+                                          @Param("providerId") String providerId);
 }

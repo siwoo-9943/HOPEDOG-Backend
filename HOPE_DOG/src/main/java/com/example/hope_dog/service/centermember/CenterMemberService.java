@@ -5,13 +5,17 @@ import com.example.hope_dog.dto.centerMember.CenterMemberDTO;
 import com.example.hope_dog.dto.centerMember.CenterMemberSessionDTO;
 import com.example.hope_dog.mapper.centermember.CenterMemberMapper;
 import com.example.hope_dog.mapper.member.MemberMapper;
+import com.example.hope_dog.service.member.EmailService;
+import com.example.hope_dog.utils.PasswordUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 import java.util.UUID;
 
 @Service
@@ -21,6 +25,8 @@ public class CenterMemberService {
 
     public final CenterMemberMapper centerMemberMapper;
     public final MemberMapper memberMapper;
+    private final EmailService emailService;
+    private final PasswordEncoder passwordEncoder;
 
 
     public Long join(CenterMemberDTO memberDTO) {
@@ -108,6 +114,35 @@ public class CenterMemberService {
 
     }
 
+
+    //아이디 찾기
+    public String findCenterMemberId(String centerMemberName, String centerMemberPhoneNumber) {
+        String centerMemberId = centerMemberMapper.findCenterMemberId(centerMemberName, centerMemberPhoneNumber);
+        if (centerMemberId == null) {
+            throw new IllegalArgumentException("해당하는 회원 정보를 찾을 수 없습니다.");
+        }
+        return centerMemberId;
+    }
+
+
+    public void centerResetPassword(String centerMemberName, String centerMemberId, String centerMemberEmail) {
+        // 센터 회원 정보 확인
+        CenterMemberDTO center = centerMemberMapper.findCenterByNameIdEmail(centerMemberName, centerMemberId, centerMemberEmail);
+
+        if (center == null) {
+            throw new IllegalArgumentException("입력하신 정보와 일치하는 센터 회원이 없습니다.");
+        }
+
+        // 임시 비밀번호 생성
+        String tempPassword = PasswordUtil.generateTempPassword();
+
+        // DB에 임시 비밀번호 저장 (암호화)
+        center.setCenterMemberPw(passwordEncoder.encode(tempPassword));
+        centerMemberMapper.updateCenterPassword(center);
+
+        // 이메일 발송
+        emailService.sendTempPassword(centerMemberEmail, tempPassword);
+    }
 
 
 }

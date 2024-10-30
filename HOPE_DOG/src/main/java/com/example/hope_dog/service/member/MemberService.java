@@ -4,6 +4,7 @@ package com.example.hope_dog.service.member;
 import com.example.hope_dog.dto.member.MemberDTO;
 import com.example.hope_dog.dto.member.MemberSessionDTO;
 import com.example.hope_dog.mapper.member.MemberMapper;
+import com.example.hope_dog.utils.PasswordUtil;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -135,7 +136,7 @@ public class MemberService {
         }
 
         // 임시 비밀번호 생성
-        String tempPassword = generateTempPassword();
+        String tempPassword = PasswordUtil.generateTempPassword();
 
         // DB에 임시 비밀번호 저장 (암호화)
         member.setMemberPw(passwordEncoder.encode(tempPassword));
@@ -145,20 +146,42 @@ public class MemberService {
         emailService.sendTempPassword(memberEmail, tempPassword);
     }
 
-//    10자리 임시 비밀번호를 생성하는 부분
-    private String generateTempPassword() {
-        StringBuilder pw = new StringBuilder();
-        Random random = new Random();
-//        대문자, 소문자, 숫자, 특수 문자로 구성
-        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
-        int length = chars.length();
 
-        for (int i = 0; i < 10; i++) {
-            pw.append(chars.charAt(random.nextInt(length)));
-        }
-
-        return pw.toString();
+    // 카카오 회원 조회
+    public MemberDTO findByProviderAndProviderId(String provider, String providerId) {
+        return memberMapper.findByProviderAndProviderId(provider, providerId);
     }
 
+    // 카카오 회원 가입
+    public MemberDTO registerKakaoMember(MemberDTO memberDTO) {
+        memberDTO.setMemberPw(passwordEncoder.encode("kakao" + memberDTO.getProviderId()));
+        memberDTO.setMemberStatus("1");
+        memberDTO.setMemberLoginStatus("KAKAO");
+        memberDTO.setMemberTwoFactorEnabled("N");
+
+        memberMapper.insertMember(memberDTO);
+        return memberDTO;
+    }
+
+    // CustomOAuth2UserService에서 호출하는 메서드
+    public MemberDTO findOrCreateKakaoMember(String email, String nickname, String providerId) {
+        // 기존 회원인지 확인
+        MemberDTO member = findByProviderAndProviderId("kakao", providerId);
+
+        // 기존 회원이면 그대로 반환
+        if (member != null) {
+            return member;
+        }
+
+        // 새로운 회원 정보 생성
+        MemberDTO newMember = new MemberDTO();
+        newMember.setMemberEmail(email);
+        newMember.setMemberNickname(nickname);
+        newMember.setMemberId("kakao_" + providerId);
+        newMember.setProvider("kakao");
+        newMember.setProviderId(providerId);
+
+        return registerKakaoMember(newMember);
+    }
 
 }

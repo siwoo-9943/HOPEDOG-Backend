@@ -193,18 +193,15 @@ class MemberMapperTest {
         memberMapper.insertMember(memberDTO);
 
         // when
-        MemberSessionDTO loginInfo = memberMapper.selectLoginInfo(
-                memberDTO.getMemberId(),
-                memberDTO.getMemberPw()  // 비밀번호는 서비스 레이어에서 검증하므로 실제로 사용되지 않음
-        );
+        MemberSessionDTO loginInfo = memberMapper.selectLoginInfo(memberDTO.getMemberId());  // memberPw 파라미터 제거
 
         // then
         assertThat(loginInfo).isNotNull();
         assertThat(loginInfo.getMemberId()).isEqualTo(memberDTO.getMemberId());
         assertThat(loginInfo.getMemberEmail()).isEqualTo(memberDTO.getMemberEmail());
         assertThat(loginInfo.getMemberName()).isEqualTo(memberDTO.getMemberName());
-        // ... 다른 필드들도 검증
     }
+
 
     // 로그인 정보 조회 실패 테스트 - 존재하지 않는 ID
     @Test
@@ -213,10 +210,7 @@ class MemberMapperTest {
         memberMapper.insertMember(memberDTO);
 
         // when
-        MemberSessionDTO loginInfo = memberMapper.selectLoginInfo(
-                "nonexistentId",  // 존재하지 않는 ID
-                "anyPassword"     // 비밀번호는 실제로 사용되지 않음
-        );
+        MemberSessionDTO loginInfo = memberMapper.selectLoginInfo("nonexistentId");  // memberPw 파라미터 제거
 
         // then
         assertThat(loginInfo).isNull();
