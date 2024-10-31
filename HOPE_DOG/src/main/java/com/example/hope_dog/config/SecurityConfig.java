@@ -22,20 +22,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-<<<<<<< HEAD
-                        .requestMatchers(
-                                "/css/**",
-                                "/js/**",
-                                "/img/**",     // img 경로 추가
-                                "/images/**",
-                                "/fonts/**",   // 폰트 파일 경로도 추가
-                                "/assets/**"   // 기타 정적 자원 경로 추가
-                        ).permitAll()
-                        .requestMatchers("/", "/member/**", "/center/**", "/main/**", "/admin/**", "/adopt/**", "/volun/**", "/car/**", "/centermypage/**","/dona/**", "/mypgae/**", "/commu/**", "/notice/**").permitAll()
-                        .anyRequest().authenticated()
-=======
                         .requestMatchers("/**").permitAll()  // 모든 요청 허용
->>>>>>> 894052b1d6e421f51ce505709682b0abbeaed285
                 )
                 .formLogin(form -> form
                         .loginPage("/member/login-select")
