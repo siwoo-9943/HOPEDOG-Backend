@@ -43,12 +43,14 @@ public class CarController {
     }
 
     //검색기능
-    @GetMapping("/search")
-    public String searchCars(@RequestParam("search-type") String searchType,
-    @RequestParam("keyword")String keyword,Model model) {
-        List<CarDTO> carList = carService.searchCars(searchType, keyword);
-        model.addAttribute("carList", carList);
-        return "volun/car/volun-car-main";
+    @GetMapping("/main/search")
+    public String searchCars(@RequestParam("searchType") String searchType, //requstparam : http요청 파라미터를 메서드의 매개변수로 매핑
+                             //요청 파라미터 searchType을 가져온다
+                             @RequestParam("keyword") String keyword,
+                             Model model) { //model 객치를 사용해서 데이터를 뷰로 전달
+        List<CarDTO> carList = carService.searchCars(searchType, keyword); //carservice를 통해 검색 결과 가져옴
+        model.addAttribute("carList", carList); // 검색 결과를 모델에 추가
+        return "volun/car/volun-car-main"; // 검색 결과를 포함한 페이지로 이동
     }
 
 

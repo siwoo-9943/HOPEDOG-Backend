@@ -2,6 +2,7 @@ package com.example.hope_dog.service.volun.car;
 
 import com.example.hope_dog.dto.centerMember.CenterMemberDTO;
 import com.example.hope_dog.dto.member.MemberDTO;
+import com.example.hope_dog.dto.page.Criteria;
 import com.example.hope_dog.dto.volun.car.CarCommentDTO;
 import com.example.hope_dog.dto.volun.car.CarDTO;
 import com.example.hope_dog.dto.volun.car.CarDetailDTO;
@@ -78,18 +79,59 @@ public class CarService {
         return carList;
     }
 
+    //페이지네이션
+
+
+
     //검색
     public List<CarDTO> searchCars(String searchType, String keyword) {
+        System.out.println("매퍼 searchCars ");
+        System.out.println("작성자 ID : " + searchType);
+
+        // 검색 조건을 담을 맵 생성
         Map<String, Object> params = new HashMap<>();
 
-        if ("title".equals(searchType)) {
-            params.put("carTitle", keyword);
-        } else if ("nickname".equals(searchType)) {
-            params.put("carWriter", keyword); // 필요 시 닉네임을 번호로 변환 후 사용
+        // 검색 타입에 따라 검색 조건 설정
+        if ("title".equals(searchType)) { //검색 타입이 title일 경우
+            params.put("carTitle", keyword); //키워드 title에 추가
+        } else if ("nickname".equals(searchType)) { //검색 타입이 nickname일 경우
+            try {
+                Long writerId = Long.parseLong(keyword); // 검색 타입 Long으로 변환
+                params.put("carWriter", writerId); //변환된 writerid를 carwriter에 추가
+            } catch (NumberFormatException e) {//변환 실패할 경우
+
+                return List.of(); //빈 리스트로 반환
+            }
         }
 
-        return carMapper.retrieve(params);
+        // Mapper의 retrieve 메서드를 호출하여 검색 결과를 가져옴
+        List<CarDTO> carList = carMapper.retrieve(params); //params 맵을 사용해서 데이터베이스에서 목록 검색
+
+        // 각 게시글 작성자 확인
+        for (CarDTO car : carList) {
+            if (car.getCarWriter() % 2 == 0) {
+                // 센터회원인 경우 작성자 센터회원 정보 조회
+                CenterMemberDTO centerMember = carMapper.selectCenterMemberByNo(car.getCarWriter());
+                if (centerMember != null) { // 센터회원 정보가 존재할 때
+                    // 센터회원 이름 보여주기
+                    car.setCenterMemberName(centerMember.getCenterMemberName());
+                    System.out.println("작성자는? : " + car.getCarWriter());
+                }
+            } else {
+                // 일반회원인 경우
+                MemberDTO member = carMapper.selectMemberByNo(car.getCarWriter());
+                if (member != null) { // 일반회원 정보가 존재할 때
+                    car.setMemberNickname(member.getMemberNickname());
+                    System.out.println("작성자는? : " + member.getMemberNickname());
+                }
+            }
+        }
+
+        return carList;
     }
+
+
+
 
     //게시글 상세 조회
 

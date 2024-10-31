@@ -3,6 +3,7 @@ package com.example.hope_dog.mapper.volun.car;
 import com.example.hope_dog.controller.centermember.CenterMemberController;
 import com.example.hope_dog.dto.centerMember.CenterMemberDTO;
 import com.example.hope_dog.dto.member.MemberDTO;
+import com.example.hope_dog.dto.page.Criteria;
 import com.example.hope_dog.dto.volun.car.CarCommentDTO;
 import com.example.hope_dog.dto.volun.car.CarDTO;
 import com.example.hope_dog.dto.volun.car.CarDetailDTO;
@@ -24,8 +25,14 @@ public interface CarMapper {
     //카테고리 분류별 게시글 조회
     List<CarDTO> selectCate(String cate);
 
+    //카풀 게시판(페이지네이션)
+    List<CarDTO> allSelect();
 
-   // 게시글 상세 조회 (게시글과 댓글 정보 포함)
+    int totalSelect();
+
+    List<CarDTO> allSelectPage (Criteria criteria);
+
+   // 게시글 상세페이지 조회 (게시글과 댓글 정보 포함)
    CarDetailDTO selectCarDetail(@Param("carNo") Long carNo);
 
     // 댓글 조회 (특정 게시글의 댓글 리스트)
