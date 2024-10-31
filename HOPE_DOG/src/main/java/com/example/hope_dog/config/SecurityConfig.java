@@ -20,8 +20,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())  // CSRF 비활성화
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
+<<<<<<< HEAD
                         .requestMatchers(
                                 "/css/**",
                                 "/js/**",
@@ -36,6 +37,9 @@ public class SecurityConfig {
                         .requestMatchers("/", "/member/**", "/center/**", "/main/**", "/admin/**", "/adopt/**", "/volun/**", "/car/**", "/centermypage/**","/dona/**", "/mypgae/**", "/commu/**", "/notice/**").permitAll()
 >>>>>>> 5fd740137e290fd1d1f20981ae02a513667dc9a6
                         .anyRequest().authenticated()
+=======
+                        .requestMatchers("/**").permitAll()  // 모든 요청 허용
+>>>>>>> 894052b1d6e421f51ce505709682b0abbeaed285
                 )
                 .formLogin(form -> form
                         .loginPage("/member/login-select")
