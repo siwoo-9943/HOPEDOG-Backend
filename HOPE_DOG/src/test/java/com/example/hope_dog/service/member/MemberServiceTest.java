@@ -24,6 +24,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class MemberServiceTest {
 
+<<<<<<< HEAD
 //    @Mock
 //    MemberMapper memberMapper;
 //
@@ -194,6 +195,8 @@ class MemberServiceTest {
 //                .isInstanceOf(IllegalArgumentException.class)
 //                .hasMessage("유효하지 않은 이메일 형식입니다.");
 //    }
+=======
+>>>>>>> main
     @Mock
     MemberMapper memberMapper;
 
@@ -482,4 +485,8 @@ class MemberServiceTest {
         verify(memberMapper, never()).updateMemberPassword(any());
         verify(emailService, never()).sendTempPassword(anyString(), anyString());
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 }
