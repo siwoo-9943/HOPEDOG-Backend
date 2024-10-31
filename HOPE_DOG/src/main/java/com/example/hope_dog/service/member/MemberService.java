@@ -147,41 +147,48 @@ public class MemberService {
     }
 
 
-    // 카카오 회원 조회
+    // 소셜 로그인 회원 조회
     public MemberDTO findByProviderAndProviderId(String provider, String providerId) {
         return memberMapper.findByProviderAndProviderId(provider, providerId);
     }
 
-    // 카카오 회원 가입
-    public MemberDTO registerKakaoMember(MemberDTO memberDTO) {
-        memberDTO.setMemberPw(passwordEncoder.encode("kakao" + memberDTO.getProviderId()));
-        memberDTO.setMemberStatus("1");
-        memberDTO.setMemberLoginStatus("KAKAO");
-        memberDTO.setMemberTwoFactorEnabled("N");
 
-        memberMapper.insertMember(memberDTO);
-        return memberDTO;
+
+    // 이메일로 회원 조회하는 메서드 추가
+    public MemberDTO findByEmail(String memberEmail) {
+        return memberMapper.findByEmail(memberEmail);
     }
 
-    // CustomOAuth2UserService에서 호출하는 메서드
-    public MemberDTO findOrCreateKakaoMember(String email, String nickname, String providerId) {
-        // 기존 회원인지 확인
-        MemberDTO member = findByProviderAndProviderId("kakao", providerId);
+    // 소셜 회원 등록 메서드 수정
+    public MemberDTO registerSocialMember(MemberDTO memberDTO) {
+        try {
+            // 이메일로 기존 회원 조회
+            MemberDTO existingMember = memberMapper.findByEmail(memberDTO.getMemberEmail());
 
-        // 기존 회원이면 그대로 반환
-        if (member != null) {
-            return member;
+            if (existingMember != null) {
+                log.info("Existing member found. Updating social info for email: {}", memberDTO.getMemberEmail());
+                // 기존 계정이 있다면 소셜 정보 업데이트
+                existingMember.setProvider(memberDTO.getProvider());
+                existingMember.setProviderId(memberDTO.getProviderId());
+                existingMember.setMemberLoginStatus(memberDTO.getProvider().toUpperCase());
+                memberMapper.updateMemberSocialInfo(existingMember);
+                return existingMember;
+            }
+
+            // 신규 가입 처리
+            log.info("Creating new social member for email: {}", memberDTO.getMemberEmail());
+            String provider = memberDTO.getProvider();
+            memberDTO.setMemberPw(passwordEncoder.encode(provider + memberDTO.getProviderId()));
+            memberDTO.setMemberStatus("1");
+            memberDTO.setMemberLoginStatus(provider.toUpperCase());
+            memberDTO.setMemberTwoFactorEnabled("N");
+
+            memberMapper.insertMember(memberDTO);
+            return memberDTO;
+
+        } catch (Exception e) {
+            log.error("Error in registerSocialMember: ", e);
+            throw new IllegalStateException("소셜 회원 등록 중 오류가 발생했습니다.", e);
         }
-
-        // 새로운 회원 정보 생성
-        MemberDTO newMember = new MemberDTO();
-        newMember.setMemberEmail(email);
-        newMember.setMemberNickname(nickname);
-        newMember.setMemberId("kakao_" + providerId);
-        newMember.setProvider("kakao");
-        newMember.setProviderId(providerId);
-
-        return registerKakaoMember(newMember);
     }
-
 }

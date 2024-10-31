@@ -430,37 +430,6 @@ public class MemberController {
 
 
 
-    // 카카오 로그인 성공 시 처리
-    @GetMapping("/oauth2/callback/kakao")
-    public String kakaoCallback(OAuth2AuthenticationToken token,
-                                HttpSession session) {
-        // OAuth2 인증 후, 제공된 사용자 정보를 포함하는 OAuth2User 객체를 가져옵니다.
-        OAuth2User oauth2User = token.getPrincipal();
-        // 사용자 정보의 전체 속성(attributes) 데이터를 Map 형태로 추출합니다.
-        Map<String, Object> attributes = oauth2User.getAttributes();
-
-        // 카카오에서 제공하는 사용자 정보를 가져옵니다.
-        String providerId = String.valueOf(attributes.get("id"));  // 고유 식별자 (ID) 추출
-        Map<String, Object> properties = (Map<String, Object>) attributes.get("properties");  // 추가 사용자 정보
-        Map<String, Object> kakaoAccount = (Map<String, Object>) attributes.get("kakao_account");  // 계정 정보
-
-        // 카카오 계정 정보에서 이메일과 닉네임을 추출합니다.
-        String email = (String) kakaoAccount.get("email");  // 사용자 이메일
-        String nickname = (String) properties.get("nickname");  // 사용자 닉네임
-
-        // 회원가입 또는 로그인 처리 (이메일과 닉네임, providerId를 바탕으로)
-        MemberDTO member = memberService.findOrCreateKakaoMember(email, nickname, providerId);
-
-        // 로그인 성공 시 세션에 사용자 정보를 저장합니다.
-        session.setAttribute("memberNo", member.getMemberNo());  // 사용자 고유번호
-        session.setAttribute("memberId", member.getMemberId());  // 사용자 ID
-        session.setAttribute("memberNickname", member.getMemberNickname());  // 사용자 닉네임
-
-        // 메인 페이지로 리다이렉트합니다.
-        return "redirect:/main/main";
-    }
-
-
     @GetMapping("/additional-info")  // "/member/additional-info" 대신
     public String additionalInfoForm(HttpSession session, Model model) {
         model.addAttribute("email", session.getAttribute("tempEmail"));
@@ -472,17 +441,20 @@ public class MemberController {
     public String processAdditionalInfo(@ModelAttribute MemberDTO memberDTO,
                                         HttpSession session) {
         String providerId = (String) session.getAttribute("tempProviderId");
+        String provider = (String) session.getAttribute("provider");
 
-        memberDTO.setProvider("kakao");
+        memberDTO.setProvider(provider);
         memberDTO.setProviderId(providerId);
-        memberDTO.setMemberId("kakao_" + providerId);
+        memberDTO.setMemberId(provider + "_" + providerId);
 
-        MemberDTO savedMember = memberService.registerKakaoMember(memberDTO);
+        // 통합 메서드 사용
+        MemberDTO savedMember = memberService.registerSocialMember(memberDTO);
 
         // 임시 세션 정보 제거
         session.removeAttribute("tempEmail");
         session.removeAttribute("tempNickname");
         session.removeAttribute("tempProviderId");
+        session.removeAttribute("provider");
         session.removeAttribute("needAdditionalInfo");
 
         // 실제 세션 정보 설정
@@ -491,7 +463,7 @@ public class MemberController {
         session.setAttribute("memberName", savedMember.getMemberName());
         session.setAttribute("memberNickname", savedMember.getMemberNickname());
         session.setAttribute("memberEmail", savedMember.getMemberEmail());
-        session.setAttribute("memberLoginStatus", "KAKAO");
+        session.setAttribute("memberLoginStatus", provider.toUpperCase());
         session.setAttribute("memberTwoFactorEnabled", savedMember.getMemberTwoFactorEnabled());
 
         return "redirect:/main/main";

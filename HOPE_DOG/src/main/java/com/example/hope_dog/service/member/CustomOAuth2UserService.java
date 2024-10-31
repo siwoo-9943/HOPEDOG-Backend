@@ -28,54 +28,66 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         OAuth2User oauth2User = super.loadUser(userRequest);
 
         try {
-            log.info("OAuth2User attributes: {}", oauth2User.getAttributes());  // 로깅 추가
-
+            String registrationId = userRequest.getClientRegistration().getRegistrationId();
             Map<String, Object> attributes = oauth2User.getAttributes();
-            Long id = (Long) attributes.get("id");
-            Map<String, Object> properties = (Map<String, Object>) attributes.get("properties");
-            Map<String, Object> kakaoAccount = (Map<String, Object>) attributes.get("kakao_account");
 
-            String email = (String) kakaoAccount.get("email");
-            String nickname = (String) properties.get("nickname");
+            String email;
+            String nickname;
+            String providerId;
 
-            // 최초 로그인인지 확인
-            MemberDTO existingMember = memberService.findByProviderAndProviderId("kakao", String.valueOf(id));
-            log.info("Existing member check: {}", existingMember);  // 로깅 추가
+            if ("naver".equals(registrationId)) {
+                Map<String, Object> response = (Map<String, Object>) attributes.get("response");
+                email = (String) response.get("email");
+                nickname = (String) response.get("name");
+                providerId = (String) response.get("id");
+            } else if ("kakao".equals(registrationId)) {
+                Long id = (Long) attributes.get("id");
+                Map<String, Object> properties = (Map<String, Object>) attributes.get("properties");
+                Map<String, Object> kakaoAccount = (Map<String, Object>) attributes.get("kakao_account");
 
-            if (existingMember == null) {
-                // 최초 로그인 시 임시 회원 정보 세션에 저장
-                log.info("New member, setting temporary session attributes");  // 로깅 추가
+                email = (String) kakaoAccount.get("email");
+                nickname = (String) properties.get("nickname");
+                providerId = String.valueOf(id);
+            } else {
+                throw new OAuth2AuthenticationException("Unsupported provider");
+            }
+
+            // 이메일로 기존 회원 확인
+            MemberDTO existingMember = memberService.findByEmail(email);
+
+            if (existingMember != null) {
+                // 기존 회원이면 바로 세션 설정
+                setSessionAttributes(existingMember, registrationId);
+            } else {
+                // 신규 회원이면 추가 정보 입력 필요
                 session.setAttribute("tempEmail", email);
                 session.setAttribute("tempNickname", nickname);
-                session.setAttribute("tempProviderId", String.valueOf(id));
+                session.setAttribute("tempProviderId", providerId);
+                session.setAttribute("provider", registrationId);
                 session.setAttribute("needAdditionalInfo", true);
-            } else {
-                // 이미 가입된 회원이면 기존 정보로 세션 설정
-                log.info("Existing member, setting session attributes");  // 로깅 추가
-                setSessionAttributes(existingMember);
             }
 
             return new DefaultOAuth2User(
                     Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")),
-                    oauth2User.getAttributes(),
+                    attributes,
                     userRequest.getClientRegistration()
                             .getProviderDetails()
                             .getUserInfoEndpoint()
                             .getUserNameAttributeName()
             );
         } catch (Exception e) {
-            log.error("Error in loadUser: ", e);  // 에러 로깅 추가
-            throw e;
+            log.error("Error in loadUser: ", e);
+            throw new OAuth2AuthenticationException("Error in OAuth2 login process");
         }
     }
 
-    private void setSessionAttributes(MemberDTO member) {
+    private void setSessionAttributes(MemberDTO member, String provider) {
         session.setAttribute("memberNo", member.getMemberNo());
         session.setAttribute("memberId", member.getMemberId());
         session.setAttribute("memberName", member.getMemberName());
         session.setAttribute("memberNickname", member.getMemberNickname());
         session.setAttribute("memberEmail", member.getMemberEmail());
-        session.setAttribute("memberLoginStatus", "KAKAO");
+        session.setAttribute("memberLoginStatus", provider.toUpperCase());
         session.setAttribute("memberTwoFactorEnabled", member.getMemberTwoFactorEnabled());
     }
 }

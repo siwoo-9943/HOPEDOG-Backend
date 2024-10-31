@@ -46,4 +46,11 @@ public interface MemberMapper {
     // 소셜 로그인 관련 메서드
     MemberDTO findByProviderAndProviderId(@Param("provider") String provider,
                                           @Param("providerId") String providerId);
+
+
+    // 이메일로 회원 조회
+    MemberDTO findByEmail(@Param("memberEmail") String memberEmail);
+
+    // 소셜 로그인 정보 업데이트
+    void updateMemberSocialInfo(MemberDTO memberDTO);
 }

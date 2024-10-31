@@ -105,4 +105,21 @@
         WHERE PROVIDER = #{provider}
           AND PROVIDER_ID = #{providerId}
     </select>
+
+    <!-- 이메일로 회원 조회 -->
+    <select id="findByEmail" resultType="MemberDTO">
+        SELECT *
+        FROM TBL_MEMBER
+        WHERE MEMBER_EMAIL = #{memberEmail}
+    </select>
+
+    <!-- 소셜 로그인 정보 업데이트 -->
+    <update id="updateMemberSocialInfo" parameterType="MemberDTO">
+        UPDATE TBL_MEMBER
+        SET
+            PROVIDER = #{provider},
+            PROVIDER_ID = #{providerId},
+            MEMBER_LOGIN_STATUS = #{memberLoginStatus},
+        WHERE MEMBER_NO = #{memberNo}
+    </update>
 </mapper>
