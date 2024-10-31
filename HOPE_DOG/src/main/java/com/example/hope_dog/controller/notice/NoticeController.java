@@ -5,11 +5,14 @@ import com.example.hope_dog.dto.notice.NoticeViewDTO;
 import com.example.hope_dog.service.notice.NoticeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Pageable;
 import java.util.List;
+
 
 @Controller
 @RequiredArgsConstructor
@@ -26,6 +29,27 @@ public class NoticeController {
 
         return "notice/notice-list";
     }
+
+
+//    @GetMapping("/list")
+//    public String list(
+//            Model model,
+//            @PageableDefault(size = 10, sort = "noticeRegidate", direction = Sort.Direction.DESC) Pageable pageable) {
+//
+//        int page = pageable.getPageNumber() + 1;
+//        int size = pageable.getPageSize();
+//
+//        List<NoticeListDTO> noticeList = noticeService.getNoticeList(page, size);
+//        int totalNotices = noticeService.getNoticeCount();
+//        int totalPages = (int) Math.ceil((double) totalNotices / size);
+//
+//        model.addAttribute("noticeList", noticeList);
+//        model.addAttribute("currentPage", page);
+//        model.addAttribute("totalPages", totalPages);
+//
+//        return "notice/notice-list";
+//    }
+
 
     @GetMapping("/view")
     public String View(@RequestParam("noticeNo") Long noticeNo,Model model) {

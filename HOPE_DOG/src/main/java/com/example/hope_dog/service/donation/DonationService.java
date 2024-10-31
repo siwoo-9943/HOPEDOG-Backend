@@ -1,8 +1,10 @@
 package com.example.hope_dog.service.donation;
 
 import com.example.hope_dog.dto.donation.DonationListDTO;
+import com.example.hope_dog.dto.donation.DonationMainDTO;
 import com.example.hope_dog.dto.donation.DonationViewDTO;
 import com.example.hope_dog.dto.donation.DonationWriteDTO;
+import com.example.hope_dog.dto.page.Criteria;
 import com.example.hope_dog.mapper.donation.DonationMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,14 +23,34 @@ public class DonationService {
         return donationMapper.donationList();
     }
 
+
+    //페이지네이션 관련 service
+    public List<DonationMainDTO> findAll() {
+        return donationMapper.selectAll();
+    }
+
+
+    public int findTotal(){
+        return donationMapper.selectTotal();
+    }
+
+    public List<DonationMainDTO> findAllPage(Criteria criteria){
+        return donationMapper.selectAllPage(criteria);
+    }
+
+
+
     // View
     public List<DonationViewDTO> getDonationViewList(Long donaNo) {
         return donationMapper.donationView(donaNo);
     }
 
     // Write
-    public void insertDonation(DonationWriteDTO donationWriteDTO) {
-        donationMapper.insertDonation(donationWriteDTO);
+    public void donationWrite (DonationWriteDTO donationWriteDTO) {
+        donationMapper.donationWrite(donationWriteDTO);
     }
+
+
+
 
 }

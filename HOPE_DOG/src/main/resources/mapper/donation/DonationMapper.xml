@@ -45,7 +45,69 @@
             CM.DONA_COMMENT_REGIDATE DESC
     </select>
 
-        <insert id="insertDonation" parameterType="DonationWriteDTO">
+    <!-- 여기서 부터 페이지네이션 관련 쿼리문-->
+    <!-- 기부 전체게시글 수 -->
+    <select id="selectTotal" resultType="int">
+        SELECT COUNT(DONA_NO) FROM TBL_DONA
+    </select>
+
+    <!-- 기부 전체게시글-->
+    <select id="donationMainList" resultType="DonationMainDTO">
+        SELECT
+            D.DONA_NO,
+            D.CENTER_MEMBER_NO,
+            D.DONA_TITLE,
+            D.DONA_CONTENT,
+            D.DONA_REGIDATE,
+            D.DONA_UPDATEDATE,
+            C.CENTER_MEMBER_NAME
+        FROM
+            TBL_DONA D
+                JOIN
+            TBL_CENTER_MEMBER C ON D.CENTER_MEMBER_NO = C.CENTER_MEMBER_NO
+        ORDER BY
+            D.DONA_REGIDATE DESC
+    </select>
+
+
+    <!-- 기부 페이지마다 표시할 게시글-->
+    <select id="selectAllPage" parameterType="Criteria" resultType="DonationMainDTO">
+        <![CDATA[
+                SELECT
+                    DONA_NO,
+                    CENTER_MEMBER_NO,
+                    DONA_TITLE,
+                    DONA_CONTENT,
+                    DONA_REGIDATE,
+                    DONA_UPDATEDATE
+                FROM (
+                         SELECT
+                             DONA_NO,
+                             CENTER_MEMBER_NO,
+                             DONA_TITLE,
+                             DONA_CONTENT,
+                             DONA_REGIDATE,
+                             DONA_UPDATEDATE,
+                             ROWNUM AS RNUM
+                         FROM (
+                                  SELECT
+                                      DONA_NO,
+                                      CENTER_MEMBER_NO,
+                                      DONA_TITLE,
+                                      DONA_CONTENT,
+                                      DONA_REGIDATE,
+                                      DONA_UPDATEDATE
+                                  FROM TBL_DONA
+                                  ORDER BY DONA_REGIDATE DESC
+                              )
+                         WHERE ROWNUM <= #{page} * #{amount}  -- 이 줄을 여기로 이동
+                     )
+                WHERE RNUM > (#{page} - 1) * #{amount}
+                ]]>
+    </select>
+    <!-- 여기까지 페이지네이션+게시글목록불러오기 -->
+
+        <insert id="donationWrite" parameterType="DonationWriteDTO">
             <selectKey keyProperty="donaNo" resultType="Long" order="BEFORE">
                 SELECT SEQ_DONA_NO.NEXTVAL FROM DUAL
             </selectKey>

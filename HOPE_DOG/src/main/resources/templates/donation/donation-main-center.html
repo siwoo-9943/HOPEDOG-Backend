@@ -34,7 +34,7 @@
           <div class="dona-container-audate">작성일</div>
         </div>
         <!--게시글-->
-        <div class="dona-ul-all" th:each="donation : ${donationList}">
+        <div class="dona-ul-all" th:each="donation : ${donationMainList}">
           <div class="dona-ul-main">
             <div class="dona-title" th:text="${donation.donaTitle}"></div>
             <div class="dona-author" th:text="${donation.centerMemberName}"></div>
@@ -70,16 +70,27 @@
             <span class="dona-admain-btu-sp">글쓰기</span>
           </button>
         </div>
-      <!-- 페이지네이션 -->
-      <div class="pagination">
-        <button class="prev">◀</button>
-        <button class="page">1</button>
-        <button class="page">2</button>
-        <button class="page">3</button>
-        <button class="page">4</button>
-        <button class="page">5</button>
-        <button class="next">▶</button>
-      </div>
+        <!-- 페이지네이션 -->
+        <div class="pagination">
+          <ul class="page-box">
+            <a th:href="@{/dona/list(page=${page.startPage - 1})}" class="page-a" th:if="${page.prev}">
+              <li class="page-num prev">&lt</li>
+            </a>
+
+            <!--        th:block은 화면에 영향을 주지않는 가짜 태그
+                        타임리프 문법을 사용하기 위해 만들어 쓴다.
+            -->
+            <th:block th:each="i : ${#numbers.sequence(page.startPage, page.endPage)}">
+              <a th:href="@{/dona/list(page=${i})}" class="page-a">
+                <li class="page-num" th:classappend="${i == page.criteria.page ? 'active' : ''}" th:text="${i}"></li>
+              </a>
+            </th:block>
+
+            <a th:href="@{/dona/list(page=${page.endPage + 1})}" class="page-a" th:if="${page.next}">
+              <li class="page-num next">&gt</li>
+            </a>
+          </ul>
+        </div>
     </div>
     </div>
   </main>
