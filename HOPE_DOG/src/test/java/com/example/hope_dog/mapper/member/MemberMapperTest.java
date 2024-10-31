@@ -14,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @Transactional
 class MemberMapperTest {
-<<<<<<< HEAD
 //    @Autowired
 //    MemberMapper memberMapper;
 //
@@ -102,7 +101,7 @@ class MemberMapperTest {
 //        assertThat(result).isOne();
 //    }
 //
-=======
+
     @Autowired
     MemberMapper memberMapper;
 
@@ -195,7 +194,6 @@ class MemberMapperTest {
     void findMemberId_Success() {
         // given
         memberMapper.insertMember(memberDTO);
->>>>>>> main
 
         // when
         String foundId = memberMapper.findMemberId(

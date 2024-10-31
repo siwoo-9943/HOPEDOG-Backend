@@ -39,7 +39,7 @@
                             <input class="search-text" name="keyword" placeholder="검색어를 입력하세요." type="text">
                             <button class="search-btn" type="submit">검색</button>
                             <button class="search-btn" type="submit" th:href="@{/admin/memberList}">초기화</button>
-                         </form>
+                        </form>
                         <div class="delete-box">
                             <button class="deleteButton delete-button">선택 회원 강제 탈퇴</button>
                         </div>
@@ -48,12 +48,12 @@
                     <!-- 내용 섹션 -->
                     <section class="board-info-box-layout">
                         <div class="board-info-box">
-                            <div class="board-info-title-box">
+                                <div class="board-info-title-box">
                                 <span>
                                     <a class="member-btn" th:href="@{/admin/memberList}" th:classappend="${currentPage == 'general'} ? 'active'">일반 회원</a>
                                     &emsp;&emsp;&emsp;
                                     <a class="member-btn" th:href="@{/admin/centerMemberList}" th:classappend="${currentPage == 'center'} ? 'active'">센터 회원</a></span>
-                            </div>
+                                </div>
                     
                             <div class="info-table">
                                 <!-- Header -->
@@ -70,7 +70,7 @@
                                 </div>
 
                                 <!-- Data rows -->
-                                <div th:each="member, iterStat : ${memberList}" class="info-row" >
+                                <div th:each="member, iterStat : ${memberSearchedList}" class="info-row" >
                                     <div class="info-cell checkbox-line">
                                         <input type="checkbox" class="checkbox" name="check" th:data-member-no="${member.memberNo}">
                                     </div>

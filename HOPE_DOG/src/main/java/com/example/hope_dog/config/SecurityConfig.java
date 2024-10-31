@@ -30,11 +30,7 @@ public class SecurityConfig {
                                 "/fonts/**",   // 폰트 파일 경로도 추가
                                 "/assets/**"   // 기타 정적 자원 경로 추가
                         ).permitAll()
-<<<<<<< HEAD
-                        .requestMatchers("/", "/member/**", "/center/**", "/main/**", "/admin/**").permitAll()
-=======
                         .requestMatchers("/", "/member/**", "/center/**", "/main/**", "/admin/**", "/adopt/**", "/volun/**", "/car/**", "/centermypage/**","/dona/**", "/mypgae/**", "/commu/**", "/notice/**").permitAll()
->>>>>>> 5fd740137e290fd1d1f20981ae02a513667dc9a6
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

@@ -382,9 +382,16 @@ div#paging-wrap {
   border: 1px solid #ddd;
   border-radius: 4px;
   cursor: pointer;
+	text-align: center;
 }
 
-.gender-btn.active {
-  background-color: #9B805D;
-  color: white;
+.gender-btn-active {
+	flex: 1;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	cursor: pointer;
+	background-color: #9B805D;
+  	color: white;
+	text-align: center;
 }

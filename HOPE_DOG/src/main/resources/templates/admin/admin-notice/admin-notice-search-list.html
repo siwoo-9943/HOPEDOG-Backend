@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 페이지- 신고 내역</title>
+    <title>관리자 페이지- 공지사항 관리</title>
     <link rel="stylesheet" th:href="@{/css/admin/admin-main/admin-common.css}"/>
     <link rel="stylesheet" th:href="@{/css/admin/admin-main/admin-sidemenu.css}"/>
-    <link rel="stylesheet" th:href="@{/css/admin/admin-report/admin-report-list.css}"/>
+    <link rel="stylesheet" th:href="@{/css/admin/admin-notice/admin-notice-list.css}"/>
     <link rel="icon" href="/im/logo/favicon.png">
 </head>
 
@@ -22,7 +22,7 @@
             </div>
             <div>
                 <div class="select-name">
-                    <span>신고 내역</span>
+                    <span>공지사항 관리</span>
                 </div>
             </div>
         </div>
@@ -35,10 +35,10 @@
                 <div class="container-margin">
                     <!-- 헤더 -->
                     <div class="delete-box-layout">
-                        <form class="search-box" action="" method="get">
-                            <input type="text" class="search-text" name=""placeholder="검색어를 입력하세요.">
+                        <form class="search-box" action="/admin/searchNoticeList" method="get">
+                            <input type="text" class="search-text" name="keyword" placeholder="검색어를 입력하세요.">
                             <button class="search-btn" type="submit">검색</button>
-                            <button class="search-btn" type="submit" th:href="@{/admin/reportList}">초기화</button>
+                            <button class="search-btn" type="submit" th:href="@{/admin/noticeList}">초기화</button>
                          </form>
                         <div class="delete-box">
                             <button class="deleteButton delete-button">선택 항목 삭제</button>
@@ -49,7 +49,8 @@
                     <section class="board-info-box-layout">
                         <div class="board-info-box">
                             <div class="board-info-title-box">
-                                <span>신고 내역</span>
+                                <span>공지사항 관리</span>
+                                <span class="write-btn"><a href="./admin-notice-write.html">글쓰기</a></span>
                             </div>
                     
                             <div class="info-table">
@@ -59,31 +60,21 @@
                                         <input type="checkbox" id="allSelect">
                                     </div>
                                     <div class="info-cell-no info-cell">No</div>
-                                    <div class="info-cell-report-pos info-cell">신고 대상</div>
-                                    <div class="info-cell-stat info-cell">구분</div>
-                                    <div class="info-cell-name info-cell">신고자</div>
-                                    <div class="info-cell-report-reason info-cell">신고 사유</div>
-                                    <div class="info-cell-report-regidate info-cell">신고일</div>
+                                    <div class="info-cell-cate info-cell">분류</div>
+                                    <div class="info-cell-title info-cell">제목</div>
+                                    <div class="info-cell-content info-cell">공지 내용</div>
                                 </div>
                     
                                 <!-- Data rows -->
-                                <div th:each="report, iterStat : ${reportList}" class="info-row" >
+                                <div th:each="notice, iterStat : ${noticeList}" class="info-row" >
                                     <div class="info-cell checkbox-line">
                                         <input type="checkbox" class="checkbox" name="check">
                                     </div>
-                                    <div class="info-cell-no info-cell" th:text="${report.reportNo}"></div>
-                                    <div class="info-cell-report-pos info-cell">
-                                        <span th:switch="${report.reportType}">
-                                        <span th:case="'POST'">게시글</span>
-                                        <span th:case="'COMMENT'">댓글</span>
-                                    </span>
-                                    </div>
-                                    <div class="info-cell-stat info-cell" th:text="${report.reportCate}"></div>
-                                    <div class="info-cell-name info-cell" th:text="${report.reportWriter}"></div>
-                                    <div class="info-cell-report-reason info-cell" th:text="${report.reportContent}"></div>
-                                    <div class="info-cell-report-regidate info-cell" th:text="${report.reportRegidate}"></div>
+                                    <div class="info-cell info-cell-no" th:text="${notice.noticeNo}"></div>
+                                    <div class="info-cell info-cell-cate" th:text="${notice.noticeCate}"></div>
+                                    <div class="info-cell info-cell-title" th:text="${notice.noticeTitle}"></div>
+                                    <div class="info-cell info-cell-content" th:text="${notice.noticeContent}"></div>
                                 </div>
-
                             </div>
                         </div>
                     </section>

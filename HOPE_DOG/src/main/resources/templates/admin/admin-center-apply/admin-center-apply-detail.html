@@ -22,7 +22,7 @@
     </div>
     <div>
       <div class="select-name">
-        <span>회원 정보 관리</span>
+        <span>센터 회원 가입 신청</span>
       </div>
     </div>
   </div>
@@ -45,70 +45,70 @@
               <form id="center-signupForm">
                 <div class="center-form-group">
                   <label for="center-name">이름 <span class="center-required">*</span></label>
-                  <input type="text" id="center-name" name="center-name" readonly th:value="${member.memberName}" required>
-                  <span class="center-error-message" id="center-name-error"></span>
+                  <input type="text" id="center-name" name="center-name" readonly th:value="${centerMember.centerMemberName}" required>
+
                 </div>
+
                 <div class="center-form-group">
-                  <label for="center-nickname">닉네임 <span class="center-required">*</span></label>
-                  <div class="center-input-button-group">
-                    <input type="text" id="center-nickname" name="center-nickname" readonly th:value="${member.memberNickname}" required>
-                  </div>
-                  <span class="center-error-message" id="center-nickname-error"></span>
-                </div>
-                <div class="form-group">
-                  <label>성별 <span class="center-required">*</span></label>
-                  <div class="gender-buttons">
-                    <div th:class="${member.memberGender} eq 'M' ? 'gender-btn-active' : 'gender-btn'">남</div>
-                    <div th:class="${member.memberGender} eq 'F' ? 'gender-btn-active' : 'gender-btn'">여</div>
-                  </div>
+                  <label for="center-name">사업자 등록증 <span class="center-required">*</span></label>
+                  <input type="text" id="center-file" name="center-file" readonly th:value="${centerMember.centerFileName}" required>
+
                 </div>
 
                 <div class="center-form-group">
                   <label for="center-userid">아이디 <span class="center-required">*</span></label>
-                  <input type="text" id="center-userid" name="center-userid" readonly th:value="${member.memberId}" required>
-                  <span class="center-error-message" id="center-userid-error"></span>
+                  <input type="text" id="center-userid" name="center-userid" readonly th:value="${centerMember.centerMemberId}" required>
+
                 </div>
+
                 <div class="center-form-group">
                   <label for="center-password">비밀번호 <span class="center-required">*</span></label>
                   <input type="password" id="center-password" name="center-password" readonly value="비밀번호는 보안상 표시되지 않습니다" required>
                   <span class="center-error-message" id="center-password-error"></span>
                 </div>
+
                 <div class="center-form-group">
                   <label for="center-phone">연락처 <span class="center-required">*</span></label>
                   <div class="center-input-button-group">
-                    <input type="tel" id="center-phone" name="center-phone" readonly th:value="${member.memberPhoneNumber}" required>
+                    <input type="tel" id="center-phone" name="center-phone" readonly th:value="${centerMember.centerMemberPhoneNumber}" required>
                   </div>
-                  <span class="center-error-message" id="center-phone-error"></span>
+
                 </div>
+
                 <div class="center-form-group">
                   <label for="center-email">이메일 <span class="center-required">*</span></label>
                   <div class="center-input-button-group">
-                    <input type="email" id="center-email" name="center-email" readonly th:value="${member.memberEmail}" required>
+                    <input type="email" id="center-email" name="center-email" readonly th:value="${centerMember.centerMemberEmail}" required>
                   </div>
-                  <span class="center-error-message" id="center-email-error"></span>
+
                 </div>
+
                 <div class="center-form-group">
                   <label for="center-zipcode">우편번호 <span class="center-required">*</span></label>
                   <div class="center-input-button-group">
-                    <input type="text" id="center-zipcode" name="center-zipcode" required th:value="${member.memberZipcode}" readonly>
+                    <input type="text" id="center-zipcode" name="center-zipcode" required th:value="${centerMember.centerMemberZipcode}" readonly>
                   </div>
-                  <span class="center-error-message" id="center-zipcode-error"></span>
+
                 </div>
+
                 <div class="center-form-group">
                   <label for="center-address">주소 <span class="center-required">*</span></label>
-                  <input type="text" id="center-address" name="center-address" required th:value="${member.memberAddress}" readonly>
-                  <span class="center-error-message" id="center-address-error"></span>
+                  <input type="text" id="center-address" name="center-address" required th:value="${centerMember.centerMemberAddress}" readonly>
+
                 </div>
+
                 <div class="center-form-group">
                   <label for="center-detailAddress">상세주소</label>
-                  <input type="text" id="center-detailAddress" name="center-detailAddress" th:value="${member.memberDetailAddress}" readonly>
-                  <span class="center-error-message" id="center-detailAddress-error"></span>
+                  <input type="text" id="center-detailAddress" name="center-detailAddress" th:value="${centerMember.centerMemberDetailAddress}" readonly>
+
                 </div>
+
                 <div class="delete-box-layout">
                   <div class="delete-box">
-                    <button type="button" class="deleteOneButton delete-button" th:data-member-no="${member.memberNo}">강제 탈퇴</button>
+                    <button type="button" class="deleteButton delete-button">강제 탈퇴</button>
                   </div>
                 </div>
+
               </form>
             </div>
           </div>
@@ -121,6 +121,5 @@
 </body>
 <script th:src="@{https://code.jquery.com/jquery-3.6.3.min.js}"></script>
 <script th:src="@{/js/admin/allCheck.js}"></script>
-<script th:src="@{/js/admin/deleteMember.js}"></script>
 
 </html>

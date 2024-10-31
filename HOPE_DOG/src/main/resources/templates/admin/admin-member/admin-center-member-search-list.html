@@ -35,11 +35,11 @@
                 <div class="container-margin">
                     <!-- 헤더 -->
                     <div class="delete-box-layout">
-                        <form class="search-box" action="/admin/searchMemberList" method="get">
+                        <form class="search-box" action="/admin/searchCenterMemberList" method="get">
                             <input class="search-text" name="keyword" placeholder="검색어를 입력하세요." type="text">
                             <button class="search-btn" type="submit">검색</button>
                             <button class="search-btn" type="submit" th:href="@{/admin/memberList}">초기화</button>
-                         </form>
+                        </form>
                         <div class="delete-box">
                             <button class="deleteButton delete-button">선택 회원 강제 탈퇴</button>
                         </div>
@@ -48,12 +48,12 @@
                     <!-- 내용 섹션 -->
                     <section class="board-info-box-layout">
                         <div class="board-info-box">
-                            <div class="board-info-title-box">
+                                <div class="board-info-title-box">
                                 <span>
                                     <a class="member-btn" th:href="@{/admin/memberList}" th:classappend="${currentPage == 'general'} ? 'active'">일반 회원</a>
                                     &emsp;&emsp;&emsp;
                                     <a class="member-btn" th:href="@{/admin/centerMemberList}" th:classappend="${currentPage == 'center'} ? 'active'">센터 회원</a></span>
-                            </div>
+                                </div>
                     
                             <div class="info-table">
                                 <!-- Header -->
@@ -63,24 +63,22 @@
                                     </div>
                                     <div class="info-cell-no info-cell">No</div>
                                     <div class="info-cell-name info-cell">이름</div>
-                                    <div class="info-cell-nickname info-cell">닉네임</div>
                                     <div class="info-cell-email info-cell">이메일</div>
                                     <div class="info-cell-phone info-cell">연락처</div>
-                                    <div class="info-cell info-cell-two-factor">2차 인증</div>
+                                    <div class="info-cell info-cell-two-factor">주소</div>
                                 </div>
 
                                 <!-- Data rows -->
-                                <div th:each="member, iterStat : ${memberList}" class="info-row" >
+                                <div th:each="centerMember, iterStat : ${centerMemberSearchedList}" class="info-row" >
                                     <div class="info-cell checkbox-line">
-                                        <input type="checkbox" class="checkbox" name="check" th:data-member-no="${member.memberNo}">
+                                        <input type="checkbox" class="checkbox" name="check" th:data-center-member-no="${centerMember.centerMemberNo}">
                                     </div>
-                                    <a th:href="@{/admin/memberDetail(memberNo=${member.memberNo})}" style="display: flex; justify-content: center">
-                                    <div class="info-cell info-cell-no" th:text="${member.memberNo}"></div>
-                                    <div class="info-cell info-cell-name" th:text="${member.memberName}"></div>
-                                    <div class="info-cell info-cell-nickname" th:text="${member.memberNickname}"></div>
-                                    <div class="info-cell info-cell-email" th:text="${member.memberEmail}"></div>
-                                    <div class="info-cell info-cell-phone" th:text="${member.memberPhoneNumber}"></div>
-                                    <div class="info-cell info-cell-two-factor" th:text="${member.memberTwoFactorEnabled}"></div>
+                                    <a th:href="@{/admin/centerMemberDetail(centerMemberNo=${centerMember.centerMemberNo})}" style="display: flex; justify-content: center">
+                                        <div class="info-cell info-cell-no" th:text="${centerMember.centerMemberNo}"></div>
+                                        <div class="info-cell info-cell-name" th:text="${centerMember.centerMemberName}"></div>
+                                        <div class="info-cell info-cell-email" th:text="${centerMember.centerMemberEmail}"></div>
+                                        <div class="info-cell info-cell-phone" th:text="${centerMember.centerMemberPhoneNumber}"></div>
+                                        <div class="info-cell info-cell-address" th:text="${centerMember.centerMemberAddress}"></div>
                                     </a>
                                 </div>
                             </div>
@@ -94,5 +92,5 @@
 </body>
 <script th:src="@{https://code.jquery.com/jquery-3.6.3.min.js}"></script>
 <script th:src="@{/js/admin/allCheck.js}"></script>
-<script th:src="@{/js/admin/deleteMember.js}"></script>
+<script th:src="@{/js/admin/deleteCenterMember.js}"></script>
 </html>
