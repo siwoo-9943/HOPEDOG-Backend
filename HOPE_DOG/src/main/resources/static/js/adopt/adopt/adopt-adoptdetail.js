@@ -8,21 +8,34 @@ function modifyClick() {
   }
 }
 
-// 글삭제버튼
+// 글 삭제 버튼
 function deleteClick() {
+  // adoptNo 가져오기
+  const adoptNo = document.querySelector('.adoptNo').textContent.trim();
+
   if (confirm('정말 삭제하시겠습니까?')) {
     console.log('입양글이 삭제되었습니다.');
-    window.location.href = '../../html/adopt/adopt-adopt.html'
+    console.log(adoptNo);
+
+    // adoptNo를 URL에 포함시켜 이동
+    location.href = `/adopt/adopt/adoptDelete?adoptNo=${adoptNo}`;
   } else {
     console.log('입양글이 삭제되지 않았습니다.');
   }
 }
 
-// 글마감버튼
+
+// 글 마감 버튼
 function endClick() {
+  // adoptNo 가져오기
+  const adoptNo = document.querySelector('.adoptNo').textContent.trim();
+
   if (confirm('정말 마감하시겠습니까? 마감 시 취소할 수 없습니다.')) {
     console.log('입양글이 마감되었습니다.');
-    location.href = `/adopt/adopt`;
+    console.log(adoptNo);
+
+    // adoptNo를 URL에 포함시켜 이동
+    location.href = `/adopt/adopt/adoptStatusEnd?adoptNo=${adoptNo}`;
   } else {
     console.log('입양글이 마감되지 않았습니다.');
   }
@@ -36,14 +49,12 @@ function getParameter(name) {
 
 // 신청서 이동 버튼
 function requestClick() {
-  const adoptNo = getParameter('adoptNo'); // adoptNo를 URL에서 가져옵니다.
-  const centerMemberNo = getParameter('centerMemberNo');
+  const adoptNo = document.querySelector('.adoptNo').textContent.trim(); // adoptNo를 HTML에서 가져옵니다.
+  const centerMemberNo = document.querySelector('.centerMemberNo').textContent.trim(); // centerMemberNo를 HTML에서 가져옵니다.
 
   if (confirm('정말 신청하시겠습니까?')) {
     console.log('신청서페이지로 이동합니다.');
-    console.log(adoptNo);
-    console.log(centerMemberNo)
-    location.href = `/adopt/adopt/adoptrequest?adoptNo=${adoptNo}`;
+    location.href = `/adopt/adopt/adoptrequest?adoptNo=${adoptNo}&centerMemberNo=${centerMemberNo}`;
   } else {
     console.log('신청서페이지로 이동하지 않습니다.');
   }
