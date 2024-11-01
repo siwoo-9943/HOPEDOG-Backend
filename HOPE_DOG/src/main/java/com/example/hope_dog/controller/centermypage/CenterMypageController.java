@@ -4,19 +4,16 @@ import com.example.hope_dog.dto.centermypage.CenterProfileDTO;
 import com.example.hope_dog.dto.centermypage.CenterUpdateProfileDTO;
 import com.example.hope_dog.dto.centermypage.CenterViewProfileDTO;
 import com.example.hope_dog.dto.centermypage.notebox.*;
+import com.example.hope_dog.dto.centermypage.writeinfo.WriteInfoCommuListDTO;
 import com.example.hope_dog.service.centermypage.CenterMypageService;
 import com.example.hope_dog.service.centermypage.NoteBoxService;
+import com.example.hope_dog.service.centermypage.WriteInfoService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -26,10 +23,13 @@ import java.util.List;
 @Slf4j
 @RequestMapping("/centerMypage")
 class CenterMypageController {
-    private final CenterMypageService centerMypageService;
+    //로그인 세션
     private final HttpSession session;
-    private final NoteBoxService noteBoxService;
 
+//프로필
+    private final CenterMypageService centerMypageService;
+
+    //회원정보
     @GetMapping("/centerProfile")
     public String centerProfile(Model model) {
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo"); // 세션에서 센터회원 번호 가져오기
@@ -84,9 +84,40 @@ class CenterMypageController {
         return "redirect:/updateProfile";
     }
 
+//게시글 조회
+    private final WriteInfoService writeInfoService;
+
+    //커뮤니티 작성글 페이지
+    @GetMapping("/writeInfoCommuList")
+    public String centerWriteInfoCommuList(Model model) {
+        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo"); // 세션에서 센터회원 번호 가져오기
+
+        if (centerMemberNo == null) {
+            log.warn("세션에서 centerMemberNo가 존재하지 않습니다.");
+            return "redirect:/login"; // 세션이 없으면 로그인 페이지로 리다이렉트
+        }
+
+        // 커뮤니티 작성글 조회
+        List<WriteInfoCommuListDTO> commuWriteInfoList = writeInfoService.commuList(centerMemberNo);
+        model.addAttribute("commuWriteInfoList", commuWriteInfoList);
+
+        return "centermypage/center-mypage-writeinfo-my";
+    }
+    //봉사 모집글 페이지
+
+    //안심입양 모집글 페이지
 
 
 
+
+
+
+
+
+
+
+//쪽지함
+    private final NoteBoxService noteBoxService;
 
     //보낸쪽지함
     @GetMapping("/noteboxSendList")
