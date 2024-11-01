@@ -213,9 +213,11 @@ public class CenterMemberController {
     }
 
 
+    /**
+     * 회원가입 처리
+     */
     @PostMapping("/center-join")
     @ResponseBody
-    @Transactional  // 트랜잭션 추가
     public ResponseEntity<?> join(@ModelAttribute CenterMemberDTO memberDTO,
                                   @RequestParam("businessFile") MultipartFile file,
                                   HttpSession session) {
@@ -223,7 +225,7 @@ public class CenterMemberController {
             // 파일 처리를 위해 DTO에 파일 설정
             memberDTO.setBusinessFile(file);
 
-            // 회원가입 처리 (memberDTO에 centerMemberNo가 설정됨)
+            // 회원가입 처리
             Long centerMemberNo = centerMemberService.join(memberDTO);
 
             // 세션에 이름 저장
@@ -231,6 +233,7 @@ public class CenterMemberController {
 
             return ResponseEntity.ok().build();
         } catch (IllegalArgumentException e) {
+            log.error("회원가입 유효성 검사 실패: {}", e.getMessage());
             return ResponseEntity.badRequest().body(e.getMessage());
         } catch (Exception e) {
             log.error("회원가입 처리 중 오류 발생", e);
@@ -238,16 +241,14 @@ public class CenterMemberController {
         }
     }
 
+
     /**
      * 회원가입 완료 페이지
      */
     @GetMapping("/center-joinOk")
     public String joinOk(HttpSession session, Model model) {
-        // 세션에서 이름 가져오기
         String centerMemberName = (String) session.getAttribute("centerMemberName");
-        // Model에 이름 추가
         model.addAttribute("centerMemberName", centerMemberName);
-        // 세션에서 이름 제거
         session.removeAttribute("centerMemberName");
         return "center/center-joinOk";
     }
