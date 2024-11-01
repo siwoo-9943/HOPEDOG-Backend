@@ -77,7 +77,7 @@
         <button class="adopt-end-button" type="button" onclick="endClick()"
                 th:if="${centerMemberNo == adopt.centerMemberNo and adopt.adoptStatus == 'T'}">마감</button>
          <button class="adopt-end-button" type="button" onclick="ContentReportClick()"
-                 th:if="${centerMemberNo != adopt.centerMemberNo}">신고</button>
+                 th:if="${centerMemberNo != adopt.centerMemberNo and (centerMemberNo != null or memberNo != null)}">신고</button>
       </div>
 
       <br>

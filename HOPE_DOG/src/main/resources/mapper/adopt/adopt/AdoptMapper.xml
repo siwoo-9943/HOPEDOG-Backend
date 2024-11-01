@@ -87,11 +87,24 @@
         WHERE ADOPT_NO = #{adoptNo}
     </update>
 
+
     <!-- 게시글 삭제 처리 -->
     <delete id="adoptDelete" parameterType="AdoptDetailDTO">
         DELETE FROM TBL_ADOPT
         WHERE ADOPT_NO = #{adoptNo}
     </delete>
+
+    <!-- 게시글 신고 처리 -->
+    <insert id="adoptReport" parameterType="AdoptReportDTO">
+        <selectKey keyProperty="reportNo" resultType="Long" order="BEFORE">
+            SELECT SEQ_REPORT.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_REPORT (
+        REPORT_NO, REPORT_CATE, REPORT_CONTENT, REPORT_WRITER, REPORT_CONTENT_NO
+        ) VALUES (
+        #{reportNo}, '입양', #{reportContent}, #{reportWriter},#{reportContentNo}
+        )
+    </insert>
 
     <!-- 댓글불러오기 -->
     <select id="adoptComment" parameterType="Long" resultType="AdoptCommentDTO">

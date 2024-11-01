@@ -41,6 +41,14 @@ function endClick() {
   }
 }
 
+// 게시글 신고 버튼
+function ContentReportClick() {
+  const reportContent = prompt('신고사유를 100글자 이내로 입력해주세요');
+  const adoptNo = document.querySelector('.adoptNo').textContent.trim();
+
+  location.href = `/adopt/adopt/adoptReport?adoptNo=${adoptNo}&reportContent=${encodeURIComponent(reportContent)}`;
+}
+
 // URL에서 파라미터를 가져오는 함수
 function getParameter(name) {
   const urlParams = new URLSearchParams(window.location.search);
@@ -92,18 +100,6 @@ function CommentDeleteClick() {
   } else {
     console.log('입양댓글이 삭제되지 않았습니다.');
   }
-}
-
-// 게시글 신고 버튼
-function ContentReportClick() {
-  const contentReport = prompt('신고사유를 100글자 이내로 입력해주세요');
-  if (result) {
-    console.log('게시글이 신고되었습니다')
-    // 이후에 값 넘기기
-  } else {
-    console.log('게시글신고가 취소되었습니다.')
-  }
-
 }
 
 // 댓글 신고 버튼

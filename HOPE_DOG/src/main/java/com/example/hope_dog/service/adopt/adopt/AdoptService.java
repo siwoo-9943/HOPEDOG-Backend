@@ -61,6 +61,11 @@ public class AdoptService {
         adoptMapper.adoptDelete(adoptDetailDTO); // 매퍼 호출
     }
 
+    //입양글 신고처리
+    public void adoptReport(AdoptReportDTO adoptReportDTO) {
+        adoptMapper.adoptReport(adoptReportDTO); // 매퍼 호출
+    }
+
     //댓글불러오기
     public List<AdoptCommentDTO> getAdoptComment(Long adoptNo) {
         return adoptMapper.adoptComment(adoptNo); // adoptMapper의 메서드 호출

@@ -31,6 +31,9 @@ public interface AdoptMapper {
     //입양글삭제처리
     void adoptDelete(AdoptDetailDTO adoptDetailDTO);
 
+    //입양글신고처리
+    void adoptReport(AdoptReportDTO adoptReportDTO);
+
     //댓글불러오기
     List<AdoptCommentDTO> adoptComment(Long adoptNo);
 

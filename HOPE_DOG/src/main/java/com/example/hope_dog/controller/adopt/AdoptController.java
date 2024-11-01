@@ -112,6 +112,21 @@ public class AdoptController {
         return "redirect:/adopt/adopt"; // 리다이렉트
     }
 
+    // 입양 글 신고 처리
+    @GetMapping("/adopt/adoptReport")
+    public String postAdoptReport(@RequestParam("adoptNo") Long adoptNo, @RequestParam("reportContent") String reportContent,
+                                  AdoptReportDTO adoptReportDTO, HttpSession session) {
+        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
+        Long memberNo = (Long) session.getAttribute("memberNo");
+
+        adoptReportDTO.setReportContent(reportContent);
+        adoptReportDTO.setReportContentNo(adoptNo);
+        adoptReportDTO.setReportWriter(centerMemberNo != null ? centerMemberNo : memberNo);
+
+        adoptService.adoptReport(adoptReportDTO);
+
+        return "redirect:/adopt/adopt";
+    }
 
     //입양글수정
     @GetMapping("/adopt/adoptmodify")
