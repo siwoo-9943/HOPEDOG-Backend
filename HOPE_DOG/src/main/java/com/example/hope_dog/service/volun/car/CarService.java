@@ -55,8 +55,8 @@ public class CarService {
 
 
     // 카테고리에 따른 게시글 조회
-    public List<CarDTO> getCarListByCate(String cate) {
-        List<CarDTO> carList = carMapper.selectCate(cate);
+    public List<CarDTO> getCarListByCate(String cate,Criteria criteria) {
+        List<CarDTO> carList = carMapper.selectCate(cate,criteria);
 
         // 각 게시글 작성자 확인
         for (CarDTO car : carList) {
@@ -80,49 +80,60 @@ public class CarService {
     }
 
     //페이지네이션
+    // 전체 게시글 조회
+    public List<CarDTO> findCarMain() {
+        return carMapper.selectCarMain();
+    }
 
+    // 게시글 총 개수 조회 (Criteria를 통해 카테고리 정보를 확인)
+    public int findCarTotal(Criteria criteria) {
+        String cate = criteria.getCate(); // Criteria에서 카테고리 정보 추출
+        if (cate != null && !cate.isEmpty()) {
+            return carMapper.countCarsByCategory(cate); // 카테고리별 총 개수 조회
+        }
+        return carMapper.carTotal(); // 카테고리 없는 경우 전체 개수 조회
+    }
 
+    // 페이지별 게시글 조회
+    public List<CarDTO> findCarPage(Criteria criteria) {
+        return carMapper.selectCarPage(criteria);
+    }
 
-    //검색
-    public List<CarDTO> searchCars(String searchType, String keyword) {
-        System.out.println("매퍼 searchCars ");
-        System.out.println("작성자 ID : " + searchType);
-
-        // 검색 조건을 담을 맵 생성
+//    검색기능
+    public List<CarDTO> searchCars(String searchType, String keyword, Criteria criteria) {
         Map<String, Object> params = new HashMap<>();
+        System.out.println("서비스 Map 들어옴");
 
-        // 검색 타입에 따라 검색 조건 설정
-        if ("title".equals(searchType)) { //검색 타입이 title일 경우
-            params.put("carTitle", keyword); //키워드 title에 추가
-        } else if ("nickname".equals(searchType)) { //검색 타입이 nickname일 경우
+
+        // 검색 조건 설정
+        if ("title".equals(searchType)) {
+            params.put("carTitle", keyword);
+        } else if ("nickname".equals(searchType)) {
             try {
-                Long writerId = Long.parseLong(keyword); // 검색 타입 Long으로 변환
-                params.put("carWriter", writerId); //변환된 writerid를 carwriter에 추가
-            } catch (NumberFormatException e) {//변환 실패할 경우
-
-                return List.of(); //빈 리스트로 반환
+                Long writerId = Long.parseLong(keyword);
+                params.put("carWriter", writerId);
+            } catch (NumberFormatException e) {
+                return List.of(); // 변환 실패 시 빈 리스트 반환
             }
         }
 
-        // Mapper의 retrieve 메서드를 호출하여 검색 결과를 가져옴
-        List<CarDTO> carList = carMapper.retrieve(params); //params 맵을 사용해서 데이터베이스에서 목록 검색
+        // Mapper 호출
+        List<CarDTO> carList = carMapper.searchCars(params, criteria);
+        System.out.println("메소드 리스트 들어오세요");
 
-        // 각 게시글 작성자 확인
+        // 작성자 정보 설정
         for (CarDTO car : carList) {
             if (car.getCarWriter() % 2 == 0) {
                 // 센터회원인 경우 작성자 센터회원 정보 조회
                 CenterMemberDTO centerMember = carMapper.selectCenterMemberByNo(car.getCarWriter());
-                if (centerMember != null) { // 센터회원 정보가 존재할 때
-                    // 센터회원 이름 보여주기
+                if (centerMember != null) {
                     car.setCenterMemberName(centerMember.getCenterMemberName());
-                    System.out.println("작성자는? : " + car.getCarWriter());
                 }
             } else {
                 // 일반회원인 경우
                 MemberDTO member = carMapper.selectMemberByNo(car.getCarWriter());
-                if (member != null) { // 일반회원 정보가 존재할 때
+                if (member != null) {
                     car.setMemberNickname(member.getMemberNickname());
-                    System.out.println("작성자는? : " + member.getMemberNickname());
                 }
             }
         }
@@ -130,6 +141,19 @@ public class CarService {
         return carList;
     }
 
+    public int findCarTotal(Criteria criteria, String searchType, String keyword) {
+        String cate = criteria.getCate(); // 카테고리 정보 추출
+        if (searchType.equals("title")) {
+            return carMapper.countCarsByTitle(keyword); // 제목으로 검색할 때
+        } else if (searchType.equals("nickname")) {
+            return carMapper.countCarsByNickname(keyword); // 닉네임으로 검색할 때
+        }
+        // 카테고리 정보가 있을 경우
+        if (cate != null && !cate.isEmpty()) {
+            return carMapper.countCarsByCategory(cate); // 카테고리별 총 개수 조회
+        }
+        return carMapper.carTotal(); // 카테고리 없는 경우 전체 개수 조회
+    }
 
 
 

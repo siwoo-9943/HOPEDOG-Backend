@@ -65,7 +65,8 @@
         </span>
         </form>
       </div>
-<!--      <div id="search-results"></div>-->
+
+<!--      글쓰기-->
       <div class="volun-write">
         <button class="volun-write-botton" type="button" onclick="location.href='../../html/volun/volun-car-post-write.html'">
           <span class="volun-write-botton-sp">글쓰기</span>
@@ -76,7 +77,7 @@
       <!-- 페이지네이션 -->
       <div class="pagination">
         <ul class="page-box">
-          <a th:href="@{/adopt/adopt(page=${page.startPage - 1})}" class="page-a" th:if="${page.prev}">
+          <a th:href="@{/car/main(page=${page.startPage - 1})}" class="page-a" th:if="${page.prev}">
             <li class="page-num prev">&lt</li>
           </a>
 

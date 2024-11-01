@@ -1,10 +1,13 @@
 package com.example.hope_dog.controller.volun.car;
 
+import com.example.hope_dog.dto.page.Criteria;
+import com.example.hope_dog.dto.page.Page;
 import com.example.hope_dog.dto.volun.car.CarDTO;
 import com.example.hope_dog.dto.volun.car.CarDetailDTO;
 import com.example.hope_dog.service.volun.car.CarService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.bag.SynchronizedSortedBag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,38 +25,73 @@ import java.util.List;
 public class CarController {
     private final CarService carService;
 
-    //카풀 게시판 목록
+
     @GetMapping("/main")
-    public String carList(Model model) {
-        //carService로 조회하고 carList 변수에 저장
-        List<CarDTO> carList = carService.getCarList(); // 데이터 조회
+    public String carList(@RequestParam(value = "page", defaultValue = "1") int page,
+                          @RequestParam(value = "amount", defaultValue = "9") int amount,
+                          @RequestParam(value = "cate", required = false) String cate,
+                          Model model) {
+        Criteria criteria = new Criteria(page, amount);
+        criteria.setCate(cate); // 카테고리 설정
+
+        // 페이지 정보에 맞는 카풀 게시글 조회
+        List<CarDTO> carList = carService.findCarPage(criteria);
+        int total = carService.findCarTotal(criteria); // 총 게시글 수 조회
+        Page pageInfo = new Page(criteria, total); // 페이지 정보 생성
+
+        // 조회한 carList와 페이지 정보를 모델에 추가
         model.addAttribute("carList", carList);
-        //조회한 carlist를 모델에 carlist라는 이름으로 추가해서 뷰에서 사용할 수 있도록 전달
-        //model : 컨트롤러와 뷰 간에 데이터를 전달하는 역할
+        model.addAttribute("page", pageInfo);
+
+        // 페이지네이션이 적용된 카풀 게시판 메인 뷰로 이동
         return "volun/car/volun-car-main";
     }
 
 
-    //카테고리 분류에 따른 게시글 조회
+    // 카테고리 분류에 따른 게시글 조회
     @GetMapping("/filter")
-    public String filterCarList(@RequestParam("cate") String cate, Model model) {
-        List<CarDTO> carList = carService.getCarListByCate(cate);
+    public String filterCarList(@RequestParam("cate") String cate,
+                                @RequestParam(value = "page", defaultValue = "1") int page,
+                                @RequestParam(value = "amount", defaultValue = "9") int amount,
+                                Model model) {
+        Criteria criteria = new Criteria(page, amount);
+        criteria.setCate(cate); // 카테고리 설정
+
+        List<CarDTO> carList = carService.getCarListByCate(cate, criteria);
+        int total = carService.findCarTotal(criteria); // 총 게시글 수 조회
+        Page pageInfo = new Page(criteria, total);
+
         model.addAttribute("carList", carList);
+        model.addAttribute("page", pageInfo);
         return "volun/car/volun-car-main";
     }
 
-    //검색기능
+    //검색
     @GetMapping("/main/search")
-    public String searchCars(@RequestParam("searchType") String searchType, //requstparam : http요청 파라미터를 메서드의 매개변수로 매핑
-                             //요청 파라미터 searchType을 가져온다
+    public String searchCars(@RequestParam("searchType") String searchType,
                              @RequestParam("keyword") String keyword,
-                             Model model) { //model 객치를 사용해서 데이터를 뷰로 전달
-        List<CarDTO> carList = carService.searchCars(searchType, keyword); //carservice를 통해 검색 결과 가져옴
-        model.addAttribute("carList", carList); // 검색 결과를 모델에 추가
-        return "volun/car/volun-car-main"; // 검색 결과를 포함한 페이지로 이동
+                             @RequestParam(value = "page", defaultValue = "1") int page,
+                             @RequestParam(value = "amount", defaultValue = "9") int amount,
+                             Model model) {
+        Criteria criteria = new Criteria(page, amount);
+        System.out.println("컨트롤러 criteria : " + criteria);
+
+
+        // 검색 조건에 따른 총 개수 조회
+        int total = carService.findCarTotal(criteria, searchType, keyword);
+        Page pageInfo = new Page(criteria, total);
+
+        // 검색 조건에 따라 차량 리스트 조회
+        List<CarDTO> carList = carService.searchCars(searchType, keyword, criteria);
+        System.out.println("컨트롤러 List : " + carList);
+
+        model.addAttribute("carList", carList); // 차량 리스트 추가
+        model.addAttribute("page", pageInfo); // 페이지 정보 추가
+        model.addAttribute("searchType", searchType); // 검색 타입 추가
+        model.addAttribute("keyword", keyword); // 검색어 추가
+
+        return "volun/car/volun-car-main"; // 결과 페이지로 이동
     }
-
-
 
     //게시글 상세
     @GetMapping("/post/{carNo}")
