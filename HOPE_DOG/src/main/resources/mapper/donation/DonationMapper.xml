@@ -51,8 +51,9 @@
         SELECT COUNT(DONA_NO) FROM TBL_DONA
     </select>
 
-    <!-- 기부 전체게시글-->
-    <select id="donationMainList" resultType="DonationMainDTO">
+    <!-- 기부 페이지마다 표시할 게시글-->
+    <select id="selectAllPage" parameterType="Criteria" resultType="DonationMainDTO">
+<![CDATA[
         SELECT
             D.DONA_NO,
             D.CENTER_MEMBER_NO,
@@ -60,50 +61,40 @@
             D.DONA_CONTENT,
             D.DONA_REGIDATE,
             D.DONA_UPDATEDATE,
-            C.CENTER_MEMBER_NAME
-        FROM
-            TBL_DONA D
-                JOIN
-            TBL_CENTER_MEMBER C ON D.CENTER_MEMBER_NO = C.CENTER_MEMBER_NO
-        ORDER BY
-            D.DONA_REGIDATE DESC
-    </select>
+            C.CENTER_MEMBER_ID,
+            C.CENTER_MEMBER_NAME,
+            CM.DONA_COMMENT_NO,
+            CM.DONA_COMMENT_CONTENT,
+            CM.DONA_COMMENT_REGIDATE,
+            CM.DONA_COMMENT_WRITER
+        FROM (
+                 SELECT
+                     DONA_NO,
+                     CENTER_MEMBER_NO,
+                     DONA_TITLE,
+                     DONA_CONTENT,
+                     DONA_REGIDATE,
+                     DONA_UPDATEDATE,
+                     ROWNUM AS RNUM
+                 FROM (
+                          SELECT
+                              D.DONA_NO,
+                              D.CENTER_MEMBER_NO,
+                              D.DONA_TITLE,
+                              D.DONA_CONTENT,
+                              D.DONA_REGIDATE,
+                              D.DONA_UPDATEDATE
+                          FROM TBL_DONA D
+                          ORDER BY D.DONA_REGIDATE DESC
+                      )
+                 WHERE ROWNUM <= #{page} * #{amount}
+             )
+                 D
+                 JOIN TBL_CENTER_MEMBER C ON D.CENTER_MEMBER_NO = C.CENTER_MEMBER_NO
+                 LEFT JOIN TBL_DONA_COMMENT CM ON D.DONA_NO = CM.DONA_NO
+        WHERE D.RNUM > (#{page} - 1) * #{amount}
+        ]]>
 
-
-    <!-- 기부 페이지마다 표시할 게시글-->
-    <select id="selectAllPage" parameterType="Criteria" resultType="DonationMainDTO">
-        <![CDATA[
-                SELECT
-                    DONA_NO,
-                    CENTER_MEMBER_NO,
-                    DONA_TITLE,
-                    DONA_CONTENT,
-                    DONA_REGIDATE,
-                    DONA_UPDATEDATE
-                FROM (
-                         SELECT
-                             DONA_NO,
-                             CENTER_MEMBER_NO,
-                             DONA_TITLE,
-                             DONA_CONTENT,
-                             DONA_REGIDATE,
-                             DONA_UPDATEDATE,
-                             ROWNUM AS RNUM
-                         FROM (
-                                  SELECT
-                                      DONA_NO,
-                                      CENTER_MEMBER_NO,
-                                      DONA_TITLE,
-                                      DONA_CONTENT,
-                                      DONA_REGIDATE,
-                                      DONA_UPDATEDATE
-                                  FROM TBL_DONA
-                                  ORDER BY DONA_REGIDATE DESC
-                              )
-                         WHERE ROWNUM <= #{page} * #{amount}  -- 이 줄을 여기로 이동
-                     )
-                WHERE RNUM > (#{page} - 1) * #{amount}
-                ]]>
     </select>
     <!-- 여기까지 페이지네이션+게시글목록불러오기 -->
 
@@ -111,15 +102,24 @@
             <selectKey keyProperty="donaNo" resultType="Long" order="BEFORE">
                 SELECT SEQ_DONA_NO.NEXTVAL FROM DUAL
             </selectKey>
-            INSERT INTO TBL_DONA (DONA_NO, DONA_TITLE, DONA_CONTENT, DONA_REGIDATE, CENTER_MEMBER_NO)
-            VALUES (#{donaNo}, #{donaTitle}, #{donaContent}, #{donaRegidate}, #{centerMemberNo})
+            INSERT INTO TBL_DONA (
+                DONA_NO, DONA_TITLE, DONA_CONTENT, CENTER_MEMBER_NO, DONA_REGIDATE
+            ) VALUES (
+            #{donaNo}, #{donaTitle}, #{donaContent}, #{centerMemberNo}, SYSDATE
+            )
         </insert>
 
-    <!--    <update id="updateBoard" parameterType="BoardUpdateDTO">-->
-    <!--        UPDATE TBL_BOARD-->
-    <!--        SET TITLE = #{title}, CONTENT=#{content}, MODIFIED_DATE = SYSDATE-->
-    <!--        WHERE BOARD_ID = #{boardId}-->
-    <!--    </update>-->
+    <delete id="donationDelete" parameterType="Long">
+        DELETE FROM TBL_DONA
+        WHERE DONA_NO = #{donaNo}
+    </delete>
+
+    <update id="donationUpdate" parameterType="DonationUpdateDTO">
+        UPDATE TBL_DONA
+        SET DONA_TITLE = #{donaTitle}, DONA_CONTENT = #{donaContent}, DONA_REGIDATE = SYSDATE
+        WHERE DONA_NO = #{donaNo}
+    </update>
+
 
 <!--    <select id="selectById" parameterType="Long" resultType="NoticeViewDTO">-->
 <!--        SELECT NOTICE_NO, NOTICE_CATE, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_REGIDATE, NOTICE_UPDATEDATE-->

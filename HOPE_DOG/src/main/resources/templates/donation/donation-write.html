@@ -39,14 +39,11 @@
         <form th:action="@{/dona/writeRegi}" method="post" enctype="multipart/form-data">
             <div class="dona-write-area">
               <br>
-
+                <input th:value="${centerMemberNo}" style="display: none" name="centerMemberNo">
               <!-- 썸머노트 -->
               <div class="content">
-                <form>
-    <!--            <form method="post" action="">-->
-                  <input id="subject" name="subject" class="donawrite-title" placeholder="제목을 입력해주세요">
-                  <textarea id="contents" name="contents"></textarea>
-                </form>
+                  <input type="text" id="donaTitle" name="donaTitle" class="donawrite-title" placeholder="제목을 입력해주세요" required>
+                  <textarea id="donaContent" name="donaContent" required></textarea>
               </div>
 
               <!-- 등록/취소 버튼 -->

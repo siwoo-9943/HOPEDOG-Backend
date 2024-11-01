@@ -2,6 +2,7 @@ package com.example.hope_dog.service.notice;
 
 import com.example.hope_dog.dto.notice.NoticeViewDTO;
 import com.example.hope_dog.dto.notice.NoticeListDTO;
+import com.example.hope_dog.dto.page.Criteria;
 import com.example.hope_dog.mapper.notice.NoticeMapper;
 import lombok.RequiredArgsConstructor;
 //import net.coobird.thumbnailator.Thumbnails;
@@ -17,8 +18,19 @@ public class NoticeService {
     private final NoticeMapper noticeMapper;
 
     //List
-    public List<NoticeListDTO> getNoticeList() {
-        return noticeMapper.noticeList();
+//    public List<NoticeListDTO> getNoticeList() {
+//        return noticeMapper.noticeList();
+//    }
+    public List<NoticeListDTO> findAll() {
+        return noticeMapper.selectAll();
+    }
+
+    public int findTotal(){
+        return noticeMapper.selectTotal();
+    }
+
+    public List<NoticeListDTO> findAllPage(Criteria criteria) {
+        return noticeMapper.selectAllPage(criteria);
     }
 
     //View

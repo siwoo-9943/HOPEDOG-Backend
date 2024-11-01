@@ -1,18 +1,21 @@
 package com.example.hope_dog.controller.donation;
 
 import com.example.hope_dog.dto.donation.DonationListDTO;
-import com.example.hope_dog.dto.donation.DonationMainDTO;
+import com.example.hope_dog.dto.donation.DonationUpdateDTO;
 import com.example.hope_dog.dto.donation.DonationViewDTO;
 import com.example.hope_dog.dto.donation.DonationWriteDTO;
 import com.example.hope_dog.dto.page.Criteria;
 import com.example.hope_dog.dto.page.Page;
+import com.example.hope_dog.mapper.donation.DonationMapper;
 import com.example.hope_dog.service.donation.DonationService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -23,6 +26,7 @@ import java.util.List;
 public class DonationController {
 
     private final DonationService donationService;
+    private final DonationMapper donationMapper;
 
 //    @GetMapping("/list")
 //    public String List(Model model) {
@@ -33,27 +37,54 @@ public class DonationController {
 //    }
 
     @GetMapping("/list")
-    public String List(Criteria criteria, Model model, HttpSession session){
-//        List<DonationListDTO> donationList = donationService.getDonationList();
-        List<DonationMainDTO> donationMainList = donationService.findAllPage(criteria);
+    public String donationList(Criteria criteria, Model model, HttpSession session) {
+        List<DonationListDTO> donationList = donationService.findAllPage(criteria);
         int total = donationService.findTotal();
         Page page = new Page(criteria, total);
-//        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo"); //이것도 무시 세션값 가져와서 저장
 
-        model.addAttribute("DonationMainList", donationMainList);
+        model.addAttribute("donationList", donationList);
         model.addAttribute("page", page);
-//        model.addAttribute("centerMemberNo", centerMemberNo); //이건 나만 쓰는거 무시 세션값 html에서 쓸수있게 model추가
 
         return "donation/donation-main-center";
     }
 
-    @GetMapping("/view")
-    public String View(@RequestParam("donaNo") Long donaNo,Model model) {
+
+//    @GetMapping("/list")
+//    public String List(Criteria criteria, Model model, HttpSession session){
+////        List<DonationListDTO> donationList = donationService.getDonationList();
+//        List<DonationListDTO> donationList = donationService.findAllPage(criteria);
+//        int total = donationService.findTotal();
+//        Page page = new Page(criteria, total);
+////        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo"); //이것도 무시 세션값 가져와서 저장
+//
+//        model.addAttribute("DonationList", donationList);
+//        model.addAttribute("page", page);
+////        model.addAttribute("centerMemberNo", centerMemberNo); //이건 나만 쓰는거 무시 세션값 html에서 쓸수있게 model추가
+//
+//        return "donation/donation-main-center";
+//    }
+
+    @GetMapping("/view/{donaNo}")
+    public String view(@PathVariable("donaNo") Long donaNo, Model model, HttpSession session) {
         List<DonationViewDTO> donationViewList = donationService.getDonationViewList(donaNo);
+        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
+
+        model.addAttribute("centerMemberNo", centerMemberNo);
         model.addAttribute("donationViewList", donationViewList);
 
         return "donation/donation-detail";
     }
+
+
+    // 게시글 조회
+//    @GetMapping("/detail/{boardId}")
+//    public String view(@PathVariable Long boardId, Model model, @AuthenticationPrincipal CustomOAuth2User customUser) {
+//        BoardDTO board = boardService.selectBoardDetail(boardId, customUser);
+//        List<FileVO> files = fileService.getFileListByBoardId(boardId);
+//        model.addAttribute("board", board);
+//        model.addAttribute("files", files);
+//        return "board/detail";
+//    }
 
 
 
@@ -65,34 +96,12 @@ public class DonationController {
         return "donation/donation-write";
     }
 
-//    //입양글작성페이지이동
-//    @GetMapping("/adopt/adoptwrite")
-//    public String adoptWrite(HttpSession session, Model model) {
-//        // 세션에서 memberNo 가져오기
-//        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
-//
-//        // 모델에 memberNo 추가
-//        model.addAttribute("centerMemberNo", centerMemberNo);
-//
-//        return "adopt/adopt/adopt-adoptwrite"; // 템플릿 이름
-//    }
 
     @PostMapping("/writeRegi")
-    public String postDonationWrite(DonationWriteDTO donationWriteDTO) {
-//        donationService
+    public String registerDonation(DonationWriteDTO donationWriteDTO) {
+        donationService.registerDonation(donationWriteDTO);
         return "redirect:/dona/list";
     }
-
-//    // 입양 글 등록 처리
-//    @PostMapping("/adopt/adoptWriteRegi")
-//    public String postAdoptWrite(
-//            @DateTimeFormat(pattern = "yyyy-MM-dd") AdoptWriteDTO adoptWriteDTO) {
-//        // 서비스 호출하여 데이터베이스에 저장
-//        adoptService.registerAdoption(adoptWriteDTO);
-//        return "redirect:/adopt/adopt";
-//    }
-
-
 
 //    @PostMapping("/write")
 //    public String boardWrite(BoardWriteDTO boardWriteDTO, @SessionAttribute("userId") Long userId
@@ -106,7 +115,20 @@ public class DonationController {
 //            throw new RuntimeException(e);
 //        }
 
+    @PostMapping("/delete/{donaNo}")
+    public String delete(@PathVariable Long donaNo, RedirectAttributes redirectAttributes) {
+        System.out.println(donaNo + "컨트롤러 들어옴");
+        donationService.donationDelete(donaNo);
+        redirectAttributes.addFlashAttribute("message", "게시글이 성공적으로 삭제되었습니다.");
+        return "redirect:/dona/list";
+    }
 
 
+    @GetMapping("/modify")
+    public String donationModify(@RequestParam Long donaNo, Model model) {
+        DonationViewDTO donation = donationService.findById(donaNo);
+        model.addAttribute("donation", donation);
+        return "/donation/donation-modify";
+    }
 
 }

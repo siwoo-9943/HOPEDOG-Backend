@@ -123,7 +123,7 @@
 }
 
 /* 수정 버튼 */
-.dona-admain-btu {
+.btn-modify {
   display: block;
   padding: 0px 10px;
   text-align: center;
@@ -144,19 +144,19 @@
 }
 
 /* 수정 폰트 두께 */
-.dona-admain-btu-sp {
+.btn-modify-sp {
   display: inline-block;
   font-size: 16px;
   font-weight: 500;
 }
 
-.dona-admain-btu:hover {
+.btn-modify:hover {
   background-color: #9B805D; /* 마우스를 올렸을 때 배경색 */
   color: white; /* 마우스를 올렸을 때 텍스트 색상 */
 }
 
 /* 삭제 버튼 */
-.dona-admain-btu-delete {
+.btn-remove {
   display: block;
   padding: 0px 10px;
   text-align: center;
@@ -172,18 +172,18 @@
 }
 
 /* 삭제 폰트사이즈 */
-.dona-admain-btuall-delete span {
+.btn-remove span {
   font-size: 13px;
 }
 
 /* 삭제 폰트 두께 */
-.dona-admain-btu-delete-sp {
+.btn-remove-sp {
   display: inline-block;
   font-size: 16px;
   font-weight: 500;
 }
 
-.dona-admain-btu-delete:hover {
+.btn-remove:hover {
   background-color: #9B805D; /* 마우스를 올렸을 때 배경색 */
   color: white; /* 마우스를 올렸을 때 텍스트 색상 */
 }

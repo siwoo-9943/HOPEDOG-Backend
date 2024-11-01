@@ -2,7 +2,10 @@ package com.example.hope_dog.controller.notice;
 
 import com.example.hope_dog.dto.notice.NoticeListDTO;
 import com.example.hope_dog.dto.notice.NoticeViewDTO;
+import com.example.hope_dog.dto.page.Criteria;
+import com.example.hope_dog.dto.page.Page;
 import com.example.hope_dog.service.notice.NoticeService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
@@ -22,33 +25,38 @@ public class NoticeController {
 
     private final NoticeService noticeService;
 
-    @GetMapping("/list")
-    public String List(Model model) {
-        List<NoticeListDTO> noticeList = noticeService.getNoticeList();
-        model.addAttribute("noticeList", noticeList);
-
-        return "notice/notice-list";
-    }
-
-
 //    @GetMapping("/list")
-//    public String list(
-//            Model model,
-//            @PageableDefault(size = 10, sort = "noticeRegidate", direction = Sort.Direction.DESC) Pageable pageable) {
-//
-//        int page = pageable.getPageNumber() + 1;
-//        int size = pageable.getPageSize();
-//
-//        List<NoticeListDTO> noticeList = noticeService.getNoticeList(page, size);
-//        int totalNotices = noticeService.getNoticeCount();
-//        int totalPages = (int) Math.ceil((double) totalNotices / size);
-//
+//    public String List(Model model) {
+//        List<NoticeListDTO> noticeList = noticeService.getNoticeList();
 //        model.addAttribute("noticeList", noticeList);
-//        model.addAttribute("currentPage", page);
-//        model.addAttribute("totalPages", totalPages);
 //
 //        return "notice/notice-list";
 //    }
+
+    @GetMapping("/list")
+    public String noticeList(Criteria criteria, Model model, HttpSession session) {
+        List<NoticeListDTO> noticeList = noticeService.findAllPage(criteria);
+        int total = noticeService.findTotal();
+        Page page = new Page(criteria, total);
+
+        model.addAttribute("noticeList", noticeList);
+        model.addAttribute("page", page);
+
+        return "notice/notice-list";
+    }
+    //    @GetMapping("/list")
+//    public String donationList(Criteria criteria, Model model, HttpSession session) {
+//        List<DonationListDTO> donationList = donationService.findAllPage(criteria);
+//        int total = donationService.findTotal();
+//        Page page = new Page(criteria, total);
+//
+//        model.addAttribute("donationList", donationList);
+//        model.addAttribute("page", page);
+//
+//        return "donation/donation-main-center";
+//    }
+
+
 
 
     @GetMapping("/view")
