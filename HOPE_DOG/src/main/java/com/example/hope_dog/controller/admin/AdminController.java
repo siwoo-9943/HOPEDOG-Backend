@@ -29,8 +29,6 @@ public class AdminController {
 
     @PostMapping("/login")
     public String login(@RequestParam("adminId") String adminId, @RequestParam("adminPw") String adminPw, HttpSession session) {
-        log.info("로그인 시도 : {}", adminId);
-
         AdminSessionDTO loginInfo = adminService.findLoginInfo(adminId, adminPw);
 
         session.setAttribute("adminNo", loginInfo.getAdminNo());
@@ -38,6 +36,16 @@ public class AdminController {
 
         return "redirect:/admin/main";
     }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+
+        // 세션에서 로그인 정보 제거
+        session.invalidate(); // 세션 전체를 무효화하여 모든 속성을 제거합니다.
+
+        return "redirect:/admin/login"; // 로그인 페이지로 리다이렉트
+    }
+
 
     @GetMapping("/main")
     public String main(Model model, HttpSession session) {
@@ -275,6 +283,18 @@ public class AdminController {
         return "admin/admin-report/admin-report-list";
     }
 
+    @GetMapping("/reportSearchList")
+    public String reportSearchList(@RequestParam("keyword") String keyword, Model model, HttpSession session) {
+        if (!isAdminLoggedIn(session)) {
+            return "redirect:/admin/login"; // 비로그인 시 로그인 페이지로 리다이렉트
+        }
+        List<AdminReportDTO> reportSearchList = adminService.searchReportByKeyword(keyword);
+
+        model.addAttribute("reportSearchList", reportSearchList);
+
+        return "admin/admin-report/admin-report-search-list";
+    }
+
     @GetMapping("/centerApplyList")
     public String centerApplyList(Model model, HttpSession session) {
         if (!isAdminLoggedIn(session)) {
@@ -300,18 +320,82 @@ public class AdminController {
         return "admin/admin-center-apply/admin-center-apply-detail";
     }
 
-    @GetMapping("/ATPList")
-    public String ATPList(Model model, HttpSession session) {
+    @GetMapping("/adoptSearchList")
+    public String adoptSearchList(@RequestParam("keyword") String keyword, Model model, HttpSession session) {
+        if (!isAdminLoggedIn(session)) {
+            return "redirect:/admin/login";
+        }
+        List<AdminAdoptRequestDTO> adoptSearchList = adminService.searchAdoptRequestByKeyword(keyword);
+
+        model.addAttribute("adoptSearchList", adoptSearchList);
+        model.addAttribute("currentPage", "adopt");
+
+        return "admin/admin-ATP/admin-adopt-search-list";
+    }
+
+    @GetMapping("/adoptList")
+    public String adoptList(Model model, HttpSession session) {
         if (!isAdminLoggedIn(session)) {
             return "redirect:/admin/login";
         }
         List<AdminAdoptRequestDTO> adoptRequestList = adminService.selectAdoptRequestList();
-        List<AdminProtectRequestDTO> protectRequestList = adminService.selectProtectRequestList();
 
         model.addAttribute("adoptRequestList", adoptRequestList);
-        model.addAttribute("protectRequestList", protectRequestList);
+        model.addAttribute("currentPage", "adopt");
 
-        return "admin/admin-ATP/admin-ATP-list";
+        return "admin/admin-ATP/admin-adopt-list";
+    }
+
+    @GetMapping("/protectList")
+    public String protectList(Model model, HttpSession session) {
+        if (!isAdminLoggedIn(session)) {
+            return "redirect:/admin/login";
+        }
+        List<AdminProtectRequestDTO> protectRequestList = adminService.selectProtectRequestList();
+
+        model.addAttribute("protectRequestList", protectRequestList);
+        model.addAttribute("currentPage", "protect");
+
+        return "admin/admin-ATP/admin-protect-list";
+    }
+
+    @GetMapping("/protectSearchList")
+    public String protectList(@RequestParam("keyword") String keyword, Model model, HttpSession session) {
+        if (!isAdminLoggedIn(session)) {
+            return "redirect:/admin/login";
+        }
+        List<AdminProtectRequestDTO> protectSearchList = adminService.searchProtectRequestByKeyword(keyword);
+
+        model.addAttribute("protectSearchList", protectSearchList);
+        model.addAttribute("currentPage", "protect");
+
+        return "admin/admin-ATP/admin-protect-search-list";
+    }
+
+    @GetMapping("/protectDetail")
+    public String protectDetail(@RequestParam("protectRequestNo") Long protectRequestNo, Model model, HttpSession session){
+        if (!isAdminLoggedIn(session)) {
+            return "redirect:/admin/login";
+        }
+
+        AdminProtectRequestDTO protectRequest = adminService.selectProtectRequestDetail(protectRequestNo);
+
+        model.addAttribute("protectRequest", protectRequest);
+
+        return "admin/admin-ATP/admin-protect-detail";
+    }
+
+    @GetMapping("/adoptDetail")
+    public String adoptDetail(@RequestParam("adoptRequestNo") Long adoptRequestNo, Model model, HttpSession session){
+        if (!isAdminLoggedIn(session)) {
+            return "redirect:/admin/login";
+        }
+
+        AdminAdoptRequestDTO adoptRequest = adminService.selectAdoptRequestDetail(adoptRequestNo);
+
+        model.addAttribute("adoptRequest", adoptRequest);
+
+        return "admin/admin-ATP/admin-adopt-detail";
     }
 
     @GetMapping("/volunList")
@@ -324,6 +408,30 @@ public class AdminController {
         model.addAttribute("volunRequestList", volunRequestList);
 
         return "admin/admin-volun/admin-volun-list";
+    }
+
+    @GetMapping("/volunSearchList")
+    public String volunSearchList(@RequestParam("keyword") String keyword, Model model, HttpSession session) {
+        if (!isAdminLoggedIn(session)) {
+            return "redirect:/admin/login";
+        }
+        List<AdminVolunRequestDTO> volunRequestList = adminService.searchVolunRequestList(keyword);
+
+        model.addAttribute("volunRequestList", volunRequestList);
+
+        return "admin/admin-volun/admin-volun-search-list";
+    }
+
+    @GetMapping("volunDetail")
+    public String volunDetail(@RequestParam("volunNo") Long volunNo, Model model, HttpSession session) {
+        if (!isAdminLoggedIn(session)) {
+            return "redirect:/admin/login";
+        }
+        AdminVolunRequestDTO volunRequest = adminService.selectVolunRequestDetail(volunNo);
+
+        model.addAttribute("volunRequest", volunRequest);
+
+        return "admin/admin-volun/admin-volun-detail";
     }
 
     @GetMapping("/noteboxIn")

@@ -35,6 +35,8 @@ public interface AdminMapper {
 
     List<AdminReportDTO> selectReportList();
 
+    List<AdminReportDTO> searchReportByKeyword(@Param("keyword") String keyword);
+
     List<AdminPostDTO> selectPostList();
 
     List<AdminPostDTO> searchPostByKeyword(@Param("keyword") String keyword);
@@ -55,9 +57,21 @@ public interface AdminMapper {
 
     List<AdminAdoptRequestDTO> selectAdoptRequestList();
 
+    List<AdminAdoptRequestDTO> searchAdoptRequestByKeyword(@Param("keyword") String keyword);
+
+    AdminAdoptRequestDTO selectAdoptRequestDetail(@Param("adoptRequestNo") Long adoptRequestNo);
+
     List<AdminProtectRequestDTO> selectProtectRequestList();
 
+    List<AdminProtectRequestDTO> searchProtectRequestByKeyword(@Param("keyword") String keyword);
+
+    AdminProtectRequestDTO selectProtectRequestDetail(@Param("protectRequestNo") Long protectRequestNo);
+
     List<AdminVolunRequestDTO> selectVolunRequestList();
+
+    List<AdminVolunRequestDTO> searchVolunRequestByKeyword(@Param("keyword") String keyword);
+
+    AdminVolunRequestDTO selectVolunRequestDetail(@Param("volunNo") Long volunNo);
 
     List<AdminNoteSendDTO> selectNoteSendList();
 

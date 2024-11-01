@@ -50,6 +50,8 @@ public class AdminService {
         return adminMapper.selectReportList();
     }
 
+    public List<AdminReportDTO> searchReportByKeyword(String keyword){ return adminMapper.searchReportByKeyword(keyword); }
+
     public List<AdminPostDTO> selectPostList(){
         return adminMapper.selectPostList();
     }
@@ -76,13 +78,25 @@ public class AdminService {
         return adminMapper.selectAdoptRequestList();
     }
 
+    public List<AdminAdoptRequestDTO> searchAdoptRequestByKeyword(String keyword){ return adminMapper.searchAdoptRequestByKeyword(keyword); }
+
+    public AdminAdoptRequestDTO selectAdoptRequestDetail(Long adoptRequestNo){ return adminMapper.selectAdoptRequestDetail(adoptRequestNo); }
+
     public List<AdminProtectRequestDTO> selectProtectRequestList(){
         return adminMapper.selectProtectRequestList();
     }
 
+    public List<AdminProtectRequestDTO> searchProtectRequestByKeyword(String keyword){ return adminMapper.searchProtectRequestByKeyword(keyword); }
+
+    public AdminProtectRequestDTO selectProtectRequestDetail(Long protectRequestNo){return adminMapper.selectProtectRequestDetail(protectRequestNo);}
+
     public List<AdminVolunRequestDTO> selectVolunRequestList(){
         return adminMapper.selectVolunRequestList();
     }
+
+    public List<AdminVolunRequestDTO> searchVolunRequestList(String keyword){ return adminMapper.searchVolunRequestByKeyword(keyword); }
+
+    public AdminVolunRequestDTO selectVolunRequestDetail(Long volunNo){ return adminMapper.selectVolunRequestDetail(volunNo); }
 
     public List<AdminNoteSendDTO> selectNoteSendList(){
         return adminMapper.selectNoteSendList();

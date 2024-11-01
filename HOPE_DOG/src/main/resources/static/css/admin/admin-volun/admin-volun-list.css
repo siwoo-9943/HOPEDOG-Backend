@@ -251,9 +251,13 @@ div#paging-wrap {
 	width: 150px;
 }
 
-.info-cell-content {
+.info-cell-phone {
 	width: 200px;
-	flex-grow: 1;
+
+}
+
+.info-cell-email {
+	width: 460px;
 }
 
 .checkbox-line {
