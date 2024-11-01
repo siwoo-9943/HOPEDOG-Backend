@@ -4,11 +4,13 @@ import lombok.*;
 
 import java.util.Date;
 
-@Getter @Setter @ToString
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @Data
 
-public class DonationListDTO {
+public class DonationMainDTO {
 
     private Long donaNo;
     private String donaTitle;
