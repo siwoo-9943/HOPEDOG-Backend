@@ -7,9 +7,11 @@ import lombok.ToString;
 
 import java.util.Date;
 
-@Getter @Setter @ToString
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
-public class DonationViewDTO {
+public class DonationUpdateDTO {
     private Long donaNo;
     private String donaTitle;
     private String donaContent;
@@ -18,10 +20,4 @@ public class DonationViewDTO {
     private Long centerMemberNo;
     private String centerMemberName;
     private String centerMemberId;
-    private Long donaCommentNo;
-    private String donaCommentRegidate;
-//    private String donaCommentUpdatedate;
-    private String donaCommentContent;
-    private String donaCommentWriter;
-
 }
