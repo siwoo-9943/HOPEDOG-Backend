@@ -141,7 +141,7 @@ public class CarService {
         return carList;
     }
 
-    public int findCarTotal(Criteria criteria, String searchType, String keyword) {
+    public int findCarSearch(Criteria criteria, String searchType, String keyword) {
         String cate = criteria.getCate(); // 카테고리 정보 추출
         if (searchType.equals("title")) {
             return carMapper.countCarsByTitle(keyword); // 제목으로 검색할 때

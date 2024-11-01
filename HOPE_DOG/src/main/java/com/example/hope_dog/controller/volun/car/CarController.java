@@ -78,7 +78,7 @@ public class CarController {
 
 
         // 검색 조건에 따른 총 개수 조회
-        int total = carService.findCarTotal(criteria, searchType, keyword);
+        int total = carService.findCarSearch(criteria, searchType, keyword);
         Page pageInfo = new Page(criteria, total);
 
         // 검색 조건에 따라 차량 리스트 조회
