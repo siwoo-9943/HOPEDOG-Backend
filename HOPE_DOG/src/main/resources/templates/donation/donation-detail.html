@@ -32,7 +32,7 @@
             </div>
             <div class="notice-addetail-content">
               <div class="notice-addetail-tcontent">작성일</div>
-              <div class="notice-addetail-ttxt" th:text="${#dates.format(donation.donaRegidate, 'yyyy-MM-dd HH:mm')}"></div></div>
+              <div class="notice-addetail-ttxt" th:text="${#dates.format(donation.donaRegidate, 'yyyy-MM-dd HH:mm')}"></div>
             </div>
 
             <div class="notice-addetail-maincont"  th:text="${donation.donaContent}"></div>
@@ -41,13 +41,21 @@
       </div>
 
     <section class="dona-bottom">
-      <div class="btn-wrap">
-        <th:block th:if="${donaion.centerMemberNo == session.centerMemberNo}">
-          <button type="button" class="btn-modify" th:data-id="${donaion.donaNo}">수정</button>
-          <button type="button" class="btn-remove" th:data-id="${donaion.donaNo}">삭제</button>
-        </th:block>
-        <button type="button" class="btn-back">뒤로 가기</button>
-      </div>
+<!--      <div class="btn-wrap">-->
+<!--        <th:block th:if="${donaion.centerMemberNo == session.centerMemberNo}">-->
+<!--          <button type="button" class="btn-modify" th:data-id="${donaion.donaNo}">수정</button>-->
+<!--          <button type="button" class="btn-remove" th:data-id="${donaion.donaNo}">삭제</button>-->
+<!--        </th:block>-->
+<!--        <button type="button" class="btn-back">뒤로 가기</button>-->
+<!--      </div>-->
+<!--        <div class="btn-wrap" th:each="donation : ${donationViewList}">-->
+        <div class="btn-wrap">
+          <div class="donaNo" th:text="${donation.donaNo}" style="display: none;"></div>
+          <button class="btn-modify" type="button" onclick="modifyClick()"
+                  th:if="${centerMemberNo == donation.centerMemberNo}">수정</button>
+          <button class="btn-remove" type="button" onclick="deleteClick()"
+                  th:if="${centerMemberNo == donation.centerMemberNo}">삭제</button>
+        </div>
 
 <!--      <div class="dona-button">-->
 <!--        <input type="hidden" name="centerMemberNo" th:value="${session.centerMemberNo}">-->
@@ -67,9 +75,11 @@
 <!--        </form>-->
 <!--      </div>-->
           <div class="dona-admain-btuall-complaint">
-            <button class="dona-admain-btu-complaint" type="button">
+            <a th:href="@{/dona/list}">
+              <button class="dona-admain-btu-complaint" type="button">
               <span class="dona-admain-btu-complaint-sp">목록</span>
-            </button>
+              </button>
+            </a>
           </div>
       <!-- 댓글창 -->
       <se class="dona-detail-box4">

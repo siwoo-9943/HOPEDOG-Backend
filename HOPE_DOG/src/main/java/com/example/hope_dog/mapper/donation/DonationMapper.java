@@ -31,6 +31,6 @@ public interface DonationMapper {
     void donationDelete(Long donaNo);
 
     // 기부 글 수정
-    void donationUpdate(DonationUpdateDTO donationUpdateDTO);
+    void donationUpdate(DonationWriteDTO donationWriteDTO);
 //    void updateBoard(BoardUpdateDTO boardUpdateDTO);
 }

@@ -36,6 +36,7 @@
         <form action="링크" method="post" th:action="@{/dona/modify}" enctype="multipart/form-data">
           <br>
           <input type="hidden" name="donaNo" th:value="${donation.donaNo}" />
+          <input th:value="${centerMemberNo}" style="display: none" name="centerMemberNo">
           <!-- 썸머노트 -->
           <div class="content">
               <input id="donaTitle" name="donaTitle" th:value="${donation.donaTitle}" class="donawrite-title" placeholder="제목을 입력해주세요" required />

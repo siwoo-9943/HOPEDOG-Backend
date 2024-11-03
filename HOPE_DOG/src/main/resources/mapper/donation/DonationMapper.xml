@@ -29,20 +29,14 @@
             D.DONA_REGIDATE,
             D.DONA_UPDATEDATE,
             C.CENTER_MEMBER_ID,
-            C.CENTER_MEMBER_NAME,
-            CM.DONA_COMMENT_NO,
-            CM.DONA_COMMENT_CONTENT,
-            CM.DONA_COMMENT_REGIDATE,
-            CM.DONA_COMMENT_WRITER
+            C.CENTER_MEMBER_NAME
         FROM
             TBL_DONA D
                 JOIN
             TBL_CENTER_MEMBER C ON D.CENTER_MEMBER_NO = C.CENTER_MEMBER_NO
-                LEFT JOIN
-            TBL_DONA_COMMENT CM ON D.DONA_NO = CM.DONA_NO
         WHERE D.DONA_NO = #{donaNo}
         ORDER BY
-            CM.DONA_COMMENT_REGIDATE DESC
+            D.DONA_REGIDATE DESC
     </select>
 
     <!-- 여기서 부터 페이지네이션 관련 쿼리문-->
@@ -114,7 +108,7 @@
         WHERE DONA_NO = #{donaNo}
     </delete>
 
-    <update id="donationUpdate" parameterType="DonationUpdateDTO">
+    <update id="donationUpdate" parameterType="DonationWriteDTO">
         UPDATE TBL_DONA
         SET DONA_TITLE = #{donaTitle}, DONA_CONTENT = #{donaContent}, DONA_REGIDATE = SYSDATE
         WHERE DONA_NO = #{donaNo}
