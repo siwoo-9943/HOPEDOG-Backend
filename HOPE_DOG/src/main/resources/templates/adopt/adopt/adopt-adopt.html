@@ -57,8 +57,8 @@
               <span th:if="${adopt.adoptNeutering == 'Y'}" th:text="'중성화(O)'"></span>
               <span th:if="${adopt.adoptNeutering == 'N'}" th:text="'중성화(X)'"></span>
             </div>
-            <div class="adopt-post-content"><span th:text="${#dates.format(adopt.adoptBirth, 'yyyy-MM-dd')}"></span>/<span th:text="${adopt.adoptWeight}"></span></div>
-            <div class="adopt-post-content">등록일 : <span th:text="${#dates.format(adopt.adoptRegidate, 'yyyy-MM-dd')}"></span> / 마감일 : <span th:text="${#dates.format(adopt.adoptPeriodEnd, 'yyyy-MM-dd')}"></span></div>
+            <div class="adopt-post-content2"><span th:text="${#dates.format(adopt.adoptBirth, 'yyyy-MM-dd')}"></span>/<span th:text="${adopt.adoptWeight}"></span></div>
+            <div class="adopt-post-content2">등록일 : <span th:text="${#dates.format(adopt.adoptRegidate, 'yyyy-MM-dd')}"></span> / 마감일 : <span th:text="${#dates.format(adopt.adoptPeriodEnd, 'yyyy-MM-dd')}"></span></div>
           </div>
       </div>
 
@@ -94,7 +94,11 @@
       </div>
 
       <br>
+
+
   </main>
+
+
 
 </body>
 

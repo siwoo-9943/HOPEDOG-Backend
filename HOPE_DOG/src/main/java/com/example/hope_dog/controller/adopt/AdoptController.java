@@ -76,9 +76,12 @@ public class AdoptController {
     // 입양 글 등록 처리
     @PostMapping("/adopt/adoptWriteRegi")
     public String postAdoptWrite(
-            @DateTimeFormat(pattern = "yyyy-MM-dd") AdoptWriteDTO adoptWriteDTO) {
+            @DateTimeFormat(pattern = "yyyy-MM-dd") AdoptWriteDTO adoptWriteDTO,
+            HttpSession session) {
         // 서비스 호출하여 데이터베이스에 저장
         adoptService.registerAdoption(adoptWriteDTO);
+
+        // 리다이렉트
         return "redirect:/adopt/adopt";
     }
 
@@ -94,7 +97,8 @@ public class AdoptController {
         // 서비스 호출
         adoptService.adoptEnd(adoptDetailDTO);
 
-        return "redirect:/adopt/adopt"; // 리다이렉트
+//        return "redirect:/adopt/adopt"; // 리다이렉트
+        return "redirect:/adopt/adopt/adoptdetail?adoptNo=" + adoptNo;
     }
 
     //입양글삭제처리
@@ -113,8 +117,8 @@ public class AdoptController {
     }
 
     // 입양 글 신고 처리
-    @GetMapping("/adopt/adoptReport")
-    public String postAdoptReport(@RequestParam("adoptNo") Long adoptNo, @RequestParam("reportContent") String reportContent,
+    @GetMapping("/adopt/adoptContentReport")
+    public String AdoptContentReport(@RequestParam("adoptNo") Long adoptNo, @RequestParam("reportContent") String reportContent,
                                   AdoptReportDTO adoptReportDTO, HttpSession session) {
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
         Long memberNo = (Long) session.getAttribute("memberNo");
@@ -123,9 +127,9 @@ public class AdoptController {
         adoptReportDTO.setReportContentNo(adoptNo);
         adoptReportDTO.setReportWriter(centerMemberNo != null ? centerMemberNo : memberNo);
 
-        adoptService.adoptReport(adoptReportDTO);
+        adoptService.adoptContentReport(adoptReportDTO);
 
-        return "redirect:/adopt/adopt";
+        return "redirect:/adopt/adopt/adoptdetail?adoptNo=" + adoptNo;
     }
 
     //입양글수정
@@ -152,7 +156,75 @@ public class AdoptController {
         adoptService.registerRequest(adoptRequestDTO);
         return "redirect:/adopt/adopt";
     }
+    
+    //입양 댓글 등록
+    @GetMapping("/adopt/adoptCommentRegi")
+    public String adoptCommentRegi(AdoptCommentDTO adoptCommentDTO, HttpSession session) {
+        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
+        Long memberNo = (Long) session.getAttribute("memberNo");
 
+        adoptCommentDTO.setAdoptCommentWriter(centerMemberNo != null ? centerMemberNo : memberNo);
+
+        Long adoptNo = adoptCommentDTO.getAdoptNo();
+
+        adoptService.adoptCommentRegi(adoptCommentDTO);
+
+        return "redirect:/adopt/adopt/adoptdetail?adoptNo=" + adoptNo;
+    }
+
+    //입양 댓글 수정
+    @PostMapping("/adopt/adoptCommnetModi")
+    public String adoptCommentModi(AdoptCommentDTO adoptCommentDTO, HttpSession session,
+                                   @RequestParam("adoptNo") Long adoptNo) {
+        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
+        Long memberNo = (Long) session.getAttribute("memberNo");
+
+        // 댓글 작성자 설정
+        adoptCommentDTO.setAdoptCommentWriter(centerMemberNo != null ? centerMemberNo : memberNo);
+
+        // 댓글 수정 서비스 호출
+        adoptService.adoptCommentModi(adoptCommentDTO);
+
+        // 수정 후 상세 페이지로 리다이렉트
+        return "redirect:/adopt/adopt/adoptdetail?adoptNo=" + adoptNo;
+    }
+
+    //입양 댓글 삭제
+    @PostMapping("/adopt/adoptCommnetDelete")
+    public String adoptCommentDelete(AdoptCommentDTO adoptCommentDTO, HttpSession session,
+                                     @RequestParam("adoptNo") Long adoptNo,
+                                     @RequestParam("adoptCommentNo") Long adoptCommentNo) {
+        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
+        Long memberNo = (Long) session.getAttribute("memberNo");
+
+        // 댓글 작성자 설정
+        adoptCommentDTO.setAdoptCommentWriter(centerMemberNo != null ? centerMemberNo : memberNo);
+        adoptCommentDTO.setAdoptCommentNo(adoptCommentNo);
+
+        // 댓글 삭제 서비스 호출
+        adoptService.adoptCommentDelete(adoptCommentDTO);
+
+        // 삭제 후 상세 페이지로 리다이렉트
+        return "redirect:/adopt/adopt/adoptdetail?adoptNo=" + adoptNo;
+    }
+
+    //입양 댓글 신고
+    @GetMapping("/adopt/adoptCommentReport")
+    public String AdoptCommentReport(@RequestParam("adoptNo") Long adoptNo, @RequestParam("reportComment") String reportComment,
+                                     @RequestParam("adoptCommentNo") Long adoptCommentNo,
+                                  AdoptReportDTO adoptReportDTO, HttpSession session) {
+        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
+        Long memberNo = (Long) session.getAttribute("memberNo");
+
+        adoptReportDTO.setReportComment(reportComment);
+        adoptReportDTO.setReportCommentNo(adoptCommentNo);
+        adoptReportDTO.setReportContentNo(adoptNo);
+        adoptReportDTO.setReportWriter(centerMemberNo != null ? centerMemberNo : memberNo);
+
+        adoptService.adoptCommentReport(adoptReportDTO);
+
+        return "redirect:/adopt/adopt/adoptdetail?adoptNo=" + adoptNo;
+    }
     //임시보호 메인
     @GetMapping("/protect")
     public String protectMain() {

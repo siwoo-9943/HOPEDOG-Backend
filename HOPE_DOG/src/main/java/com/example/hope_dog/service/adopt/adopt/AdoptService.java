@@ -62,13 +62,33 @@ public class AdoptService {
     }
 
     //입양글 신고처리
-    public void adoptReport(AdoptReportDTO adoptReportDTO) {
-        adoptMapper.adoptReport(adoptReportDTO); // 매퍼 호출
+    public void adoptContentReport(AdoptReportDTO adoptReportDTO) {
+        adoptMapper.adoptContentReport(adoptReportDTO); // 매퍼 호출
     }
 
     //댓글불러오기
     public List<AdoptCommentDTO> getAdoptComment(Long adoptNo) {
         return adoptMapper.adoptComment(adoptNo); // adoptMapper의 메서드 호출
+    }
+
+    //댓글 등록
+    public void adoptCommentRegi(AdoptCommentDTO adoptCommentDTO) {
+        adoptMapper.adoptCommentRegi(adoptCommentDTO);
+    }
+    
+    //댓글 수정
+    public void adoptCommentModi(AdoptCommentDTO adoptCommentDTO) {
+        adoptMapper.adoptCommentModi(adoptCommentDTO);
+    }
+
+    //댓글 삭제
+    public void adoptCommentDelete(AdoptCommentDTO adoptCommentDTO) {
+        adoptMapper.adoptCommentDelete(adoptCommentDTO);
+    }
+    
+    //댓글 신고
+    public void adoptCommentReport(AdoptReportDTO adoptReportDTO) {
+        adoptMapper.adoptCommentReport(adoptReportDTO);
     }
 
     //입양신청서 등록

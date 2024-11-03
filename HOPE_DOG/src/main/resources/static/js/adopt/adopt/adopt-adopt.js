@@ -26,3 +26,5 @@ document.querySelectorAll('.adopt-post').forEach(function(element) {
         location.href = `/adopt/adopt/adoptdetail?adoptNo=${adoptNo}`; // 상세 페이지로 이동
     });
 });
+
+
