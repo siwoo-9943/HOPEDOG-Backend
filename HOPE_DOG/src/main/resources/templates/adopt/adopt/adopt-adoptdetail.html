@@ -27,7 +27,7 @@
       <div class="adopt-detail-box1" th:each="adopt : ${adoptDetailList}">
         <div class="adopt-detail-title" th:text="${adopt.adoptTitle}"></div>
         <div class="adopt-detail-info">
-          <span th:text="'작성자 : ' + ${adopt.centerMemberName}">작성자 : 안성재</span>
+          <span th:text="'작성자 : ' + ${adopt.centerMemberName}"></span>
           <span th:text="'등록일 : ' + ${#dates.format(adopt.adoptRegidate, 'yyyy-MM-dd')}"></span>
         </div>
       </div>
@@ -108,7 +108,7 @@
           <div class="adopt-detail-comment" th:id="'adopt-comment-' + ${iterStat.index}" th:text="${adoptComment.adoptComment}"></div>
 
           <!-- 댓글 수정 form 추가 -->
-          <form th:action="@{/adopt/adopt/adoptCommnetModi(adoptNo=${adoptNo})}" method="post"
+          <form th:action="@{/adopt/adopt/adoptCommentModi(adoptNo=${adoptNo})}" method="post"
                 th:id="'adopt-modifyInput-' + ${iterStat.index}" style="display:none;">
             <input type="hidden" name="adoptCommentNo" th:value="${adoptComment.adoptCommentNo}">
             <input type="hidden" name="adoptNo" th:value="${adoptNo}">

@@ -64,6 +64,48 @@
     <!-- 여기까지 페이지네이션+게시글목록불러오기 -->
 
 
+    <!-- 입양 진행중인 전체게시글 수 -->
+    <select id="selectTotalKeep" resultType="int">
+        SELECT COUNT(ADOPT_NO) FROM TBL_ADOPT WHERE ADOPT_STATUS = 'T'
+    </select>
+
+    <!-- 입양 모집중인 게시글-->
+    <select id="adoptMainKeep" resultType="AdoptMainDTO">
+        SELECT ADOPT_NO, ADOPT_TITLE, ADOPT_INTRODUCE, ADOPT_NAME, ADOPT_GENDER,
+               ADOPT_NEUTERING, ADOPT_BIRTH, ADOPT_WEIGHT, ADOPT_REGIDATE,
+               ADOPT_PERIODEND, CENTER_MEMBER_NO, ADOPT_STATUS
+        FROM TBL_ADOPT
+        WHERE ADOPT_STATUS = 'T'
+        ORDER BY ADOPT_REGIDATE DESC
+    </select>
+
+
+    <!-- 입양 모집중 페이지마다 표시할 게시글-->
+    <select id="selectAllPageKeep" parameterType="Criteria" resultType="AdoptMainDTO">
+    <![CDATA[
+        SELECT ADOPT_NO, ADOPT_TITLE, ADOPT_INTRODUCE, ADOPT_NAME, ADOPT_GENDER,
+               ADOPT_NEUTERING, ADOPT_BIRTH, ADOPT_WEIGHT, ADOPT_REGIDATE,
+               ADOPT_PERIODEND, CENTER_MEMBER_NO, ADOPT_STATUS
+        FROM (
+                 SELECT ADOPT_NO, ADOPT_TITLE, ADOPT_INTRODUCE, ADOPT_NAME,
+                        ADOPT_GENDER, ADOPT_NEUTERING, ADOPT_BIRTH, ADOPT_WEIGHT,
+                        ADOPT_REGIDATE, ADOPT_PERIODEND, CENTER_MEMBER_NO, ADOPT_STATUS,
+                        ROWNUM AS RNUM
+                 FROM (
+                          SELECT ADOPT_NO, ADOPT_TITLE, ADOPT_INTRODUCE, ADOPT_NAME,
+                                 ADOPT_GENDER, ADOPT_NEUTERING, ADOPT_BIRTH, ADOPT_WEIGHT,
+                                 ADOPT_REGIDATE, ADOPT_PERIODEND, CENTER_MEMBER_NO, ADOPT_STATUS
+                          FROM TBL_ADOPT
+                          ORDER BY ADOPT_REGIDATE DESC
+                      )
+             )
+        WHERE RNUM > (#{page} - 1) * #{amount} AND RNUM <= #{page} * #{amount} AND ADOPT_STATUS = 'T'
+        ]]>
+</select>
+    <!-- 여기까지 페이지네이션+게시글목록불러오기 -->
+
+
+
     <!-- 게시글 작성 -->
     <insert id="adoptWrite" parameterType="AdoptWriteDTO">
         <selectKey keyProperty="adoptNo" resultType="Long" order="BEFORE">

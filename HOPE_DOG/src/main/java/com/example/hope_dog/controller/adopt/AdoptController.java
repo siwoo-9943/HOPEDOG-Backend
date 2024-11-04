@@ -41,6 +41,23 @@ public class AdoptController {
         model.addAttribute("AdoptMainList", adoptMainList);
         model.addAttribute("page", page);
         model.addAttribute("centerMemberNo", centerMemberNo); //이건 나만 쓰는거 무시 세션값 html에서 쓸수있게 model추가
+        model.addAttribute("All", true);
+
+        return "adopt/adopt/adopt-adopt";
+    }
+
+    //입양 모집중인 게시글
+    @GetMapping("/adoptKeep")
+    public String adoptListKeep(Criteria criteria, Model model, HttpSession session){
+        List<AdoptMainDTO> adoptMainList = adoptService.findAllPageKeep(criteria);
+        int total = adoptService.findTotalKeep();
+        Page page = new Page(criteria, total);
+        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo"); //이것도 무시 세션값 자겨와서 저장
+
+        model.addAttribute("AdoptMainList", adoptMainList);
+        model.addAttribute("page", page);
+        model.addAttribute("centerMemberNo", centerMemberNo); //이건 나만 쓰는거 무시 세션값 html에서 쓸수있게 model추가
+        model.addAttribute("Keep", true);
 
         return "adopt/adopt/adopt-adopt";
     }
@@ -173,7 +190,7 @@ public class AdoptController {
     }
 
     //입양 댓글 수정
-    @PostMapping("/adopt/adoptCommnetModi")
+    @PostMapping("/adopt/adoptCommentModi")
     public String adoptCommentModi(AdoptCommentDTO adoptCommentDTO, HttpSession session,
                                    @RequestParam("adoptNo") Long adoptNo) {
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
@@ -190,7 +207,7 @@ public class AdoptController {
     }
 
     //입양 댓글 삭제
-    @PostMapping("/adopt/adoptCommnetDelete")
+    @PostMapping("/adopt/adoptCommentDelete")
     public String adoptCommentDelete(AdoptCommentDTO adoptCommentDTO, HttpSession session,
                                      @RequestParam("adoptNo") Long adoptNo,
                                      @RequestParam("adoptCommentNo") Long adoptCommentNo) {
@@ -225,30 +242,7 @@ public class AdoptController {
 
         return "redirect:/adopt/adopt/adoptdetail?adoptNo=" + adoptNo;
     }
-    //임시보호 메인
-    @GetMapping("/protect")
-    public String protectMain() {
 
-        return "adopt/protect/adopt-protect";
-    }
-
-    //임시보호상세글
-    @GetMapping("/protect/protectdetail")
-    public String protectDetail() {
-        return "adopt/protect/adopt-protectdetail";
-    }
-
-    //임시보호글작성
-    @GetMapping("/protect/protectwrite")
-    public String protectWrite() {
-        return "adopt/protect/adopt-protectwrite";
-    }
-
-    //임시보호글수정
-    @GetMapping("/protect/protectmodify")
-    public String protectModify() {
-        return "adopt/protect/adopt-protectmodify";
-    }
 
     //후기메인
     @GetMapping("/review")
@@ -256,23 +250,6 @@ public class AdoptController {
         return "adopt/review/adopt-review";
     }
 
-    //후기상세글
-    @GetMapping("/review/reviewdetail")
-    public String reviewDetail() {
-        return "adopt/review/adopt-reviewdetail";
-    }
-
-    //후기글작성
-    @GetMapping("/review/reviewwrite")
-    public String reviewWrite() {
-        return "adopt/review/adopt-reviewwrite";
-    }
-
-    //후기글수정
-    @GetMapping("/review/reviewmodify")
-    public String reviewModify() {
-        return "adopt/review/adopt-reviewmodify";
-    }
 
 
 }

@@ -21,11 +21,12 @@ public class AdoptService {
         return adoptMapper.main();
     }
 
+    //게시글 조회
     public List<AdoptDetailDTO> getAdoptDetail(Long adoptNo) {
         return adoptMapper.adoptDetail(adoptNo); // adoptMapper의 메서드 호출
     }
 
-    //페이지네이션 관련 service
+    //입양 전체게시글 조회 + 페이지네이션 포함
     public List<AdoptMainDTO> findAll() {
         return adoptMapper.selectAll();
     }
@@ -36,6 +37,19 @@ public class AdoptService {
 
     public List<AdoptMainDTO> findAllPage(Criteria criteria){
         return adoptMapper.selectAllPage(criteria);
+    }
+
+    //입양 모집중 게시글 조회 + 페이지네이션 포함
+    public List<AdoptMainDTO> findAllKeep() {
+        return adoptMapper.selectAllKeep();
+    }
+
+    public int findTotalKeep(){
+        return adoptMapper.selectTotalKeep();
+    }
+
+    public List<AdoptMainDTO> findAllPageKeep(Criteria criteria){
+        return adoptMapper.selectAllPageKeep(criteria);
     }
 
     

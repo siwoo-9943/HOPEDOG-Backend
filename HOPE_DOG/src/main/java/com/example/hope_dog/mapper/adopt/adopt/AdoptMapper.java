@@ -21,6 +21,13 @@ public interface AdoptMapper {
 
     List<AdoptMainDTO> selectAllPage(Criteria criteria);
 
+    //입양 모집중 게시글(페이지네이션 포함)
+    List<AdoptMainDTO> selectAllKeep();
+
+    int selectTotalKeep();
+
+    List<AdoptMainDTO> selectAllPageKeep(Criteria criteria);
+
     //입양글작성
     void adoptWrite(AdoptWriteDTO adoptWriteDTO);
 

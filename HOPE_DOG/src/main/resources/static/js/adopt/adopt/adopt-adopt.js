@@ -27,4 +27,11 @@ document.querySelectorAll('.adopt-post').forEach(function(element) {
     });
 });
 
-
+//전체게시글 / 모집중인 게시글 구분
+function filterAdoption(status) {
+    if (status === 'all') {
+        location.href = '/adopt/adopt';
+    } else if (status === 'keep') {
+        location.href = '/adopt/adoptKeep';
+    }
+}

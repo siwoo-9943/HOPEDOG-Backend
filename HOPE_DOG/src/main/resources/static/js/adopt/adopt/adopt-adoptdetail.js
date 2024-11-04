@@ -99,7 +99,7 @@ function CommentDeleteClick(adoptCommentNo, adoptNo) {
     // 삭제 요청을 위한 폼 생성
     const form = document.createElement('form');
     form.method = 'post'; // POST 방식
-    form.action = `/adopt/adopt/adoptCommnetDelete`; // URL 설정
+    form.action = `/adopt/adopt/adoptCommentDelete`; // URL 설정
 
     // adoptCommentNo와 adoptNo를 위한 input 요소 추가
     const adoptCommentNoInput = document.createElement('input');
