@@ -1616,4 +1616,5 @@
              NS.NOTEBOX_SEND_TITLE LIKE '%' || #{keyword} || '%' OR
              NS.NOTEBOX_SEND_CONTENT LIKE '%' || #{keyword} || '%')
     </select>
+    
 </mapper>
