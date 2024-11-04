@@ -157,6 +157,7 @@ public class commuController {
         Long memberNo = (Long) session.getAttribute("memberNo");
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
         Long writerNo = memberNo != null ? memberNo : centerMemberNo;
+        System.out.println("컨트롤러 삭제:" + writerNo);
         commuService.commuDelete(commuNo,writerNo);
 
         return "redirect:/commu/main";
