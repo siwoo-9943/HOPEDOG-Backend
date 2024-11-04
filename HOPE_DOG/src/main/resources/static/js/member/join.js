@@ -59,6 +59,22 @@ document.addEventListener('DOMContentLoaded', function() {
         memberDetailAddress: 'detailAddress-error' // <span id="detailAddress-error">
     };
 
+    // 필드 한글 이름 매핑
+    const fieldNames = {
+        memberName: '이름',
+        memberNickname: '닉네임',
+        memberGender: '성별',
+        memberId: '아이디',
+        memberPw: '비밀번호',
+        passwordConfirm: '비밀번호 확인',
+        memberPhoneNumber: '연락처',
+        phoneVerifyCode: '인증번호',
+        memberEmail: '이메일',
+        memberZipcode: '우편번호',
+        memberAddress: '주소',
+        memberDetailAddress: '상세주소'
+    };
+
     // 성별 선택
     genderBtns.forEach(btn => {
         btn.addEventListener('click', function() {
@@ -414,13 +430,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // 실시간 입력값 검사
+    // validateInput 함수 수정
     function validateInput(inputElement) {
         const value = inputElement.value.trim();
         const rule = validationRules[inputElement.name];
+        // 필드의 한글 이름 가져오기
+        const fieldName = fieldNames[inputElement.name] || fieldNames[inputElement.id] || inputElement.name;
 
         if (inputElement.required && value === '') {
-            const fieldName = inputElement.previousElementSibling?.innerText?.replace(' *', '') || inputElement.name;
             showError(inputElement, `${fieldName}을(를) 입력해주세요.`);
             return false;
         }
