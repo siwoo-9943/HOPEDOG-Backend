@@ -8,6 +8,7 @@
   <link rel="stylesheet" th:href="@{/css/centermypage/center-mypage-writeinfo.css}">
   <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
   <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css" />
 </head>
 
 <body>
@@ -32,9 +33,10 @@
   <div class="center-member-profile-navboard">
     <nav>
       <ul class="center-member-profile-navboard-ul">
-        <li><a th:href="@{/centerMypage/writeInfoCommuList}">커뮤니티</a></li><div id="choice"></div>
-        <li><a href="./center-mypage-writeinfo-volun.html">봉사모집글</a></li>
-        <li><a href="./center-mypage-writeinfo-adopt.html">안심입양</a></li>
+        <li><a th:href="@{/centerMypage/writeInfoCommuList}">커뮤니티</a></li>
+        <div id="choice"></div>
+        <li><a th:href="@{/centerMypage/writeInfoVolList}">봉사모집글</a></li>
+        <li><a th:href="@{/centerMypage/writeInfoAdoptList}">안심입양</a></li>
       </ul>
     </nav>
   </div>
@@ -57,12 +59,12 @@
             <ul class="center-member-profile-cumuboard-contentbox">
               <li th:text="${commuList.commuCate}">커뮤니티</li>
               <li>
-                <a th:href="@{centerMypage/commuDetail(id=${commuList.commuNumber})}"
+                <a th:href="@{centerMypage/commuDetail(commuNo=${commuList.commuNo})}"
                    th:text="${commuList.commuTitle}">제목</a>
                 <span th:text="'[' + ${commuList.commentCount} + ']'">[댓글수]</span>
               </li>
-              <li th:text="${commuList.commuCenterName}">센터명</li>
-              <li th:text="${#dates.format(commuList.commuRegiDate, 'yyyy.MM.dd')}">날짜</li>
+              <li th:text="${commuList.centerName}">센터명</li>
+              <li th:text="${#dates.format(commuList.commuRegiDate, 'yyyy/MM/dd')}">날짜</li>
             </ul>
           </div>
         </li>
@@ -71,15 +73,16 @@
   </div>
 
   <!-- 페이지네이션 -->
-  <div class="pagination">
-    <button class="prev">◀</button>
-    <button class="page">1</button>
-    <button class="page">2</button>
-    <button class="page">3</button>
-    <button class="page">4</button>
-    <button class="page">5</button>
-    <button class="next">▶</button>
-  </div>
+  <div id="pagination" class="pagination"></div>
+  <!--  <div class="pagination">-->
+  <!--    <button class="prev">◀</button>-->
+  <!--    <button class="page">1</button>-->
+  <!--    <button class="page">2</button>-->
+  <!--    <button class="page">3</button>-->
+  <!--    <button class="page">4</button>-->
+  <!--    <button class="page">5</button>-->
+  <!--    <button class="next">▶</button>-->
+  <!--  </div>-->
 
 
 </main>
@@ -87,4 +90,6 @@
 <footer th:replace="~{/fragment/footer :: footer}"></footer>
 
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
 </html>
