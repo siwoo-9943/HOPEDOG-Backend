@@ -4,6 +4,7 @@ import com.example.hope_dog.dto.centerMember.CenterMemberDTO;
 import com.example.hope_dog.dto.commu.CommuCommentDTO;
 import com.example.hope_dog.dto.commu.CommuDTO;
 import com.example.hope_dog.dto.commu.CommuDetailDTO;
+import com.example.hope_dog.dto.commu.CommuReportDTO;
 import com.example.hope_dog.dto.member.MemberDTO;
 import com.example.hope_dog.dto.page.Criteria;
 import org.apache.ibatis.annotations.Mapper;
@@ -25,7 +26,7 @@ public interface CommuMapper {
     void commuGood(CommuDTO commuDTO);
 
     //커뮤니티 인기 카테고리
-//    List<CommuDTO> findCateByGood(@Param("cate") String cate);
+    List<CommuDTO> findCateByGood();
 
     // 커뮤니티 검색
     List<CommuDTO> searchCommu(@Param("params") Map<String, Object> params);
@@ -41,6 +42,11 @@ public interface CommuMapper {
     //글 작성
     void insertWrite(CommuDTO commuDTO);
 
+    //글삭제
+    void commuDelete(CommuDetailDTO commuDetailDTO);
+
+    //글 신고
+    void commuReport(CommuReportDTO commuReportDTO);
 
 
 

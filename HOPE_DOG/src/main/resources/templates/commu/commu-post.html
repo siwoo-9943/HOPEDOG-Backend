@@ -9,6 +9,7 @@
   <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
   <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
   <script defer th:src="@{/js/main/main.js}"></script>
+
 </head>
 
 <body>
@@ -32,7 +33,7 @@
 
       <!-- 제목/작성자/등록일 크기 -->
       <div class="comm-detail-box1">
-        <div class="comm-detail-title" th:text="${commuDetail.commuTitle}">[1]
+        <div class="comm-detail-title" th:text="${commuDetail.commuTitle}">
         </div>
         <div class="comm-detail-info"><span>작성자 :
                 <span th:if="${commuDetail.commuWriter % 2 != 0}" th:text="${commuDetail.memberNickname}"></span>
@@ -59,12 +60,17 @@
       <!-- 버튼 -->
       <div class="comm-detail-box3">
         <div>
-          <button class="comm-modify-button" onclick="modifyAlert()">수정</button>　
-          <button class="comm-delete-button" onclick="deleteAlert()">삭제</button>
+          <!-- 작성자 ID가 일치할 때만 수정 버튼과 삭제 버튼 표시 -->
+          <button class="comm-modify-button" type="button" onclick="modifyAlert()">수정</button>
+          <button class="comm-delete-button" type="button" onclick="deleteAlert()">삭제</button>
         </div>
-        <button class="comm-end-button" onclick="endAlert()">신고</button>
-      </div>
 
+        <!-- 작성자 ID가 일치하지 않을 때 신고 버튼 표시 -->
+        <button class="comm-end-button"
+                onclick="ReportAlert()">신고</button>
+
+        <span class="commuNo" th:text="${commuDetail.commuNo}" style="display: none;"></span>
+      </div>
       <br>
 
       <!-- 댓글창 -->
@@ -91,6 +97,7 @@
       <br>
     </div>
   </main>
+<script defer th:src="@{/js/commu/commu-post.js}"></script>
 </body>
 
 <footer>
@@ -104,6 +111,5 @@
 </footer>
 
 
-<!--<script defer src="../../js/commu/commu-post.js"></script>-->
 
 </html>
