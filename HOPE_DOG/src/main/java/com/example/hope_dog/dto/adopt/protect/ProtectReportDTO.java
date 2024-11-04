@@ -1,4 +1,4 @@
-package com.example.hope_dog.dto.adopt.adopt;
+package com.example.hope_dog.dto.adopt.protect;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Getter @Setter @ToString
 @NoArgsConstructor
-public class AdoptReportDTO {
+public class ProtectReportDTO {
     private Long reportNo;
     private String reportCate; //게시글 카테고리
     private String reportContent; // 신고 사유(게시글)
