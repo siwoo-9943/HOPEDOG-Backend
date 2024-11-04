@@ -124,18 +124,20 @@
 
     <div class="chat-container">
         <div class="chat-icon" id="chatIcon" role="button" aria-label="채팅 시작하기">
-            <div class="chat-bubble"></div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+            </svg>
         </div>
         <div class="chat-window" id="chatWindow">
             <div class="chat-header">
                 <h3>무엇을 도와드릴까요?</h3>
-                <button class="close-btn" id="closeChat">X</button>
+                <button class="close-btn" id="closeChat" aria-label="채팅 닫기">×</button>
             </div>
-            <div class="chat-messages" id="chatMessages">
-                <!-- 메세지 -->
-            </div>
-            <div class="chat-questions" id="chatQuestions">
-                <!-- 질문 -->
+            <div class="chat-messages" id="chatMessages"></div>
+            <div class="chat-questions" id="chatQuestions"></div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="메시지를 입력하세요..." aria-label="메시지 입력">
+                <button id="sendMessage" aria-label="메시지 보내기">전송</button>
             </div>
         </div>
     </div>
