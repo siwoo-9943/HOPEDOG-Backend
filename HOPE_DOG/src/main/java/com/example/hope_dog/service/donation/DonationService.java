@@ -1,9 +1,6 @@
 package com.example.hope_dog.service.donation;
 
-import com.example.hope_dog.dto.donation.DonationListDTO;
-import com.example.hope_dog.dto.donation.DonationUpdateDTO;
-import com.example.hope_dog.dto.donation.DonationViewDTO;
-import com.example.hope_dog.dto.donation.DonationWriteDTO;
+import com.example.hope_dog.dto.donation.*;
 import com.example.hope_dog.dto.page.Criteria;
 import com.example.hope_dog.mapper.donation.DonationMapper;
 import lombok.RequiredArgsConstructor;
@@ -56,6 +53,13 @@ public class DonationService {
         return donationMapper.selectById(donaNo).orElseThrow(() -> new IllegalStateException("유효하지 않은 게시물 번호"));
     }
 
+//        DonationWriteDTO donationWriteDTO = donationService.getDonationById(id);
+//    public DonationWriteDTO getDonationById(Long donaNo){
+//        return donationMapper.selectById(donaNo).orElseThrow(() -> new IllegalStateException("유효하지 않은 게시물 번호"));
+//
+//    }
+
+
     // modify
     public void donationUpdate(DonationWriteDTO donationWriteDTO) {
         donationMapper.donationUpdate(donationWriteDTO);
@@ -80,5 +84,25 @@ public class DonationService {
 //            fileMapper.insertFile(fileDTO);
 //        }
 //    }
+
+    // 댓글 목록
+    public List<DonaCommentDTO> donationComment(Long donaNo) {
+        return donationMapper.donationComment(donaNo);
+    }
+
+    // 댓글 등록
+    public void insertComment(DonaCommentDTO donaCommentDTO) {
+        donationMapper.insertComment(donaCommentDTO);
+    }
+
+    // 댓글 수정
+    public void updateComment(DonaCommentDTO donaCommentDTO) {
+        donationMapper.updateComment(donaCommentDTO);
+    }
+
+    // 댓글 삭제
+    public void deleteComment(Long donaNo) {
+        donationMapper.deleteComment(donaNo);
+    }
 
 }

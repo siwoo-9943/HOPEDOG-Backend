@@ -41,3 +41,4 @@ function deleteClick() {
     location.href = `/dona/modify?donaNo=${donaNo}`;
   });
 
+

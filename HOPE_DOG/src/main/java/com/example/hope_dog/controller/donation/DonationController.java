@@ -1,10 +1,8 @@
 package com.example.hope_dog.controller.donation;
 
+import com.example.hope_dog.dto.adopt.adopt.AdoptCommentDTO;
 import com.example.hope_dog.dto.adopt.adopt.AdoptDetailDTO;
-import com.example.hope_dog.dto.donation.DonationListDTO;
-import com.example.hope_dog.dto.donation.DonationUpdateDTO;
-import com.example.hope_dog.dto.donation.DonationViewDTO;
-import com.example.hope_dog.dto.donation.DonationWriteDTO;
+import com.example.hope_dog.dto.donation.*;
 import com.example.hope_dog.dto.page.Criteria;
 import com.example.hope_dog.dto.page.Page;
 import com.example.hope_dog.mapper.donation.DonationMapper;
@@ -16,6 +14,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -46,11 +45,16 @@ public class DonationController {
     @GetMapping("/view/{donaNo}")
     public String view(@PathVariable("donaNo") Long donaNo, Model model, HttpSession session) {
         List<DonationViewDTO> donationViewList = donationService.getDonationViewList(donaNo);
+        List<DonaCommentDTO> donationComment = donationService.donationComment(donaNo);
+
         System.out.println("DonationViewList: " + donationViewList);  // 로그 추가
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
+        Long memberNo = (Long) session.getAttribute("memberNo");
 
         model.addAttribute("centerMemberNo", centerMemberNo);
+        model.addAttribute("memberNo", memberNo);
         model.addAttribute("donationViewList", donationViewList);
+        model.addAttribute("donationComment", donationComment);
 
         return "donation/donation-detail";
     }
@@ -86,10 +90,52 @@ public class DonationController {
         return "redirect:/dona/list"; // 리다이렉트
     }
 
+
     // 글 수정
-    @GetMapping("/modify")
-    public String donationUpdate() {
-        return "/donation/donation-modify";
+//    @GetMapping("/modify")
+//    public String donationUpdate(@RequestParam("donaNo") Long donaNo, Model model) {
+//
+//
+//        return "/donation/donation-modify";
+//    }
+
+    // 글 수정 페이지 이동
+    @GetMapping("/modify/{donaNo}")
+    public String donationModify(@PathVariable Long donaNo, Model model, HttpSession session) {
+
+        DonationViewDTO donation = donationService.findById(donaNo);
+        model.addAttribute("donation", donation);
+        //        DonationWriteDTO donationWriteDTO = donationService.findById(donaNo);
+//        DonationWriteDTO donationWriteDTO = donationService.getDonationById(id);
+//        model.addAttribute("donation", donationWriteDTO);
+        return "donation/donation-modify"; // 수정 페이지 템플릿 이름
     }
+
+    // 글 수정 등록
+    @PostMapping("/modifyRegi")
+    public String donationUpdate(DonationWriteDTO donationWriteDTO) {
+        donationService.donationUpdate(donationWriteDTO);
+        return "redirect:/dona/list"; // 수정 후 목록으로 리다이렉트
+    }
+
+/*    // 댓글 등록
+    @PostMapping("/writeComment")
+    public String insertComment(@RequestParam DonationWriteDTO donationWriteDTO, @PathVariable("donaNo") Long donaNo) {
+        donationWriteDTO.setDonaNo(donaNo);
+        donationWriteDTO.setCenterMemberNo();
+    }*/
+
+    // 댓글 삭제
+//    @GetMapping("/deleteComment")
+//    public String deleteComment(@RequestParam("donaNo") Long donaNo) {
+//        DonaCommentDTO donaCommentDTO = new DonaCommentDTO();
+//        donaCommentDTO.setDonaNo(donaNo);
+//
+//        donationService.donationComment(donaNo);
+//
+//        return "redirect:/dona/view/" + donaNo;
+//    }
+
+//    @DeleteMapping
 
 }

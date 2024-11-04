@@ -69,10 +69,10 @@
         <div class="member-notebox-contentsbox" th:each="noteS : ${noteboxSendList}">
                 <ul class="member-notebox-contentbox">
                     <li>
-                        <div th:text="${noteS.noteboxSendNo}"></div>
+                        <div th:text="${noteS.noteboxReceiverName}"></div>
                     </li>
                     <li>
-                        <div th:text="${noteS.noteboxReceiverName}"></div>
+                        <div th:text="${noteS.noteboxSendR}"></div>
                     </li>
                     <li>
                         <div th:text="${noteS.noteboxSendTitle}"></div>

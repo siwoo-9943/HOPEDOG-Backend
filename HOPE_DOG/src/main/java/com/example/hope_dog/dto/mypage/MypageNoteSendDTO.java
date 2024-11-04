@@ -12,6 +12,7 @@ import java.util.Date;
 @ToString
 @NoArgsConstructor
 public class MypageNoteSendDTO {
+    private String memberNickname;
     private Long noteboxSendNo; // NOTEBOX_SEND_NO
     private String noteboxSendTitle; // NOTEBOX_SEND_TITLE
     private String noteboxSendContent; // NOTEBOX_SEND_CONTENT

@@ -16,7 +16,7 @@ public class MypageNoteReceiveDTO {
     //상태 송신자 수신자 제목 내용 날짜
     //NOTEBOX_RECEIVE_READ / NOTEBOX_RECEIVE_S / NOTEBOX_RECEIVE_R / NOTEBOX_RECEIVE_TITLE / NOTEBOX_RECEIVE_CONTENT
     //NOTEBOX_RECEIVE_REGIDATE
-
+    private String memberNickname;
     private Long noteboxReceiveNo; // NOTEBOX_RECEIVE_NO
     private String noteboxReceiveTitle; // NOTEBOX_RECEIVE_TITLE
     private String noteboxReceiveContent; // NOTEBOX_RECEIVE_CONTENT

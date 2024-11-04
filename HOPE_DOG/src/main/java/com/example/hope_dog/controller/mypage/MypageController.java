@@ -170,7 +170,7 @@ public class MypageController {
     //보낸쪽지함
     @GetMapping("/noteboxSendList")
     public String sendList(Model model) {
-        Long memberNo = (Long) session.getAttribute("memberNo"); // 세션에서 센터회원 번호 가져오기
+        Long memberNo = (Long) session.getAttribute("memberNo"); // 세션에서 회원 번호 가져오기
         if (memberNo == null) {
             log.error("세션에서 centerMemberNo를 찾을 수 없습니다.");
             return "redirect:/login"; // 세션이 없으면 로그인 페이지로 리다이렉트
@@ -186,11 +186,12 @@ public class MypageController {
     //받은쪽지함
     @GetMapping("/noteboxReceiveList")
     public String receiveList(Model model) {
-        Long memberNo = (Long) session.getAttribute("memberNo"); // 세션에서 센터회원 번호 가져오기
+        Long memberNo = (Long) session.getAttribute("memberNo"); // 세션에서 회원 번호 가져오기
         if (memberNo == null) {
             log.error("세션에서 memberNo를 찾을 수 없습니다.");
             return "redirect:/login"; // 세션이 없으면 로그인 페이지로 리다이렉트
         }
+
 
         List<MypageNoteReceiveDTO> noteboxReceiveList = mpNoteBoxService.getReceiveList(memberNo);
         model.addAttribute("noteboxReceiveList", noteboxReceiveList);
