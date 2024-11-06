@@ -4,7 +4,7 @@ $(document).ready(function () {
         const itemList = [];
         
         $(".checkbox:checked").each(function () {
-            itemList.push($(this).data("notebox-receive-no"));
+            itemList.push($(this).data("notebox-send-no"));
         });
 
         if (itemList.length === 0) {
@@ -13,7 +13,7 @@ $(document).ready(function () {
         }
         
         $.ajax({
-            url: '/admin/deleteNoteIn',
+            url: '/admin/deleteNoteOut',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(itemList),  // 배열만 전송
@@ -31,11 +31,11 @@ $(document).ready(function () {
     $(".deleteOneButton").click(function () {
         const itemList = [];
 
-        itemList.push($(this).data("notebox-receive-no"));
+        itemList.push($(this).data("notebox-send-no"));
 
         // Ajax 요청을 통해 서버로 memberNo 전송
         $.ajax({
-            url: '/admin/deleteNoteIn',
+            url: '/admin/deleteNoteOut',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(itemList),  // 배열만 전송
