@@ -89,8 +89,10 @@
                 LEFT JOIN TBL_MEMBER M ON C.COMMU_WRITER = M.MEMBER_NO
                 LEFT JOIN TBL_CENTER_MEMBER CM ON C.COMMU_WRITER = CM.CENTER_MEMBER_NO
         WHERE
-            (M.MEMBER_NICKNAME LIKE CONCAT('%', #{memberNickName}, '%') OR
-             CM.CENTER_MEMBER_NAME LIKE CONCAT('%', #{centerMemberName}, '%'))
+            (M.MEMBER_NICKNAME LIKE '%' || #{memberNickName} || '%' OR
+             CM.CENTER_MEMBER_NAME LIKE '%' || #{centerMemberName} || '%')
+          AND (C.COMMU_TITLE LIKE '%' || #{title} || '%' OR C.COMMU_CONTENT LIKE '%' || #{title} || '%')
+        ORDER BY C.COMMU_REGIDATE DESC
     </select>
 
 
@@ -116,23 +118,7 @@
         WHERE C.COMMU_NO = #{commuNo}
     </select>
 
-    <!-- 댓글 조회 -->
-    <select id="selectCommentsByCommuNo" parameterType="long" resultType="CommuCommentDTO">
-        SELECT CC.COMMU_COMMENT_NO,
-               CC.COMMU_NO,
-               CC.COMMU_COMMENT,
-               CC.COMMU_COMMET_REGIDATE,
-               CC.COMMU_UPDATEDATE,
-               CC.COMMU_COMMENT_WRITER,
-               M.MEMBER_NO,
-               M.MEMBER_NICKNAME,
-               CM.CENTER_MEMBER_NO,
-               CM.CENTER_MEMBER_NAME
-        FROM TBL_COMMU_COMMENT CC
-                 LEFT JOIN TBL_MEMBER M ON CC.COMMU_COMMENT_WRITER = M.MEMBER_NO AND MOD(M.MEMBER_NO, 2) != 0
-             LEFT JOIN TBL_CENTER_MEMBER CM ON CC.COMMU_COMMENT_WRITER = CM.CENTER_MEMBER_NO AND MOD(CM.CENTER_MEMBER_NO, 2) = 0
-        WHERE CC.COMMU_NO = #{commuNo}
-    </select>
+
 
 <!--    게시글 작성-->
     <insert id="insertWrite" parameterType="CommuDTO">
@@ -162,7 +148,66 @@
         INSERT INTO TBL_REPORT(
         REPORT_NO, REPORT_CATE, REPORT_CONTENT, REPORT_WRITER, REPORT_CONTENT_NO
         ) VALUES (
-        #{report_no},'커뮤니티',#{reportContent}, #{reportWriter},#{reportContentNo}
+        #{reportNo},'커뮤',#{reportContent}, #{reportWriter},#{reportContentNo}
+        )
+    </insert>
+
+    <!-- 댓글불러오기 -->
+    <select id="commuComment" parameterType="Long" resultType="CommuCommentDTO">
+        SELECT
+            cc.COMMU_COMMENT_NO,
+            cc.COMMU_COMMENT,
+            cc.COMMU_COMMET_REGIDATE,
+            cc.COMMU_COMMENT_WRITER,
+            CASE
+                WHEN MOD(cc.COMMU_COMMENT_WRITER, 2) != 0 THEN m.MEMBER_NAME
+                WHEN MOD(cc.COMMU_COMMENT_WRITER, 2) = 0 THEN cm.CENTER_MEMBER_NAME
+                END AS COMMENT_WRITER_NAME
+        FROM
+            TBL_COMMU_COMMENT cc
+                LEFT JOIN TBL_MEMBER m ON MOD(cc.COMMU_COMMENT_WRITER,  2) != 0
+                AND cc.COMMU_COMMENT_WRITER = m.MEMBER_NO
+                LEFT JOIN TBL_CENTER_MEMBER cm ON MOD(cc.COMMU_COMMENT_WRITER, 2) = 0
+                AND cc.COMMU_COMMENT_WRITER = cm.CENTER_MEMBER_NO
+        WHERE
+            cc.COMMU_NO = #{commuNo}
+    </select>
+
+<!--    댓글등록-->
+    <insert id="commuCommentRegi" parameterType="CommuCommentDTO">
+        <selectKey keyProperty="commuCommentNo" resultType="Long" order="BEFORE">
+            SELECT SEQ_COMMU_COMMENT.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_COMMU_COMMENT(
+        COMMU_COMMENT_NO,COMMU_COMMENT,COMMU_COMMET_REGIDATE,
+        COMMU_UPDATEDATE,COMMU_COMMENT_WRITER,COMMU_NO
+        )VALUES(
+        #{commuCommentNo},#{commuComment},SYSDATE,SYSDATE,#{commuCommentWriter},#{commuNo}
+        )
+    </insert>
+
+<!--    댓글 수정-->
+    <update id="commuCommentModi" parameterType="CommuCommentDTO">
+        UPDATE TBL_COMMU_COMMENT
+        SET COMMU_COMMENT = #{commuComment}
+        WHERE COMMU_COMMENT_WRITER = #{commuCommentWriter} and COMMU_COMMENT_NO = #{commuCommentNo} AND COMMU_NO=#{commuNo}
+    </update>
+
+<!--    댓글 삭제-->
+    <delete id="commuCommentDelete" parameterType="CommuCommentDTO">
+        DELETE FROM TBL_COMMU_COMMENT
+        WHERE COMMU_COMMENT_WRITER = #{commuCommentWriter} and COMMU_COMMENT_NO = #{commuCommentNo} AND COMMU_NO=#{commuNo}
+    </delete>
+
+    <!-- 댓글 신고 처리 -->
+    <insert id="commuCommentReport" parameterType="CommuReportDTO">
+        <selectKey keyProperty="reportNo" resultType="Long" order="BEFORE">
+            SELECT SEQ_COMMENT_REPORT.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_COMMENT_REPORT (
+        COMMENT_REPORT_NO, COMMENT_REPORT_CATE, COMMENT_REPORT, COMMENT_REPORT_WRITER, COMMENT_NO, CONTENT_NO
+        ) VALUES (
+        #{reportNo}, '커뮤', #{reportComment}, #{reportWriter},#{reportCommentNo}, #{reportContentNo}
         )
     </insert>
 

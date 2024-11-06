@@ -6,13 +6,11 @@ import com.example.hope_dog.dto.commu.CommuDTO;
 import com.example.hope_dog.dto.commu.CommuDetailDTO;
 import com.example.hope_dog.dto.commu.CommuReportDTO;
 import com.example.hope_dog.dto.member.MemberDTO;
-import com.example.hope_dog.dto.page.Criteria;
 import com.example.hope_dog.mapper.commu.CommuMapper;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.*;
 
@@ -61,6 +59,7 @@ public class CommuService {
         commuMapper.commuGood(commuDTO);
     }
 
+
     //인기 게시글 따로 보여주는
     public List<CommuDTO> cateCommuGood() {
         return commuMapper.findCateByGood(); // 인기 게시글을 조회하는 메서드로 수정
@@ -94,23 +93,20 @@ public class CommuService {
 
         return commuList; // 작성자 정보가 설정된 결과 리스트 반환
     }
+
+    //검색
+    public List<CommuDTO> searchCommu(String memberNickName, String centerMemberName,String title) {
+        return commuMapper.searchCommu(memberNickName,centerMemberName,title);
+    }
+
     //게시글 상세
+    public List<CommuDetailDTO> selectCommuByNo(Long commuNo) {
+        return commuMapper.selectCommuByNo(commuNo);
+    }
 
-    // 게시글 상세 정보 및 댓글 조회 메소드
-    public CommuDetailDTO getCommuDetail(Long commuNo) {
-
-        // 게시글 정보 조회
-        CommuDetailDTO commuDetail = commuMapper.selectCommuByNo(commuNo); // 기존 메소드와 동일
-        // 작성자 정보 세팅
-        setWriterInfo(commuDetail.getCommuWriter(), commuDetail); // writerNo를 전달
-        System.out.println("서비스 게시글 작성자 :" + commuDetail.getCommuWriter());
-
-        // 댓글 정보 조회
-        List<CommuCommentDTO> comments = commuMapper.selectCommentsByCommuNo(commuNo); // 댓글 리스트 조회
-        System.out.println("댓글 : " + comments.size());
-        commuDetail.setComments(comments); // 댓글 정보를 DTO에 세팅
-
-        return commuDetail;
+    //댓글 불러오기
+    public List<CommuCommentDTO> getcommuComment(Long commuNo) {
+        return commuMapper.commuComment(commuNo);
     }
 
     // 작성자 정보 세팅 메소드
@@ -158,21 +154,36 @@ public class CommuService {
     }
 
     //게시글 삭제
-    public void commuDelete(Long commuNo, Long writerNo) {
-       CommuDetailDTO commuDetailDTO = commuMapper.selectCommuByNo(commuNo);
-        System.out.println("서비스 작성자 No : " + commuDetailDTO.getCommuWriter()+",writerNo : " + writerNo);
-       if(commuDetailDTO.getCommuWriter()== writerNo){
-           commuMapper.commuDelete(commuDetailDTO);
-       }
+    public boolean commuDelete(CommuDetailDTO commuDetailDTO) {
+        commuMapper.commuDelete(commuDetailDTO);
+
+        return true;
     }
-
-
 
     //게시글 신고
     public void commuReport(CommuReportDTO commuReportDTO) {
         commuMapper.commuReport(commuReportDTO);
     }
 
+    //댓글 등록
+    public void commuCommentRegi(CommuCommentDTO commuCommentDTO) {
+        commuMapper.commuCommentRegi(commuCommentDTO);
+    }
+
+    //댓글 수정
+    public void commuCommentModi(CommuCommentDTO commuCommentDTO) {
+        commuMapper.commuCommentModi(commuCommentDTO);
+    }
+
+//    댓글 삭제
+    public void commuCommentDelete(CommuCommentDTO commuCommentDTO) {
+        commuMapper.commuCommentDelete(commuCommentDTO);
+    }
+
+    //댓글 신고
+    public void commuCommentReport(CommuReportDTO commuReportDTO){
+        commuMapper.commuCommentReport(commuReportDTO);
+    }
 
 
 

@@ -9,6 +9,7 @@ import com.example.hope_dog.dto.member.MemberDTO;
 import com.example.hope_dog.dto.page.Criteria;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.security.core.parameters.P;
 
 import java.lang.reflect.Member;
 import java.util.List;
@@ -29,24 +30,42 @@ public interface CommuMapper {
     List<CommuDTO> findCateByGood();
 
     // 커뮤니티 검색
-    List<CommuDTO> searchCommu(@Param("params") Map<String, Object> params);
+    List<CommuDTO> searchCommu(@Param("memberNickName") String memberNickName,
+                               @Param("centerMemberName") String centerMemberName,
+                               @Param("title") String Title);
 
 //게시글 상세
 
     // 게시글 번호로 게시글 상세 정보 조회
-    CommuDetailDTO selectCommuByNo(@Param("commuNo") Long commuNo);
+    List<CommuDetailDTO> selectCommuByNo(Long commuNo);
 
-    // 댓글 리스트 조회
-    List<CommuCommentDTO> selectCommentsByCommuNo(@Param("commuNo") Long commuNo);
 
-    //글 작성
+    //게시글 작성
     void insertWrite(CommuDTO commuDTO);
 
-    //글삭제
+    //게시글삭제
     void commuDelete(CommuDetailDTO commuDetailDTO);
 
-    //글 신고
+    //게시글 신고
     void commuReport(CommuReportDTO commuReportDTO);
+
+    // 댓글 리스트 조회
+//    List<CommuCommentDTO> selectCommentsByCommuNo(@Param("commuNo") Long commuNo);
+
+    //댓글 리스트 조회
+    List<CommuCommentDTO>commuComment(Long commuNo);
+
+    //댓글 등록
+    void commuCommentRegi(CommuCommentDTO commuCommentDTO);
+
+    //댓글 수정
+    void commuCommentModi(CommuCommentDTO commuCommentDTO);
+
+    //댓글 삭제
+    void commuCommentDelete(CommuCommentDTO commuCommentDTO);
+
+    //댓글 신고
+    void commuCommentReport(CommuReportDTO commuReportDTO);
 
 
 
