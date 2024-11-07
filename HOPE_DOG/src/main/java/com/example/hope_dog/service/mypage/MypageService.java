@@ -1,6 +1,5 @@
 package com.example.hope_dog.service.mypage;
 
-import com.example.hope_dog.dto.centermypage.CenterUpdateProfileDTO;
 import com.example.hope_dog.dto.mypage.*;
 import com.example.hope_dog.mapper.mypage.MypageMapper;
 import lombok.RequiredArgsConstructor;
@@ -86,7 +85,20 @@ public class MypageService {
 //        return mypageMapper.selectAllPage(criteria);
 //    }
 
+    //    임시보호 신청서 상세페이지
+//    public MpProtectRequestDTO protectRequest(Long protectRequestNo){
+//        MpProtectRequestDTO protectRequest = mypageMapper.protectRequestInfo(protectRequestNo);
+//        return mypageMapper.protectRequestInfo(protectRequestNo);
+//    }
 
+    // 임시보호 신청서 조회
+    public MpProtectRequestDTO protectRequestDetail(Long protectRequestNo){
+        return mypageMapper.protectRequestInfo(protectRequestNo);
+    }
+    // 임시보호 업데이트 메서드
+    public int updateProtectRequest(UpdateProtectRequestDTO updateProtectRequestDTO) {
+        return mypageMapper.updateProtectRequest(updateProtectRequestDTO);
+    }
 
 }
 

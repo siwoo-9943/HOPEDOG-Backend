@@ -1,6 +1,6 @@
 function checkNicknameInput() {
   // 입력 필드를 가져옵니다.
-  const inputField = document.getElementById('nicknameInput');
+  const inputField = document.getElementById('nickname');
   // 오류 메시지 요소들을 가져옵니다.
   const nameError = document.getElementById('nicknameError');
 
@@ -18,7 +18,7 @@ function checkNicknameInput() {
 
 
 function checkEmailInput() {
-  const inputField = document.getElementById('emailInput');
+  const inputField = document.getElementById('email');
   const emailError = document.getElementById('emailError');
 
   if (inputField.value.trim() === '') {
@@ -29,7 +29,7 @@ function checkEmailInput() {
 }
 
 function checkPhoneInput() {
-  const inputField = document.getElementById('phoneInput');
+  const inputField = document.getElementById('phonenumber');
   const phoneError = document.getElementById('phoneError');
 
   if (inputField.value.trim() === '') {
@@ -50,16 +50,6 @@ function checkPnumberInput() {
   }
 }
 
-function checkAddressInput() {
-  const inputField = document.getElementById('addressInput');
-  const ageError = document.getElementById('addressError');
-
-  if (inputField.value.trim() === '') {
-    ageError.style.display = 'block'; // 메시지 표시
-  } else {
-    ageError.style.display = 'none'; // 메시지 숨김
-  }
-}
 
 function checkAddInput() {
   const inputField = document.getElementById('addInput');
@@ -72,8 +62,8 @@ function checkAddInput() {
   }
 }
 
-function checkPasswordInput() {
-  const inputField = document.getElementById('passwordInput');
+function checkPassword() {
+  const inputField = document.getElementById('password');
   const jobError = document.getElementById('passwordError');
 
   if (inputField.value.trim() === '') {
@@ -82,10 +72,20 @@ function checkPasswordInput() {
     jobError.style.display = 'none'; // 메시지 숨김
   }
 }
+function checkPasswordInput() {
+    const inputField = document.getElementById('passwordInput');
+    const jobError = document.getElementById('passwordError');
+
+    if (inputField.value.trim() === '') {
+        jobError.style.display = 'block'; // 메시지 표시
+    } else {
+        jobError.style.display = 'none'; // 메시지 숨김
+    }
+}
 
 
 function checkPcheckInput() {
-  const inputField = document.getElementById('passwordcheckInput');
+  const inputField = document.getElementById('passwordcheck');
   const jobError = document.getElementById('passwordcheckError');
 
   if (inputField.value.trim() === '') {
@@ -98,14 +98,14 @@ function checkPcheckInput() {
 // 전체검사
 function validateInputs() {
   const inputs = [
-      { id: 'nicknameInput', errors: ['nicknameError'] },
-      { id: 'phoneInput', errors: ['phoneError'] },
+      { id: 'nickname', errors: ['nicknameError'] },
+      { id: 'email', errors: ['emailError'] },
+      { id: 'phonenumber', errors: ['phoneError'] },
       { id: 'phonecheckInput', errors: ['phonecheckError'] },
-      { id: 'emailInput', errors: ['emailError'] },
-      { id: 'addressInput', errors: ['addressError'] },
+      { id: 'password', errors: ['passwordError'] },
       { id: 'addInput', errors: ['addError'] },
       { id: 'passwordInput', errors: ['passwordError'] },
-      { id: 'passwordcheckInput', errors: ['passwordcheckError'] }
+      { id: 'passwordcheck', errors: ['passwordcheckError'] }
   ];
 
   let allValid = true;
@@ -113,7 +113,7 @@ function validateInputs() {
   inputs.forEach(input => {
       const inputField = document.getElementById(input.id);
       const isEmpty = inputField.value.trim() === '';
-      
+
       input.errors.forEach(errorId => {
           const errorElement = document.getElementById(errorId);
           if (isEmpty) {
@@ -126,15 +126,15 @@ function validateInputs() {
   });
 
   if (!allValid) {
-      alert('모든 질문을 입력해 주세요.'); // 경고창 표시
+      alert('정보를 정확히 입력해 주세요.'); // 경고창 표시
   } else {
-      alert('신청이 완료되었습니다'); // 모든 입력이 유효한 경우
+      alert('회원정보 수정이 완료되었습니다'); // 모든 입력이 유효한 경우
       // 여기에 추가적인 처리 코드 작성 가능
   }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('signupForm');
+    const form = document.getElementById('updateForm');
 
 // 닉네임 중복 확인
 nicknameCheckBtn.addEventListener('click', function() {

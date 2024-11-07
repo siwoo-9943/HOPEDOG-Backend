@@ -8,7 +8,6 @@
   <link rel="stylesheet" th:href="@{/css/mypage/mypage-protect.css}" />
   <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
   <link rel="stylesheet" th:href="@{/css/main/main.css}">
-  <script defer th:src="@{/js/main/main.js}"></script>
   <script defer th:src="@{/js/mypage/mypage-protect.js}"></script>
 </head>
 
@@ -33,7 +32,7 @@
       <nav>
         <ul class="member-protect-nav-ul">
           <li id="adopt-list">입양신청</li>
-          <li id="protect-list">임시보호신청</li>
+          <li id="protect-list"><a th:href="@{/mypage/protectRequest}">임시보호신청</li>
             <div id="protect-choice"></div></a>
         </ul>
       </nav>
@@ -47,7 +46,7 @@
         <ul class="member-profile-protect-titlebox">
           <li><b>임시보호 신청서</b></li>
           <li><b>상태</b></li>
-          <li><b>작성일</b></li>
+          <li><b>마감일</b></li>
         </ul>
       </div>
       <!-- 게시글 목록 -->
@@ -56,21 +55,14 @@
           <li>
             <div class="mypage-protect-list" th:each="myprotect : ${mypageProtectList}">
               <ul class="member-profile-protect-contentbox">
+<!--                <a th:href="@{/mypage/protectRequest(protectRequestNo=${myprotect.protectRequestNo})}"><li th:text="${myprotect.protectTitle}"></li></a>-->
                 <li th:text="${myprotect.protectTitle}"></li>
                 <li th:if="${myprotect.protectStatus} == 'T'" th:text="검토중"></li>
                 <li th:if="${myprotect.protectStatus} == 'F'" th:text="마감"></li>
                 <li th:text="${#dates.format(myprotect.protectPeriodend, 'yyyy-MM-dd')}"></li>
               </ul>
               <div class="memberNo" th:text="${myprotect.memberNo}" style="display: none;"></div>
-            </div>
-          </li>
-          <li>
-            <div>
-              <ul class="member-profile-protect-contentbox">
-                <li><a href="../../html/mypage/mypage-protect-form.html">임시보호 신청서</li></a>
-                <li>검토중</li>
-                <li>2024.07.28</li>
-              </ul>
+              <div class="protectRequestNo" th:text="${myprotect.protectRequestNo}" style="display: none;" ></div>
             </div>
           </li>
           

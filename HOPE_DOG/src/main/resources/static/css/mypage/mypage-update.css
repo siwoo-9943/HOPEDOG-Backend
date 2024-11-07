@@ -145,7 +145,47 @@ a{
 }
 
 /* 버튼 */
-.member-profile-button-small{
+.nicknameCheckBtn{
+  width: 120px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #F5EAD9;
+  cursor: pointer;
+  margin-left: 30px;
+  border: none;
+}
+
+.emailCheckBtn{
+  width: 120px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #F5EAD9;
+  cursor: pointer;
+  margin-left: 30px;
+  border: none;
+}
+
+.phoneVerifyBtn{
+  width: 120px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #F5EAD9;
+  cursor: pointer;
+  margin-left: 30px;
+  border: none;
+}
+
+.phoneVerifyConfirmBtn{
+  width: 120px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #F5EAD9;
+  cursor: pointer;
+  margin-left: 98px;
+  border: none;
+}
+
+.addressSearchBtn{
   width: 120px;
   height: 40px;
   border-radius: 20px;
