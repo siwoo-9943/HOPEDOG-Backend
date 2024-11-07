@@ -45,26 +45,26 @@
               </div>
               <!-- 글작성 박스 -->
               <div class="notice-write-area">
-                <form action="링크" method="post">
-                  <div><input type="text" value="제목을 입력해주세요" class="title"></div>
+                <form th:action="@{/admin/noticeModify(noticeNo=${notice.noticeNo})}" method="post">
+                  <div><input type="text" name="title" value="제목을 입력해주세요" class="title" th:value="${notice.noticeTitle}"></div>
                   <br>
                   <div>
                     <span style="margin-right: 5px;">카테고리 선택</span>
-                    <select name="languages" id="lang">
-                      <option value="일반">일반</option>
-                      <option value="봉사">봉사</option>
-                      <option value="입양">입양</option>
+                    <select name="cate" id="cate">
+                      <option value="일반" th:selected="${notice.noticeCate == '일반'}">일반</option>
+                      <option value="봉사" th:selected="${notice.noticeCate == '봉사'}">봉사</option>
+                      <option value="입양" th:selected="${notice.noticeCate == '입양'}">입양</option>
                     </select>
                   </div>
                   <br>
-                  <div> 
-                    <textarea id="summernote" name="editordata" class="content"></textarea>
-                </div>
+                  <div>
+                    <textarea id="summernote" name="content" class="content" th:text="${notice.noticeContent}"></textarea>
+                  </div>
 
                   <!-- 수정/취소 버튼 -->
                   <div class="notice-write-button-box">
                     <button class="notice-write-button">수정</button>
-                    <button class="notice-cancle-button">취소</button>
+                    <button type="button" class="notice-cancle-button">취소</button>
                   </div>
                 </form>
               </div>

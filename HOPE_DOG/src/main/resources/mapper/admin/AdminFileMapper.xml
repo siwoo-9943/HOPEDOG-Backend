@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.hope_dog.mapper.admin.AdminFileMapper">
+    <insert id="insertFile" parameterType="AdminFileDTO">
+        INSERT INTO TBL_NOTICE_FILE (file_no, notice_no, file_name, stored_file_name, file_uuid, file_path, upload_time)
+        VALUES (SEQ_NOTICE_FILE_NO.nextval, #{file.noticeNo}, #{file.fileName},
+                #{file.fileName}, #{file.fileUuid}, #{file.filePath}, SYSDATE)
+    </insert>
+
+    <select id="selectFileListByNoticeNo" resultType="AdminFileDTO">
+        SELECT
+            file_no, notice_no, file_name, stored_file_name, file_uuid, FILE_PATH, upload_time
+        FROM
+            TBL_NOTICE_FILE
+        WHERE
+            notice_no = #{noticeNo}
+    </select>
+
+    <select id="selectFileByNo" resultType="AdminFileDTO">
+        SELECT
+            file_no, notice_no, file_name, stored_file_name, file_uuid, FILE_PATH,upload_time
+        FROM
+            TBL_NOTICE_FILE
+        WHERE
+            file_no = #{fileNo}
+    </select>
+
+    <delete id="deleteFiles">
+        DELETE FROM TBL_NOTICE_FILE
+        WHERE notice_no = #{noticeNo}
+    </delete>
+</mapper>

@@ -53,6 +53,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
+	// 썸네일레이터
+	implementation 'net.coobird:thumbnailator:0.4.20'
 }
 
 tasks.named('test') {
