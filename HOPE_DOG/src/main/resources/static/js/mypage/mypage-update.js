@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 function checkNicknameInput() {
   // 입력 필드를 가져옵니다.
   const inputField = document.getElementById('nickname');
@@ -135,298 +136,384 @@ function validateInputs() {
 
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('updateForm');
+=======
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('signupForm');
+    let isPhoneVerified = false;
+    let timerInterval;
+    const TIMER_DURATION = 180; // 3분
+>>>>>>> main
 
-// 닉네임 중복 확인
-nicknameCheckBtn.addEventListener('click', function() {
-    const nickname = nicknameInput.value.trim();
-    if (nickname === '') {
-        alert('닉네임을 입력해주세요.');  // alert로 변경
-        showError(nicknameInput, '닉네임을 입력해주세요.');
-        return;
-    }
-    // 서버로 /member/check-nickname API 요청을 보냄 이때, 사용자가 입력한 닉네임을 URL에 포함하여 서버에 전송
-    // fetch 함수를 사용해서 서버응답을 기다림
-    // fetch는 JavaScript에서 서버로 네트워크 요청을 보내고 응답을 받을 수 있도록 해주는 매서드
+    // 각 입력 필드 검증 함수들
+    function checkNicknameInput() {
+        const inputField = document.getElementById('nickname');
+        const nameError = document.getElementById('nicknameError');
 
-    fetch('/member/check-nickname?nickname=' + encodeURIComponent(nickname))
-        .then(response => response.json())
-        .then(data => {
-            // 서버 응답이 JSON 형식으로 반환되면, 이를 data 변수에 저장.
-            if (data.available) {
-                // data.available 값이 true일 경우:
-                // "사용 가능한 닉네임입니다."라는 메시지를 사용자에게 알리고, isNicknameAvailable 변수를 true로 설정하여 사용 가능한 상태로 표시함.
-                // hideError 함수를 호출해 이전에 표시된 오류 메시지를 제거
-                alert('사용 가능한 닉네임입니다.');
-                isNicknameAvailable = true;
-                hideError(nicknameInput);
-                //     data.available 값이 false일 경우:
-                // "이미 사용 중인 닉네임입니다."라는 오류 메시지를 표시하고,
-                // isNicknameAvailable 변수를 false로 설정하여 중복된 상태로 표시합니다
-            } else {
-                showError(nicknameInput, '이미 사용 중인 닉네임입니다.');
-                isNicknameAvailable = false;
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('중복 확인 중 오류가 발생했습니다.');
-        });
-});
-
-// 이메일 중복 확인
-emailCheckBtn.addEventListener('click', function() {
-    const email = emailInput.value.trim();
-
-    // 이메일 입력값 확인: 값이 비어 있으면 에러 메시지를 표시하고 함수를 종료합니다.
-    if (email === '') {
-        showError(emailInput, '이메일을 입력해주세요.');
-        return;
-    }
-
-    // 서버로 /member/check-email API 요청을 보냄 이때, 사용자가 입력한 이메일을 URL에 포함하여 서버에 전송
-    // fetch 함수를 사용해서 서버 응답을 기다림
-    // fetch는 JavaScript에서 서버로 네트워크 요청을 보내고 응답을 받을 수 있도록 해주는 매서드
-
-    fetch('/member/check-email?email=' + encodeURIComponent(email))
-        .then(response => response.json())
-        .then(data => {
-            // 서버 응답이 JSON 형식으로 반환되면, 이를 data 변수에 저장
-            if (data.available) {
-                // data.available 값이 true일 경우:
-                // "사용 가능한 이메일입니다."라는 메시지를 사용자에게 알리고,
-                // isEmailAvailable 변수를 true로 설정하여 사용 가능한 상태로 표시
-                // hideError 함수를 호출해 이전에 표시된 오류 메시지를 제거
-                alert('사용 가능한 이메일입니다.');
-                isEmailAvailable = true;
-                hideError(emailInput);
-
-            } else {
-                // data.available 값이 false일 경우:
-                // "이미 사용 중인 이메일입니다."라는 오류 메시지를 표시하고,
-                // isEmailAvailable 변수를 false로 설정하여 중복된 상태로 표시
-                showError(emailInput, '이미 사용 중인 이메일입니다.');
-                isEmailAvailable = false;
-            }
-        })
-        .catch(error => {
-            // 오류 처리: 서버 요청 중 오류가 발생하면, 콘솔에 오류를 기록하고
-            // 사용자에게 "중복 확인 중 오류가 발생했습니다."라는 메시지를 표시
-            console.error('Error:', error);
-            alert('중복 확인 중 오류가 발생했습니다.');
-        });
-});
-
-// Cool SMS 인증 관련 코드
-phoneVerifyBtn.addEventListener('click', function() {
-    const phoneNumber = document.getElementById('memberPhoneNumber').value.trim();
-
-    // 휴대폰 번호 입력 확인: 값이 비어 있으면 에러 메시지를 표시하고 함수를 종료합니다.
-    if (phoneNumber === '') {
-        showError(document.getElementById('memberPhoneNumber'), '휴대폰 번호를 입력해주세요.');
-        return;
-    }
-
-    // 휴대폰 번호 형식 검사: 올바른 형식인지 확인하기 위해 정규 표현식을 사용합니다.
-    const phonePattern = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
-    if (!phonePattern.test(phoneNumber)) {
-        showError(document.getElementById('memberPhoneNumber'), '올바른 전화번호 형식이 아닙니다.');
-        return;
-    }
-
-    // 서버로 전송하기 위해 휴대폰 번호에서 '-'를 제거한 형태로 저장합니다.
-    const cleanPhoneNumber = phoneNumber.replace(/-/g, '');
-
-    // 서버로 /api/sms/send API 요청을 보냅니다. 이때, 클린된 휴대폰 번호를 JSON으로 전송합니다.
-    // fetch는 서버에 네트워크 요청을 보내고 응답을 받을 수 있게 하는 JavaScript 메서드입니다.
-    fetch('/api/sms/send', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phoneNumber: cleanPhoneNumber })
-    })
-        .then(response => response.json())
-        .then(data => {
-            // 서버 응답이 JSON 형식으로 반환되면 이를 data 변수에 저장
-            if (data.success) {
-                // data.success 값이 true일 경우:
-                // "인증번호가 발송되었습니다."라는 메시지를 사용자에게 알림
-                // 인증번호 입력 필드의 비활성화 속성을 제거하고, 타이머를 시작합니다.
-                alert('인증번호가 발송되었습니다.');
-                document.getElementById('phoneVerifyCode').removeAttribute('disabled');
-                startTimer();
-            } else {
-                // data.success 값이 false일 경우:
-                // 서버에서 반환한 오류 메시지를 표시하거나 기본 오류 메시지를 표시
-                alert(data.message || '인증번호 발송에 실패했습니다.');
-            }
-        })
-        .catch(error => {
-            // 오류 처리: 서버 요청 중 오류가 발생하면, 콘솔에 오류를 기록하고
-            // 사용자에게 "인증번호 발송 중 오류가 발생했습니다."라는 메시지를 표시
-            console.error('Error:', error);
-            alert('인증번호 발송 중 오류가 발생했습니다.');
-        });
-});
-
-// 인증번호 확인
-phoneVerifyConfirmBtn.addEventListener('click', function() {
-    // 입력한 인증번호와 전화번호를 가져옵니다. '-'가 포함된 전화번호에서 '-'를 제거한 뒤 전송할 전화번호를 준비합니다.
-    const verificationCode = document.getElementById('phoneVerifyCode').value;
-    const phoneNumber = document.getElementById('memberPhoneNumber').value.replace(/-/g, '');
-
-    // 인증번호 입력 확인: 값이 비어 있으면 에러 메시지를 표시하고 함수를 종료합니다.
-    if (!verificationCode) {
-        showError(document.getElementById('phoneVerifyCode'), '인증번호를 입력해주세요.');
-        return;
-    }
-
-    // 서버로 /api/sms/verify API 요청을 보냅니다. 이때, 휴대폰 번호와 인증번호를 JSON 형식으로 전송합니다.
-    fetch('/api/sms/verify', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phoneNumber: phoneNumber, code: verificationCode })
-    })
-        .then(response => response.json())
-        .then(data => {
-            // 서버 응답이 JSON 형식으로 반환되면 이를 data 변수에 저장
-            if (data.success) {
-                // data.success 값이 true일 경우:
-                // "휴대폰 인증이 완료되었습니다."라는 메시지를 사용자에게 알리고,
-                // isPhoneVerified 변수를 true로 설정하여 인증 완료 상태로 표시
-                alert('휴대폰 인증이 완료되었습니다.');
-                isPhoneVerified = true;
-
-                // 오류 메시지 숨기기 및 타이머 종료
-                hideError(document.getElementById('phoneVerifyCode'));
-                stopTimer();
-
-                // 인증 완료 후, 인증번호 입력 필드와 인증 버튼을 비활성화하여 수정 불가능하도록 설정
-                document.getElementById('phoneVerifyCode').setAttribute('disabled', 'true');
-                document.getElementById('phoneVerify').setAttribute('disabled', 'true');
-                document.getElementById('phoneVerifyConfirm').setAttribute('disabled', 'true');
-            } else {
-                // data.success 값이 false일 경우:
-                // "인증번호가 일치하지 않습니다."라는 오류 메시지를 표시하고,
-                // isPhoneVerified 변수를 false로 설정하여 인증 실패 상태로 표시
-                showError(document.getElementById('phoneVerifyCode'), '인증번호가 일치하지 않습니다.');
-                isPhoneVerified = false;
-            }
-        })
-        .catch(error => {
-            // 오류 처리: 서버 요청 중 오류가 발생하면, 콘솔에 오류를 기록하고
-            // 사용자에게 "인증 확인 중 오류가 발생했습니다."라는 메시지를 표시
-            console.error('Error:', error);
-            alert('인증 확인 중 오류가 발생했습니다.');
-        });
-});
-
-// 3분 타이머 구현
-let timerInterval; // 타이머 간격을 저장할 변수
-const TIMER_DURATION = 180; // 타이머의 기본 시간(3분)을 초 단위로 설정
-
-function startTimer() {
-    // 남은 시간을 타이머 기본 시간으로 초기화
-    let timeLeft = TIMER_DURATION;
-
-    // 타이머 표시 요소 생성 후, 인증번호 입력 필드의 부모 요소에 추가
-    const timerDisplay = document.createElement('span');
-    timerDisplay.id = 'timer';
-    document.getElementById('phoneVerifyCode').parentElement.appendChild(timerDisplay);
-
-    // 1초마다 남은 시간을 업데이트하는 타이머 시작
-    timerInterval = setInterval(() => {
-        // 남은 시간(분과 초)을 계산하고, 초 부분을 두 자리로 맞추어 표시
-        const minutes = Math.floor(timeLeft / 60);
-        const seconds = timeLeft % 60;
-        timerDisplay.textContent = ` ${minutes}:${seconds.toString().padStart(2, '0')}`;
-
-        // 시간이 만료되면 타이머를 중지하고 사용자에게 알림
-        if (timeLeft === 0) {
-            stopTimer();
-            alert('인증시간이 만료되었습니다. 다시 시도해주세요.');
-
-            // 만료 시, 인증번호 입력 필드를 비우고 비활성화하여 입력을 막음
-            document.getElementById('phoneVerifyCode').value = '';
-            document.getElementById('phoneVerifyCode').setAttribute('disabled', 'true');
-        }
-
-        // 남은 시간 감소
-        timeLeft--;
-    }, 1000);
-}
-
-function stopTimer() {
-    // 타이머 중지 및 화면에서 타이머 표시 요소 제거
-    clearInterval(timerInterval);
-    const timerDisplay = document.getElementById('timer');
-    if (timerDisplay) timerDisplay.remove();
-}
-
-// 전화번호 입력 시 하이픈 자동 추가
-document.getElementById('memberPhoneNumber').addEventListener('input', function(e) {
-    // 입력된 값에서 숫자만 추출
-    let number = e.target.value.replace(/[^0-9]/g, '');
-    let result = '';
-
-    // 하이픈 추가 로직
-    if (number.length > 3) {
-        result = number.substring(0, 3) + '-';
-        if (number.length > 7) {
-            result += number.substring(3, 7) + '-' + number.substring(7, 11);
+        if (inputField.value.trim() === '') {
+            nameError.style.display = 'block';
         } else {
-            result += number.substring(3);
+            nameError.style.display = 'none';
         }
-    } else {
-        result = number; // 3자리 이하일 경우 하이픈 없이 표시
     }
 
-    // 결과를 입력 필드에 반영
-    e.target.value = result;
-});
+    function checkEmailInput() {
+        const inputField = document.getElementById('email');
+        const emailError = document.getElementById('emailError');
 
-// 주소 검색
-addressSearchBtn.addEventListener('click', function() {
-    new daum.Postcode({
-        oncomplete: function(data) {
-            // 주소 검색 결과를 입력 필드에 자동으로 채움
-            document.getElementById('memberZipcode').value = data.zonecode; // 우편번호
-            document.getElementById('memberAddress').value = data.address; // 주소
-            document.getElementById('memberDetailAddress').focus(); // 상세 주소 입력 필드에 포커스
-            hideError(document.getElementById('memberZipcode')); // 에러 메시지 숨김
-            hideError(document.getElementById('memberAddress')); // 에러 메시지 숨김
+        if (inputField.value.trim() === '') {
+            emailError.style.display = 'block';
+        } else {
+            emailError.style.display = 'none';
         }
-    }).open(); // 주소 검색 팝업 열기
-});
-
-// 취소 버튼
-cancelBtn.addEventListener('click', function() {
-    // 회원가입 취소 확인 후, 특정 페이지로 이동
-    if (confirm('회원가입을 취소하시겠습니까?')) {
-        window.location.href = '/member/join-select'; // 취소 후 이동할 페이지
     }
-});
 
-// 에러 표시 함수
-function showError(inputElement, message) {
-    // 입력 요소의 이름에 따라 에러 ID 결정
-    const errorId = inputElement.name ? errorFields[inputElement.name] : `${inputElement.id}-error`;
-    const errorElement = document.getElementById(errorId);
-    if (errorElement) {
-        errorElement.textContent = message; // 에러 메시지 설정
-        errorElement.style.display = 'block'; // 에러 메시지 표시
-        inputElement.classList.add('error'); // 입력 요소에 에러 클래스 추가
+    function checkPhoneInput() {
+        const inputField = document.getElementById('phonenumber');
+        const phoneError = document.getElementById('phoneError');
+
+        if (inputField.value.trim() === '') {
+            phoneError.style.display = 'block';
+        } else {
+            phoneError.style.display = 'none';
+        }
     }
-}
 
-// 에러 숨김 함수
-function hideError(inputElement) {
-    // 입력 요소의 이름에 따라 에러 ID 결정
-    const errorId = inputElement.name ? errorFields[inputElement.name] : `${inputElement.id}-error`;
-    const errorElement = document.getElementById(errorId);
-    if (errorElement) {
-        errorElement.style.display = 'none'; // 에러 메시지 숨김
-        errorElement.textContent = ''; // 에러 메시지 내용 삭제
-        inputElement.classList.remove('error'); // 입력 요소에서 에러 클래스 제거
+    function checkPnumberInput() {
+        const inputField = document.getElementById('phonecheckInput');
+        const phone2Error = document.getElementById('phonecheckError');
+
+        if (inputField.value.trim() === '') {
+            phone2Error.style.display = 'block';
+        } else {
+            phone2Error.style.display = 'none';
+        }
     }
-}
 
+    function checkAddressInput() {
+        const inputField = document.getElementById('addressInput');
+        const addressError = document.getElementById('addressError');
+
+        if (inputField.value.trim() === '') {
+            addressError.style.display = 'block';
+        } else {
+            addressError.style.display = 'none';
+        }
+    }
+
+    function checkAddInput() {
+        const inputField = document.getElementById('addInput');
+        const addError = document.getElementById('addError');
+
+        if (inputField.value.trim() === '') {
+            addError.style.display = 'block';
+        } else {
+            addError.style.display = 'none';
+        }
+    }
+
+    function checkPasswordInput() {
+        const inputField = document.getElementById('passwordInput');
+        const passwordError = document.getElementById('passwordError');
+
+        if (inputField.value.trim() === '') {
+            passwordError.style.display = 'block';
+        } else {
+            passwordError.style.display = 'none';
+        }
+    }
+
+    function checkPcheckInput() {
+        const inputField = document.getElementById('passwordcheck');
+        const passwordcheckError = document.getElementById('passwordcheckError');
+
+        if (inputField.value.trim() === '') {
+            passwordcheckError.style.display = 'block';
+        } else {
+            passwordcheckError.style.display = 'none';
+        }
+    }
+
+    // 전화번호 입력 시 하이픈 자동 추가
+    document.getElementById('phonenumber').addEventListener('input', function(e) {
+        let number = e.target.value.replace(/[^0-9]/g, '');
+        let result = '';
+
+        if (number.length > 3) {
+            result = number.substring(0, 3) + '-';
+            if (number.length > 7) {
+                result += number.substring(3, 7) + '-' + number.substring(7, 11);
+            } else {
+                result += number.substring(3);
+            }
+        } else {
+            result = number;
+        }
+
+        e.target.value = result;
+    });
+
+    // Cool SMS 인증번호 발송
+    window.sendVerification = function(e) {
+        if(e) e.preventDefault();
+        const phoneNumber = document.getElementById('phonenumber').value.trim();
+
+        if (phoneNumber === '') {
+            document.getElementById('phoneError').textContent = '연락처를 입력해주세요.';
+            document.getElementById('phoneError').style.display = 'block';
+            return;
+        }
+
+        const phonePattern = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+        if (!phonePattern.test(phoneNumber)) {
+            document.getElementById('phoneError').textContent = '올바른 전화번호 형식이 아닙니다.';
+            document.getElementById('phoneError').style.display = 'block';
+            return;
+        }
+
+        const cleanPhoneNumber = phoneNumber.replace(/-/g, '');
+
+        fetch('/api/sms/send', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ phoneNumber: cleanPhoneNumber })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('인증번호가 발송되었습니다.');
+                    document.getElementById('phonecheckInput').removeAttribute('disabled');
+                    startTimer();
+                    isPhoneVerified = false;
+                } else {
+                    alert(data.message || '인증번호 발송에 실패했습니다.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('인증번호 발송 중 오류가 발생했습니다.');
+            });
+    };
+
+    // 인증번호 확인
+    window.confirmVerification = function(e) {
+        if(e) e.preventDefault();
+        const verificationCode = document.getElementById('phonecheckInput').value;
+        const phoneNumber = document.getElementById('phonenumber').value.replace(/-/g, '');
+
+        if (!verificationCode) {
+            document.getElementById('phonecheckError').textContent = '인증번호를 입력해주세요.';
+            document.getElementById('phonecheckError').style.display = 'block';
+            return;
+        }
+
+        fetch('/api/sms/verify', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                phoneNumber: phoneNumber,
+                code: verificationCode
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('휴대폰 인증이 완료되었습니다.');
+                    isPhoneVerified = true;
+                    document.getElementById('phonecheckError').style.display = 'none';
+                    stopTimer();
+
+                    // 인증 완료 후 입력 필드와 버튼 비활성화
+                    document.getElementById('phonecheckInput').setAttribute('disabled', 'true');
+                    document.getElementById('phonenumber').setAttribute('disabled', 'true');
+
+                    // 인증된 전화번호를 hidden input에 저장
+                    const verifiedPhoneInput = document.createElement('input');
+                    verifiedPhoneInput.type = 'hidden';
+                    verifiedPhoneInput.name = 'verifiedPhone';
+                    verifiedPhoneInput.value = phoneNumber;
+                    form.appendChild(verifiedPhoneInput);
+                } else {
+                    document.getElementById('phonecheckError').textContent = '인증번호가 일치하지 않습니다.';
+                    document.getElementById('phonecheckError').style.display = 'block';
+                    isPhoneVerified = false;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('인증 확인 중 오류가 발생했습니다.');
+            });
+    };
+
+    // 3분 타이머 구현
+    function startTimer() {
+        let timeLeft = TIMER_DURATION;
+        const timerDisplay = document.createElement('span');
+        timerDisplay.id = 'timer';
+        document.getElementById('phonecheckInput').parentElement.appendChild(timerDisplay);
+
+        timerInterval = setInterval(() => {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerDisplay.textContent = ` ${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+            if (timeLeft === 0) {
+                stopTimer();
+                alert('인증시간이 만료되었습니다. 다시 시도해주세요.');
+                document.getElementById('phonecheckInput').value = '';
+                document.getElementById('phonecheckInput').setAttribute('disabled', 'true');
+            }
+            timeLeft--;
+        }, 1000);
+    }
+
+    function stopTimer() {
+        clearInterval(timerInterval);
+        const timerDisplay = document.getElementById('timer');
+        if (timerDisplay) {
+            timerDisplay.remove();
+        }
+    }
+
+    // 주소 검색
+    window.searchAddress = function() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                document.getElementById('address').value = data.zonecode;
+                document.getElementById('addressInput').value = data.address;
+                document.getElementById('addInput').focus();
+            }
+        }).open();
+    };
+
+    // 이메일 중복 확인
+    window.checkEmail = function() {
+        const email = document.getElementById('email').value.trim();
+        const currentEmail = document.getElementById('currentEmail').value.trim();
+
+        if (email === currentEmail) {
+            return;
+        }
+
+        if (email === '') {
+            document.getElementById('emailError').style.display = 'block';
+            return;
+        }
+
+        fetch('/member/check-email?email=' + encodeURIComponent(email))
+            .then(response => response.json())
+            .then(data => {
+                if (data.available) {
+                    alert('사용 가능한 이메일입니다.');
+                } else {
+                    document.getElementById('emailError').textContent = '이미 사용 중인 이메일입니다.';
+                    document.getElementById('emailError').style.display = 'block';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('중복 확인 중 오류가 발생했습니다.');
+            });
+    };
+
+    // 닉네임 중복 확인
+    window.checkNickname = function() {
+        const nickname = document.getElementById('nickname').value.trim();
+
+        if (nickname === '') {
+            document.getElementById('nicknameError').style.display = 'block';
+            return;
+        }
+
+        fetch('/member/check-nickname?nickname=' + encodeURIComponent(nickname))
+            .then(response => response.json())
+            .then(data => {
+                if (data.available) {
+                    alert('사용 가능한 닉네임입니다.');
+                } else {
+                    document.getElementById('nicknameError').textContent = '이미 사용 중인 닉네임입니다.';
+                    document.getElementById('nicknameError').style.display = 'block';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('중복 확인 중 오류가 발생했습니다.');
+            });
+    };
+
+    // 전체 입력 검증
+    window.validateInputs = function(e) {
+        if(e) e.preventDefault();
+        let isValid = true;
+
+        const requiredFields = [
+            { id: 'nickname', errorId: 'nicknameError', message: '닉네임을 입력해주세요.' },
+            { id: 'email', errorId: 'emailError', message: '이메일을 입력해주세요.' },
+            { id: 'phonenumber', errorId: 'phoneError', message: '연락처를 입력해주세요.' },
+            { id: 'address', errorId: 'addressError', message: '우편번호를 입력해주세요.' },
+            { id: 'addressInput', errorId: 'addressError', message: '주소를 입력해주세요.' },
+            { id: 'addInput', errorId: 'addError', message: '상세주소를 입력해주세요.' },
+            { id: 'password', errorId: 'passwordError', message: '현재 비밀번호를 입력해주세요.' }
+        ];
+
+        // 필수 필드 검증
+        requiredFields.forEach(field => {
+            const input = document.getElementById(field.id);
+            const error = document.getElementById(field.errorId);
+
+            if (!input.value.trim()) {
+                error.textContent = field.message;
+                error.style.display = 'block';
+                isValid = false;
+            } else {
+                error.style.display = 'none';
+            }
+        });
+
+        // 휴대폰 인증 확인
+        if (!isPhoneVerified) {
+            document.getElementById('phonecheckError').textContent = '휴대폰 인증이 필요합니다.';
+            document.getElementById('phonecheckError').style.display = 'block';
+            isValid = false;
+        }
+
+        // 새 비밀번호 확인
+        const newPassword = document.getElementById('passwordInput').value;
+        const passwordCheck = document.getElementById('passwordcheck').value;
+
+        if (newPassword || passwordCheck) {
+            if (newPassword !== passwordCheck) {
+                document.getElementById('passwordcheckError').textContent = '새 비밀번호가 일치하지 않습니다.';
+                document.getElementById('passwordcheckError').style.display = 'block';
+                isValid = false;
+            }
+        }
+
+        if (!isValid) {
+            alert('모든 필수 정보를 입력하고 휴대폰 인증을 완료해주세요.');
+            return false;
+        }
+
+        // 모든 검증을 통과하면 폼 제출
+        form.submit();
+    };
+
+    // 초기화 시 인증번호 입력 필드 비활성화
+    const phonecheckInput = document.getElementById('phonecheckInput');
+    if (phonecheckInput) {
+        phonecheckInput.setAttribute('disabled', 'true');
+    }
+
+    // 각 입력 필드에 blur 이벤트 리스너 추가
+    document.getElementById('nickname').addEventListener('blur', checkNicknameInput);
+    document.getElementById('email').addEventListener('blur', checkEmailInput);
+    document.getElementById('phonenumber').addEventListener('blur', checkPhoneInput);
+    document.getElementById('phonecheckInput').addEventListener('blur', checkPnumberInput);
+    document.getElementById('addressInput').addEventListener('blur', checkAddressInput);
+    document.getElementById('addInput').addEventListener('blur', checkAddInput);
+    document.getElementById('passwordInput').addEventListener('blur', checkPasswordInput);
+    document.getElementById('passwordcheck').addEventListener('blur', checkPcheckInput);
 });
