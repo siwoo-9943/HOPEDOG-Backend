@@ -1,13 +1,16 @@
 package com.example.hope_dog.controller.mypage;
 
-import com.example.hope_dog.dto.adopt.protect.ProtectWriteDTO;
+import com.example.hope_dog.dto.centermypage.CenterViewProfileDTO;
+import com.example.hope_dog.dto.centermypage.notebox.*;
+import com.example.hope_dog.dto.member.MemberSessionDTO;
 import com.example.hope_dog.dto.mypage.*;
+import com.example.hope_dog.dto.notice.NoticeViewDTO;
+import com.example.hope_dog.service.centermypage.NoteBoxService;
 import com.example.hope_dog.service.mypage.MpNoteBoxService;
 import com.example.hope_dog.service.mypage.MypageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -174,58 +177,32 @@ public class MypageController {
         return "mypage/mypage-posts";
     }
 
-
-    //임시보호 신청서 상세 조회
-    @GetMapping("/protectRequest")
-    public String getProtectRequest(@RequestParam("protectRequestNo") Long protectRequestNo, Model model) {
-        Long memberNo = (Long) session.getAttribute("memberNo");
-
-        if (memberNo == null) {
-            log.warn("세션에서 memberNo가 존재하지 않습니다.");
-            return "redirect:/login"; // 세션이 없으면 로그인 페이지로 리다이렉트
-        }
-
-        // protectRequestNo 값이 null인 경우 처리
-        if (protectRequestNo == null) {
-            log.warn("protectRequestNo가 제공되지 않았습니다.");
-            return "redirect:/error"; // 오류 페이지로 리다이렉트
-        }
-
-        MpProtectRequestDTO protectRequestInfo = mypageService.protectRequestDetail(protectRequestNo);
-        model.addAttribute("protectRequestInfo", protectRequestInfo);
-
-        return "mypage/mypage-protect-form";
-    }
-
-    // 임시보호 글 등록 처리
-//    @PostMapping("/protect/protectWriteRegi")
-//    public String postProtectWrite(
-//            @DateTimeFormat(pattern = "yyyy-MM-dd") ProtectWriteDTO protectWriteDTO,
-//            HttpSession session) {
-//        // 서비스 호출하여 데이터베이스에 저장
-//        protectService.registerProtection(protectWriteDTO);
+//    @GetMapping("/profile")
+//    public String viewProfile(HttpSession session, Model model) {
+//        // 세션에서 사용자 정보를 가져옴
+//        String memberNo = (String) session.getAttribute("memberNo");
+//        String memberId = (String) session.getAttribute("memberId");
+//        String memberName = (String) session.getAttribute("memberName");
+//        String memberNickname = (String) session.getAttribute("memberNickname");
+//        String memberEmail = (String) session.getAttribute("memberEmail");
 //
-//        // 리다이렉트
-//        return "redirect:/adopt/protect";
+//        // 로그인 상태 확인
+//        if (memberId == null) {
+//            return "redirect:/member/login"; // 로그인하지 않은 경우 로그인 페이지로 리다이렉트
+//        }
+//
+//        MemberSessionDTO memberInfo = mypageService.getMemberInfo(memberId);
+//
+//        // 모델에 사용자 정보를 추가하여 프로필 페이지에 표시
+//        model.addAttribute("memberNo", memberNo);
+//        model.addAttribute("memberId", memberId);
+//        model.addAttribute("memberName", memberName);
+//        model.addAttribute("memberNickname", memberNickname);
+//        model.addAttribute("memberEmail", memberEmail);
+//
+//        return "mypage/mypage-profile";
 //    }
 
-
-    @PostMapping("/updateProtectRequest")
-    public String updateProtectRequest(@PathVariable Long protectRequestNo,
-                                       @ModelAttribute UpdateProtectRequestDTO updateProtectRequestDTO, RedirectAttributes redirectAttributes) {
-        updateProtectRequestDTO.setProtectRequestNo(protectRequestNo);
-
-        int result = mypageService.updateProtectRequest(updateProtectRequestDTO);
-
-        // 수정 성공 시 처리
-        if (result > 0) {
-            redirectAttributes.addFlashAttribute("message", "신청서가 성공적으로 수정되었습니다.");
-            return "redirect:/protectRequest" + protectRequestNo;  // 수정 후 상세보기 페이지로 리다이렉트
-        } else {
-            redirectAttributes.addFlashAttribute("error", "수정 중 문제가 발생했습니다.");
-            return "redirect:/protectRequest/" + protectRequestNo;  // 수정 실패시 다시 수정 폼으로 리다이렉트
-        }
-    }
 
     //쪽지함
     private final MpNoteBoxService mpNoteBoxService;

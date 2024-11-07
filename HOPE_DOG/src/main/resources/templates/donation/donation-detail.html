@@ -43,7 +43,7 @@
     </section>
     <section class="dona-bottom">
         <div class="btn-wrap">
-          <div class="donaNo" th:text="${donation.donaNo}" style="display: none;"></div>
+          <div class="donaNo" th:text="${donation.donaNo}" style="display: none;" ></div>
           <button class="btn-modify" type="button" onclick="modifyClick()"
                   th:if="${centerMemberNo == donation.centerMemberNo}">수정</button>
           <button class="btn-remove" type="button" onclick="deleteClick()"

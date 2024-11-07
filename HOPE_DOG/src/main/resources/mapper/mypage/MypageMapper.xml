@@ -105,7 +105,8 @@
             'CAR' AS TYPE,
             C.CAR_TITLE AS TITLE,
             M.MEMBER_NICKNAME AS WRITER,
-            C.CAR_REGIDATE AS REGIDATE
+            C.CAR_REGIDATE AS REGIDATE,
+            C.CAR_NO
         FROM
             TBL_CAR C
                 JOIN
@@ -116,7 +117,8 @@
             'COMMU' AS TYPE,
             CO.COMMU_TITLE AS TITLE,
             M.MEMBER_NICKNAME AS WRITER,
-            CO.COMMU_REGIDATE AS REGIDATE
+            CO.COMMU_REGIDATE AS REGIDATE,
+            CO.COMMU_NO
         FROM
             TBL_COMMU CO
                 JOIN
@@ -127,7 +129,8 @@
             'REVIEW' AS TYPE,
             R.REVIEW_TITLE AS TITLE,
             M.MEMBER_NICKNAME AS WRITER,
-            R.REVIEW_REGIDATE AS REGIDATE
+            R.REVIEW_REGIDATE AS REGIDATE,
+            R.REVIEW_NO
         FROM
             TBL_REVIEW R
                 JOIN
