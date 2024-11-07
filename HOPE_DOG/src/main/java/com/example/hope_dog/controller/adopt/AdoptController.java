@@ -164,7 +164,7 @@ public class AdoptController {
     }
 
     //입양글 수정
-    @PutMapping("/adopt/adoptModifyRegi")
+    @PostMapping("/adopt/adoptModifyRegi")
     public String postAdoptModifyRegi(
             @DateTimeFormat(pattern = "yyyy-MM-dd") AdoptWriteDTO adoptWriteDTO,
             HttpSession session) {
@@ -172,7 +172,7 @@ public class AdoptController {
         adoptService.adoptModify(adoptWriteDTO);
 
         // 리다이렉트
-        return "redirect:/adopt/adopt";
+        return "redirect:/adopt/adopt"; // 리다이렉트
     }
 
     // 입양 신청서 페이지 열기

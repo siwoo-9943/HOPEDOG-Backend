@@ -1,10 +1,13 @@
-// 글수정버튼
+// 게시글수정 버튼
 function modifyClick() {
+  const reviewNo = document.querySelector('.reviewNo').textContent.trim(); // adoptNo를 HTML에서 가져옵니다.
+  const memberNo = document.querySelector('.memberNo').textContent.trim(); // centerMemberNo를 HTML에서 가져옵니다.
+
   if (confirm('정말 수정하시겠습니까?')) {
-    console.log('입양글이 수정되었습니다.');
-    window.location.href = '../../html/protect/adopt-protectmodify.html'
+    console.log('수정페이지로 이동합니다.');
+    location.href = `/adopt/review/reviewmodify?reviewNo=${reviewNo}&memberNo=${memberNo}`;
   } else {
-    console.log('입양글이 수정되지 않았습니다.');
+    console.log('신청서페이지로 이동하지 않습니다.');
   }
 }
 

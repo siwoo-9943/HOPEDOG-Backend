@@ -29,6 +29,9 @@ public interface ProtectMapper {
     //임시보호글작성
     void protectWrite(ProtectWriteDTO protectWriteDTO);
 
+    //임시보호글수정
+    void protectModify(ProtectWriteDTO protectWriteDTO);
+
     //임시보호글마감처리
     void protectEnd(ProtectDetailDTO protectDetailDTO);
 
