@@ -1,7 +1,10 @@
 package com.example.hope_dog.controller.mypage;
 
+import com.example.hope_dog.dto.centermypage.CenterUpdateProfileDTO;
 import com.example.hope_dog.dto.centermypage.CenterViewProfileDTO;
 import com.example.hope_dog.dto.centermypage.notebox.*;
+import com.example.hope_dog.dto.donation.DonationViewDTO;
+import com.example.hope_dog.dto.donation.DonationWriteDTO;
 import com.example.hope_dog.dto.member.MemberSessionDTO;
 import com.example.hope_dog.dto.mypage.*;
 import com.example.hope_dog.dto.notice.NoticeViewDTO;
@@ -361,6 +364,57 @@ public class MypageController {
         }
     }
 
+    @GetMapping("/updateProtectRequest")
+    public String updateProtectRequest(Model model) {
+        Long MemberNo = (Long) session.getAttribute("memberNo");
+
+        MpProtectRequestDTO mpProtectRequest = mypageService.protectRequestDetail(MemberNo);
+        model.addAttribute("mpProtectRequest", mpProtectRequest);
+
+        return "mypage/mypage-protect-form";
+    }
+
+    @PostMapping("/updateProtectRequestOk")
+    public String updateProtectRequestOk(UpdateProtectRequestDTO updateProtectRequestDTO, RedirectAttributes redirectAttributes) {
+        mypageService.updateProtectRequest(updateProtectRequestDTO);
+
+        return "redirect:/mypage/protect";
+    }
+
+
+//    @PostMapping("/updateProfileOk")
+//    public String updateProfile(@ModelAttribute CenterUpdateProfileDTO centerUpdateProfileDTO, RedirectAttributes redirectAttributes) {
+//        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
+//        if (centerMemberNo == null) {
+//            redirectAttributes.addFlashAttribute("errorMessage", "로그인이 필요합니다.");
+//            return "redirect:/login";
+//        }
+//
+//        // centerMemberNo를 DTO에 설정
+//        centerUpdateProfileDTO.setCenterMemberNo(centerMemberNo);
+//
+//        // 프로필 업데이트 시도
+//        try {
+//            int updateCount = centerMypageService.updateCenterProfile(centerUpdateProfileDTO);
+//            if (updateCount > 0) {
+//                redirectAttributes.addFlashAttribute("successMessage", "프로필이 성공적으로 업데이트되었습니다.");
+//            } else {
+//                redirectAttributes.addFlashAttribute("errorMessage", "프로필 업데이트에 실패했습니다.");
+//            }
+//        } catch (Exception e) {
+//            log.error("프로필 업데이트 중 오류 발생", e);
+//            redirectAttributes.addFlashAttribute("errorMessage", "프로필 업데이트 중 오류가 발생했습니다.");
+//        }
+//
+//        return "redirect:/centerMypage/centerProfile"; // 업데이트 후 리다이렉트할 페이지
+//    }
+
+//    // 글 수정 등록
+//    @PostMapping("/modifyRegi")
+//    public String donationUpdate(DonationWriteDTO donationWriteDTO) {
+//        donationService.donationUpdate(donationWriteDTO);
+//        return "redirect:/dona/list"; // 수정 후 목록으로 리다이렉트
+//    }
 
 
 

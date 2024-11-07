@@ -44,7 +44,7 @@
       <div class="protectrequest-main-size">
 
         <!-- 글작성 박스 -->
-        <div class="protectrequest-write-area" th:each="protectRequest : ${protectRequestInfo}">
+        <div class="protectrequest-write-area" th:each="protectRequest : ${mpProtectRequest}">
 
           <div class="main-input">
 
@@ -52,7 +52,7 @@
             <div class="protectrequest-write-area">
               <br>
               <div style="font-weight: bold;">임시보호 신청서</div>
-              <form id="protectRequest" th:action="@{/mypage/updateProtectRequest}" method="post">
+              <form id="protectRequest" th:action="@{/mypage/updateProtectRequestOk}" method="post">
                 <div class="protectRequestNo" th:text="${protectRequest.protectRequestNo}" style="display: none;"></div>
                 <div class="protectrequest-content-box">
                   <div class="protectrequest-content-title">성명</div>

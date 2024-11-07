@@ -95,9 +95,10 @@ public class MypageService {
     public MpProtectRequestDTO protectRequestDetail(Long protectRequestNo){
         return mypageMapper.protectRequestInfo(protectRequestNo);
     }
+
     // 임시보호 업데이트 메서드
-    public int updateProtectRequest(UpdateProtectRequestDTO updateProtectRequestDTO) {
-        return mypageMapper.updateProtectRequest(updateProtectRequestDTO);
+    public void updateProtectRequest(UpdateProtectRequestDTO updateProtectRequestDTO) {
+        mypageMapper.updateProtectRequest(updateProtectRequestDTO);
     }
 
 }

@@ -63,10 +63,6 @@ public class DonationService {
     // modify
     public void donationUpdate(DonationWriteDTO donationWriteDTO) {
         donationMapper.donationUpdate(donationWriteDTO);
-        Long donaNo = donationWriteDTO.getDonaNo();
-
-        donationMapper.donationDelete(donaNo);
-
     }
 //    public void modifyBoard(BoardUpdateDTO boardUpdateDTO, List<MultipartFile> files) throws IOException {
 //        boardMapper.updateBoard(boardUpdateDTO);

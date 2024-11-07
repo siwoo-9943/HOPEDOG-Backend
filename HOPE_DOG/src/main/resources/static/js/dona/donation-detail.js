@@ -4,12 +4,6 @@ import * as reply from "./comment.js";
 let page = 1;
 let hasNext = true;
 
-// URL에서 파라미터를 가져오는 함수
-function getParameter(name) {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(name);
-}
-
 // 글 삭제 버튼
 function deleteClick() {
   // donaNo 가져오기
@@ -31,6 +25,7 @@ function deleteClick() {
   }
 }
 
+window.deleteClick = deleteClick;
 
   // 수정 버튼 처리
 //
@@ -47,6 +42,9 @@ function modifyClick() {
   const donaNo = document.querySelector('.donaNo').textContent.trim(); // adoptNo를 HTML에서 가져옵니다.
   const centerMemberNo = document.querySelector('.centerMemberNo').textContent.trim(); // centerMemberNo를 HTML에서 가져옵니다.
 
+  console.log(donaNo);
+  // console.log(centerMemberNo);
+
   if (confirm('정말 수정하시겠습니까?')) {
     console.log('수정페이지로 이동합니다.');
     location.href = `/dona/modify?donaNo=${donaNo}&centerMemberNo=${centerMemberNo}`;
@@ -54,6 +52,8 @@ function modifyClick() {
     console.log('신청서페이지로 이동하지 않습니다.');
   }
 }
+
+window.modifyClick = modifyClick;
 
 // ------------------------댓글 메뉴 처리-------------------------------------------
 {

@@ -55,7 +55,7 @@
           <li>
             <div class="mypage-protect-list" th:each="myprotect : ${mypageProtectList}">
               <ul class="member-profile-protect-contentbox">
-<!--                <a th:href="@{/mypage/protectRequest(protectRequestNo=${myprotect.protectRequestNo})}"><li th:text="${myprotect.protectTitle}"></li></a>-->
+<!--                <a th:href="@{/mypage/updateProtectRequest(protectRequestNo=${myprotect.protectRequestNo})}"><li th:text="${myprotect.protectTitle}"></li></a>-->
                 <li th:text="${myprotect.protectTitle}"></li>
                 <li th:if="${myprotect.protectStatus} == 'T'" th:text="검토중"></li>
                 <li th:if="${myprotect.protectStatus} == 'F'" th:text="마감"></li>

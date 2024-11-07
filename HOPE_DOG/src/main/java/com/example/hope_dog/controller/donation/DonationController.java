@@ -70,6 +70,7 @@ public class DonationController {
     @PostMapping("/writeRegi")
     public String registerDonation(DonationWriteDTO donationWriteDTO) {
         donationService.registerDonation(donationWriteDTO);
+
         return "redirect:/dona/list";
     }
 
@@ -97,11 +98,14 @@ public class DonationController {
         List<DonationViewDTO> donation = donationService.getDonationViewList(donaNo);
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
 
+        System.out.println(donation + "확인");
+
         model.addAttribute("centerMemberNo", centerMemberNo);
         model.addAttribute("donation", donation);
 
         return "donation/donation-modify"; // 수정 페이지 템플릿 이름
     }
+
 
     // 글 수정 등록
     @PostMapping("/modifyRegi")
