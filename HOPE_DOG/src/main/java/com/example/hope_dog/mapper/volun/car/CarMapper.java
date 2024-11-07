@@ -18,26 +18,29 @@ public interface CarMapper {
    List<CarDTO> selectAllCars();
 
     // 카테고리 분류별 게시글 조회 (페이지네이션 포함)
-    List<CarDTO> selectCate(@Param("cate") String cate, @Param("criteria") Criteria criteria);
+    List<CarDTO> findCarByCate(@Param("cate") String cate);
 
-    //카풀 전체 게시판(페이지네이션)
-    List<CarDTO> selectCarMain();
-    // 카테고리별 게시글 수를 카운트
-    int countCarsByCategory(@Param("cate") String cate);
+//    //카풀 전체 게시판(페이지네이션)
+//    List<CarDTO> selectCarMain();
+//    // 카테고리별 게시글 수를 카운트
+//    int countCarsByCategory(@Param("cate") String cate);
 
     //전체 게시글 수 조회
-    int carTotal();
-    //페이지별 게시글 조회
-    List<CarDTO> selectCarPage(Criteria criteria);
+//    int carTotal();
+//    //페이지별 게시글 조회
+//    List<CarDTO> selectCarPage(Criteria criteria);
 
    // 게시글 상세페이지 조회 (게시글과 댓글 정보 포함)
-   CarDetailDTO selectCarDetail(@Param("carNo") Long carNo);
+ List<CarDetailDTO> selectCarDetail(Long carNo);
 
     // 댓글 조회 (특정 게시글의 댓글 리스트)
-    List<CarCommentDTO> selectCommentsByCarNo(@Param("carNo") Long carNo);
+    List<CarCommentDTO> carComment(Long carNo);
+
+    //게시글 작성
+    void carWriter(CarDTO carDTO);
 
     // 검색 결과 조회
-    List<CarDTO> searchCars(@Param("params") Map<String, Object> params);
+//    List<CarDTO> searchCars(@Param("params") Map<String, Object> params);
 
     // 검색 조건에 따른 총 게시글 수 조회
 //    int countCarsBySearch(@Param("params") Map<String, Object> params);
@@ -45,11 +48,11 @@ public interface CarMapper {
     // 검색 조건을 기반으로 총 개수 조회
 //    int countCars(@Param("params") Map<String, Object> params);
 
- int countCarsByTitle(@Param("keyword") String keyword);
- int countCarsByNickname(@Param("keyword") String keyword);
-
- List<CarDTO> searchCarsByTitle(@Param("carTitle") String carTitle, @Param("criteria") Criteria criteria);
- List<CarDTO> searchCarsByNickname(@Param("nickname") String nickname, @Param("criteria") Criteria criteria);
+// int countCarsByTitle(@Param("keyword") String keyword);
+// int countCarsByNickname(@Param("keyword") String keyword);
+//
+// List<CarDTO> searchCarsByTitle(@Param("carTitle") String carTitle, @Param("criteria") Criteria criteria);
+// List<CarDTO> searchCarsByNickname(@Param("nickname") String nickname, @Param("criteria") Criteria criteria);
 
     //일반회원 조회
     MemberDTO selectMemberByNo(Long memberNo);

@@ -22,22 +22,22 @@
     </div>
 
     <!-- 제목/작성자/등록일 크기 -->
-    <div class="volun-detail-box1">
-      <div class="volun-detail-title" th:text="${carDetail.carTitle}"></div>
+    <div class="volun-detail-box1" th:each="car : ${carDetailList}">
+      <div class="volun-detail-title" th:text="${car.carTitle}"></div>
       <div class="volun-detail-info"><span>작성자 :
-          <span th:if="${carDetail.carWriter % 2 != 0}" th:text="${carDetail.memberNickname}"></span>
-          <span th:if="${carDetail.carWriter % 2 == 0}" th:text="${carDetail.centerMemberName}"></span>
+          <span th:if="${car.carWriter % 2 != 0}" th:text="${car.memberNickname}"></span>
+          <span th:if="${car.carWriter % 2 == 0}" th:text="${car.centerMemberName}"></span>
         </span>
-        <span >등록일 : <span th:text="${#dates.format(carDetail.carRegiDate, 'yyyy-MM-dd')}"></span></span>
+        <span >등록일 : <span th:text="${#dates.format(car.carRegiDate, 'yyyy-MM-dd')}"></span></span>
       </div>
     </div>
 
     <!-- 글내용 크기 -->
-    <div class="volun-detail-box2">
+    <div class="volun-detail-box2" th:each="car: ${carDetailList}">
       <div class="volun-detail-content">
         <div class="volun-detail-basicinfo">
           <div class="volun-detail-basicinfo-title"></div>
-          <div th:text="${carDetail.carContent}"></div>
+          <div th:utext="${car.carContent}"></div>
 
         </div>
 
@@ -58,17 +58,17 @@
     <br>
 
     <!-- 댓글창 -->
-    <div class="volun-detail-box4">
-      <div  th:each="comment : ${carDetail.comments}">
+    <div class="volun-detail-box4" th:each="car :${carCommentList}">
+      <div>
 <!--        댓글 작성자-->
         <div class="volun-detail-name">
-          <span th:if="${comment.carCommentWriter% 2 != 0}" th:text="${comment.memberNickname}"></span>
-          <span th:if="${comment.carCommentWriter % 2 == 0}" th:text="${comment.centerMemberName}"></span>
+          <span th:if="${car.carCommentWriter% 2 != 0}" th:text="${car.memberNickname}"></span>
+          <span th:if="${car.carCommentWriter % 2 == 0}" th:text="${car.centerMemberName}"></span>
         </div>
 <!--        댓글-->
-        <div class="volun-detail-comment" th:text="${comment.carComment}"></div>
+        <div class="volun-detail-comment" th:text="${car.carComment}"></div>
 <!--        작성일-->
-        <div class="volun-detail-date" th:text="${#dates.format(comment.carCommentRegiDate, 'yyyy-MM-dd')}"></div>
+        <div class="volun-detail-date" th:text="${#dates.format(car.carCommentRegiDate, 'yyyy-MM-dd')}"></div>
       </div>
       <br>
     </div>
