@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -27,6 +28,7 @@ import java.util.List;
 public class commuController {
     private final CommuService commuService;
 
+    //게시글 목록
     @GetMapping("/main") // /commu/list 경로로 GET 요청을 받을 때
     public String getCommuList(HttpSession session, Model model) {
         // 세션에서 memberNo와 centerMemberNo를 가져옴
@@ -80,17 +82,15 @@ public class commuController {
 
 
     //거지같은 검색 더럽게 안됨
-//    @GetMapping("/commu/main/commuSearch")
-//    public String commuSearch(@RequestParam("page") int page, @RequestParam("searchtype") String searchType, @RequestParam("keyword") String keyword, Model model) {
-//        Criteria criteria = new Criteria(page, 10);  // 페이지와 한 페이지당 게시글 수
-////        List<CommuDTO> commuList = commuService.searchCommuList(searchType, keyword, criteria);
-////        int totalItems = commuService.getTotalItems(searchType, keyword);
-//
+//    @GetMapping("/main/search")
+//    public String searchCommu(@RequestParam(required = false) String searchType,
+//                              @RequestParam(required = false) String keyword,
+//                              Model model) {
+//        List<CommuDTO> commuList = commuService.searchCommu(searchType, keyword);
 //        model.addAttribute("commuList", commuList);
-//        model.addAttribute("totalItems", totalItems);
-//
-//        return "commu/commu-mail";  // 검색 결과가 포함된 페이지를 반환
+//        return "commu/commu-main";
 //    }
+
 
     //게시글 상세
     @GetMapping("/post/{commuNo}")
