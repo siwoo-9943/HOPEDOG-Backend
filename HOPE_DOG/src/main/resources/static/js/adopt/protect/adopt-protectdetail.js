@@ -5,7 +5,7 @@ function modifyClick() {
 
   if (confirm('정말 수정하시겠습니까?')) {
     console.log('수정페이지로 이동합니다.');
-    location.href = `/adopt/protect/protectmodify?adoptNo=${adoptNo}&centerMemberNo=${centerMemberNo}`;
+    location.href = `/adopt/protect/protectmodify?protectNo=${adoptNo}&centerMemberNo=${centerMemberNo}`;
   } else {
     console.log('신청서페이지로 이동하지 않습니다.');
   }

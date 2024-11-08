@@ -54,10 +54,10 @@
           <div class="adopt-post-title" th:text="${protect.protectTitle}"></div>
         </div>
         <div class="adopt-post-content" th:text="${protect.protectIntroduce}"></div>
-        <div class="adopt-post-content" th:text="${protect.protectName}"></div>
+        <div class="adopt-post-content" th:text="이름 + ':' + ${protect.protectName}"></div>
         <div class="adopt-post-content">
-          <span th:if="${protect.protectGender == 'M'}" th:text="남자"></span>
-          <span th:if="${protect.protectGender == 'F'}" th:text="여자"></span>
+          <span th:if="${protect.protectGender == 'M'}" th:text=" 성별 +':' + 남자"></span>
+          <span th:if="${protect.protectGender == 'F'}" th:text=" 성별 +':' + 남자"></span>
           /
           <span th:if="${protect.protectNeutering == 'Y'}" th:text="'중성화(O)'"></span>
           <span th:if="${protect.protectNeutering == 'N'}" th:text="'중성화(X)'"></span>
