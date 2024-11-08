@@ -154,11 +154,9 @@ public class AdoptController {
     public String adoptModify(@RequestParam("adoptNo") Long adoptNo, Model model, HttpSession session) {
         List<AdoptDetailDTO> adoptDetailList = adoptService.getAdoptDetail(adoptNo);
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
-        Long memberNo = (Long) session.getAttribute("memberNo");
 
         model.addAttribute("adoptDetailList", adoptDetailList);
         model.addAttribute("centerMemberNo", centerMemberNo);
-        model.addAttribute("memberNo", memberNo);
 
         return "adopt/adopt/adopt-adoptmodify";
     }

@@ -8,6 +8,7 @@
   <link rel="stylesheet" th:href="@{/css/volun/volun/volun-main.css}" />
   <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
   <link rel="stylesheet" th:href="@{/css/main/main.css}">
+  <script defer th:src="@{/js/main/main.js}"></script>
 </head>
 
 <body>
@@ -17,12 +18,8 @@
     <div class="volun-main-size">
       <!-- 입양/임보/후기 게시판 바 -->
       <div class="volun-nav">
-        <a href="../../html/volun/volun-volun-main.html">
-          <div class="volun-navList">봉사</div>
-        </a>
-        <a href="../../html/volun/volun-main-member.html">
-          <div class="volun-navList">카풀</div>
-        </a>
+          <div class="volun-navList" id="volunPage">봉사</div>
+          <div class="volun-navList" id="carPage">카풀</div>
       </div>
 
       <!-- 입양메인배너1 -->
@@ -39,78 +36,17 @@
 
       <!-- 입양메인배너1 -->
       <div class="volun-banner3">
-        <div><img src="../../img/volun-main.jpg" width="900px" height="550px"></div>
+        <div><img th:src="@{/img/volun-main.jpg}" width="900px" height="550px"></div>
         <div class="volun-banner3-notice">유기견 봉사 안내</div>
         <div class="volun-banner3-inner">
-          <div class="volun-banner3-list">
+          <div class="volun-banner3-list" th:each="volun : ${VolunMainList}">
             <div class="volun-banner3-cate">[봉사모집]</div>
-            <div class="volun-banner3-title">11월 4일 성남 유기견 봉사원 모집합니다</div>
-            <div class="volun-banner3-nickname">에드워드리</div>
-            <div class="volun-banner3-date">2024-10-27</div>
-            <div class="volun-banner3-status">[진행중]</div>
-          </div>
-          <div class="volun-banner3-list">
-            <div class="volun-banner3-cate">[봉사모집]</div>
-            <div class="volun-banner3-title">11월 4일 성남 유기견 봉사원 모집합니다</div>
-            <div class="volun-banner3-nickname">에드워드리</div>
-            <div class="volun-banner3-date">2024-10-27</div>
-            <div class="volun-banner3-status">[진행중]</div>
-          </div>
-          <div class="volun-banner3-list">
-            <div class="volun-banner3-cate">[봉사모집]</div>
-            <div class="volun-banner3-title">11월 4일 성남 유기견 봉사원 모집합니다</div>
-            <div class="volun-banner3-nickname">에드워드리</div>
-            <div class="volun-banner3-date">2024-10-27</div>
-            <div class="volun-banner3-status">[진행중]</div>
-          </div>
-          <div class="volun-banner3-list">
-            <div class="volun-banner3-cate">[봉사모집]</div>
-            <div class="volun-banner3-title">11월 4일 성남 유기견 봉사원 모집합니다</div>
-            <div class="volun-banner3-nickname">에드워드리</div>
-            <div class="volun-banner3-date">2024-10-27</div>
-            <div class="volun-banner3-status">[진행중]</div>
-          </div>
-          <div class="volun-banner3-list">
-            <div class="volun-banner3-cate">[봉사모집]</div>
-            <div class="volun-banner3-title">11월 4일 성남 유기견 봉사원 모집합니다</div>
-            <div class="volun-banner3-nickname">에드워드리</div>
-            <div class="volun-banner3-date">2024-10-27</div>
-            <div class="volun-banner3-status">[진행중]</div>
-          </div>
-          <div class="volun-banner3-list">
-            <div class="volun-banner3-cate">[봉사모집]</div>
-            <div class="volun-banner3-title">11월 4일 성남 유기견 봉사원 모집합니다</div>
-            <div class="volun-banner3-nickname">에드워드리</div>
-            <div class="volun-banner3-date">2024-10-27</div>
-            <div class="volun-banner3-status">[진행중]</div>
-          </div>
-          <div class="volun-banner3-list">
-            <div class="volun-banner3-cate">[봉사모집]</div>
-            <div class="volun-banner3-title">11월 4일 성남 유기견 봉사원 모집합니다</div>
-            <div class="volun-banner3-nickname">에드워드리</div>
-            <div class="volun-banner3-date">2024-10-27</div>
-            <div class="volun-banner3-status">[진행중]</div>
-          </div>
-          <div class="volun-banner3-list">
-            <div class="volun-banner3-cate">[봉사모집]</div>
-            <div class="volun-banner3-title">11월 4일 성남 유기견 봉사원 모집합니다</div>
-            <div class="volun-banner3-nickname">에드워드리</div>
-            <div class="volun-banner3-date">2024-10-27</div>
-            <div class="volun-banner3-status">[진행중]</div>
-          </div>
-          <div class="volun-banner3-list">
-            <div class="volun-banner3-cate">[봉사모집]</div>
-            <div class="volun-banner3-title">11월 4일 성남 유기견 봉사원 모집합니다</div>
-            <div class="volun-banner3-nickname">에드워드리</div>
-            <div class="volun-banner3-date">2024-10-27</div>
-            <div class="volun-banner3-status">[진행중]</div>
-          </div>
-          <div class="volun-banner3-list">
-            <div class="volun-banner3-cate">[봉사모집]</div>
-            <div class="volun-banner3-title">11월 4일 성남 유기견 봉사원 모집합니다</div>
-            <div class="volun-banner3-nickname">에드워드리</div>
-            <div class="volun-banner3-date">2024-10-27</div>
-            <div class="volun-banner3-status">[진행중]</div>
+            <div class="volun-banner3-title" th:text="${volun.volunTitle}"></div>
+            <div class="volun-banner3-nickname" th:text="${volun.centerMemberName}"></div>
+            <div class="volun-banner3-date" th:text="${#dates.format(volun.volunRegidate, 'yyyy-MM-dd')}"></div>
+            <div class="volun-banner3-status" th:if="${volun.volunStatus == 'T'}" th:text="[모집중]"></div>
+            <div class="volun-banner3-status" th:if="${volun.volunStatus == 'F'}" th:text="[마감]"></div>
+            <div class="volunNo" th:text="${volun.volunNo}" style="display: none;"></div>
           </div>
         </div>
       </div>
@@ -125,6 +61,6 @@
     © NEXT LEVEL. All Rights Reserved</h6>
 </footer>
 
-<script defer src="../../js/main/header.js"></script>
+<script defer th:src="@{/js/volun/volun/volun-main.js}"></script>
 
 </html>

@@ -25,12 +25,19 @@ main{
   border-top: solid 2px #9B805D;
   border-bottom: solid 2px #9B805D;
 }
+volun-banner3-list:hover{
+  cursor: pointer;
+}
 
 .volun-navList{
   font-size: 18px;
   font-weight: bold;
   width: 180px;
   text-align: center;
+}
+
+.volun-navList:hover {
+  cursor: pointer; /* 마우스 오버 시 커서를 포인터로 변경 */
 }
 
 .volun-banner1{
@@ -93,6 +100,11 @@ main{
   height: 35px;
   border-bottom: 1px solid #F5EAD9;
 }
+
+.volun-banner3-list:hover {
+  cursor: pointer;
+}
+
 
 .volun-banner3-cate{
   width: 100px;

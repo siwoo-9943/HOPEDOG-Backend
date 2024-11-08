@@ -11,6 +11,7 @@
                 FROM TBL_ADOPT) a
                 JOIN TBL_CENTER_MEMBER c ON a.CENTER_MEMBER_NO = c.CENTER_MEMBER_NO
         WHERE a.row_num <= 10
+        ORDER BY a.ADOPT_REGIDATE DESC
         ]]>
     </select>
 
