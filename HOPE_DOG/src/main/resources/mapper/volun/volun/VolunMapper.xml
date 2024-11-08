@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.hope_dog.mapper.volun.volun.VolunMapper">
+    <!-- 메인에서 봉사 게시글 불러오기 -->
+    <select id="main" resultType="VolunMainDTO">
+    <![CDATA[
+        SELECT a.VOlUN_NO, a.VOlUN_TITLE, a.VOlUN_REGIDATE, a.CENTER_MEMBER_NO, a.VOlUN_STATUS, c.CENTER_MEMBER_NAME
+        FROM(
+                SELECT VOlUN_NO, VOlUN_TITLE, VOlUN_REGIDATE, CENTER_MEMBER_NO, VOlUN_STATUS,
+                       ROW_NUMBER() OVER ( ORDER BY VOlUN_REGIDATE DESC) AS row_num
+                FROM TBL_VOlUN) a
+                JOIN TBL_CENTER_MEMBER c ON a.CENTER_MEMBER_NO = c.CENTER_MEMBER_NO
+        WHERE a.row_num <= 10
+        ORDER BY a.VOLUN_REGIDATE DESC
+        ]]>
+    </select>
+
+    <!-- 여기서 부터 페이지네이션 관련 쿼리문-->
+    <!-- 봉사 전체게시글 수 -->
+    <select id="selectTotal" resultType="int">
+        SELECT COUNT(VOLUN_NO) FROM TBL_VOLUN
+    </select>
+
+    <!-- 봉사 전체게시글-->
+    <select id="volunMain" resultType="VolunMainDTO">
+        SELECT VOLUN_NO, VOLUN_PERIODSTART, VOLUN_PERIODEND, VOLUN_START, VOLUN_END,
+               VOLUN_LOCAL, VOLUN_TIME, VOLUN_PEOPLE, VOLUN_TITLE, VOLUN_CONTENT,
+               VOLUN_REGIDATE, VOLUN_STATUS, CENTER_MEMBER_NO
+        FROM TBL_VOLUN
+        ORDER BY VOLUN_REGIDATE DESC;
+    </select>
+
+
+    <!-- 봉사 페이지마다 표시할 게시글-->
+    <select id="selectAllPage" parameterType="Criteria" resultType="VolunMainDTO">
+    <![CDATA[
+        SELECT VOLUN_NO, VOLUN_PERIODSTART, VOLUN_PERIODEND, VOLUN_START, VOLUN_END,
+               VOLUN_LOCAL, VOLUN_TIME, VOLUN_PEOPLE, VOLUN_TITLE, VOLUN_CONTENT,
+               VOLUN_REGIDATE, VOLUN_STATUS, CENTER_MEMBER_NO
+        FROM (
+                 SELECT VOLUN_NO, VOLUN_PERIODSTART, VOLUN_PERIODEND, VOLUN_START, VOLUN_END,
+                        VOLUN_LOCAL, VOLUN_TIME, VOLUN_PEOPLE, VOLUN_TITLE, VOLUN_CONTENT,
+                        VOLUN_REGIDATE, VOLUN_STATUS, CENTER_MEMBER_NO,
+                        ROWNUM AS RNUM
+                 FROM (
+                          SELECT VOLUN_NO, VOLUN_PERIODSTART, VOLUN_PERIODEND, VOLUN_START, VOLUN_END,
+                                 VOLUN_LOCAL, VOLUN_TIME, VOLUN_PEOPLE, VOLUN_TITLE, VOLUN_CONTENT,
+                                 VOLUN_REGIDATE, VOLUN_STATUS, CENTER_MEMBER_NO
+                          FROM TBL_VOLUN
+                          ORDER BY VOLUN_REGIDATE DESC
+                      )
+             )
+        WHERE RNUM > (#{page} - 1) * #{amount} AND RNUM <= #{page} * #{amount}
+        ]]>
+</select>
+    <!-- 여기까지 페이지네이션+게시글목록불러오기 -->
+
+    <!-- 봉사모집 진행중인 게시글-->
+    <select id="selectTotalKeep" resultType="int">
+        SELECT COUNT(VOLUN_NO) FROM TBL_VOLUN WHERE VOLUN_STATUS = 'T'
+    </select>
+
+
+    <select id="volunMainKeep" resultType="VolunMainDTO">
+        SELECT VOLUN_NO, VOLUN_PERIODSTART, VOLUN_PERIODEND, VOLUN_START, VOLUN_END,
+               VOLUN_LOCAL, VOLUN_TIME, VOLUN_PEOPLE, VOLUN_TITLE, VOLUN_CONTENT,
+               VOLUN_REGIDATE, VOLUN_STATUS, CENTER_MEMBER_NO
+        FROM TBL_VOLUN
+        WHERE VOLUN_STATUS = 'T'
+        ORDER BY VOLUN_REGIDATE DESC;
+    </select>
+
+
+    <!-- 봉사 페이지마다 표시할 게시글-->
+    <select id="selectAllPageKeep" parameterType="Criteria" resultType="VolunMainDTO">
+    <![CDATA[
+        SELECT VOLUN_NO, VOLUN_PERIODSTART, VOLUN_PERIODEND, VOLUN_START, VOLUN_END,
+               VOLUN_LOCAL, VOLUN_TIME, VOLUN_PEOPLE, VOLUN_TITLE, VOLUN_CONTENT,
+               VOLUN_REGIDATE, VOLUN_STATUS, CENTER_MEMBER_NO
+        FROM (
+                 SELECT VOLUN_NO, VOLUN_PERIODSTART, VOLUN_PERIODEND, VOLUN_START, VOLUN_END,
+                        VOLUN_LOCAL, VOLUN_TIME, VOLUN_PEOPLE, VOLUN_TITLE, VOLUN_CONTENT,
+                        VOLUN_REGIDATE, VOLUN_STATUS, CENTER_MEMBER_NO,
+                        ROWNUM AS RNUM
+                 FROM (
+                          SELECT VOLUN_NO, VOLUN_PERIODSTART, VOLUN_PERIODEND, VOLUN_START, VOLUN_END,
+                                 VOLUN_LOCAL, VOLUN_TIME, VOLUN_PEOPLE, VOLUN_TITLE, VOLUN_CONTENT,
+                                 VOLUN_REGIDATE, VOLUN_STATUS, CENTER_MEMBER_NO
+                          FROM TBL_VOLUN
+                          ORDER BY VOLUN_REGIDATE DESC
+                      )
+             )
+        WHERE RNUM > (#{page} - 1) * #{amount} AND RNUM <= #{page} * #{amount} AND VOLUN_STATUS = 'T'
+        ]]>
+</select>
+    <!-- 여기까지 페이지네이션+게시글목록불러오기 -->
+
+    <!-- 게시글 상세페이지 불러오기 -->
+    <select id="volunDetail" resultType="VolunDetailDTO">
+        SELECT a.VOLUN_NO, a.VOLUN_PERIODSTART, a.VOLUN_PERIODEND, a.VOLUN_START, a.VOLUN_END,
+               a.VOLUN_LOCAL, a.VOLUN_TIME, a.VOLUN_PEOPLE, a.VOLUN_TITLE, a.VOLUN_CONTENT,
+               a.VOLUN_REGIDATE, a.VOLUN_STATUS, a.CENTER_MEMBER_NO, c.CENTER_MEMBER_NAME
+        FROM TBL_VOLUN a JOIN TBL_CENTER_MEMBER c ON a.CENTER_MEMBER_NO = c.CENTER_MEMBER_NO
+        WHERE VOLUN_NO = #{volunNo}
+    </select>
+
+    <!-- 댓글불러오기 -->
+    <select id="volunComment" parameterType="Long" resultType="VolunCommentDTO">
+        SELECT
+            ac.VOLUN_COMMENT_NO,
+            ac.VOLUN_COMMENT,
+            ac.VOLUN_COMMENT_REGIDATE,
+            ac.VOLUN_COMMENT_WRITER,
+            CASE
+                WHEN MOD(ac.VOLUN_COMMENT_WRITER, 10) = 1 THEN m.MEMBER_NICKNAME
+                WHEN MOD(ac.VOLUN_COMMENT_WRITER, 10) = 2 THEN cm.CENTER_MEMBER_NAME
+                END AS COMMENT_WRITER_NAME
+        FROM
+            TBL_VOLUN_COMMENT ac
+                LEFT JOIN
+            TBL_MEMBER m ON MOD(ac.VOLUN_COMMENT_WRITER, 10) = 1 AND ac.VOLUN_COMMENT_WRITER = m.MEMBER_NO
+                LEFT JOIN
+            TBL_CENTER_MEMBER cm ON MOD(ac.VOLUN_COMMENT_WRITER, 10) = 2 AND ac.VOLUN_COMMENT_WRITER = cm.CENTER_MEMBER_NO
+        WHERE
+            ac.VOLUN_NO = #{VOLUNNo}
+        ORDER BY
+            ac.VOLUN_COMMENT_REGIDATE ASC
+    </select>
+
+
+</mapper>

@@ -61,6 +61,15 @@ public class ProtectService {
         protectMapper.protectWrite(protectWriteDTO);
     }
 
+    //임시보호글 수정 처리
+    public void protectModify(ProtectWriteDTO protectWriteDTO) {
+        LocalDate periodStart = protectWriteDTO.getProtectPeriodstart();
+        LocalDate periodEnd = protectWriteDTO.getProtectPeriodend();
+        LocalDate adoptBirth = protectWriteDTO.getProtectBirth();
+
+        protectMapper.protectModify(protectWriteDTO); // 매퍼 호출
+    }
+
     //임시보호글 마감처리
     public void protectEnd(ProtectDetailDTO protectDetailDTO) {
         protectMapper.protectEnd(protectDetailDTO); // 매퍼 호출

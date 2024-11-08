@@ -18,8 +18,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
@@ -78,10 +83,41 @@ public class ReviewController {
             @DateTimeFormat(pattern = "yyyy-MM-dd") ReviewWriteDTO reviewWriteDTO,
             HttpSession session) {
         // 서비스 호출하여 데이터베이스에 저장
+        System.out.println(reviewWriteDTO + "확인");
         reviewService.registerReviewtion(reviewWriteDTO);
 
         // 리다이렉트
         return "redirect:/adopt/review";
+    }
+
+
+
+    //후기 글수정페이지이동
+    @GetMapping("/review/reviewmodify")
+    public String reviewModify(@RequestParam("reviewNo") Long reviewNo, Model model, HttpSession session) {
+        List<ReviewDetailDTO> reviewDetailList = reviewService.getReviewDetail(reviewNo);
+        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
+        Long memberNo = (Long) session.getAttribute("memberNo");
+
+        model.addAttribute("reviewDetailList", reviewDetailList);
+        model.addAttribute("centerMemberNo", centerMemberNo);
+        model.addAttribute("memberNo", memberNo);
+
+        return "adopt/review/adopt-reviewmodify";
+    }
+
+    //후기글수정
+    @PostMapping("/review/reviewModifyRegi")
+    public String postReviewModifyRegi(
+            @DateTimeFormat(pattern = "yyyy-MM-dd") ReviewWriteDTO reviewWriteDTO,
+            HttpSession session) {
+        // 서비스 호출하여 데이터베이스에 저장
+        reviewService.reviewModify(reviewWriteDTO);
+
+        System.out.println(reviewWriteDTO + "수정값확인");
+
+        // 리다이렉트
+        return "redirect:/adopt/review"; // 리다이렉트
     }
 
     //후기글삭제처리
@@ -114,12 +150,7 @@ public class ReviewController {
 
         return "redirect:/adopt/review/reviewdetail?reviewNo=" + reviewNo;
     }
-
-    //후기글수정
-    @GetMapping("/review/reviewmodify")
-    public String reviewModify() {
-        return "adopt/review/adopt-reviewmodify";
-    }
+    
 
     //후기 댓글 등록
     @GetMapping("/review/reviewCommentRegi")

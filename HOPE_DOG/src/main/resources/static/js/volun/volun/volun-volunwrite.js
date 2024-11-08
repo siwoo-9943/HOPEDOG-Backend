@@ -75,3 +75,18 @@ $(function () {
       ]
   });
 });
+
+//상단헤더이동
+{
+    let volunPageBtn = document.getElementById('volunPage');
+    volunPageBtn.addEventListener('click', function(){
+        location.href='/volun/volun';
+    });
+}
+
+{
+    let carPageBtn = document.getElementById('carPage');
+    carPageBtn.addEventListener('click', function(){
+        location.href='/car/main';
+    });
+}

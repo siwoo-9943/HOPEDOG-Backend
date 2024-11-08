@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>후기 글상세</title>
-  <link rel="stylesheet" th:href="@{/css/adopt/review/adopt-reviewdetail.css}" />
+  <link rel="stylesheet" th:href="@{/css/adopt/review/adopt-reviewdetail.css}">
   <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
   <link rel="stylesheet" th:href="@{/css/main/main.css}">
   <script defer th:src="@{/js/main/main.js}"></script>
@@ -25,6 +25,7 @@
 
     <!-- 제목/작성자/등록일 크기 -->
     <div class="adopt-detail-box1" th:each="review : ${reviewDetailList}">
+      <div class="memberNo" th:text="${review.reviewNo}" style="display: none"></div>
       <div class="adopt-detail-title" th:text="${review.reviewTitle}"></div>
       <div class="adopt-detail-info">
         <span th:text="'작성자 : ' + ${review.memberName}"></span>

@@ -110,6 +110,24 @@
         )
     </insert>
 
+    <!-- 게시글 수정 -->
+    <update id="protectModify" parameterType="ProtectWriteDTO">
+        UPDATE TBL_PROTECT
+        SET PROTECT_PERIODSTART = #{protectPeriodstart},
+            PROTECT_PERIODEND = #{protectPeriodend},
+            PROTECT_NAME = #{protectName},
+            PROTECT_BREED = #{protectBreed},
+            PROTECT_NEUTERING = #{protectNeutering},
+            PROTECT_GENDER = #{protectGender},
+            PROTECT_WEIGHT = #{protectWeight},
+            PROTECT_BIRTH = #{protectBirth},
+            PROTECT_INTRODUCE = #{protectIntroduce},
+            PROTECT_TITLE = #{protectTitle},
+            PROTECT_CONTENT = #{protectContent},
+            PROTECT_UPDATEDATE = SYSDATE
+        WHERE PROTECT_NO = #{protectNo}
+    </update>
+
     <!-- 게시글 마감 처리 -->
     <update id="protectEnd" parameterType="ProtectDetailDTO">
         UPDATE TBL_PROTECT
