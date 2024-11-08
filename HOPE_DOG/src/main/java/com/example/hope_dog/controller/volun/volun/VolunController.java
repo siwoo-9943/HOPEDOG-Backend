@@ -2,18 +2,22 @@ package com.example.hope_dog.controller.volun.volun;
 
 import com.example.hope_dog.dto.adopt.adopt.AdoptCommentDTO;
 import com.example.hope_dog.dto.adopt.adopt.AdoptDetailDTO;
+import com.example.hope_dog.dto.adopt.adopt.AdoptWriteDTO;
 import com.example.hope_dog.dto.page.Criteria;
 import com.example.hope_dog.dto.page.Page;
 import com.example.hope_dog.dto.volun.volun.VolunCommentDTO;
 import com.example.hope_dog.dto.volun.volun.VolunDetailDTO;
 import com.example.hope_dog.dto.volun.volun.VolunMainDTO;
+import com.example.hope_dog.dto.volun.volun.VolunWriteDTO;
 import com.example.hope_dog.service.volun.volun.VolunService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -82,6 +86,68 @@ public class VolunController {
         model.addAttribute("memberNo", memberNo);
 
         return "volun/volun/volun-volundetail";
+    }
+
+    //봉사글작성페이지이동
+    @GetMapping("/volunwrite")
+    public String adoptWrite(HttpSession session, Model model) {
+        // 세션에서 memberNo 가져오기
+        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
+
+        // 모델에 memberNo 추가
+        model.addAttribute("centerMemberNo", centerMemberNo);
+
+        return "volun/volun/volun-volunwrite"; // 템플릿 이름
+    }
+
+    // 봉사 글 등록 처리
+    @PostMapping("/volun/volunWriteRegi")
+    public String postVolunWrite(
+            @DateTimeFormat(pattern = "yyyy-MM-dd") VolunWriteDTO volunWriteDTO,
+            HttpSession session) {
+        // 서비스 호출하여 데이터베이스에 저장
+        volunService.registerVolun(volunWriteDTO);
+
+        // 리다이렉트
+        return "redirect:/volun/volun";
+    }
+
+    //봉사글삭제처리
+    @GetMapping("/volun/volunDelete")
+    public String volunDelete(@RequestParam("volunNo") Long volunNo) {
+
+        // AdoptDetailDTO 생성 및 adoptNo 설정
+        VolunDetailDTO volunDetailDTO = new VolunDetailDTO();
+        volunDetailDTO.setVolunNo(volunNo);
+
+        // 서비스 호출
+        volunService.volunDelete(volunDetailDTO);
+
+        return "redirect:/volun/volun"; // 리다이렉트
+    }
+
+    //봉사글수정페이지이동
+    @GetMapping("/volun/volunmodify")
+    public String volunModify(@RequestParam("volunNo") Long volunNo, Model model, HttpSession session) {
+        List<VolunDetailDTO> volunDetailList = volunService.getVolunDetail(volunNo);
+        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
+
+        model.addAttribute("volunDetailList", volunDetailList);
+        model.addAttribute("centerMemberNo", centerMemberNo);
+
+        return "volun/volun/volun-volunmodify";
+    }
+
+    //봉사글 수정
+    @PostMapping("/volun/volunModifyRegi")
+    public String postVolunModifyRegi(
+            @DateTimeFormat(pattern = "yyyy-MM-dd") VolunWriteDTO volunWriteDTO,
+            HttpSession session) {
+        // 서비스 호출하여 데이터베이스에 저장
+        volunService.volunModify(volunWriteDTO);
+
+        // 리다이렉트
+        return "redirect:/volun/volun"; // 리다이렉트
     }
 
 }

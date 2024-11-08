@@ -128,4 +128,42 @@
     </select>
 
 
+    <!-- 게시글 작성 -->
+    <insert id="volunWrite" parameterType="VolunWriteDTO">
+        <selectKey keyProperty="volunNo" resultType="Long" order="BEFORE">
+            SELECT SEQ_VOLUN.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_VOLUN (
+        VOLUN_NO, VOLUN_PERIODSTART, VOLUN_PERIODEND, VOLUN_START,
+        VOLUN_END, VOLUN_LOCAL, VOLUN_TIME, VOLUN_PEOPLE,
+        VOLUN_TITLE, VOLUN_CONTENT, CENTER_MEMBER_NO
+        ) VALUES (
+        #{volunNo}, #{volunPeriodstart}, #{volunPeriodend}, #{volunStart},
+        #{volunEnd}, #{volunLocal}, #{volunTime}, #{volunPeople},
+        #{volunTitle}, #{volunContent}, #{centerMemberNo}
+        )
+    </insert>
+
+    <!-- 게시글 삭제 처리 -->
+    <delete id="volunDelete" parameterType="VolunDetailDTO">
+        DELETE FROM TBL_Volun
+        WHERE Volun_NO = #{volunNo}
+    </delete>
+
+    <!-- 게시글 수정 -->
+    <update id="volunModify" parameterType="VolunWriteDTO">
+        UPDATE TBL_VOLUN
+        SET VOLUN_PERIODSTART = #{volunPeriodstart},
+            VOLUN_PERIODEND = #{volunPeriodend},
+            VOLUN_START = #{volunStart},
+            VOLUN_END = #{volunEnd},
+            VOLUN_LOCAL = #{volunLocal},
+            VOLUN_TIME = #{volunTime},
+            VOLUN_PEOPLE = #{volunPeople},
+            VOLUN_TITLE = #{volunTitle},
+            VOLUN_CONTENT = #{volunContent},
+            VOLUN_UPDATEDATE = SYSDATE
+        WHERE VOLUN_NO = #{volunNo}
+    </update>
+
 </mapper>

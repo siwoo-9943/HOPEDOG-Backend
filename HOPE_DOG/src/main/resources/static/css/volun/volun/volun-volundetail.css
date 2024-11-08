@@ -33,6 +33,11 @@ main{
   text-align: center;
 }
 
+.volun-navList:hover{
+  cursor: pointer;
+}
+
+
 .volun-detail-box1{
   width: 1080px;
   height: 100px;

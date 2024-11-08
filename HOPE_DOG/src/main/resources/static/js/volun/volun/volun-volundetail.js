@@ -1,34 +1,50 @@
-// 글수정버튼
+// 게시글수정 버튼
 function modifyClick() {
+  const volunNo = document.querySelector('.volunNo').textContent.trim(); // adoptNo를 HTML에서 가져옵니다.
+  const centerMemberNo = document.querySelector('.centerMemberNo').textContent.trim(); // centerMemberNo를 HTML에서 가져옵니다.
+
   if (confirm('정말 수정하시겠습니까?')) {
-    console.log('봉사모집글이 수정되었습니다.');
-    window.location.href = '../../html/volun/volun-volunmodify.html'
+    console.log('수정페이지로 이동합니다.');
+    location.href = `/volun/volun/volunmodify?volunNo=${volunNo}&centerMemberNo=${centerMemberNo}`;
   } else {
-    console.log('봉사모집글이 수정되지 않았습니다.');
+    console.log('신청서페이지로 이동하지 않습니다.');
   }
 }
 
-// 글삭제버튼
+// 글 삭제 버튼
 function deleteClick() {
+  // adoptNo 가져오기
+  const volunNo = document.querySelector('.volunNo').textContent.trim();
+
   if (confirm('정말 삭제하시겠습니까?')) {
-    console.log('봉사모집글이 삭제되었습니다.');
-    window.location.href = '../../html/volun/volun-volun-main.html'
+    console.log('입양글이 삭제되었습니다.');
+    console.log(volunNo);
+
+    // adoptNo를 URL에 포함시켜 이동
+    location.href = `/volun/volun/volunDelete?volunNo=${volunNo}`;
   } else {
-    console.log('봉사모집글이 삭제되지 않았습니다.');
+    console.log('입양글이 삭제되지 않았습니다.');
   }
 }
 
-// 글마감버튼
+// 글 마감 버튼
 function endClick() {
-  if (confirm('정말 마감하시겠습니까?')) {
-    console.log('봉사모집글이 마감되었습니다.');
-    window.location.href = '../../html/volun/volun-volundetail.html'
+  // adoptNo 가져오기
+  const volunNo = document.querySelector('.volunNo').textContent.trim();
+
+  if (confirm('정말 마감하시겠습니까? 마감 시 취소할 수 없습니다.')) {
+    console.log('입양글이 마감되었습니다.');
+    console.log(volunNo);
+
+    // adoptNo를 URL에 포함시켜 이동
+    location.href = `/volun/volun/volunStatusEnd?volunNo=${volunNo}`;
   } else {
-    console.log('봉사모집글이 마감되지 않았습니다.');
+    console.log('입양글이 마감되지 않았습니다.');
   }
 }
+
 // 댓글수정버튼
-function modifyCommentBtnClcik() {
+function modifyCommentBtnClick() {
   const commentBox1 = document.getElementById('volun-comment-buttonBox'); //수정/삭제버튼 div
   const commentBox2 = document.getElementById('volun-modifyInput');       //댓글수정하는div
   const commentBox3 = document.getElementById('volun-comment');           //이미입력된댓글
@@ -40,7 +56,7 @@ function modifyCommentBtnClcik() {
 }
 
 // 댓글등록버튼
-function editCommentBtnClcik() {
+function editCommentBtnClick() {
   const commentBox1 = document.getElementById('volun-comment-buttonBox'); //수정/삭제버튼 div
   const commentBox2 = document.getElementById('volun-modifyInput');       //댓글수정하는div
   const commentBox3 = document.getElementById('volun-comment');           //이미입력된댓글

@@ -2,10 +2,12 @@ package com.example.hope_dog.mapper.volun.volun;
 
 import com.example.hope_dog.dto.adopt.adopt.AdoptCommentDTO;
 import com.example.hope_dog.dto.adopt.adopt.AdoptDetailDTO;
+import com.example.hope_dog.dto.adopt.adopt.AdoptWriteDTO;
 import com.example.hope_dog.dto.page.Criteria;
 import com.example.hope_dog.dto.volun.volun.VolunCommentDTO;
 import com.example.hope_dog.dto.volun.volun.VolunDetailDTO;
 import com.example.hope_dog.dto.volun.volun.VolunMainDTO;
+import com.example.hope_dog.dto.volun.volun.VolunWriteDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -35,4 +37,13 @@ public interface VolunMapper {
 
     //댓글불러오기
     List<VolunCommentDTO> volunComment(Long volunNo);
+
+    //입양글작성
+    void volunWrite(VolunWriteDTO volunWriteDTO);
+
+    //입양글삭제처리
+    void volunDelete(VolunDetailDTO volunDetailDTO);
+
+    //입양글수정
+    void volunModify(VolunWriteDTO volunWriteDTO);
 }

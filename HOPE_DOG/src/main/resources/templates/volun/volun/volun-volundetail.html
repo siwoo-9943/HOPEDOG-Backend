@@ -24,6 +24,8 @@
 
       <!-- 제목/작성자/등록일 크기 -->
       <div class="volun-detail-box1" th:each="volun : ${volunDetailList}">
+        <div class="volunNo" th:text="${volun.volunNo}" style="display: none"></div>
+        <div class="centerMemberNo" th:text="${volun.centerMemberNo}" style="display: none"></div>
         <div class="volun-detail-title" th:text="${volun.volunTitle}"></div>
         <div class="volun-detail-info">
           <span th:text="'작성자 : ' + ${volun.centerMemberName}"></span>
@@ -62,7 +64,6 @@
 
       <br>
 
-      <!-- 버튼 -->
       <!-- 버튼 -->
       <div class="volun-detail-box3" th:each="volun : ${volunDetailList}">
         <div>

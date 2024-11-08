@@ -43,7 +43,7 @@
         </label>
       </div>
 
-      <!-- 입양 글 목록 -->
+      <!-- 봉사 글 목록 -->
       <div class="volun-postlist">
           <div class="volun-post" th:each="volun : ${VolunMainList}">
             <div class="volun-post-img"><img src="../../img/volun-main.jpg" width="250px" height="200px"></div>
@@ -65,9 +65,9 @@
 
       <br>
 
-      <!-- 입양 등록 버튼 -->
-      <div class="volun-button-box">
-        <a href="../../html/volun/volun-volunwrite.html">
+      <!-- 봉사 등록 버튼 -->
+      <div class="volun-button-box" th:if="${centerMemberNo != null}">
+        <a href="/volun/volunwrite">
           <button class="volun-button">등록</button>
         </a>
       </div>
