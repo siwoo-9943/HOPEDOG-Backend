@@ -20,7 +20,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 @RestController // 이 클래스가 RESTful 웹 서비스의 엔드포인트임을 나타내는 어노테이션입니다.
-@RequestMapping("/download") // 이 컨트롤러의 URL 매핑을 "/download"로 설정합니다.
+@RequestMapping("/file") // 이 컨트롤러의 URL 매핑을 "/download"로 설정합니다.
 public class AdminFileController { // 클래스 선언: 파일 다운로드를 처리하는 컨트롤러입니다.
 
     private final AdminFileService fileService; // FileService를 주입받기 위한 멤버 변수입니다.

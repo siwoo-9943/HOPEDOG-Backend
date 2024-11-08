@@ -18,10 +18,7 @@ import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @Transactional
@@ -153,7 +150,12 @@ public class AdminService {
 
     public String findCenterMemberNameByNo(Long centerMemberNo){ return adminMapper.findCenterMemberNameByNo(centerMemberNo); }
 
-    public void deleteNotice(List<Long> noticeNoList){adminMapper.deleteNotice(noticeNoList);}
+    public void deleteNotice(List<Long> noticeNoList){
+        for(Long noticeNo : noticeNoList){
+            adminFileMapper.deleteFileByNoticeNo(noticeNo);
+        }
+        adminMapper.deleteNotice(noticeNoList);
+    }
 
     public void insertNotice(AdminNoticeDTO notice, List<MultipartFile> files) throws IOException {
         adminMapper.insertNotice(notice);
@@ -233,6 +235,22 @@ public class AdminService {
     private String getUploadPath(){
         LocalDate date = LocalDate.now();
         return date.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+    }
+
+    private void deleteFileByFileNo(Long fileNo){
+        // 데이터베이스에서 파일 정보 삭제 (존재하지 않으면 예외 발생 가능)
+        adminFileMapper.deleteFileByFileNo(fileNo);
+
+        // 파일 시스템에서 파일 삭제 로직
+        Optional<AdminFileDTO> fileOptional = Optional.ofNullable(adminFileMapper.selectFileByNo(fileNo));
+        if (fileOptional.isPresent()) {
+            AdminFileDTO file = fileOptional.get();
+            File fileToDelete = new File(file.getFilePath());
+
+            if (fileToDelete.exists()) {
+                fileToDelete.delete();
+            }
+        }
     }
 
     public void modifyNotice(AdminNoticeDTO notice){adminMapper.modifyNotice(notice);}

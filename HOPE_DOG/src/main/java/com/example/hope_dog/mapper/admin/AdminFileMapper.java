@@ -1,6 +1,8 @@
 package com.example.hope_dog.mapper.admin;
 
+import com.example.hope_dog.dto.admin.AdminCenterFileDTO;
 import com.example.hope_dog.dto.admin.AdminFileDTO;
+import com.example.hope_dog.dto.admin.AdminPostDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -14,5 +16,11 @@ public interface AdminFileMapper {
 
     AdminFileDTO selectFileByNo(@Param("fileNo") Long fileNo);
 
-    void deleteFile(@Param("fileNo") Long fileNo);
+    void deleteFileByNoticeNo(@Param("noticeNo") Long noticeNo);
+
+    void deleteFileByFileNo(@Param("fileNo") Long fileNo);
+
+    List<AdminFileDTO> selectFileListByPostNo(@Param("post")AdminPostDTO post);
+
+    AdminCenterFileDTO selectFileByCenterMemberNo(@Param("centerMemberNo") Long centerMemberNo);
 }

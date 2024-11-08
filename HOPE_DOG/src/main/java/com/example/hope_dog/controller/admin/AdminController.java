@@ -140,9 +140,11 @@ public class AdminController {
 
         AdminPostDTO post = adminService.selectPostDetail(postType, postNo);
         List<AdminCommentDTO> commentList = adminService.selectCommentListByPostNo(postType, postNo);
+        List<AdminFileDTO> fileList = adminFileService.selectFileListByPostNo(post);
 
         model.addAttribute("post", post);
         model.addAttribute("commentList", commentList);
+        model.addAttribute("fileList", fileList);
 
         return "admin/admin-post/admin-post-detail";
     }
@@ -237,8 +239,10 @@ public class AdminController {
         }
 
         AdminNoticeDTO notice = adminService.selectNoticeDetail(noticeNo);
+        List<AdminFileDTO> fileList = adminFileService.selectFileByNoticeNo(noticeNo);
 
         model.addAttribute("notice", notice);
+        model.addAttribute("fileList", fileList);
 
         return "admin/admin-notice/admin-notice-modify";
     }
@@ -257,7 +261,7 @@ public class AdminController {
 
         adminService.modifyNotice(notice);
 
-        return "redirect:/admin/noticeList";
+        return "redirect:/admin/noticeDetail?noticeNo=" + noticeNo;
     }
 
     @GetMapping("/noticeList")
@@ -407,8 +411,10 @@ public class AdminController {
             return "redirect:/admin/login";
         }
         AdminCenterMemberDTO centerMember = adminService.selectPassedCenterMemberByNo(centerMemberNo);
+        AdminCenterFileDTO file = adminFileService.selectFileByCenterMemberNo(centerMemberNo);
 
         model.addAttribute("centerMember", centerMember);
+        model.addAttribute("file", file);
 
         return "admin/admin-member/admin-center-member-detail";
     }
@@ -456,9 +462,11 @@ public class AdminController {
         }
 
         AdminCenterMemberDTO centerMember = adminService.selectNotPassedCenterMemberByNo(centerMemberNo);
+        AdminCenterFileDTO file = adminFileService.selectFileByCenterMemberNo(centerMemberNo);
 
         model.addAttribute("centerMember", centerMember);
-
+        model.addAttribute("file", file);
+        
         return "admin/admin-center-apply/admin-center-apply-detail";
     }
 

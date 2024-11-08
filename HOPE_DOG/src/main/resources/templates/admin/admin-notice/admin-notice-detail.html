@@ -46,11 +46,12 @@
                   <br>
                   <div class="content"><span th:text="${notice.noticeContent}"></span></div>
 
+                <div style="display: flex">
                 <div class="post-images" th:each="file, iterStat : ${fileList}">
-                  <a th:href="@{/download(fileName=${file.fileName}, filePath=${file.filePath}, fileUuid=${file.fileUuid})}">
+                  <a th:href="@{/download(from='notice', fileName=${file.fileName}, filePath=${file.filePath}, fileUuid=${file.fileUuid})}">
                     <!-- 이미지 파일인지 확인하고, 이미지로 표시 -->
                     <span th:if="${file.fileName.endsWith('.jpg') or file.fileName.endsWith('.png') or file.fileName.endsWith('.jpeg')}">
-                      <img width="500px" th:src="@{/v1/files(fileName=${file.fileName}, filePath=${file.filePath}, fileUuid=${file.fileUuid})}" alt="Image" class="file-image" />
+                      <img style="max-width: 100px" th:src="@{/v1/files(from='notice', fileName=${file.fileName}, filePath=${file.filePath}, fileUuid=${file.fileUuid})}" alt="Image" class="file-image" />
                     </span>
                     <!-- 이미지가 아닌 파일은 파일명만 표시 -->
                     <span th:if="${not (file.fileName.endsWith('.jpg') or file.fileName.endsWith('.png') or file.fileName.endsWith('.jpeg'))}">
@@ -58,7 +59,7 @@
                     </span>
                   </a>
                 </div>
-
+                </div>
 
 
 
