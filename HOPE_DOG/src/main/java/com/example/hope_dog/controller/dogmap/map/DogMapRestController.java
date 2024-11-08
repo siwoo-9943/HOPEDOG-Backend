@@ -35,13 +35,14 @@ public class DogMapRestController {
     public ApiDTO getDogMapList() throws URISyntaxException {
         String baseURL = "https://openapi.gg.go.kr/OrganicAnimalProtectionFacilit";
         String KeyCode = "3347ee61ca704a5c83c692ced1cd2703";
-        String Type = "json";
+        String Type = "Json";
 //        String Service = "69e33fdd12f748239a4e84bb38252f98";
         String Service = "OrganicAnimalProtectionFacilit";
         Integer pIndex = 1;    // 페이지 인덱스
         Integer pSize = 5;   // 페이지 사이즈
 //        String sumYy = "SUM_YY=2023";
-        String url = baseURL + "?Key=" + KeyCode + "&Type=" + Type + "&Service=" + Service + "&pIndex=" + pIndex + "&pSize=" + pSize;
+//        + "&Service=" + Service + "&pIndex=" + pIndex + "&pSize=" + pSize
+        String url = baseURL + "?ServiceKey=" + KeyCode + "&Type=" + Type;
 //        String url = (baseURL + "?Key=" + KeyCode + "&Type=" + Type + "&pIndex=" + pIndex + "&pSize=" + pSize);
 //        String url = (baseURL + "?Key=" + KeyCode +  "&Type=" + Type + "&" + sumYy);
 //        String url = (baseURL + "?Key=" + KeyCode +  "&Type=" + Type );
@@ -79,7 +80,6 @@ public class DogMapRestController {
             throw e;
         }
     }
-
 
 //    @Autowired
 //    private final DogMapService dogMapService;

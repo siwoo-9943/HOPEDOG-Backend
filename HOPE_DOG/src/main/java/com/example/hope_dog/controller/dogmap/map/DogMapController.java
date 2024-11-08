@@ -24,8 +24,9 @@ public class DogMapController {
     public String getDogMap(Model model) {
 
         try {
-            ApiDTO ApiDTO = dogMapRestController.getDogMapList(); // 데이터 가져오기
-            model.addAttribute("ApiDTO", ApiDTO); // 모델에 데이터 추가
+            ApiDTO apiDTO = dogMapRestController.getDogMapList(); // 데이터 가져오기
+            model.addAttribute("ApiDTO", apiDTO); // 모델에 데이터 추가
+            log.info(apiDTO + "확인 ============ DogMapController");
         } catch (URISyntaxException e) {
 //            throw new RuntimeException(e);
             model.addAttribute("dogMapApiDTO", null);
