@@ -68,7 +68,7 @@ public class DonationService {
 //        boardMapper.updateBoard(boardUpdateDTO);
 //        Long boardId = boardUpdateDTO.getBoardId();
 //
-//        fileMapper.deleteFile(boardId);
+//        fileMapper.deleteFileByFileNo(boardId);
 //
 //        for(MultipartFile file : files) {
 //            if (file.isEmpty()) {
