@@ -55,7 +55,7 @@ function modifyCommentBtnClick(index) {
     //기존 댓글 div
 }
 
-//댓글 등록
+
 function editCommentBtnClick(index) {
     const commentBox1 = document.getElementById(`car-comment-buttonBox-${index}`); // 수정/삭제 버튼 div
     const commentBox2 = document.getElementById(`car-modifyInput-${index}`);       // 댓글 수정하는 div
@@ -129,6 +129,7 @@ function CommentReportClick() {
     const reportComment = prompt('신고사유를 100글자 이내로 입력해주세요');
     const carNo = document.querySelector('.carNo').textContent.trim();
     const carCommentNo = document.querySelector('.carCommentNo').textContent.trim();
+    console.log(carNo,carCommentNo);
 
     location.href = `/car/carCommentReport?carNo=${carNo}&reportComment=${encodeURIComponent(reportComment)}&carCommentNo=${carCommentNo}`;
 }

@@ -202,10 +202,14 @@ public class CarController {
     public String carComentWrite(HttpSession session, CarCommentDTO carCommentDTO){
         Long centerMemberNo =(Long) session.getAttribute("centerMemberNo");
         Long memberNo =(Long) session.getAttribute("memberNo");
+        System.out.println("컨트롤러 댓글 센터 :" + centerMemberNo);
+        System.out.println("컨트롤러 댓글 일반:" + memberNo);
 
         carCommentDTO.setCarCommentWriter(centerMemberNo!= null ? centerMemberNo : memberNo);
 
         Long carNo = carCommentDTO.getCarNo();
+        System.out.println("컨트롤러 댓글 carNo: "+ carNo);
+        carService.carCommentRegi(carCommentDTO);
         return "redirect:/car/post/" + carNo;
     }
 
@@ -244,9 +248,9 @@ public class CarController {
     //댓글 신고
     @GetMapping("/carCommentReport")
     public String carCommentDelete(HttpSession session,CarReportDTO carReportDTO,
-                                   @RequestParam("carCommentNo") Long carCommentNO,
-                                   @RequestParam("carNo")Long carNo,
-                                   @RequestParam("reportComment") String reportComment){
+                                   @RequestParam(value = "carCommentNo", required = false) Long carCommentNO,
+                                   @RequestParam(value = "carNo",required = false)Long carNo,
+                                   @RequestParam(value = "reportComment",required = false) String reportComment){
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
         Long memberNo = (Long) session.getAttribute("memberNo");
 
@@ -257,7 +261,7 @@ public class CarController {
 
         carService.carCommentReport(carReportDTO);
 
-        return "redirect: /car/post/" + carNo;
+        return "redirect:/car/post/" + carNo;
     }
 
 

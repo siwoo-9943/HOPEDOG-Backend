@@ -117,9 +117,9 @@
 
       <!-- 댓글입력 -->
       <div th:if="${memberNo != null or centerMemberNo != null}">
-          <form action="/car/carCommentRegi" method="post" th:each="car : ${carCommentList}">
+          <form action="/car/carCommentRegi" method="post">
               <input class="car-detail-commentregi" type="text" name="carComment" placeholder="욕설 및 혐오감을 주는 댓글은 삼가주세요" maxlength="1000">
-              <input th:value="${car.carNo}" style="display: none" name="carNo">　
+              <input th:value="${carDetailList[0].carNo}" style="display: none" name="carNo">　
               <button class="car-commentregi-button" type="submit">등록</button>
           </form>
       </div>
