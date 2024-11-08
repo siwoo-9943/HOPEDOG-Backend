@@ -22,12 +22,16 @@
         </div>
       </nav>
     </div>
-
     <!-- 보호소 목록 -->
     <div class="doghouse-main">
       <div class="doghouse-box">
-        <div th:if="${dogMapDTO != null and !#lists.isEmpty(dogMapDTO.row)}">
-          <div class="doghouse-item" th:each="row : ${dogMapDTO.row}">
+
+        <form action="/api/dogmap" method="post">
+          <button type="submit">데이터 가져오기</button>
+        </form>
+
+        <div th:if="${dogMapApiDTO != null and !#lists.isEmpty(dogMapApiDTO.row)}">
+          <div class="doghouse-item" th:each="row : ${dogMapApiDTO.row}">
             <div class="doghouse-list-title">
               <div class="doghouse-name"><span th:text="${row.entrpsNm}">센터명</span></div>
               <img src="../../img/map1.jpg" alt="보호소 이미지" class="doghouse-image">
@@ -45,7 +49,7 @@
             </div>
           </div>
         </div>
-        <div th:if="${dogMapDTO == null or #lists.isEmpty(dogMapDTO.row)}">
+        <div th:if="${dogMapApiDTO == null or #lists.isEmpty(dogMapApiDTO.row)}">
           <p>데이터를 가져올 수 없습니다.</p>
         </div>
       </div>
