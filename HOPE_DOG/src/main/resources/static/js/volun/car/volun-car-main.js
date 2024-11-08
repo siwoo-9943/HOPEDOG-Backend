@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const items = $('.volun-catalog-main li'); // 개별 게시글 항목을 정확히 선택
+    const items = $('.car-results ul'); // 개별 게시글 항목을 정확히 선택
 
     // 게시글 수가 10개 이하인 경우 페이지네이션 처리
-    if (items.length <= 10) {
+    if (items.length <= 5) {
         items.show(); // 모든 항목 표시
         return; // 페이지네이션 초기화 중지
     }
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // 페이지네이션 설정
     const container = $('#pagination');
-    const pageSize = 10; // 한 페이지에 보여줄 항목 수
+    const pageSize = 5; // 한 페이지에 보여줄 항목 수
 
     container.pagination({
         dataSource: items.toArray(), // 게시글 항목을 배열로 변환

@@ -34,8 +34,6 @@ public interface CommuMapper {
                                @Param("keyword") String keyword);
 
 
-    // 검색 조건에 맞는 총 게시물 수 조회
-    int getCommuTotal(@Param("searchType") String searchType, @Param("keyword") String keyword);
 
 //게시글 상세
 
@@ -52,8 +50,7 @@ public interface CommuMapper {
     //게시글 신고
     void commuReport(CommuReportDTO commuReportDTO);
 
-    // 댓글 리스트 조회
-//    List<CommuCommentDTO> selectCommentsByCommuNo(@Param("commuNo") Long commuNo);
+
 
     //댓글 리스트 조회
     List<CommuCommentDTO>commuComment(Long commuNo);

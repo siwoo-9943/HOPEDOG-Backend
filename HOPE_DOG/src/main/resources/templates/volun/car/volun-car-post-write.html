@@ -39,13 +39,13 @@
 
       <!-- 글작성 박스 -->
       <div class="car-write-area">
-        <form action="링크" method="post">
+        <form action="/car/carrequestRegi" method="post">
           <br>
           <div class="input-group">
             <!-- 카테고리 선택 -->
             <div class="category-select">
               <label for="category">카테고리:</label>
-              <select id="category" name="category">
+              <select id="category" name="carCate">
                 <option value="태워주세요">태워주세요</option>
                 <option value="태워줄게요">태워줄게요</option>
               </select>
@@ -54,16 +54,15 @@
             <br><br>
             <!-- 썸머노트 -->
             <div class="content">
-              <form method="post" action="">
-                <input id="subject" name="subject" class="adoptwrite-title" placeholder="제목을 입력해주세요">
-                <textarea id="contents" name="contents"></textarea>
-              </form>
+<!--              <form method="post" action="">-->
+                <input id="subject" name="carTitle" class="adoptwrite-title" placeholder="제목을 입력해주세요">
+                <textarea id="contents" name="carContent"></textarea>
+<!--              </form>-->
             </div>
 
             <!-- 등록/취소 버튼 -->
             <div class="car-write-button-box">
-              <button class="review-write-button" type="button"
-                onclick="if(registration()) { location.href='../../html/volun/volun-car-main-member.html'; }">등록</button>
+              <button class="review-write-button" type="submit">등록</button>
               <button class="review-cancle-button" type="button" onclick="Cancel()">취소</button>
             </div>
         </form>

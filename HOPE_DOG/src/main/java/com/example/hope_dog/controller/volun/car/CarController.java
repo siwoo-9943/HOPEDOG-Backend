@@ -1,15 +1,18 @@
 package com.example.hope_dog.controller.volun.car;
 
+import com.example.hope_dog.dto.commu.CommuCommentDTO;
 import com.example.hope_dog.dto.page.Criteria;
 import com.example.hope_dog.dto.page.Page;
 import com.example.hope_dog.dto.volun.car.CarCommentDTO;
 import com.example.hope_dog.dto.volun.car.CarDTO;
 import com.example.hope_dog.dto.volun.car.CarDetailDTO;
+import com.example.hope_dog.dto.volun.car.CarReportDTO;
 import com.example.hope_dog.service.volun.car.CarService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.bag.SynchronizedSortedBag;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -29,29 +32,27 @@ public class CarController {
 
     //글 목록
     @GetMapping("/main")
-    public String carList(HttpSession session, Model model){
-        // 세션에서 memberNo와 centerMemberNo를 가져옴
-        Long memberNo = (Long) session.getAttribute("memberNo");
-        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
+    public String carList(HttpSession session,Model model){
+        Long memberNo =(Long) session.getAttribute("memberNo");
+        Long centerMemberNo =(Long) session.getAttribute("centerMemberNo");
 
-        //서비스에서 게시글 목록 가져옴
-        List<CarDTO> carList = carService.getCarList(session);
+      List<CarDTO> carList = carService.getCarList(session);
+        System.out.println("컨트롤러 리스트 : "+carList);
 
-        //list 비어있는지 확인
-        if(carList.isEmpty()){
-            System.out.println("게시글 목록이 비어있습니다.");
-        }else {
-            //각 게시글의 작성자 정보 출력하여 확인
-            for (CarDTO car: carList) {
-                System.out.println("게시글 작성자 ID:" + car.getCarWriter() +
-                        ",일반회원 :" + car.getMemberNickname() +
-                        ",센터 : " + car.getCenterMemberName());
-            }
-        }
+      if(carList.isEmpty()) {
+          System.out.println("게시글 목록이 비어있습니다");
+      }else {
+          for(CarDTO car : carList){
+              System.out.println("게시글 작성자 id : " + car.getCarWriter() +
+                      ",일반회원 닉네임 : " + car.getMemberNickname() +
+                      ",센터회원 이름 : " + car.getCenterMemberName());
+          }
+      }
 
-        model.addAttribute("carList", carList);
+      model.addAttribute("carList", carList);
 
         return "volun/car/volun-car-main";
+
     }
 
 
@@ -97,6 +98,7 @@ public class CarController {
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
         List<CarDetailDTO> carDetailList = carService.selectCarDetail (carNo);
         System.out.println("컨트롤러 carDetailList : " + carDetailList);
+        System.out.println("컨트롤러 글 상세 carNO:" + carNo);
 
         //댓글
         List<CarCommentDTO> carCommentList = carService.carComment(carNo);
@@ -130,7 +132,132 @@ public class CarController {
                                @SessionAttribute(name = "centerMemberNo", required = false) Long centerMemberNo,
                                //세션에 저장된 memberNo를 조회
                                 CarDTO carDTO) {
-        Long 
+        Long writerNo = memberNo != null ? memberNo : centerMemberNo;
+        if(writerNo == null) {
+            throw new IllegalArgumentException("로그인 상태가 필요합니다");
+        }
+
+        carDTO.setCarWriter(writerNo);
+        carService.carWriter(carDTO);
+        return "redirect:/car/main";
+    }
+
+    //글 수정페이지로 이동
+    @GetMapping("/carmodify")
+    public String carModify(@RequestParam("carNo") Long carNo,HttpSession session,Model model){
+        List<CarDetailDTO> carDetailList = carService.selectCarDetail(carNo);
+        Long centerMemberNo =(Long) session.getAttribute("centerMemberNo");
+        Long memberNo =(Long) session.getAttribute("memberNo");
+        System.out.println("컨트롤러 DTO :" + carDetailList);
+
+        model.addAttribute("carDetailList",carDetailList);
+        model.addAttribute("centerMemberNo",centerMemberNo);
+        model.addAttribute("memberNo", memberNo);
+
+        return "volun/car/volun-car-post-rewrite";
+    }
+
+    //글 수정등록
+    @PostMapping("/carModifyRegi")
+    public String carModifyRegi(@DateTimeFormat(pattern = "yyyy-MM-dd") CarDetailDTO carDetailDTO, HttpSession session){
+
+        carService.carModify(carDetailDTO);
+        return "redirect:/car/main";
+    }
+
+    //글 삭제
+    @GetMapping("/carDelete")
+        public String carDelete(@RequestParam("carNo") Long carNo){
+
+        CarDetailDTO carDetailDTO = new CarDetailDTO();
+        carDetailDTO.setCarNo(carNo);
+
+        carService.carDelete((carDetailDTO));
+
+        return "redirect:/car/main";
+        }
+
+        //글 신고
+    @GetMapping("/carContentReport")
+    public String carContentReport(@RequestParam("carNo") Long carNo, @RequestParam("reportContent") String reportContent,
+                                   HttpSession session,CarReportDTO carReportDTO){
+        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
+        Long memberNo = (Long) session.getAttribute("memberNo");
+
+        carReportDTO.setReportWriter(centerMemberNo != null ? centerMemberNo : memberNo);
+        carReportDTO.setReportContent(reportContent);
+        carReportDTO.setReportContentNo(carNo);
+
+        System.out.println(carNo + "확인");
+
+
+        carService.carContentReport(carReportDTO);
+
+        return "redirect:/car/main";
+
+    }
+
+    //댓글등록
+    @PostMapping("/carCommentRegi")
+    public String carComentWrite(HttpSession session, CarCommentDTO carCommentDTO){
+        Long centerMemberNo =(Long) session.getAttribute("centerMemberNo");
+        Long memberNo =(Long) session.getAttribute("memberNo");
+
+        carCommentDTO.setCarCommentWriter(centerMemberNo!= null ? centerMemberNo : memberNo);
+
+        Long carNo = carCommentDTO.getCarNo();
+        return "redirect:/car/post/" + carNo;
+    }
+
+    //댓글 수정
+    @PostMapping("/carCommentModi")
+    public String carCommentModi(HttpSession session,CarCommentDTO carCommentDTO,
+                                 @RequestParam("carNo")Long carNo){
+        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
+        Long memberNo = (Long) session.getAttribute("memberNo");
+
+        //댓글작성자 설정
+        carCommentDTO.setCarCommentWriter(centerMemberNo != null ? centerMemberNo : memberNo);
+
+        //댓글 수정 서비스 호출
+        carService.carCommentModi(carCommentDTO);
+
+        return "redirect:/car/post/" + carNo;
+    }
+
+    //댓글 삭제
+    @PostMapping("/carCommentDelete")
+    public String carCommentDelete(CarCommentDTO carCommentDTO,HttpSession session,
+                                   @RequestParam("carNo") Long carNo,
+                                   @RequestParam("carCommentNo") Long carCommentNo){
+        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
+        Long memberNo = (Long) session.getAttribute("memberNo");
+
+        carCommentDTO.setCarCommentWriter(centerMemberNo != null ? centerMemberNo : memberNo);
+        carCommentDTO.setCarCommentNo(carCommentNo);
+
+        carService.carCommentDelete(carCommentDTO);
+
+        return "redirect:/car/post/"+ carNo;
+    }
+
+    //댓글 신고
+    @GetMapping("/carCommentReport")
+    public String carCommentDelete(HttpSession session,CarReportDTO carReportDTO,
+                                   @RequestParam("carCommentNo") Long carCommentNO,
+                                   @RequestParam("carNo")Long carNo,
+                                   @RequestParam("reportComment") String reportComment){
+        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
+        Long memberNo = (Long) session.getAttribute("memberNo");
+
+        carReportDTO.setReportWriter(centerMemberNo != null ? centerMemberNo : memberNo);
+        carReportDTO.setReportComment(reportComment);
+        carReportDTO.setReportCommentNo(carCommentNO);
+        carReportDTO.setReportContentNo(carNo);
+
+        carService.carCommentReport(carReportDTO);
+
+        return "redirect: /car/post/" + carNo;
     }
 
 
