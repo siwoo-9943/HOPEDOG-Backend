@@ -6,6 +6,7 @@ import com.example.hope_dog.dto.commu.CommuDTO;
 import com.example.hope_dog.dto.commu.CommuDetailDTO;
 import com.example.hope_dog.dto.commu.CommuReportDTO;
 import com.example.hope_dog.dto.member.MemberDTO;
+import com.example.hope_dog.dto.page.Criteria;
 import com.example.hope_dog.mapper.commu.CommuMapper;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -95,9 +96,17 @@ public class CommuService {
     }
 
     //검색
-    public List<CommuDTO> searchCommu(String memberNickName, String centerMemberName,String title) {
-        return commuMapper.searchCommu(memberNickName,centerMemberName,title);
-    }
+//    public List<CommuDTO> searchCommu(String searchType, String keyword) {
+//        Map<String, Object> params = new HashMap<>();
+//        if ("nickname".equals(searchType)) {
+//            params.put("memberNickName", keyword);
+//        } else if ("title".equals(searchType)) {
+//            params.put("title", keyword);
+//        }
+//        return commuMapper.searchCommu(params);
+//    }
+
+
 
     //게시글 상세
     public List<CommuDetailDTO> selectCommuByNo(Long commuNo) {

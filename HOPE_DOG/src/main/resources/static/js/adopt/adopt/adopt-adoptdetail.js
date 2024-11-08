@@ -93,7 +93,7 @@ function editCommentBtnClick(index) {
   commentBox1.style.display = 'block';
   commentBox3.style.display = 'block';
   commentBox2.style.display = 'none';
-}
+}editCommentBtnClick
 
 
 // 댓글삭제버튼

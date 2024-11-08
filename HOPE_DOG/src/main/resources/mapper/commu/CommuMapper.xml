@@ -96,6 +96,13 @@
     </select>
 
 
+    <select id="getCommuTotal" resultType="int">
+        SELECT COUNT(commuNo)
+        FROM TBL_COMMU
+        WHERE ${searchType} LIKE CONCAT('%', #{keyword}, '%')
+    </select>
+
+
 
 <!--게시글 상세-->
     <!-- 게시글 조회 -->

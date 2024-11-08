@@ -172,29 +172,4 @@ function editCommentBtnClick(index) {
 
 
 
-    // {
-    //     let commuPageBtn = document.getElementById('commuPage');
-    //     commuPageBtn.addEventListener('click', function(){
-    //         location.href='/commu/commu';
-    //     });
-    // }
-
-    // {
-    //     let protectPageBtn = document.getElementById('protectPage');
-    //     protectPageBtn.addEventListener('click', function(){
-    //         location.href='/commu/protect';
-    //     });
-    // }
-    //
-    // {
-    //     let reviewPageBtn = document.getElementById('reviewPage');
-    //     reviewPageBtn.addEventListener('click', function () {
-    //         location.href = '/commu/review';
-    //     });
-    // }
-    //
-
-
-
-
 
