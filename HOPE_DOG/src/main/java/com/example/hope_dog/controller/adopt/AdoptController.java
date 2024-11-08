@@ -154,17 +154,15 @@ public class AdoptController {
     public String adoptModify(@RequestParam("adoptNo") Long adoptNo, Model model, HttpSession session) {
         List<AdoptDetailDTO> adoptDetailList = adoptService.getAdoptDetail(adoptNo);
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
-        Long memberNo = (Long) session.getAttribute("memberNo");
 
         model.addAttribute("adoptDetailList", adoptDetailList);
         model.addAttribute("centerMemberNo", centerMemberNo);
-        model.addAttribute("memberNo", memberNo);
 
         return "adopt/adopt/adopt-adoptmodify";
     }
 
     //입양글 수정
-    @PutMapping("/adopt/adoptModifyRegi")
+    @PostMapping("/adopt/adoptModifyRegi")
     public String postAdoptModifyRegi(
             @DateTimeFormat(pattern = "yyyy-MM-dd") AdoptWriteDTO adoptWriteDTO,
             HttpSession session) {
@@ -172,7 +170,7 @@ public class AdoptController {
         adoptService.adoptModify(adoptWriteDTO);
 
         // 리다이렉트
-        return "redirect:/adopt/adopt";
+        return "redirect:/adopt/adopt"; // 리다이렉트
     }
 
     // 입양 신청서 페이지 열기

@@ -83,6 +83,10 @@ public class AdoptService {
 
     //입양글 수정 처리
     public void adoptModify(AdoptWriteDTO adoptWriteDTO) {
+        LocalDate periodStart = adoptWriteDTO.getAdoptPeriodstart();
+        LocalDate periodEnd = adoptWriteDTO.getAdoptPeriodend();
+        LocalDate adoptBirth = adoptWriteDTO.getAdoptBirth();
+
         adoptMapper.adoptModify(adoptWriteDTO); // 매퍼 호출
     }
 
