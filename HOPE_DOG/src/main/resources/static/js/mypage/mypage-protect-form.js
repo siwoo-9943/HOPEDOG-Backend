@@ -97,6 +97,29 @@ function checkJobInput() {
     }
 }
 
+// 주소 검색
+// document.addEventListener('DOMContentLoaded', function () {
+//     const addressSearchBtn = document.getElementById('addressSearch');
+//
+//     addressSearchBtn.addEventListener('click', function () {
+//         new daum.Postcode({
+//             oncomplete: function (data) {
+//                 document.getElementById('zipcode').value = data.zonecode; // 우편번호 입력
+//                 document.getElementById('address').value = data.address; // 주소 입력
+//                 document.getElementById('detailAddress').focus(); // 상세주소 입력란에 포커스
+//             }
+//         }).open();
+//     });
+// });
+
+// setTimeout(function() {
+//     const addressSearchBtn = document.getElementById('addressSearch');
+//     if (addressSearchBtn) {
+//         addressSearchBtn.addEventListener('click', function () {
+//             alert('주소찾기 클릭!');
+//         });
+//     }
+// }, 50);
 
 
 // 질문사항에러
@@ -317,32 +340,18 @@ function validateInputs() {
     const checkbox2 = document.getElementById('protect-agreement');
     if (!checkbox1.checked || !checkbox2.checked) {
         alert('약관에 동의해 주세요.'); // 체크되지 않은 경우 경고
+        location.href='/mypage/updateProtectRequest?protectRequestNo=" + protectRequestNo';
         allValid = false;
     }
 
     if (!allValid) {
         alert('모든 질문을 입력해 주세요.'); // 경고창 표시
+        location.href='/mypage/updateProtectRequest?protectRequestNo=" + protectRequestNo';
     } else {
         alert('신청이 완료되었습니다'); // 모든 입력이 유효한 경우
         document.getElementById('protectRequest').submit();
     }
 }
-
-
-// 주소 검색
-document.addEventListener('DOMContentLoaded', function () {
-    const addressSearchBtn = document.getElementById('addressSearch');
-
-    addressSearchBtn.addEventListener('click', function () {
-        new daum.Postcode({
-            oncomplete: function (data) {
-                document.getElementById('zipcode').value = data.zonecode; // 우편번호 입력
-                document.getElementById('address').value = data.address; // 주소 입력
-                document.getElementById('detailAddress').focus(); // 상세주소 입력란에 포커스
-            }
-        }).open();
-    });
-});
 
 
 // 신청취소

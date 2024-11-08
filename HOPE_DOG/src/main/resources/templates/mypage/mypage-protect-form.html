@@ -8,7 +8,7 @@
   <link rel="stylesheet" th:href="@{/css/mypage/mypage-protect-form.css}" />
   <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
   <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
-  <script defer th:src="@{/js/mypage/mypage-protect-form.js}"></script>
+
 </head>
 
 <body>
@@ -18,14 +18,13 @@
       <nav>
         <ul class="member-profile-nav-ul">
 
-          <li id="profile"><a th:href="@{/mypage/update}">개인정보수정</li></a>
-          <li id="posts"><a th:href="@{/mypage/posts}">작성글조회</li></a>
-          <li id="volunteer"><a th:href="@{/mypage/volun}">봉사</li></a>
-          <li id="adopt"><a th:href="@{/mypage/adopt}">입양</li>
-          <div id="choice"></div></a>
-          <li id="inbox"><a th:href="@{/mypage/noteboxReceiveList}">쪽지함</li></a>
-          <li id="auth"><a href="../../html/mypage/mypage-auth.html">2차인증</li></a>
-          <li id="withdrawal"><a href="../../html/mypage/mypage-quit.html">회원탈퇴</li></a>
+          <li id="profile"><a th:href="@{/mypage/update}">개인정보수정</a></li>
+          <li id="posts"><a th:href="@{/mypage/posts}">작성글조회</a></li>
+          <li id="volunteer"><a th:href="@{/mypage/volun}">봉사</a></li>
+          <li id="adopt"><a th:href="@{/mypage/adopt}">입양</a></li>
+          <li id="inbox"><a th:href="@{/mypage/noteboxReceiveList}">쪽지함</a></li>
+          <li id="auth"><a href="../../html/mypage/mypage-auth.html">2차인증</a></li>
+          <li id="withdrawal"><a href="../../html/mypage/mypage-quit.html">회원탈퇴</a></li>
         </ul>
       </nav>
     </div>
@@ -42,22 +41,21 @@
     <!-- 입양 메인 크기 -->
     <div class="mypage-protect">
       <div class="protectrequest-main-size">
-
         <!-- 글작성 박스 -->
-        <div class="protectrequest-write-area" th:each="protectRequest : ${mpProtectRequest}">
+        <div class="protectrequest-write-area" th:each="protectRequest : ${protectRequest}">
 
           <div class="main-input">
-
-            <!-- 글작성 박스 -->
-            <div class="protectrequest-write-area">
               <br>
               <div style="font-weight: bold;">임시보호 신청서</div>
               <form id="protectRequest" th:action="@{/mypage/updateProtectRequestOk}" method="post">
-                <div class="protectRequestNo" th:text="${protectRequest.protectRequestNo}" style="display: none;"></div>
+
+                <input type="hidden" name="protectRequestNo" th:value="${protectRequest.protectRequestNo}">
+
+<!--                <div class="protectRequestNo" th:text="${protectRequest.protectRequestNo}" style="display: none;"></div>-->
                 <div class="protectrequest-content-box">
                   <div class="protectrequest-content-title">성명</div>
-                  <input class="protectrequest-input-small" id="nameInput" type="text" style="color: gray;"
-                         th:value="${protectRequest.protectRequestName}" onblur="checkNameInput()" readonly>
+                  <input class="protectrequest-input-small" id="nameInput" type="text" name="protectRequestName"
+                         th:value="${protectRequest.protectRequestName}" onblur="checkNameInput()">
                 </div>
                 <div class="Error">
                   <div id="nameError" style="color: red; display: none;">성명을 입력해주세요</div>
@@ -65,8 +63,8 @@
 
                 <div class="protectrequest-content-box">
                   <div class="protectrequest-content-title">연락처</div>
-                  <input class="protectrequest-input-small" id="phoneInput" type="text"
-                         th:value="${protectRequest.protectRequestPhone}" onblur="checkPhoneInput()">
+                  <input class="protectrequest-input-small" id="phoneInput" name="protectRequestPhone" type="text"
+                         th:value="${protectRequest.protectRequestPhone}" placeholder="　-을 제외한 숫자만 입력해주세요" onblur="checkPhoneInput()">
                 </div>
                 <div class="Error">
                   <div id="phoneError" style="color: red; display: none;">연락처를 입력해주세요</div>
@@ -74,8 +72,8 @@
 
                 <div class="protectrequest-content-box">
                   <div class="protectrequest-content-title">대체 연락처</div>
-                  <input class="protectrequest-input-small" type="text" id="phone2Input"
-                         th:value="${protectRequest.protectRequestPhoneSub}" onblur="checkPhone2Input()">
+                  <input class="protectrequest-input-small" type="text" id="phone2Input" name="protectRequestPhoneSub"
+                         th:value="${protectRequest.protectRequestPhoneSub}" placeholder="　-을 제외한 숫자만 입력해주세요" onblur="checkPhone2Input()">
                 </div>
                 <div class="Error">
                   <div id="phone2Error" style="color: red; display: none;">대체 연락처를 입력해주세요</div>
@@ -83,7 +81,7 @@
 
                 <div class="protectrequest-content-box">
                   <div class="protectrequest-content-title">이메일 주소</div>
-                  <input class="protectrequest-input-small" type="text" id="emailInput"
+                  <input class="protectrequest-input-small" type="text" id="emailInput" name="protectRequestEmail"
                          th:value="${protectRequest.protectRequestEmail}" onblur="checkEmailInput()">
                 </div>
                 <div class="Error">
@@ -93,17 +91,17 @@
                 <div class="protectrequest-content-box">
                   <div class="protectrequest-content-title">성별</div>
                   <div class="gender-options">
-                    <input type="radio" name="gender" value="M"
+                    <input type="radio" name="protectRequestGender" value="M"
                            th:checked="${protectRequest.protectRequestGender == 'M'}" > 남자
-                    <input type="radio" name="gender" value="F"
+                    <input type="radio" name="protectRequestGender" value="F"
                            th:checked="${protectRequest.protectRequestGender == 'F'}" > 여자
                   </div>
                 </div>
 
                 <div class="protectrequest-content-box">
                   <div class="protectrequest-content-title">나이</div>
-                  <input class="protectrequest-input-small" type="date" id="ageInput"
-                         th:value="${#dates.format(protectRequest.protectRequestAge,'yyyy-MM-dd')}" onblur="checkAgeInput()">
+                  <input class="protectrequest-input-small" type="date" id="ageInput" name="protectRequestAge"
+                         th:value="${protectRequest.protectRequestAge}" onblur="checkAgeInput()">
                 </div>
                 <div class="Error">
                   <div id="ageError" style="color: red; display: none;">나이를 입력해주세요</div>
@@ -111,34 +109,34 @@
 
                 <div class="protectrequest-content-box">
                   <div class="protectrequest-content-title">우편번호</div>
-                  <input id="zipcode" class="protectrequest-input-small2" type="text"
+                  <input id="zipcode" class="protectrequest-input-small2" type="text" name="protectRequestZipcode"
                          th:value="${protectRequest.protectRequestZipcode}" readonly>
-                  <button id="addressSearch" class="adoptrequest-search-button" type="button">주소찾기</button>
+<!--                  <button id="addressSearch" class="adoptrequest-search-button" type="button">주소찾기</button>-->
                 </div>
                 <div class="protectrequest-content-box">
                   <div class="protectrequest-content-title">주소</div>
-                  <input id="address" class="protectrequest-input-small" type="text"
+                  <input id="address" class="protectrequest-input-small" type="text" name="protectRequestAddress"
                          th:value="${protectRequest.protectRequestAddress}" readonly>
 
                 </div>
                 <div class="protectrequest-content-box">
                   <div class="protectrequest-content-title">상세주소</div>
-                  <input id="detailAddress" class="protectrequest-input-small" type="text"
+                  <input id="detailAddress" class="protectrequest-input-small" type="text" name="protectRequestAddressDetail"
                          th:value="${protectRequest.protectRequestAddressDetail}" onblur="checkAddressInput()">
                 </div>
 
                 <div class="protectrequest-content-box">
                   <div class="protectrequest-content-title">직업/직장명</div>
-                  <input class="protectrequest-input-small" type="text" id="jobInput"
+                  <input class="protectrequest-input-small" type="text" id="jobInput" name="protectRequestJob"
                          th:value="${protectRequest.protectRequestJob}" onblur="checkJobInput()">
                 </div>
 
                 <div class="protectrequest-content-box">
                   <div class="protectrequest-content-title">결혼여부</div>
                   <div class="gender-options">
-                    <input type="radio" name="marry" value="N"
+                    <input type="radio" name="protectRequestMarry" value="N"
                            th:checked="${protectRequest.protectRequestMarry == 'N'}"> 미혼
-                    <input type="radio" name="marry" value="Y"
+                    <input type="radio" name="protectRequestMarry" value="Y"
                            th:checked="${protectRequest.protectRequestMarry == 'Y'}" > 기혼
                   </div>
                 </div>
@@ -153,10 +151,11 @@
                   <p>개인정보의 보유 및 이용기간: 5년(관계법령에서 정한 일정한 기간)</p>
                 </div>
                 <div class="agreement-checkbox">
-                  <input type="checkbox" id="info-agreement"
-                         th:checked="${protectRequest.protectRequestAgreement}">
+                  <input type="checkbox" id="info-agreement" name="protectRequestInfoAgreement"
+                         th:checked="${protectRequest.protectRequestInfoAgreement != null ? protectRequest.protectRequestInfoAgreement : false}" >
                   <label for="info-agreement">위 약관에 동의합니다.</label>
                 </div>
+
 
                 <br><br>
 
@@ -165,7 +164,7 @@
 
                 <div class="protectrequest-content-box2">
                   <div class="protectrequest-content-title2">임시보호를 희망하는 아이의 이름을 적어주세요.</div>
-                  <input class="protectrequest-input-small" type="text" id="quest1Input"
+                  <input class="protectrequest-input-small" type="text" id="quest1Input" name="proRequestQ1"
                          th:value="${protectRequest.proRequestQ1}"  onblur="checkQuest1Input()">
                 </div>
                 <div class="Error">
@@ -177,7 +176,7 @@
                   <div class="protectrequest-content-title2">임시보호하기를 희망하는 아이가 없을 경우 앞으로 보호하고자 하는 아이에 대해 간단히
                     설명해주세요.
                   </div>
-                  <input class="protectrequest-input-small" type="text" id="quest2Input"
+                  <input class="protectrequest-input-small" type="text" id="quest2Input"  name="proRequestQ2"
                          th:value="${protectRequest.proRequestQ2}"  onblur="checkQuest2Input()">
                 </div>
                 <div class="Error">
@@ -187,7 +186,7 @@
 
                 <div class="protectrequest-content-box2">
                   <div class="protectrequest-content-title2">임시보호를 결정하시기 까지 얼마나 오랜 시간을 고민하셨나요?</div>
-                  <input class="protectrequest-input-small" type="text" id="quest3Input"
+                  <input class="protectrequest-input-small" type="text" id="quest3Input"  name="proRequestQ3"
                          th:value="${protectRequest.proRequestQ3}" onblur="checkQuest3Input()">
                 </div>
                 <div class="Error">
@@ -197,7 +196,7 @@
 
                 <div class="protectrequest-content-box2">
                   <div class="protectrequest-content-title2">임시보호를 원하시는 가장 큰 이유는 무엇인가요?</div>
-                  <input class="protectrequest-input-big" type="text" id="quest4Input"
+                  <input class="protectrequest-input-big" type="text" id="quest4Input"  name="proRequestQ4"
                          th:value="${protectRequest.proRequestQ4}" onblur="checkQuest4Input()">
                 </div>
                 <div class="Error">
@@ -207,7 +206,7 @@
 
                 <div class="protectrequest-content-box2">
                   <div class="protectrequest-content-title2">가족구성원 및 거주하는 시간을 알려주세요.</div>
-                  <input class="protectrequest-input-big" type="text" id="quest5Input"
+                  <input class="protectrequest-input-big" type="text" id="quest5Input"  name="proRequestQ5"
                          th:value="${protectRequest.proRequestQ5}"  onblur="checkQuest5Input()">
                 </div>
                 <div class="Error">
@@ -217,7 +216,7 @@
 
                 <div class="protectrequest-content-box2">
                   <div class="protectrequest-content-title2">가족 모두가 임시보호에 동의하시나요?</div>
-                  <input class="protectrequest-input-small" type="text" id="quest6Input"
+                  <input class="protectrequest-input-small" type="text" id="quest6Input"  name="proRequestQ6"
                          th:value="${protectRequest.proRequestQ6}" onblur="checkQuest6Input()">
                 </div>
                 <div class="Error">
@@ -227,7 +226,7 @@
 
                 <div class="protectrequest-content-box2">
                   <div class="protectrequest-content-title2">키우고 계신 반려동물이 있나요? 있다면 소개해주세요.</div>
-                  <input class="protectrequest-input-big" type="text" id="quest7Input"
+                  <input class="protectrequest-input-big" type="text" id="quest7Input"  name="proRequestQ7"
                          th:value="${protectRequest.proRequestQ7}" onblur="checkQuest7Input()">
                 </div>
                 <div class="Error">
@@ -237,7 +236,7 @@
 
                 <div class="protectrequest-content-box2">
                   <div class="protectrequest-content-title2">주거의 형태는?</div>
-                  <input class="protectrequest-input-big" type="text" id="quest8Input"
+                  <input class="protectrequest-input-big" type="text" id="quest8Input"  name="proRequestQ8"
                          th:value="${protectRequest.proRequestQ8}"  onblur="checkQuest8Input()">
                 </div>
                 <div class="Error">
@@ -247,7 +246,7 @@
 
                 <div class="protectrequest-content-box2">
                   <div class="protectrequest-content-title2">입대한 주택의 경우 집주인의 동의를 얻으셨나요?</div>
-                  <input class="protectrequest-input-big" type="text" id="quest9Input"
+                  <input class="protectrequest-input-big" type="text" id="quest9Input" name="proRequestQ9"
                          th:value="${protectRequest.proRequestQ9}" onblur="checkQuest9Input()">
                 </div>
                 <div class="Error">
@@ -257,7 +256,7 @@
 
                 <div class="protectrequest-content-box2">
                   <div class="protectrequest-content-title2">소음이나 위생 등으로 인한 이웃과의 마찰로 보호가 불가능해질 경우 어떻게 하실건가요?</div>
-                  <input class="protectrequest-input-big" type="text" id="quest10Input"
+                  <input class="protectrequest-input-big" type="text" id="quest10Input" name="proRequestQ10"
                          th:value="${protectRequest.proRequestQ10}" onblur="checkQuest10Input()" >
                 </div>
                 <div class="Error">
@@ -267,7 +266,7 @@
 
                 <div class="protectrequest-content-box2">
                   <div class="protectrequest-content-title2">이사 또는 해외로 이주 시 반려동물의 거취문제에 대해 어떻게 생각하십니까?</div>
-                  <input class="protectrequest-input-big" type="text" id="quest11Input"
+                  <input class="protectrequest-input-big" type="text" id="quest11Input"  name="proRequestQ11"
                          th:value="${protectRequest.proRequestQ11}" onblur="checkQuest11Input()" >
                 </div>
                 <div class="Error">
@@ -279,7 +278,7 @@
                   <div class="protectrequest-content-title2">앞으로 결혼, 임신, 출산 등 가족의 변화가 있는 경우 반려동물의 거취문제에 대해 어떻게
                     생각하십니까?
                   </div>
-                  <input class="protectrequest-input-big" type="text" id="quest12Input"
+                  <input class="protectrequest-input-big" type="text" id="quest12Input"  name="proRequestQ12"
                          th:value="${protectRequest.proRequestQ12}"  onblur="checkQuest12Input()">
                 </div>
                 <div class="Error">
@@ -289,7 +288,7 @@
 
                 <div class="protectrequest-content-box2">
                   <div class="protectrequest-content-title2">동물 관련 활동경험이 있으십니까? ex)봉사 및 구조경험</div>
-                  <input class="protectrequest-input-big" type="text" id="quest13Input"
+                  <input class="protectrequest-input-big" type="text" id="quest13Input"  name="proRequestQ13"
                          th:value="${protectRequest.proRequestQ13}"  onblur="checkQuest13Input()">
                 </div>
                 <div class="Error">
@@ -299,7 +298,7 @@
 
                 <div class="protectrequest-content-box2">
                   <div class="protectrequest-content-title2">임시보호희망 동물에 대해 어떻게 알게 되셨나요?</div>
-                  <input class="protectrequest-input-big" type="text" id="quest14Input"
+                  <input class="protectrequest-input-big" type="text" id="quest14Input"  name="proRequestQ14"
                          th:value="${protectRequest.proRequestQ14}" onblur="checkQuest14Input()">
                 </div>
                 <div class="Error">
@@ -309,7 +308,7 @@
 
                 <div class="protectrequest-content-box2">
                   <div class="protectrequest-content-title2">센터방문 또는 전화상담이 가능한 날짜와 시간을 적어주세요.</div>
-                  <input class="protectrequest-input-big" type="text" id="quest15Input"
+                  <input class="protectrequest-input-big" type="text" id="quest15Input"  name="proRequestQ15"
                          th:value="${protectRequest.proRequestQ15}" onblur="checkQuest15Input()" >
                 </div>
                 <div class="Error">
@@ -345,7 +344,7 @@
                     있습니다.</p>
                 </div>
                 <div class="agreement-checkbox">
-                  <input type="checkbox" id="protect-agreement"
+                  <input type="checkbox" id="protect-agreement" name="protectRequestAgreement"
                          th:checked="${protectRequest.protectRequestAgreement}">
                   <label for="protect-agreement">위 약관에 동의합니다.</label>
                 </div>
@@ -358,15 +357,19 @@
 
                 <br><br>
 
-              <!--회원번호 세션으로 받고 히든으로 넘기기 -->
-              <input th:value="${memberNo}" style="display: none" name="memberNo">
-              <input th:value="${centerMemberNo}" style="display: none" name="centerMemberNo">
 
-              <div class="adoptrequest-buttonbox">
-                <button class="adoptrequest-button" onclick="validateInputs()" type="button">수정</button>
-                <button class="adoptrequest-button" onclick="requestcancel()" type="button">취소</button>
-              </div>
+
+                <div class="adoptrequest-buttonbox">
+                  <!--회원번호 세션으로 받고 히든으로 넘기기 -->
+                  <input th:value="${memberNo}" style="display: none" name="memberNo">
+                  <input th:value="${centerMemberNo}" style="display: none" name="centerMemberNo">
+                  <input th:value="${protectRequest.protectRequestNo}" style="display: none" name="protectRequestNo">
+                  <button class="adoptrequest-button" onclick="validateInputs()" type="submit">수정</button>
+                  <button class="adoptrequest-button" onclick="requestcancel()" type="button">취소</button>
+                </div>
               </form>
+            </div>
+          </div>
           <br>
         </div>
       </div>
@@ -376,11 +379,8 @@
 </body>
 
 <footer th:replace="~{/fragment/footer :: footer}"></footer>
-
-<script defer src="../../js/main/header.js"></script>
-<script defer src="../../js/mypage/mypage-protect-form.js"></script>
+<script defer th:src="@{/js/mypage/mypage-protect-form.js}"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="../../js/member/center-signup.js"></script>
 
 
 

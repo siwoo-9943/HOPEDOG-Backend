@@ -56,7 +56,8 @@ public interface MypageMapper {
     MpProtectRequestDTO protectRequestInfo(Long protectRequestNo);
 
     // 임시보호신청서 수정
-    void updateProtectRequest(UpdateProtectRequestDTO updateProtectRequestDTO);
+//    void updateProtectRequest(UpdateProtectRequestDTO updateProtectRequestDTO);
 
+    void updateProtectRequest(MpProtectRequestDTO mpProtectRequestDTO);
 }
 

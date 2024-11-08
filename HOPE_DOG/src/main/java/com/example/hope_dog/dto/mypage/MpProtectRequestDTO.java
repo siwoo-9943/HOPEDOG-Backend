@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -18,7 +19,7 @@ public class MpProtectRequestDTO {
     private String protectRequestPhoneSub;
     private String protectRequestEmail;
     private String protectRequestGender;
-    private Date protectRequestAge;
+    private LocalDate protectRequestAge;
     private String protectRequestZipcode;
     private String protectRequestAddress;
     private String protectRequestAddressDetail;

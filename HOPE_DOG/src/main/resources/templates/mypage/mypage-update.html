@@ -47,7 +47,7 @@
                                 <label for="nickname">
                                     <div id="contents">
                                         <div id="labelname">닉네임 : </div>
-                                        <div><input type="text" id="nickname" name="memberNickname" th:value="${profile.memberNickname}" onblur="checkNicknameInput()"></div>
+                                        <div><input type="text" id="nickname" name="memberNickname" th:value="${profile.memberNickname}" onblur="checkNameInput()" ></div>
                                         <button type="button" class="member-profile-button-small" onclick="checkNickname()">중복확인</button>
                                     </div>
                                     <div class="Error">
@@ -59,7 +59,7 @@
                                 <label for="email">
                                     <div id="contents">
                                         <div id="labelname">이메일 : </div>
-                                        <div><input type="text" id="email" name="memberEmail" th:value="${profile.memberEmail}" onblur="checkEmailInput()"></div>
+                                        <div><input type="text" id="email" name="memberEmail" th:value="${profile.memberEmail}"  onblur="checkEmailInput()" ></div>
                                         <button type="button" class="member-profile-button-small" onclick="checkEmail()">중복확인</button>
                                     </div>
                                     <div class="Error">

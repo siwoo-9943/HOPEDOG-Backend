@@ -365,21 +365,42 @@ public class MypageController {
     }
 
     @GetMapping("/updateProtectRequest")
-    public String updateProtectRequest(Model model) {
-        Long MemberNo = (Long) session.getAttribute("memberNo");
+    public String updateProtectRequest(@RequestParam("protectRequestNo") Long protectRequestNo, Model model) {
+        MpProtectRequestDTO protectRequest = mypageService.protectRequestInfo(protectRequestNo);
+        Long memberNo = (Long) session.getAttribute("memberNo");
+        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
 
-        MpProtectRequestDTO mpProtectRequest = mypageService.protectRequestDetail(MemberNo);
-        model.addAttribute("mpProtectRequest", mpProtectRequest);
+        model.addAttribute("memberNo", memberNo);
+        model.addAttribute("centerMemberNo", centerMemberNo);
 
+        model.addAttribute("protectRequest", protectRequest);
         return "mypage/mypage-protect-form";
-    }
 
+    }
     @PostMapping("/updateProtectRequestOk")
-    public String updateProtectRequestOk(UpdateProtectRequestDTO updateProtectRequestDTO, RedirectAttributes redirectAttributes) {
-        mypageService.updateProtectRequest(updateProtectRequestDTO);
+    public String updateProtectRequestOk(@RequestParam("protectRequestNo") Long protectRequestNo, MpProtectRequestDTO mpProtectRequestDTO, Model model) {
+        MpProtectRequestDTO protectRequest = mypageService.protectRequestInfo(protectRequestNo);
+        model.addAttribute("protectRequest", protectRequest);
 
-        return "redirect:/mypage/protect";
+        mypageService.updateProtectRequest(mpProtectRequestDTO);
+
+        return "redirect:/mypage/updateProtectRequest?protectRequestNo=" + protectRequestNo;
     }
+//    @PostMapping("/updateProtectRequestOk/{protectRequestNo}")
+//    public String updateProtectRequestOk(@PathVariable Long protectRequestNo, MpProtectRequestDTO mpProtectRequestDTO) {
+//        mpProtectRequestDTO.setProtectRequestNo(protectRequestNo);  // URL로 전달된 protectRequestNo를 DTO에 설정
+//        mypageService.updateProtectRequest(mpProtectRequestDTO);
+//
+//        return "redirect:/mypage/updateProtectRequest";
+//    }
+
+//
+//    @PostMapping("/updateProtectRequestRegi")
+//    public String updateProtectRequestRegi(MypageProtectDTO mypageProtectDTO) {
+//        mypageService.updateProtect(mypageProtectDTO);
+//
+//        return "redirect:/mypage/protect";
+//    }
 
 
 //    @PostMapping("/updateProfileOk")
@@ -409,12 +430,6 @@ public class MypageController {
 //        return "redirect:/centerMypage/centerProfile"; // 업데이트 후 리다이렉트할 페이지
 //    }
 
-//    // 글 수정 등록
-//    @PostMapping("/modifyRegi")
-//    public String donationUpdate(DonationWriteDTO donationWriteDTO) {
-//        donationService.donationUpdate(donationWriteDTO);
-//        return "redirect:/dona/list"; // 수정 후 목록으로 리다이렉트
-//    }
 
 
 
