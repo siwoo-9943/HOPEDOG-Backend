@@ -30,9 +30,10 @@ public interface CommuMapper {
     List<CommuDTO> findCateByGood();
 
     // 커뮤니티 검색
-    List<CommuDTO> searchCommu(@Param("memberNickName") String memberNickName,
-                               @Param("centerMemberName") String centerMemberName,
-                               @Param("title") String Title);
+    List<CommuDTO> searchCommu(@Param("searchType") String searchType,
+                               @Param("keyword") String keyword);
+
+
 
 //게시글 상세
 
@@ -49,8 +50,7 @@ public interface CommuMapper {
     //게시글 신고
     void commuReport(CommuReportDTO commuReportDTO);
 
-    // 댓글 리스트 조회
-//    List<CommuCommentDTO> selectCommentsByCommuNo(@Param("commuNo") Long commuNo);
+
 
     //댓글 리스트 조회
     List<CommuCommentDTO>commuComment(Long commuNo);
