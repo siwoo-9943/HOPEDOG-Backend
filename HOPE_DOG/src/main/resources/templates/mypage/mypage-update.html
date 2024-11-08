@@ -18,14 +18,13 @@
     <div class="member-profile-navbox">
         <nav>
             <ul class="member-profile-nav-ul">
-                <li id="profile"><a th:href="@{/mypage/update}">개인정보수정</a></li>
-                <div id="choice"></div>
-                <li id="posts"><a th:href="@{/mypage/posts}">작성글조회</a></li>
-                <li id="volunteer"><a th:href="@{/mypage/volun}">봉사</a></li>
-                <li id="adopt"><a th:href="@{/mypage/adopt}">입양</a></li>
-                <li id="inbox"><a th:href="@{/mypage/noteboxReceiveList}">쪽지함</a></li>
-                <li id="auth"><a href="../../html/mypage/mypage-auth.html">2차인증</a></li>
-                <li id="withdrawal"><a href="../../html/mypage/mypage-quit.html">회원탈퇴</a></li>
+                <li id="profile"><a th:href="@{/mypage/update}">개인정보수정</li>
+                <div id="choice"></div></a>
+                <li id="posts"><a th:href="@{/mypage/posts}">작성글조회</li></a>
+                <li id="volunteer"><a th:href="@{/mypage/volun}">봉사</li></a>
+                <li id="adopt"><a th:href="@{/mypage/adopt}">입양</li></a>
+                <li id="inbox"><a th:href="@{/mypage/noteboxReceiveList}">쪽지함</li></a>
+                <li id="withdrawal"><a th:href="@{/mypage/withdrawal}">회원탈퇴</li></a>
             </ul>
         </nav>
     </div>
@@ -163,7 +162,7 @@
                                 </div>
 
                                 <div class="member-profile-button">
-                                    <button type="button" class="member-profile-button-small" onclick="validateInputs()">수정하기</button>
+                                    <button type="submit" class="member-profile-button-small" onclick="validateInputs()">수정하기</button>
                                 </div>
                             </div>
                         </form>
