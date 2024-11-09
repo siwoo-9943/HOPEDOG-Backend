@@ -17,9 +17,9 @@
     <!-- 입양 메인 크기 -->
     <div class="volunrequest-main-size">
       <!-- 입양/임보/후기 게시판 바 -->
-      <div class="volun-nav">
-        <div class="volun-navList" id="volunPage">봉사</div>
-        <div class="volun-navList" id="carPage">카풀</div>
+      <div class="volunrequest-nav">
+        <div class="volunrequest-navList" id="volunPage">봉사</div>
+        <div class="volunrequest-navList" id="carPage">카풀</div>
       </div>
 
       <!-- 입양신청 글 등록 -->
@@ -32,10 +32,10 @@
         <br>
         <div style="font-weight: bold;">봉사 신청서</div>
         <!-- 이름 -->
-        <form>
+        <form th:action="@{/volun/volun/volunrequestRegi}" method="post" id="volunRequest">
           <div class="volunrequest-content-box">
-            <div class="volunrequest-content-title">성명</div><input class="volunrequest-input-small" id="nameInput"
-              type="text" onblur="checkNameInput()">
+            <div class="volunrequest-content-title">성명</div><input class="volunrequest-input-small" name="volunRequestName"
+              type="text" onblur="checkNameInput()" id="nameInput">
           </div>
           <!-- 이름 미입력 에러메세지 -->
           <div class="Error">
@@ -45,8 +45,8 @@
 
           <!-- 연락처 -->
           <div class="volunrequest-content-box">
-            <div class="volunrequest-content-title">연락처</div><input class="volunrequest-input-small" id="phoneInput"
-              type="text" onblur="checkPhoneInput()" placeholder="　-을 제외한 숫자만 입력해주세요">
+            <div class="volunrequest-content-title">연락처</div><input class="volunrequest-input-small" name="volunRequestPhone"
+              type="text" onblur="checkPhoneInput()" placeholder="　-을 제외한 숫자만 입력해주세요" id="phoneInput">
           </div>
           <!-- 연락처 미입력 에러메세지 -->
           <div class="Error">
@@ -57,7 +57,7 @@
           <!-- 대체 연락처 -->
           <div class="volunrequest-content-box">
             <div class="volunrequest-content-title">대체 연락처</div><input class="volunrequest-input-small" type="text"
-              id="phone2Input" onblur="checkPhone2Input()" placeholder="　-을 제외한 숫자만 입력해주세요">
+              id="phone2Input" onblur="checkPhone2Input()" placeholder="　-을 제외한 숫자만 입력해주세요" name="volunRequestPhoneSub">
           </div>
           <!-- 대체 연락처 미입력 에러메세지 -->
           <div class="Error">
@@ -68,7 +68,7 @@
           <!-- 이메일 주소 -->
           <div class="volunrequest-content-box">
             <div class="volunrequest-content-title">이메일 주소</div><input class="volunrequest-input-small" type="text"
-              id="emailInput" onblur="checkEmailInput()">
+              id="emailInput" onblur="checkEmailInput()" name="volunRequestEmail">
           </div>
           <!-- 대체 연락처 미입력 에러메세지 -->
           <div class="Error">
@@ -80,15 +80,15 @@
           <div class="volunrequest-content-box">
             <div class="volunrequest-content-title">성별</div>
             <div class="gender-options">
-              <input type="radio" name="gender" value="male" checked> 남자
-              <input type="radio" name="gender" value="female"> 여자
+              <input type="radio" name="volunRequestGender" value="M" checked> 남자
+              <input type="radio" name="volunRequestGender" value="F"> 여자
             </div>
           </div>
 
           <!-- 나이 -->
           <div class="volunrequest-content-box">
             <div class="volunrequest-content-title">나이</div><input class="volunrequest-input-small" type="date"
-              id="ageInput" onblur="checkAgeInput()">
+              id="ageInput" onblur="checkAgeInput()" name="volunRequestAge">
           </div>
           <!-- 나이 미입력 에러메세지 -->
           <div class="Error">
@@ -99,16 +99,16 @@
           <!-- 우편번호 -->
           <div class="volunrequest-content-box">
             <div class="volunrequest-content-title">우편번호</div>
-            <input id="zipcode" class="volunrequest-input-small2" type="text">　　　
+            <input id="zipcode" class="volunrequest-input-small2" type="text" name="volunRequestZipcode">　　　
             <button id="addressSearch" class="volunrequest-search-button" type="button">주소찾기</button>
           </div>
           <div class="volunrequest-content-box">
             <div class="volunrequest-content-title">주소</div>
-            <input id="address" class="volunrequest-input-small" type="text">
+            <input id="address" class="volunrequest-input-small" type="text" name="volunRequestAddress">
           </div>
           <div class="volunrequest-content-box">
             <div class="volunrequest-content-title">상세주소</div>
-            <input id="detailAddress" class="volunrequest-input-small" type="text" onblur="checkAddressInput()">
+            <input id="detailAddress" class="volunrequest-input-small" type="text" onblur="checkAddressInput()" name="volunRequestAddressDetail">
           </div>
           <!-- 주소 미입력 에러메세지 -->
           <div class="Error">
@@ -119,7 +119,7 @@
           <!-- 직장 -->
           <div class="volunrequest-content-box">
             <div class="volunrequest-content-title">직업/직장명</div><input class="volunrequest-input-small" type="text"
-              id="jobInput" onblur="checkJobInput()">
+              id="jobInput" onblur="checkJobInput()" name="volunRequestJob">
           </div>
           <!-- 직장 미입력 에러메세지 -->
           <div class="Error">
@@ -137,7 +137,7 @@
             <p>개인정보의 보유 및 이용기간: 5년(관계법령에서 정한 일정한 기간)</p>
           </div>
           <div class="agreement-checkbox">
-            <input type="checkbox" id="info-agreement">
+            <input type="checkbox" id="info-agreement" name="volunRequestAgreement" value="Y">
             <label for="info-agreement">위 약관에 동의합니다.</label>
           </div>
 
@@ -148,7 +148,7 @@
           <!-- 봉사질문1 -->
           <div class="volunrequest-content-box2">
             <div class="volunrequest-content-title2">어떤 경로로 봉사를 신청하게 되었나요?</div><input class="volunrequest-input-big"
-              type="text" id="quest1Input" onblur="checkQuest1Input()">
+              type="text" id="quest1Input" onblur="checkQuest1Input()" name="volunRequestQ1">
           </div>
           <!-- 에러메세지 -->
           <div class="Error">
@@ -159,7 +159,7 @@
           <!-- 봉사질문2 -->
           <div class="volunrequest-content-box2">
             <div class="volunrequest-content-title2">유기견 봉사 또는 비슷한 봉사 경험이 있나요?</div><input class="volunrequest-input-big"
-              type="text" id="quest2Input" onblur="checkQuest2Input()">
+              type="text" id="quest2Input" onblur="checkQuest2Input()" name="volunRequestQ2">
           </div>
           <!-- 에러메세지 -->
           <div class="Error">
@@ -170,7 +170,7 @@
           <!-- 봉사질문3 -->
           <div class="volunrequest-content-box2">
             <div class="volunrequest-content-title2">유기견 봉사를 신청하게된 이유가 있나요?</div><input
-              class="volunrequest-input-big" type="text" id="quest3Input" onblur="checkQuest3Input()">
+              class="volunrequest-input-big" type="text" id="quest3Input" onblur="checkQuest3Input()" name="volunRequestQ3">
           </div>
           <!-- 에러메세지 -->
           <div class="Error">
@@ -181,7 +181,7 @@
           <!-- 봉사질문4 -->
           <div class="volunrequest-content-box2">
             <div class="volunrequest-content-title2">궁금하신 점이 있다면 적어주세요.</div><input class="volunrequest-input-big" type="text"
-              id="quest4Input" onblur="checkQuest4Input()">
+              id="quest4Input" onblur="checkQuest4Input()" name="volunRequestQ4">
           </div>
           <!-- 에러메세지 -->
           <div class="Error">
@@ -189,6 +189,10 @@
           </div>
 
           <br><br>
+
+          <!--회원번호 세션으로 받고 히든으로 넘기기 -->
+          <input th:value="${memberNo}" style="display: none" name="memberNo">
+          <input th:value="${centerMemberNo}" style="display: none" name="centerMemberNo">
 
           <div class="volunrequest-buttonbox">
             <button class="volunrequest-button" onclick="validateInputs()" type="button">신청</button>
