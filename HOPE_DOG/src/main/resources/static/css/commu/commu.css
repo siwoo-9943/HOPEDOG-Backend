@@ -79,6 +79,9 @@ ul{
   line-height: 20px;
   font-weight: 400;
   color: rgb(51, 51, 51);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* 작성자, 작성일 */

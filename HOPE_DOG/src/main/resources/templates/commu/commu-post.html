@@ -8,7 +8,7 @@
   <link rel="stylesheet" th:href="@{/css/commu/commu-post-member.css}"/>
   <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
   <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
-  <script defer th:src="@{/js/main/main.js}"></script>
+
 
 </head>
 
@@ -61,10 +61,9 @@
 
       <!-- 글 작성에서 수정,삭제,신고 버튼 -->
       <div class="comm-detail-box3" th:each="commu : ${commuDetailList}">
-        <div>
+        <div class="modify-button">
           <!-- 작성자 ID가 일치할 때만 수정 버튼과 삭제 버튼 표시 -->
-          <button class="comm-modify-button" type="button"
-                  onclick="window.location.href='/commu/rewrite/${commuDetail.commuNo}'"
+          <button class="comm-modify-button" type="button" onclick="modifyClick()"
                   th:if="${memberNo == commu.memberNo or centerMemberNo == commu.centerMemberNo}">수정</button>
           <button class="comm-delete-button" type="button"
                   onclick="deleteAlert()"
@@ -72,11 +71,13 @@
         </div>
 
         <!-- 작성자 ID가 일치하지 않을 때 신고 버튼 표시 -->
-        <button class="comm-end-button" type="button"
+        <div class="report-button">
+          <button class="comm-end-button" type="button"
                 onclick="ReportAlert()"
                 th:if="${memberNo != commu.memberNo and centerMemberNo != commu.centerMemberNo}">신고</button>
-
+        </div>
         <div class="commuNo" th:text="${commu.commuNo}" style="display: none;"></div>
+        <div class="commuWriter" th:text="${memberNo != null?memberNo : centerMemberNo}" style="display: none;"></div>
       </div>
 
 

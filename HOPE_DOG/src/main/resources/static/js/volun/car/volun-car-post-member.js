@@ -129,7 +129,9 @@ function CommentReportClick() {
     const reportComment = prompt('신고사유를 100글자 이내로 입력해주세요');
     const carNo = document.querySelector('.carNo').textContent.trim();
     const carCommentNo = document.querySelector('.carCommentNo').textContent.trim();
-    console.log(carNo,carCommentNo);
+    console.log('carNo:', carNo);
+    console.log('carCommentNo:', carCommentNo);
+    console.log('reportComment:', reportComment);
 
     location.href = `/car/carCommentReport?carNo=${carNo}&reportComment=${encodeURIComponent(reportComment)}&carCommentNo=${carCommentNo}`;
 }

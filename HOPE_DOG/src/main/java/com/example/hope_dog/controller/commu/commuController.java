@@ -10,6 +10,7 @@ import com.example.hope_dog.service.commu.CommuService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -155,15 +156,28 @@ public class commuController {
         return "redirect:/commu/main";
     }
 
-//    //커뮤니티 글 수정
-//    @GetMapping("/rewrite/{commNO}")
-//    public String rewriteCommu(@PathVariable("commNO") Long commNO, Model model) {
-//        CommuDTO commuDTO = commuService.getCommuDetail(commNO);
-//
-//        model.addAttribute("commuDTO", commuDTO);
-//
-//        return "commu/commu-rewrite";
-//    }
+    //글 수정페이지로 이동
+    @GetMapping("/commuModify")
+    public String commuModify(@RequestParam("commuNo") Long commuNo, HttpSession session,Model model){
+        List<CommuDetailDTO> commuDetailList = commuService.selectCommuByNo(commuNo);
+        Long centerMemberNo =(Long) session.getAttribute("centerMemberNo");
+        Long memberNo =(Long) session.getAttribute("memberNo");
+        System.out.println("컨트롤러 글 수정 :" + commuDetailList);
+
+        model.addAttribute("commuDetailList", commuDetailList);
+        model.addAttribute("centerMemberNo",centerMemberNo);
+        model.addAttribute("memberNo", memberNo);
+
+        return "commu/commu-post-rewrite";
+    }
+
+
+//    //커뮤니티 글 수정등록
+    @PostMapping("/commuModifyRegi")
+    public String commuModify(@DateTimeFormat(pattern = "yyyy-MM-dd") CommuDetailDTO commuDetailDTO){
+        commuService.commuModify(commuDetailDTO);
+        return "redirect:/commu/main";
+    }
 
     //글 삭제
     @DeleteMapping("/commuDelete/{commuNo}")

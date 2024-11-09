@@ -81,20 +81,12 @@ ul{
   color: rgb(51, 51, 51);
 }
 
-/* 추천 */
-.volun-container-good {
-  flex-basis: 100px;
-  text-align: center;
-  line-height: 20px;
-  font-weight: 400;
-  color: rgb(51, 51, 51);
-}
 
 /* 게시글 목록 ul태그 */
 .volun-catalog-all {
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
+  /*display: -ms-flexbox;*/
   display: flex;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
@@ -106,9 +98,11 @@ ul{
 .volun-catalog-main {
   display: flex;
   width: 100%;
-  justify-content: center;
+  /*justify-content: center;*/
   align-items: center;
   border-bottom: 1px solid #F5EAD9;
+  flex-direction: row;
+  padding: 0;
 
 }
 
@@ -116,14 +110,21 @@ ul{
 .volun-cate {
   color: rgb(76, 76, 76);
   text-align: center;
-  padding-left: 21px;
+  display: flex;
+  width: 80px;
+  margin: 0px 35px 0px 28px;
 }
 
 /* 제목 */
 .volun-title {
   color: rgb(76, 76, 76);
   text-align: center;
-  margin: 0 auto;
+  margin: 0 24px 0 37px;
+  width: 340px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
 }
 
 /* 글쓴이 */
@@ -131,15 +132,17 @@ ul{
   text-align: center;
   padding: 20px 0px;
   color: rgb(76, 76, 76);
-  flex-basis: 100px;
+  width: 100px;
+  margin: 0 -8px 0 77px;
+  display: flex;
 }
 
 /* 작성날짜 */
 .volun-date {
   text-align: center;
   padding: 20px 0px;
-  flex-basis: 100px;
   color: rgb(153, 153, 153);
+  width: 100px;
 }
 
 
@@ -264,6 +267,7 @@ li::marker {
 /* '글쓰기' 폰트사이즈 */
 .volun-write-botton span {
   font-size: 13px;
+  margin: 11px;
 }
 
 /* '글쓰기' 폰트 두께 */

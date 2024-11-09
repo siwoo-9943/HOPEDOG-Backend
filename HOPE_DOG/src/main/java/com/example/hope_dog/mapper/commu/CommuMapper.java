@@ -44,6 +44,9 @@ public interface CommuMapper {
     //게시글 작성
     void insertWrite(CommuDTO commuDTO);
 
+//    게시글 수정
+    void commuModify(CommuDetailDTO commuDetailDTO);
+
     //게시글삭제
     void commuDelete(CommuDetailDTO commuDetailDTO);
 

@@ -141,6 +141,19 @@
         )
     </insert>
 
+<!--    게시글 수정-->
+    <update id="commuModify" parameterType="CommuDetailDTO">
+        UPDATE TBL_COMMU
+        SET
+            COMMU_CATE = #{commuCate},
+            COMMU_TITLE = #{commuTitle},
+            COMMU_CONTENT = #{commuContent},
+            COMMU_UPDATEDATE = SYSDATE,
+            COMMU_WRITER = #{commuWriter}
+        WHERE COMMU_NO = #{commuNo}
+    </update>
+
+
 <!--    게시글 삭제-->
     <delete id="commuDelete" parameterType="CommuDetailDTO">
         DELETE FROM TBL_COMMU

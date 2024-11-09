@@ -247,17 +247,21 @@ public class CarController {
 
     //댓글 신고
     @GetMapping("/carCommentReport")
-    public String carCommentDelete(HttpSession session,CarReportDTO carReportDTO,
-                                   @RequestParam(value = "carCommentNo", required = false) Long carCommentNO,
-                                   @RequestParam(value = "carNo",required = false)Long carNo,
-                                   @RequestParam(value = "reportComment",required = false) String reportComment){
+    public String carCommentDelete(HttpSession session,
+                                   @RequestParam("carCommentNo") Long carCommentNo,
+                                   @RequestParam("carNo")Long carNo,
+                                   @RequestParam("reportComment") String reportComment){
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
         Long memberNo = (Long) session.getAttribute("memberNo");
 
-        carReportDTO.setReportWriter(centerMemberNo != null ? centerMemberNo : memberNo);
+        System.out.println("댓글신고 centerMemberNo: " + centerMemberNo);
+        System.out.println("댓글신고 memberNo: " + memberNo);
+
+        CarReportDTO carReportDTO = new CarReportDTO();
         carReportDTO.setReportComment(reportComment);
-        carReportDTO.setReportCommentNo(carCommentNO);
+        carReportDTO.setReportCommentNo(carCommentNo);
         carReportDTO.setReportContentNo(carNo);
+        carReportDTO.setReportWriter(centerMemberNo != null ? centerMemberNo : memberNo);
 
         carService.carCommentReport(carReportDTO);
 
