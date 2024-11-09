@@ -13,6 +13,7 @@ function modifyClick() {
   }
 }
 
+
 //게시글 삭제
 function deleteAlert() {
   const carNo = document.querySelector('.carNo').textContent.trim();
@@ -134,5 +135,16 @@ function CommentReportClick() {
     console.log('reportComment:', reportComment);
 
     location.href = `/car/carCommentReport?carNo=${carNo}&reportComment=${encodeURIComponent(reportComment)}&carCommentNo=${carCommentNo}`;
+}
+
+// 댓글 미입력 방지
+function validateCommentForm() {
+    const commentInput = document.querySelector('.car-detail-commentregi');
+
+    if (!commentInput.value.trim()) { // 입력 값이 비어 있거나 공백만 있을 때
+        alert("댓글을 입력해 주세요.");
+        return false; // 폼 제출 중단
+    }
+    return true; // 폼 제출 허용
 }
 

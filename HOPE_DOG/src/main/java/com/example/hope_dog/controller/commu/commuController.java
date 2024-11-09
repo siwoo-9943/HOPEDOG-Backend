@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import java.util.List;
@@ -153,7 +154,8 @@ public class commuController {
         commuDTO.setCommuWriter(writerNo);  // commuWriter에 세션에서 가져온 ID 설정
         System.out.println("컨트롤러 writerNo :" + writerNo);
         commuService.writePost(commuDTO);
-        return "redirect:/commu/main";
+        Long commuNo = commuDTO.getCommuNo();
+        return "redirect:/commu/post/" + commuNo;
     }
 
     //글 수정페이지로 이동
@@ -201,7 +203,7 @@ public class commuController {
     public String postCommuReport(@RequestParam("commuNo") Long commuNo,
                                   @RequestParam("reportContent") String reportContent,
                                   HttpSession session,
-                                  Model model) {
+                                  RedirectAttributes redirectAttributes) {
         //@RequestParam -commuNo을 쉽게 파라미터에 전달할 수 있게 해줌
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
         Long memberNo = (Long) session.getAttribute("memberNo");
@@ -219,8 +221,11 @@ public class commuController {
         // 신고 서비스 호출
         commuService.commuReport(commuReportDTO);
 
-        // 신고 후 커뮤니티 메인 페이지로 리다이렉트
-        return "redirect:/commu/main";
+        // 게시글 신고 메시지를 플래시 속성으로 추가
+        redirectAttributes.addFlashAttribute("ContentreportSuccess", true);
+
+        return "redirect:/commu/post/" + commuNo; // 상세페이지로 이동
+
     }
 
     //댓글 등록
@@ -276,7 +281,7 @@ public class commuController {
     public String commuCommentReport(HttpSession session, CommuReportDTO commuReportDTO,
                                     @RequestParam("commuCommentNo") Long commuCommentNo,
                                     @RequestParam("commuNo") Long commuNo,
-                                    @RequestParam("reportComment") String reportComment) {
+                                    @RequestParam("reportComment") String reportComment,RedirectAttributes redirectAttributes) {
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
         Long memberNo = (Long) session.getAttribute("memberNo");
 
@@ -287,7 +292,10 @@ public class commuController {
 
         commuService.commuCommentReport(commuReportDTO);
 
-        return "redirect:/commu/post/" + commuNo;
+        // 게시글 신고 메시지를 플래시 속성으로 추가
+        redirectAttributes.addFlashAttribute("ContentreportSuccess", true);
+
+        return "redirect:/commu/post/" + commuNo; // 상세페이지로 이동
     }
 
 }

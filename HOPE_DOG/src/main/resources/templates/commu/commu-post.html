@@ -134,12 +134,27 @@
           <form action="/commu/commuCommentRegi" method="post" th:each="commu : ${commuDetailList}">
           <input class="comm-detail-commentregi" type="text" name="commuComment" placeholder="욕설 및 혐오감을 주는 댓글은 삼가주세요" maxlength="1000">
           <input th:value="${commu.commuNo}" style="display: none" name="commuNo">　
-          <button class="comm-commentregi-button" type="submit">등록</button>
+          <button class="comm-commentregi-button" type="submit" onclick="return validateCommentForm()">등록</button>
           </form>
         </div>
 
         <br>
       </div>
+
+    <!-- 게시글신고완료시 -->
+    <div th:if="${ContentreportSuccess}">
+      <script>
+        alert('신고가 완료되었습니다.');
+      </script>
+    </div>
+
+    <!-- 댓글신고완료시 -->
+    <div th:if="${CommentreportSuccess}">
+      <script>
+        alert('신고가 완료되었습니다.');
+      </script>
+    </div>
+
   </main>
 <script defer th:src="@{/js/commu/commu-post.js}"></script>
 </body>

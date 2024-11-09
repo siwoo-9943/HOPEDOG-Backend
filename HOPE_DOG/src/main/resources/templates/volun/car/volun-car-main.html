@@ -42,9 +42,10 @@
         <div class="volun-container-audate">닉네임</div>
         <div class="volun-container-audate">작성일</div>
       </div>
-      <!--게시글-->
+
+      <!-- 게시글 -->
       <div id="car-results" class="volun-catalog-all">
-        <ul class="volun-catalog-main" th:each="car : ${carList}">
+        <ul class="volun-catalog-main" id="car-list" th:each="car : ${carList}">
           <li>
             <div class="volun-cate" th:text="${car.carCate}"></div>
           </li>
@@ -64,7 +65,6 @@
           </li>
         </ul>
       </div>
-      <div id="pagination"></div>
 
       <!-- 검색 창-->
       <div class="bottom-search">
@@ -86,8 +86,12 @@
           <span class="volun-write-botton-sp">글쓰기</span>
         </a>
       </div>
+
+      <div id="pagination"></div>
     </div>
   </div>
+
+
 </main>
 
 </body>
