@@ -37,25 +37,28 @@
       <br>
 
       <!-- 글작성 박스 -->
-      <div class="volun-modify-area">
-        <form action="링크" method="post">
+      <div class="volun-modify-area" th:each="volun : ${volunDetailList}">
+        <form th:action="@{/volun/volun/volunModifyRegi}" method="post">
+          <input th:value="${volun.volunNo}" style="display: none" name="volunNo">
           <br>
           <!-- 모집 기간 입력 -->
           <div class="volun-modify-box">
             <div class="volun-modify-subtitle">*모집 기간</div>
-            시작일 : 　<input class="volun-modify-period" type="date" name="start-date">　　
-            종료일 : 　<input class="volun-modify-period" type="date" name="end-date">
+            시작일 : 　<input class="volun-modify-period" type="date" name="volunPeriodstart" th:value="${#dates.format(volun.volunPeriodstart, 'yyyy-MM-dd')}">　　
+            종료일 : 　<input class="volun-modify-period" type="date" name="volunPeriodend" th:value="${#dates.format(volun.volunPeriodend, 'yyyy-MM-dd')}">
           </div>
+          <input th:value="${centerMemberNo}" style="display: none" name="centerMemberNo">
           <!-- 봉사일 입력 -->
           <div class="volun-modify-box">
             <div class="volun-modify-subtitle">*봉사 기간</div>
-            시작일 : 　<input class="volun-modify-day" type="date" name="start-date">　　
-            종료일 : 　<input class="volun-modify-day" type="date" name="end-date">
+            시작일 : 　<input class="volun-modify-day" type="date" name="volunStart" th:value="${#dates.format(volun.volunStart, 'yyyy-MM-dd')}">　　
+            종료일 : 　<input class="volun-modify-day" type="date" name="volunEnd" th:value="${#dates.format(volun.volunEnd, 'yyyy-MM-dd')}">
           </div>
           <!-- 봉사지역 입력 -->
           <div class="volun-modify-box">
             <div class="volun-modify-subtitle">*지역</div>
-            <input class="volun-modify-local" type="text" id="localInput" onblur="checkLocalInput()">　　
+            <input class="volun-modify-local" type="text" id="localInput" name="volunLocal" th:value="${volun.volunLocal}"
+                   onblur="checkLocalInput()" >　　
           </div>
           <!-- 봉사지역 미입력 에러메세지 -->
           <div class="localError">
@@ -65,7 +68,8 @@
           <!-- 봉사시간 입력 -->
           <div class="volun-modify-box">
             <div class="volun-modify-subtitle">*봉사시간</div>
-            <input class="volun-modify-time" type="text" id="timeInput" onblur="checkTimeInput()">　　
+            <input class="volun-modify-time" type="text" id="timeInput" name="volunTime" th:value="${volun.volunTime}"
+                   onblur="checkTimeInput()" >　　
           </div>
           <!-- 봉사시간 미입력 에러메세지 -->
           <div class="timeError">
@@ -75,7 +79,8 @@
           <!-- 모집인원 입력 -->
           <div class="volun-modify-box">
             <div class="volun-modify-subtitle">*모집인원</div>
-            <input class="volun-modify-people" type="text" id="peopleInput" onblur="checkPeopleInput()">　　
+            <input class="volun-modify-people" type="text" id="peopleInput" name="volunPeople" th:value="${volun.volunPeople}"
+                   onblur="checkPeopleInput()">　　
           </div>
           <!-- 모집인원 미입력 에러메세지 -->
           <div class="peopleError">
@@ -87,18 +92,14 @@
 
           <!-- 썸머노트 -->
           <div class="content">
-            <form method="post" action="">
-              <input id="subject" name="subject" class="volunmodify-title" placeholder="제목을 입력해주세요">
-              <textarea id="contents" name="contents"></textarea>
-            </form>
+            <input id="subject" name="volunTitle" class="volunmodify-title" th:value="${volun.volunTitle}">
+            <textarea id="contents" name="volunContent" th:text="${volun.volunContent}"></textarea>
           </div>
 
           <!-- 등록/취소 버튼 -->
           <div class="volun-modify-button-box">
-            <a href="../../html/volun/volun-volundetail.html">
-              <button class="volun-modify-button" type="button">등록</button>
-            </a>
-            <button class="volun-cancle-button" type="button" onclick="modifyCancle()">취소</button>
+            <button class="volun-modify-button" type="submit">등록</button>
+            <button class="volun-cancle-button" type="button" onclick="cancleClick()">취소</button>
           </div>
         </form>
       </div>

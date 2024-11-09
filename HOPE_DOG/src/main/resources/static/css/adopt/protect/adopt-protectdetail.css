@@ -54,6 +54,9 @@ main{
   font-weight: bold;
   display: flex;
   align-items: center;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
 }
 
 .adopt-detail-info{

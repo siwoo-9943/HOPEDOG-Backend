@@ -93,7 +93,7 @@ function editCommentBtnClick(index) {
   commentBox1.style.display = 'block';
   commentBox3.style.display = 'block';
   commentBox2.style.display = 'none';
-}editCommentBtnClick
+}
 
 
 // 댓글삭제버튼
@@ -132,6 +132,9 @@ function CommentReportClick() {
   location.href = `/adopt/adopt/adoptCommentReport?adoptNo=${adoptNo}&reportComment=${encodeURIComponent(reportComment)}&adoptCommentNo=${adoptCommentNo}`;
 } // 아가다가 댓글 신고 만들었어 대박이지 헤헤
 
+
+
+//상단헤더이동
 {
   let adoptPageBtn = document.getElementById('adoptPage');
   adoptPageBtn.addEventListener('click', function(){
