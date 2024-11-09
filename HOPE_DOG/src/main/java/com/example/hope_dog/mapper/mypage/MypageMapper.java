@@ -61,5 +61,11 @@ public interface MypageMapper {
 
     // 회원 탈퇴
     int deleteMember(Long memberNo);
+
+    // 입양 상세페이지 정보 조회
+    MpAdoptRequestDTO adoptRequestInfo(Long adoptRequestNo);
+
+    // 입양신청서 수정
+    void updateAdoptRequest(MpAdoptRequestDTO mpAdoptRequestDTO);
 }
 

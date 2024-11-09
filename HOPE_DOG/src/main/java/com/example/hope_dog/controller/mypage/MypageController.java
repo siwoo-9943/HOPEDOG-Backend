@@ -354,25 +354,48 @@ public class MypageController {
         return "redirect:/mypage/updateProtectRequest?protectRequestNo=" + protectRequestNo;
     }
 
+    @GetMapping("/updateAdoptRequest")
+    public String updateAdoptRequest(@RequestParam("adoptRequestNo") Long adoptRequestNo, Model model) {
+        MpAdoptRequestDTO adoptRequest = mypageService.adoptRequestInfo(adoptRequestNo);
+        Long memberNo = (Long) session.getAttribute("memberNo");
+        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
 
-    @DeleteMapping("/withdrawal")
-    public String withdrawal(@RequestParam("memberNo") Long memberNo, HttpSession session) {
-        if (memberNo == null) {
-            return "redirect:/login";
-        }
+        model.addAttribute("memberNo", memberNo);
+        model.addAttribute("centerMemberNo", centerMemberNo);
 
-        // 탈퇴 로직 처리
-        boolean isWithdrawal = mypageService.withdrawal(memberNo);
-
-        if (isWithdrawal) {
-            session.invalidate(); // 세션 무효화
-            log.info("회원 탈퇴가 완료되었습니다. 회원 번호 : {}", memberNo);
-            return "redirect:/main/main"; // 메인 페이지로 리다이렉트
-        } else {
-            log.error("탈퇴 처리 중 오류 발생. 회원 번호 : {}", memberNo);
-            return "redirect:/login"; // 오류 발생 시 로그인 페이지로 리다이렉트
-        }
+        model.addAttribute("adoptRequest", adoptRequest);
+        return "mypage/mypage-adopt-form";
     }
+
+    @PostMapping("/updateAdoptRequestOk")
+    public String updateAdoptRequestOk(@RequestParam("adoptRequestNo") Long adoptRequestNo, MpAdoptRequestDTO mpAdoptRequestDTO, Model model) {
+        MpAdoptRequestDTO adoptRequest = mypageService.adoptRequestInfo(adoptRequestNo);
+        model.addAttribute("adoptRequest", adoptRequest);
+
+        mypageService.updateAdoptRequest(mpAdoptRequestDTO);
+
+        return "redirect:/mypage/updateAdoptRequest?adoptRequestNo=" + adoptRequestNo;
+    }
+
+
+//    @DeleteMapping("/withdrawal")
+//    public String withdrawal(@RequestParam("memberNo") Long memberNo, HttpSession session) {
+//        if (memberNo == null) {
+//            return "redirect:/login";
+//        }
+//
+//        // 탈퇴 로직 처리
+//        boolean isWithdrawal = mypageService.withdrawal(memberNo);
+//
+//        if (isWithdrawal) {
+//            session.invalidate(); // 세션 무효화
+//            log.info("회원 탈퇴가 완료되었습니다. 회원 번호 : {}", memberNo);
+//            return "redirect:/main/main"; // 메인 페이지로 리다이렉트
+//        } else {
+//            log.error("탈퇴 처리 중 오류 발생. 회원 번호 : {}", memberNo);
+//            return "redirect:/login"; // 오류 발생 시 로그인 페이지로 리다이렉트
+//        }
+//    }
 
 
     @GetMapping("/withdrawal")

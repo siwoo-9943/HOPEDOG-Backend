@@ -149,6 +149,8 @@ main{
   align-items: center;
 }
 
+
+
 .protectrequest-content-title{
   width: 170px;
   height: 30px;
@@ -288,7 +290,7 @@ p{
   cursor: pointer;
 }
 
-.adoptrequest-button:hover {
+.adoptrequest-search-button:hover {
   background-color: #9B805D; /* 마우스를 올렸을 때 변경될 색상 */
   color: white;
 }

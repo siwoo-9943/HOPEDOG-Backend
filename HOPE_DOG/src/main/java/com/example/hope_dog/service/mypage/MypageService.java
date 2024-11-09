@@ -29,6 +29,16 @@ public class MypageService {
         return mypageMapper.mypageAdoptList(memberNo);
     }
 
+    // 입양 신청서 조회
+    public MpAdoptRequestDTO adoptRequestInfo(Long adoptRequestNo) {
+        return mypageMapper.adoptRequestInfo(adoptRequestNo);
+    }
+
+    // 입양신청서 업데이트
+    public void updateAdoptRequest(MpAdoptRequestDTO mpAdoptRequestDTO) {
+        mypageMapper.updateAdoptRequest(mpAdoptRequestDTO);
+    }
+
     //protect
     public List<MypageProtectDTO> getMypageProtectProfile(Long memberNo) {
         return mypageMapper.mypageProtectList(memberNo);
@@ -40,10 +50,6 @@ public class MypageService {
     }
 
     // 임시보호 업데이트 메서드
-//    public void updateProtectRequest(UpdateProtectRequestDTO updateProtectRequestDTO) {
-//        mypageMapper.updateProtectRequest(updateProtectRequestDTO);
-//    }
-
     public void updateProtectRequest(MpProtectRequestDTO mpProtectRequestDTO) {
         mypageMapper.updateProtectRequest(mpProtectRequestDTO);
     }

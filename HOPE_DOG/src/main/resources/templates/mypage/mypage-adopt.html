@@ -32,9 +32,9 @@
     <div class="member-adopt-navbox">
       <nav>
         <ul class="member-adopt-nav-ul">
-          <li id="member-adopt"><a href="#">입양신청</li>
+          <li id="member-adopt"><a th:href="@{/mypage/adopt}">입양신청</li>
           <div id="adopt-choice"></div></a>
-          <li id="protect-list">임시보호신청</li>
+          <li id="protect-list"><a th:href="@{/mypage/protect}">임시보호신청</li></a>
         </ul>
       </nav>
     </div>
@@ -62,18 +62,9 @@
                 <li th:text="${#dates.format(myadopt.adoptPeriodend, 'yyyy-MM-dd')}"></li>
               </ul>
               <div class="memberNo" th:text="${myadopt.memberNo}" style="display: none;"></div>
+              <div class="protectRequestNo" th:text="${myadopt.adoptRequestNo}" style="display: none;" ></div>
             </div>
           </li>
-          <li>
-            <div>
-              <ul class="member-profile-adoptboard-contentbox">
-                <li><a href="../../html/mypage/mypage-adopt-form.html">입양 신청서</li></a>
-                <li>검토중</li>
-                <li>2024.07.28</li>
-              </ul>
-            </div>
-          </li>
-          
         </ul>
       </div>
       <!-- 페이지네이션 -->
