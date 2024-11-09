@@ -38,7 +38,7 @@
       <br>
 
       <!-- 글작성 박스 -->
-      <form th:action="@{/adopt/adopt/adoptWriteRegi}" method="post">
+      <form th:action="@{/adopt/adopt/adoptWriteRegi}" method="post" onsubmit="return validatePostForm()">
       <div class="adopt-write-area">
           <br>
           <!-- 임시보호 기간 입력 -->

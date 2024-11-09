@@ -323,7 +323,7 @@ function validateInputs() {
     alert('모든 질문을 입력해 주세요.'); // 경고창 표시
   } else {
     alert('신청이 완료되었습니다'); // 모든 입력이 유효한 경우
-    document.querySelector('.protectrequest-write-area').submit();
+    document.getElementById('adoptRequest').submit();
 
   }
 }
@@ -386,6 +386,6 @@ function getParameter(name) {
 
 // 페이지가 로드될 때 adoptNo를 가져와서 표시
 document.addEventListener('DOMContentLoaded', function() {
-  const adoptNo = getParameter('adoptNo'); // URL에서 adoptNo를 가져옵니다.
+  const protectNo = getParameter('protectNo'); // URL에서 adoptNo를 가져옵니다.
   document.getElementById('adoptNoDisplay').textContent = adoptNo; // adoptNo를 표시합니다.
 });
