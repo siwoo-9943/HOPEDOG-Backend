@@ -1,13 +1,18 @@
 package com.example.hope_dog.service.mypage;
 
+import com.example.hope_dog.dto.centermypage.CenterUpdateProfileDTO;
+import com.example.hope_dog.dto.member.MemberDTO;
 import com.example.hope_dog.dto.mypage.*;
 import com.example.hope_dog.mapper.mypage.MypageMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Slf4j
 @Transactional
 @Service
 @RequiredArgsConstructor
@@ -82,6 +87,10 @@ public class MypageService {
 
 
     // 프로필 업데이트 메서드
+//    public void updateProfile(MypageUpdateProfileDTO mypageUpdateProfileDTO) {
+//        mypageMapper.updateProfile(mypageUpdateProfileDTO);
+//    }
+
     public int updateProfile(MypageUpdateProfileDTO mypageUpdateProfileDTO) {
         return mypageMapper.updateProfile(mypageUpdateProfileDTO);
     }
@@ -99,7 +108,26 @@ public class MypageService {
 //        return mypageMapper.selectAllPage(criteria);
 //    }
 
-
+    // 회원 탈퇴
+    public boolean withdrawal(Long memberNo) {
+        try {
+            // 회원 정보를 삭제합니다.
+            int rowsAffected = mypageMapper.deleteMember(memberNo);
+            if (rowsAffected > 0) {
+                log.info("회원 탈퇴 성공. 회원 번호: {}", memberNo);
+                return true; // 삭제 성공
+            } else {
+                log.warn("탈퇴할 회원이 존재하지 않음. 회원 번호: {}", memberNo);
+                return false; // 삭제할 회원이 없음
+            }
+        } catch (DataAccessException e) {
+            log.error("데이터베이스 오류 발생. 회원 번호: {}. 오류: {}", memberNo, e);
+            return false; // 데이터베이스 오류 발생
+        } catch (Exception e) {
+            log.error("회원 탈퇴 중 예기치 않은 오류 발생. 회원 번호: {}. 오류: {}", memberNo, e);
+            return false; // 일반 오류 발생
+        }
+    }
 
 
 

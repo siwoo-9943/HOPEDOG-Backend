@@ -1,5 +1,6 @@
 package com.example.hope_dog.mapper.mypage;
 
+import com.example.hope_dog.dto.member.MemberDTO;
 import com.example.hope_dog.dto.mypage.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -56,8 +57,9 @@ public interface MypageMapper {
     MpProtectRequestDTO protectRequestInfo(Long protectRequestNo);
 
     // 임시보호신청서 수정
-//    void updateProtectRequest(UpdateProtectRequestDTO updateProtectRequestDTO);
-
     void updateProtectRequest(MpProtectRequestDTO mpProtectRequestDTO);
+
+    // 회원 탈퇴
+    int deleteMember(Long memberNo);
 }
 

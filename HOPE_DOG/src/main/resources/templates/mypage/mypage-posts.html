@@ -54,15 +54,27 @@
           <li>
             <div>
               <ul class="member-profile-cumuboard-contentbox" th:each="myposts : ${mypagePostsList}">
-                <li><span th:switch="${myposts.type}">
-                  <span th:case="'COMMU'">커뮤니티</span>
-                  <span th:case="'CAR'">카풀</span>
-                  <span th:case="'REVIEW'">봉사후기</span></li>
+                <!-- commuNo, carNo, reviewNo 값을 hidden div에 저장 -->
+                <div class="commuNo" th:text="${myposts.commuNo}" style="display: none;"></div>
+                <div class="carNo" th:text="${myposts.carNo}" style="display: none;"></div>
+                <div class="reviewNo" th:text="${myposts.reviewNo}" style="display: none;"></div>
+
+                <!-- type 값은 th:attr로 data-type 속성에 삽입 -->
+                <li th:attr="data-type=${myposts.type}">
+                  <span th:switch="${myposts.type}">
+                      <span th:case="'COMMU'">커뮤니티</span>
+                      <span th:case="'CAR'">카풀</span>
+                      <span th:case="'REVIEW'">봉사후기</span>
+                  </span>
+                </li>
+
                 <li><span th:text="${myposts.title}"></span></li>
                 <li><span th:text="${myposts.writer}"></span></li>
                 <li><span th:text="${#dates.format(myposts.regidate, 'yyyy-MM-dd')}"></span></li>
-                  <div class="memberNo" th:text="${myposts.memberNo}" style="display: none;"></div>
+                <div class="memberNo" th:text="${myposts.memberNo}" style="display: none;"></div>
               </ul>
+
+
             </div>
           </li>
         </ul>

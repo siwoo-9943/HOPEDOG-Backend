@@ -49,7 +49,7 @@
                  UNION ALL
                  SELECT MEMBER_EMAIL
                  FROM TBL_MEMBER
-                 WHERE MEMBER_EMAIL = #{centerMemberEmail}
+                 WHERE MEMBER_EMAIL = #{memberEmail}
                    AND MEMBER_EMAIL != #{currentEmail}  -- 현재 이메일 제외
              )
     </select>
@@ -62,15 +62,21 @@
             MEMBER_NICKNAME = #{memberNickname},
             MEMBER_EMAIL = #{memberEmail},
             MEMBER_PHONE_NUMBER = #{memberPhoneNumber},
+            MEMBER_ZIPCODE = #{memberZipcode},
             MEMBER_ADDRESS = #{memberAddress},
             MEMBER_DETAIL_ADDRESS = #{memberDetailAddress},
-            MEMBER_AGREE = #{memberAgree},
-            MEMBER_PW = COALESCE(NULLIF(#{memberNewPw}, #{memberPw}), MEMBER_PW)
+            MEMBER_PW = CASE
+                            WHEN #{memberNewPw} IS NOT NULL AND #{memberNewPw} != '' AND #{memberNewPw} != #{memberPw} THEN #{memberNewPw}
+            ELSE MEMBER_PW
+        END
         WHERE MEMBER_NO = #{memberNo}
-          AND MEMBER_PW = #{memberPw}
+        AND MEMBER_PW = #{memberPw}
+
     </update>
 
-<!--    입양게시글조회-->
+
+
+    <!--    입양게시글조회-->
     <select id="mypageAdoptList" resultType="MypageAdoptListDTO">
         SELECT
             A.ADOPT_TITLE,
@@ -108,36 +114,45 @@
             C.CAR_TITLE AS TITLE,
             M.MEMBER_NICKNAME AS WRITER,
             C.CAR_REGIDATE AS REGIDATE,
-            C.CAR_NO
+            C.CAR_NO AS CAR_NO,  -- CAR_NO 그대로 사용
+            NULL AS COMMU_NO,    -- COMMU_NO는 NULL
+            NULL AS REVIEW_NO    -- REVIEW_NO는 NULL
         FROM
             TBL_CAR C
-                JOIN
-            TBL_MEMBER M ON C.CAR_WRITER = M.MEMBER_NO
+                JOIN TBL_MEMBER M ON C.CAR_WRITER = M.MEMBER_NO
         WHERE M.MEMBER_NO = #{memberNo}
+
         UNION ALL
+
         SELECT
             'COMMU' AS TYPE,
             CO.COMMU_TITLE AS TITLE,
             M.MEMBER_NICKNAME AS WRITER,
             CO.COMMU_REGIDATE AS REGIDATE,
-            CO.COMMU_NO
+            NULL AS CAR_NO,      -- CAR_NO는 NULL
+            CO.COMMU_NO AS COMMU_NO,  -- COMMU_NO 그대로 사용
+            NULL AS REVIEW_NO    -- REVIEW_NO는 NULL
         FROM
             TBL_COMMU CO
-                JOIN
-            TBL_MEMBER M ON CO.COMMU_WRITER = M.MEMBER_NO
+                JOIN TBL_MEMBER M ON CO.COMMU_WRITER = M.MEMBER_NO
         WHERE M.MEMBER_NO = #{memberNo}
+
         UNION ALL
+
         SELECT
             'REVIEW' AS TYPE,
             R.REVIEW_TITLE AS TITLE,
-            M.MEMBER_NICKNAME AS WRITER,
+            M.MEMBER_NICKNAME AS WRTER,
             R.REVIEW_REGIDATE AS REGIDATE,
-            R.REVIEW_NO
+            NULL AS CAR_NO,      -- CAR_NO는 NULL
+            NULL AS COMMU_NO,    -- COMMU_NO는 NULL
+            R.REVIEW_NO AS REVIEW_NO  -- REVIEW_NO 그대로 사용
         FROM
             TBL_REVIEW R
-                JOIN
-            TBL_MEMBER M ON R.MEMBER_NO = M.MEMBER_NO
+                JOIN TBL_MEMBER M ON R.MEMBER_NO = M.MEMBER_NO
         WHERE M.MEMBER_NO = #{memberNo}
+
+
     </select>
 
 <!--    <select id="selectTotal" resultType="int">-->
@@ -306,6 +321,11 @@
             tpr.PROTECT_REQUEST_AGREEMENT = #{protectRequestAgreement}
         WHERE tpr.PROTECT_REQUEST_NO = #{protectRequestNo}
     </update>
+
+    <delete id="deleteMember" parameterType="Long">
+        DELETE FROM TBL_MEMBER
+        WHERE MEMBER_NO = #{memberNo}
+    </delete>
 
 
 </mapper>
