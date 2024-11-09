@@ -24,6 +24,8 @@
 
       <!-- 제목/작성자/등록일 크기 -->
       <div class="volun-detail-box1" th:each="volun : ${volunDetailList}">
+        <div class="volunNo" th:text="${volun.volunNo}" style="display: none"></div>
+        <div class="centerMemberNo" th:text="${volun.centerMemberNo}" style="display: none"></div>
         <div class="volun-detail-title" th:text="${volun.volunTitle}"></div>
         <div class="volun-detail-info">
           <span th:text="'작성자 : ' + ${volun.centerMemberName}"></span>
@@ -53,16 +55,15 @@
 
           <!-- 신청버튼 -->
           <div class="volun-submit-box">
-            <a href="../../html/volun/volun-volunrequest.html">
-            <button class="volun-submit-button" type="button">신청</button>
-          </a>
+            <button class="volun-submit-button" type="button" onclick="requestClick()"
+                    th:if="${memberNo != null and volun.volunStatus == 'T'}">
+              신청</button>
           </div>
         </div>
       </div>
 
       <br>
 
-      <!-- 버튼 -->
       <!-- 버튼 -->
       <div class="volun-detail-box3" th:each="volun : ${volunDetailList}">
         <div>
