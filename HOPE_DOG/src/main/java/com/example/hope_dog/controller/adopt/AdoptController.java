@@ -11,6 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -136,7 +137,8 @@ public class AdoptController {
     // 입양 글 신고 처리
     @GetMapping("/adopt/adoptContentReport")
     public String AdoptContentReport(@RequestParam("adoptNo") Long adoptNo, @RequestParam("reportContent") String reportContent,
-                                  AdoptReportDTO adoptReportDTO, HttpSession session) {
+                                  AdoptReportDTO adoptReportDTO, HttpSession session,
+                                     RedirectAttributes redirectAttributes) {
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
         Long memberNo = (Long) session.getAttribute("memberNo");
 
@@ -145,6 +147,9 @@ public class AdoptController {
         adoptReportDTO.setReportWriter(centerMemberNo != null ? centerMemberNo : memberNo);
 
         adoptService.adoptContentReport(adoptReportDTO);
+
+        // 게시글 신고 메시지를 플래시 속성으로 추가
+        redirectAttributes.addFlashAttribute("ContentreportSuccess", true);
 
         return "redirect:/adopt/adopt/adoptdetail?adoptNo=" + adoptNo;
     }
@@ -176,9 +181,10 @@ public class AdoptController {
     // 입양 신청서 페이지 열기
     @GetMapping("/adopt/adoptrequest")
     public String adoptRequest(@RequestParam(value = "centerMemberNo") Long centerMemberNo,
-                               HttpSession session, Model model) {
+                               HttpSession session, Model model, @RequestParam("adoptNo") Long adoptNo) {
         Long memberNo = (Long) session.getAttribute("memberNo");
 
+        model.addAttribute("adoptNo", adoptNo);
         model.addAttribute("memberNo", memberNo);
         model.addAttribute("centerMemberNo", centerMemberNo); // 이 부분이 중요합니다.
 
@@ -187,7 +193,8 @@ public class AdoptController {
 
     // 입양 신청서 등록
     @PostMapping("/adopt/adoptrequestRegi")
-    public String adoptRequestRegi(@DateTimeFormat(pattern = "yyyy-MM-dd") AdoptRequestDTO adoptRequestDTO) {
+    public String adoptRequestRegi(@DateTimeFormat(pattern = "yyyy-MM-dd") AdoptRequestDTO adoptRequestDTO
+                                   ) {
         adoptService.registerRequest(adoptRequestDTO);
         return "redirect:/adopt/adopt";
     }
@@ -243,11 +250,12 @@ public class AdoptController {
         return "redirect:/adopt/adopt/adoptdetail?adoptNo=" + adoptNo;
     }
 
-    //입양 댓글 신고
+    // 입양 댓글 신고
     @GetMapping("/adopt/adoptCommentReport")
     public String AdoptCommentReport(@RequestParam("adoptNo") Long adoptNo, @RequestParam("reportComment") String reportComment,
                                      @RequestParam("adoptCommentNo") Long adoptCommentNo,
-                                  AdoptReportDTO adoptReportDTO, HttpSession session) {
+                                     AdoptReportDTO adoptReportDTO, HttpSession session,
+                                     RedirectAttributes redirectAttributes) {
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
         Long memberNo = (Long) session.getAttribute("memberNo");
 
@@ -258,8 +266,10 @@ public class AdoptController {
 
         adoptService.adoptCommentReport(adoptReportDTO);
 
+        // 성공 메시지를 플래시 속성으로 추가
+        redirectAttributes.addFlashAttribute("CommentreportSuccess", true);
+
         return "redirect:/adopt/adopt/adoptdetail?adoptNo=" + adoptNo;
     }
-
 
 }

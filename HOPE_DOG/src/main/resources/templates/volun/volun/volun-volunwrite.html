@@ -38,7 +38,7 @@
 
       <!-- 글작성 박스 -->
       <div class="volun-write-area">
-        <form th:action="@{/volun/volun/volunWriteRegi}" method="post">
+        <form th:action="@{/volun/volun/volunWriteRegi}" method="post" onsubmit="return validatePostForm()">
           <br>
           <!-- 모집 기간 입력 -->
           <div class="volun-write-box">
