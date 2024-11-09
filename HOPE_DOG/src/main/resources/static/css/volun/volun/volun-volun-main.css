@@ -93,7 +93,11 @@ main{
 }
 
 .volun-post-title{
+  max-width: 200px;
   font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .volun-post-content{

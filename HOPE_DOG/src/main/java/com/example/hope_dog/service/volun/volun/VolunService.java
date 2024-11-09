@@ -1,13 +1,8 @@
 package com.example.hope_dog.service.volun.volun;
 
-import com.example.hope_dog.dto.adopt.adopt.AdoptCommentDTO;
-import com.example.hope_dog.dto.adopt.adopt.AdoptDetailDTO;
-import com.example.hope_dog.dto.adopt.adopt.AdoptWriteDTO;
+import com.example.hope_dog.dto.adopt.adopt.*;
 import com.example.hope_dog.dto.page.Criteria;
-import com.example.hope_dog.dto.volun.volun.VolunCommentDTO;
-import com.example.hope_dog.dto.volun.volun.VolunDetailDTO;
-import com.example.hope_dog.dto.volun.volun.VolunMainDTO;
-import com.example.hope_dog.dto.volun.volun.VolunWriteDTO;
+import com.example.hope_dog.dto.volun.volun.*;
 import com.example.hope_dog.mapper.volun.volun.VolunMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -89,5 +84,42 @@ public class VolunService {
         LocalDate volunEnd = volunWriteDTO.getVolunEnd();
 
         volunMapper.volunModify(volunWriteDTO); // 매퍼 호출
+    }
+
+    //봉사글 마감처리
+    public void volunEnd(VolunDetailDTO volunDetailDTO) {
+        volunMapper.volunEnd(volunDetailDTO); // 매퍼 호출
+    }
+
+    //봉사글 신고처리
+    public void volunContentReport(VolunReportDTO volunReportDTO) {
+        volunMapper.volunContentReport(volunReportDTO); // 매퍼 호출
+    }
+
+    //봉사신청서 등록
+    public void registerRequest(VolunRequestDTO volunRequestDTO) {
+        LocalDate requestAge = volunRequestDTO.getVolunRequestAge();
+
+        volunMapper.volunRequest(volunRequestDTO);
+    }
+
+    //댓글 등록
+    public void volunCommentRegi(VolunCommentDTO volunCommentDTO) {
+        volunMapper.volunCommentRegi(volunCommentDTO);
+    }
+
+    //댓글 수정
+    public void volunCommentModi(VolunCommentDTO volunCommentDTO) {
+        volunMapper.volunCommentModi(volunCommentDTO);
+    }
+
+    //댓글 삭제
+    public void volunCommentDelete(VolunCommentDTO volunCommentDTO) {
+        volunMapper.volunCommentDelete(volunCommentDTO);
+    }
+
+    //댓글 신고
+    public void volunCommentReport(VolunReportDTO volunReportDTO) {
+        volunMapper.volunCommentReport(volunReportDTO);
     }
 }

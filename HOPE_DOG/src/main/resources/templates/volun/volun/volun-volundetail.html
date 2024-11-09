@@ -55,9 +55,9 @@
 
           <!-- 신청버튼 -->
           <div class="volun-submit-box">
-            <a href="../../html/volun/volun-volunrequest.html">
-            <button class="volun-submit-button" type="button">신청</button>
-          </a>
+            <button class="volun-submit-button" type="button" onclick="requestClick()"
+                    th:if="${memberNo != null and volun.volunStatus == 'T'}">
+              신청</button>
           </div>
         </div>
       </div>
