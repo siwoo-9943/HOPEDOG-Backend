@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.File;
 import java.io.IOException;
@@ -138,7 +139,8 @@ public class ReviewController {
     // 후기 글 신고 처리
     @GetMapping("/review/reviewContentReport")
     public String ReviewContentReport(@RequestParam("reviewNo") Long reviewNo, @RequestParam("reportContent") String reportContent,
-                                      ReviewReportDTO reviewReportDTO, HttpSession session) {
+                                      ReviewReportDTO reviewReportDTO, HttpSession session,
+                                      RedirectAttributes redirectAttributes) {
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
         Long memberNo = (Long) session.getAttribute("memberNo");
 
@@ -147,6 +149,9 @@ public class ReviewController {
         reviewReportDTO.setReportWriter(centerMemberNo != null ? centerMemberNo : memberNo);
 
         reviewService.reviewContentReport(reviewReportDTO);
+
+        // 성공 메시지를 플래시 속성으로 추가
+        redirectAttributes.addFlashAttribute("ContentreportSuccess", true);
 
         return "redirect:/adopt/review/reviewdetail?reviewNo=" + reviewNo;
     }
@@ -207,7 +212,8 @@ public class ReviewController {
     @GetMapping("/review/reviewCommentReport")
     public String ReviewCommentReport(@RequestParam("reviewNo") Long reviewNo, @RequestParam("reportComment") String reportComment,
                                        @RequestParam("reviewCommentNo") Long reviewCommentNo,
-                                       ReviewReportDTO reviewReportDTO, HttpSession session) {
+                                       ReviewReportDTO reviewReportDTO, HttpSession session,
+                                      RedirectAttributes redirectAttributes) {
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
         Long memberNo = (Long) session.getAttribute("memberNo");
 
@@ -217,6 +223,9 @@ public class ReviewController {
         reviewReportDTO.setReportWriter(centerMemberNo != null ? centerMemberNo : memberNo);
 
         reviewService.reviewCommentReport(reviewReportDTO);
+
+        // 성공 메시지를 플래시 속성으로 추가
+        redirectAttributes.addFlashAttribute("CommentreportSuccess", true);
 
         return "redirect:/adopt/review/reviewdetail?reviewNo=" + reviewNo;
     }

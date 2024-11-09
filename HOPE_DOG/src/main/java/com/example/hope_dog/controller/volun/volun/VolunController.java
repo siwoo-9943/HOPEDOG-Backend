@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -159,7 +160,8 @@ public class VolunController {
     // 봉사 글 신고 처리
     @GetMapping("/volun/volunContentReport")
     public String AdoptContentReport(@RequestParam("volunNo") Long volunNo, @RequestParam("reportContent") String reportContent,
-                                     VolunReportDTO volunReportDTO, HttpSession session) {
+                                     VolunReportDTO volunReportDTO, HttpSession session,
+                                     RedirectAttributes redirectAttributes) {
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
         Long memberNo = (Long) session.getAttribute("memberNo");
 
@@ -168,6 +170,9 @@ public class VolunController {
         volunReportDTO.setReportWriter(centerMemberNo != null ? centerMemberNo : memberNo);
 
         volunService.volunContentReport(volunReportDTO);
+
+        // 게시글 신고 메시지를 플래시 속성으로 추가
+        redirectAttributes.addFlashAttribute("ContentreportSuccess", true);
 
         return "redirect:/volun/volun/volundetail?volunNo=" + volunNo;
     }
@@ -181,7 +186,6 @@ public class VolunController {
         model.addAttribute("memberNo", memberNo);
         model.addAttribute("centerMemberNo", centerMemberNo); // 이 부분이 중요합니다.
 
-//        return "volun/volun/volun-volunrequest";
         return "volun/volun/volun-volunrequest";
     }
 
@@ -242,11 +246,12 @@ public class VolunController {
         return ResponseEntity.ok("댓글이 삭제되었습니다."); // JSON 응답 반환
     }
 
-    //입양 댓글 신고
+    //봉사 댓글 신고
     @GetMapping("/volun/volunCommentReport")
     public String AdoptCommentReport(@RequestParam("volunNo") Long volunNo, @RequestParam("reportComment") String reportComment,
                                      @RequestParam("volunCommentNo") Long volunCommentNo,
-                                     VolunReportDTO volunReportDTO, HttpSession session) {
+                                     VolunReportDTO volunReportDTO, HttpSession session,
+                                     RedirectAttributes redirectAttributes) {
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
         Long memberNo = (Long) session.getAttribute("memberNo");
 
@@ -256,6 +261,9 @@ public class VolunController {
         volunReportDTO.setReportWriter(centerMemberNo != null ? centerMemberNo : memberNo);
 
         volunService.volunCommentReport(volunReportDTO);
+
+        // 성공 메시지를 플래시 속성으로 추가
+        redirectAttributes.addFlashAttribute("CommentreportSuccess", true);
 
         return "redirect:/volun/volun/volundetail?volunNo=" + volunNo;
     }
