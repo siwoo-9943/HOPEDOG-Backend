@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -156,7 +157,8 @@ public class ProtectController {
     // 임시보호 글 신고 처리
     @GetMapping("/protect/protectContentReport")
     public String ProtectContentReport(@RequestParam("protectNo") Long protectNo, @RequestParam("reportContent") String reportContent,
-                                       ProtectReportDTO protectReportDTO, HttpSession session) {
+                                       ProtectReportDTO protectReportDTO, HttpSession session,
+                                       RedirectAttributes redirectAttributes) {
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
         Long memberNo = (Long) session.getAttribute("memberNo");
 
@@ -166,15 +168,19 @@ public class ProtectController {
 
         protectService.protectContentReport(protectReportDTO);
 
+        // 성공 메시지를 플래시 속성으로 추가
+        redirectAttributes.addFlashAttribute("ContentreportSuccess", true);
+
         return "redirect:/adopt/protect/protectdetail?protectNo=" + protectNo;
     }
 
     // 임시보호 신청서 페이지 열기
     @GetMapping("/protect/protectrequest")
     public String protectRequest(@RequestParam(value = "centerMemberNo") Long centerMemberNo,
-                               HttpSession session, Model model) {
+                               HttpSession session, Model model, @RequestParam("protectNo") Long protectNo) {
         Long memberNo = (Long) session.getAttribute("memberNo");
 
+        model.addAttribute("protectNo", protectNo);
         model.addAttribute("memberNo", memberNo);
         model.addAttribute("centerMemberNo", centerMemberNo); // 이 부분이 중요합니다.
 
@@ -243,7 +249,8 @@ public class ProtectController {
     @GetMapping("/protect/protectCommentReport")
     public String ProtectCommentReport(@RequestParam("protectNo") Long protectNo, @RequestParam("reportComment") String reportComment,
                                      @RequestParam("protectCommentNo") Long protectCommentNo,
-                                       ProtectReportDTO protectReportDTO, HttpSession session) {
+                                       ProtectReportDTO protectReportDTO, HttpSession session,
+                                       RedirectAttributes redirectAttributes) {
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
         Long memberNo = (Long) session.getAttribute("memberNo");
 
@@ -253,6 +260,9 @@ public class ProtectController {
         protectReportDTO.setReportWriter(centerMemberNo != null ? centerMemberNo : memberNo);
 
         protectService.protectCommentReport(protectReportDTO);
+
+        // 성공 메시지를 플래시 속성으로 추가
+        redirectAttributes.addFlashAttribute("CommentreportSuccess", true);
 
         return "redirect:/adopt/protect/protectdetail?protectNo=" + protectNo;
     }
