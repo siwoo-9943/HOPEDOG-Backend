@@ -4,6 +4,7 @@ import com.example.hope_dog.dto.dogmap.dogmap.DogMapApiDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -15,14 +16,23 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 public class DogMapService {
-    private final String SERVICE_KEY = "L+3WNsRJp2sGCZChv076nkzhc8V3djruDHrzjZZYWbASZAXWJDQg2i0MzTfaqa/07bQbgVD9p8S9pp0rinkxrA=="; // 실제 서비스 키로 변경
+//    private final String SERVICE_KEY = "YHW1P%2F57dgSSQi1EHu1NvPwRjRhbDQSsVMiA%2BwstM1aQkH0mt0JIwg7%2FdPAZgu1UE8x6oHCtoM9Z%2BEicawOZDw%3D%3D"; // 실제 서비스 키로 변경
+
+//    서비스키
+//    YHW1P%2F57dgSSQi1EHu1NvPwRjRhbDQSsVMiA%2BwstM1aQkH0mt0JIwg7%2FdPAZgu1UE8x6oHCtoM9Z%2BEicawOZDw%3D%3D
+
+    @Value("${api.service.key}")
+    private String serviceKey;
 
     public List<DogMapApiDTO> getShelterInfo() {
         String baseurl = "http://apis.data.go.kr/1543061/animalShelterSrvc/shelterInfo";
-        String subType = "&numOfRows=250&pageNo=1&_type=json";
+        String subType = "_type=" + "json";
+        String numOfRows = "numOfRows=" + "250";
+        String pageNo = "pageNo=" + "1";
+        String KeyStr = "serviceKey=";
 
         // URL 생성
-        String url = baseurl + "?serviceKey=" + SERVICE_KEY + subType;
+        String url = (baseurl + "?" + KeyStr + serviceKey + "&" + numOfRows + "&" + pageNo + "&" + subType );
         log.info("URL 확인 : " + url);
 
         RestTemplate restTemplate = new RestTemplate();

@@ -1,15 +1,10 @@
-package com.example.hope_dog.controller.dogmap.map;
+//package com.example.hope_dog.controller.dogmap.map;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-@Slf4j
-@RestController
-@RequestMapping("/api")
-@RequiredArgsConstructor
-public class DogMapRestController {
+//@Slf4j
+//@RestController
+//@RequestMapping("/api")
+//@RequiredArgsConstructor
+//public class DogMapRestController {
 
 //    private final RestTemplate restTemplate;
 //    private DogMapService dogMapService;
@@ -206,6 +201,6 @@ public class DogMapRestController {
 //
 //        return "dogmap/dogmap"; // Thymeleaf 템플릿 파일 이름
 //    }
-}
+//}
 
 

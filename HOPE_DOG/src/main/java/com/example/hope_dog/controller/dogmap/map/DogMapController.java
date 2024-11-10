@@ -6,11 +6,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Slf4j
-@Controller("/dogmap")
+@Controller
+@RequestMapping("/dogmap")
 public class DogMapController {
 
     private final DogMapService dogMapService;
@@ -29,7 +31,7 @@ public class DogMapController {
 
 
         model.addAttribute("shelters", filteredByAddress); // 모델에 shelters 추가
-        return "shelters"; // Thymeleaf 템플릿 이름
+        return "dogmap/dogmap"; // Thymeleaf 템플릿 이름
     }
 
 
