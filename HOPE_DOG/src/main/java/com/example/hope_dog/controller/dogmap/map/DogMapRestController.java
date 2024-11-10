@@ -1,29 +1,12 @@
-package com.example.hope_dog.controller.dogmap.map;
+//package com.example.hope_dog.controller.dogmap.map;
 
-import com.example.hope_dog.dto.dogmap.dogmap.ApiDTO;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpServerErrorException;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
+//@Slf4j
+//@RestController
+//@RequestMapping("/api")
+//@RequiredArgsConstructor
+//public class DogMapRestController {
 
-import java.net.URI;
-import java.net.URISyntaxException;
-
-@Slf4j
-@RestController
-@RequestMapping("/api")
-@RequiredArgsConstructor
-public class DogMapRestController {
-
-    private final RestTemplate restTemplate;
+//    private final RestTemplate restTemplate;
 //    private DogMapService dogMapService;
 
 //    @Autowired
@@ -31,55 +14,55 @@ public class DogMapRestController {
 //        this.restTemplate = restTemplate;
 //    }
 
-    @GetMapping("/dogmap")
-    public ApiDTO getDogMapList() throws URISyntaxException {
-        String baseURL = "https://openapi.gg.go.kr/OrganicAnimalProtectionFacilit";
-        String KeyCode = "3347ee61ca704a5c83c692ced1cd2703";
-        String Type = "json";
-//        String Service = "69e33fdd12f748239a4e84bb38252f98";
-        String Service = "OrganicAnimalProtectionFacilit";
-        Integer pIndex = 1;    // 페이지 인덱스
-        Integer pSize = 5;   // 페이지 사이즈
-//        String sumYy = "SUM_YY=2023";
-        String url = baseURL + "?Key=" + KeyCode + "&Type=" + Type + "&Service=" + Service + "&pIndex=" + pIndex + "&pSize=" + pSize;
-//        String url = (baseURL + "?Key=" + KeyCode + "&Type=" + Type + "&pIndex=" + pIndex + "&pSize=" + pSize);
-//        String url = (baseURL + "?Key=" + KeyCode +  "&Type=" + Type + "&" + sumYy);
-//        String url = (baseURL + "?Key=" + KeyCode +  "&Type=" + Type );
-//        String url = (baseURL + "?");
-//        String url = baseURL + "/dogmap";
-        // URL 인코딩을 사용하여 쿼리 파라미터를 생성합니다.
-        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(baseURL)
-                .queryParam("Key", KeyCode)
-                .queryParam("Type", Type)
-                .queryParam("pIndex", pIndex)
-                .queryParam("pSize", pSize);
-
-        URI uri = uriBuilder.build().toUri();
-
-        log.info("===========확인 Request URI : " + uri); // URI 확인
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", "application/json");
-        HttpEntity<String> entity = new HttpEntity<>(headers);
-
-        // API 요청
-        try {
-            // API 호출 및 응답 처리
-            ResponseEntity<ApiDTO> response = restTemplate.exchange(uri, HttpMethod.GET, entity, ApiDTO.class); //얘가 문제인건 확실함
-            ApiDTO apiDTO = response.getBody();  // 응답 본문을 ApiDTO 객체로 변환
-            log.info("API Response Status: " + response.getStatusCode());  // 상태 코드 확인
-            log.info("API Response Body: " + apiDTO.toString());  // 응답 내용 로그
-            return apiDTO;
-        } catch (HttpServerErrorException e) {
-            log.error("Server error during API request: " + e.getMessage());
-            log.error("Response body: " + e.getResponseBodyAsString());
-            throw e;
-        } catch (Exception e) {
-            log.error("Unexpected error during API request: " + e.getMessage());
-            throw e;
-        }
-    }
-
+//    @GetMapping("/dogmap")
+//    public ApiDTO getDogMapList() throws URISyntaxException {
+//        String baseURL = "https://openapi.gg.go.kr/OrganicAnimalProtectionFacilit";
+//        String KeyCode = "3347ee61ca704a5c83c692ced1cd2703";
+//        String Type = "Json";
+////        String Service = "69e33fdd12f748239a4e84bb38252f98";
+//        String Service = "OrganicAnimalProtectionFacilit";
+//        Integer pIndex = 1;    // 페이지 인덱스
+//        Integer pSize = 5;   // 페이지 사이즈
+////        String sumYy = "SUM_YY=2023";
+////        + "&Service=" + Service + "&pIndex=" + pIndex + "&pSize=" + pSize
+//        String url = baseURL + "?ServiceKey=" + KeyCode + "&Type=" + Type;
+////        String url = (baseURL + "?Key=" + KeyCode + "&Type=" + Type + "&pIndex=" + pIndex + "&pSize=" + pSize);
+////        String url = (baseURL + "?Key=" + KeyCode +  "&Type=" + Type + "&" + sumYy);
+////        String url = (baseURL + "?Key=" + KeyCode +  "&Type=" + Type );
+////        String url = (baseURL + "?");
+////        String url = baseURL + "/dogmap";
+//        // URL 인코딩을 사용하여 쿼리 파라미터를 생성합니다.
+//        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(baseURL)
+//                .queryParam("Key", KeyCode)
+//                .queryParam("Type", Type)
+//                .queryParam("pIndex", pIndex)
+//                .queryParam("pSize", pSize);
+//
+//        URI uri = uriBuilder.build().toUri();
+//
+//        log.info("===========확인 Request URI : " + uri); // URI 확인
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.set("Accept", "application/json");
+//        HttpEntity<String> entity = new HttpEntity<>(headers);
+//
+//        // API 요청
+//        try {
+//            // API 호출 및 응답 처리
+//            ResponseEntity<ApiDTO> response = restTemplate.exchange(uri, HttpMethod.GET, entity, ApiDTO.class); //얘가 문제인건 확실함
+//            ApiDTO apiDTO = response.getBody();  // 응답 본문을 ApiDTO 객체로 변환
+//            log.info("API Response Status: " + response.getStatusCode());  // 상태 코드 확인
+//            log.info("API Response Body: " + apiDTO.toString());  // 응답 내용 로그
+//            return apiDTO;
+//        } catch (HttpServerErrorException e) {
+//            log.error("Server error during API request: " + e.getMessage());
+//            log.error("Response body: " + e.getResponseBodyAsString());
+//            throw e;
+//        } catch (Exception e) {
+//            log.error("Unexpected error during API request: " + e.getMessage());
+//            throw e;
+//        }
+//    }
 
 //    @Autowired
 //    private final DogMapService dogMapService;
@@ -218,6 +201,6 @@ public class DogMapRestController {
 //
 //        return "dogmap/dogmap"; // Thymeleaf 템플릿 파일 이름
 //    }
-}
+//}
 
 
