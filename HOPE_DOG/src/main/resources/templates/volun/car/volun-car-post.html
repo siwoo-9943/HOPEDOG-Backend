@@ -54,10 +54,12 @@
             <div style="display: none" class="carWriter" th:text="${memberNo != null?memberNo : centerMemberNo}"></div>
               <!-- 작성자 ID가 일치할 때만 수정 버튼과 삭제 버튼 표시 -->
               <button class="volun-modify-button" type="button" onclick="modifyClick()"
-                      th:if="${memberNo == car.memberNo or centerMemberNo == car.centerMemberNo}">수정</button>
+                      th:if="${(memberNo != null or centerMemberNo != null) and (car.carWriter == memberNo or car.carWriter == centerMemberNo)}">
+                  수정</button>
 
               <button class="volun-delete-button" type="button" onclick="deleteAlert()"
-                      th:if="${memberNo == car.memberNo or centerMemberNo == car.centerMemberNo}">삭제</button>
+                      th:if="${(memberNo != null or centerMemberNo != null) and (car.carWriter == memberNo or car.carWriter == centerMemberNo)}">
+                  삭제</button>
           </div>
 
           <!-- 작성자 ID가 일치하지 않을 때 신고 버튼 표시 -->

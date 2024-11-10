@@ -1,5 +1,5 @@
 $(function() {
-    const items = $('.commu-ul-main li'); // 게시글 항목 선택
+    const items = $('.commu-ul-all ul'); // 게시글 항목 선택
 
     // 게시글 수가 10개 이하인 경우 페이지네이션 처리
     if (items.length <= 10) {

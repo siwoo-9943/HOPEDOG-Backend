@@ -1,9 +1,10 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const items = $('#car-list li'); // 게시글 항목들을 li로 선택
+$(function() {
+    const items = $('.commu-ul-all ul'); // 게시글 항목 선택
 
     // 게시글 수가 10개 이하인 경우 페이지네이션 처리
     if (items.length <= 10) {
         items.show(); // 모든 항목 표시
+        $('#pagination').hide(); // 페이지네이션 숨김
         return; // 페이지네이션 초기화 중지
     }
 
@@ -17,14 +18,32 @@ document.addEventListener("DOMContentLoaded", function() {
     container.pagination({
         dataSource: items.toArray(), // 게시글 항목을 배열로 변환
         pageSize: pageSize,
-        callback: function (data, pagination) {
+        callback: function(data, pagination) {
             items.hide(); // 기존에 보여진 항목 숨김
-            $.each(data, function (index, item) {
+            $.each(data, function(index, item) {
                 $(item).show(); // 현재 페이지에 해당하는 항목만 표시
             });
+
+            // 이전/다음 버튼 숨기기 로직
+            const totalPages = pagination.totalPage;
+            const currentPage = pagination.pageNumber;
+
+            // 이전 버튼 숨기기
+            if (currentPage === 1) {
+                $('.pagination-prev').hide();
+            } else {
+                $('.pagination-prev').show();
+            }
+
+            // 다음 버튼 숨기기
+            if (currentPage === totalPages) {
+                $('.pagination-next').hide();
+            } else {
+                $('.pagination-next').show();
+            }
         }
     });
 
-    // 페이지네이션 플러그인이 초기화된 후에 첫 번째 페이지로 이동
+    // 처음 로드 시 첫 번째 페이지의 항목만 보여주기
     container.pagination('goToPage', 1);
 });
