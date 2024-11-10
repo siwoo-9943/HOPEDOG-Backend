@@ -62,10 +62,11 @@
                 <li th:text="${#dates.format(myadopt.adoptPeriodend, 'yyyy-MM-dd')}"></li>
               </ul>
               <div class="memberNo" th:text="${myadopt.memberNo}" style="display: none;"></div>
-              <div class="protectRequestNo" th:text="${myadopt.adoptRequestNo}" style="display: none;" ></div>
+              <div class="adoptRequestNo" th:text="${myadopt.adoptRequestNo}" style="display: none;"></div>
             </div>
           </li>
         </ul>
+      </div>
       </div>
       <!-- 페이지네이션 -->
       <div class="pagination">

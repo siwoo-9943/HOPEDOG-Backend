@@ -11,16 +11,8 @@
 
 
 
-document.querySelectorAll('.member-notebox-contentsbox').forEach(function(element) {
-  element.addEventListener('click', function() {
-    const noteboxReceiveNo = element.querySelector('.noteboxReceiveNo').innerText; // noteboxSendNo 가져오기
-    location.href = `/mypage/noteboxReceiveDetail?noteboxReceiveNo=${noteboxReceiveNo}`; // 상세 페이지로 이동
-  });
-});
-
-//   페이지네이션
-$(function() {
-  const items = $('.member-notebox-contentsbox');  // 게시글 항목 선택
+document.addEventListener("DOMContentLoaded", function() {
+  const items = $('.member-notebox-contentsbox'); // 게시글 항목들을 li로 선택
 
   // 게시글 수가 10개 이하인 경우 페이지네이션 처리
   if (items.length <= 10) {
@@ -33,24 +25,19 @@ $(function() {
 
   // 페이지네이션 설정
   const container = $('#pagination');
-  const pageSize = 10; // 한 페이지에 보여줄 항목 수 (첫 페이지 10개)
+  const pageSize = 10; // 한 페이지에 보여줄 항목 수
 
   container.pagination({
     dataSource: items.toArray(), // 게시글 항목을 배열로 변환
     pageSize: pageSize,
-    callback: function(data, pagination) {
+    callback: function (data, pagination) {
       items.hide(); // 기존에 보여진 항목 숨김
-      $.each(data, function(index, item) {
+      $.each(data, function (index, item) {
         $(item).show(); // 현재 페이지에 해당하는 항목만 표시
       });
     }
   });
 
-  // 처음 로드 시 첫 번째 페이지의 항목만 보여주기
+  // 페이지네이션 플러그인이 초기화된 후에 첫 번째 페이지로 이동
   container.pagination('goToPage', 1);
 });
-
-// 삭제버튼 클릭 시 삭제 완료 알림창을 띄우는 함수
-function showDeleteAlert() {
-  alert('삭제가 완료되었습니다');
-}
