@@ -143,11 +143,6 @@ public class MypageController {
     }
 
     @GetMapping("/volun")
-    public String volun() {
-        return "mypage/mypage-volunteer";
-    }
-
-    @GetMapping("/volunList")
     public String volunList(HttpSession session, Model model) {
         Long memberNo = (Long) session.getAttribute("memberNo");
         if (memberNo == null) {
@@ -376,26 +371,6 @@ public class MypageController {
 
         return "redirect:/mypage/updateAdoptRequest?adoptRequestNo=" + adoptRequestNo;
     }
-
-
-//    @DeleteMapping("/withdrawal")
-//    public String withdrawal(@RequestParam("memberNo") Long memberNo, HttpSession session) {
-//        if (memberNo == null) {
-//            return "redirect:/login";
-//        }
-//
-//        // 탈퇴 로직 처리
-//        boolean isWithdrawal = mypageService.withdrawal(memberNo);
-//
-//        if (isWithdrawal) {
-//            session.invalidate(); // 세션 무효화
-//            log.info("회원 탈퇴가 완료되었습니다. 회원 번호 : {}", memberNo);
-//            return "redirect:/main/main"; // 메인 페이지로 리다이렉트
-//        } else {
-//            log.error("탈퇴 처리 중 오류 발생. 회원 번호 : {}", memberNo);
-//            return "redirect:/login"; // 오류 발생 시 로그인 페이지로 리다이렉트
-//        }
-//    }
 
 
     @GetMapping("/withdrawal")
