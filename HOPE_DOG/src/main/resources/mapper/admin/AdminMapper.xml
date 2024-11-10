@@ -296,7 +296,7 @@
         WITH AllPosts AS (
             SELECT
                 'COMMU' AS post_type,
-                COMMU_NUMBER AS post_no,
+                COMMU_NO AS post_no,
                 COMMU_TITLE AS post_title,
                 COMMU_CONTENT as post_content,
                 CASE
@@ -380,7 +380,7 @@
         WITH AllPosts AS (
             SELECT
                 'COMMU' AS post_type,
-                COMMU_NUMBER AS post_no,
+                COMMU_NO AS post_no,
                 COMMU_TITLE AS post_title,
                 COMMU_CONTENT AS post_content,
                 CASE
@@ -498,7 +498,7 @@
         <choose>
             <when test="item.postType == 'COMMU'">
                 DELETE FROM TBL_COMMU
-                WHERE COMMU_NUMBER = #{item.postNo}
+                WHERE COMMU_NO = #{item.postNo}
             </when>
             <when test="item.postType == 'VOLUN'">
                 DELETE FROM TBL_VOLUN
@@ -535,7 +535,7 @@
             <when test="postType == 'COMMU'">
                 SELECT
                 'COMMU' AS post_type,
-                COMMU_NUMBER AS post_no,
+                COMMU_NO AS post_no,
                 COMMU_TITLE AS post_title,
                 COMMU_CONTENT AS post_content,
                 CASE
@@ -544,7 +544,7 @@
                 END AS post_writer,
                 COMMU_UPDATEDATE AS post_update_date
                 FROM TBL_COMMU
-                WHERE COMMU_NUMBER = #{postNo}
+                WHERE COMMU_NO = #{postNo}
             </when>
             <when test="postType == 'VOLUN'">
                 SELECT
@@ -625,7 +625,7 @@
         <choose>
             <when test="item.postType == 'COMMU'">
                 DELETE FROM TBL_COMMU
-                WHERE COMMU_NUMBER = #{item.postNo}
+                WHERE COMMU_NO = #{item.postNo}
             </when>
             <when test="item.postType == 'VOLUN'">
                 DELETE FROM TBL_VOLUN
@@ -692,7 +692,7 @@
             SELECT
                 'COMMU' AS comment_type,
                 COMMU_COMMENT_NO AS comment_no,
-                CC.COMMU_NUMBER AS post_no,
+                CC.COMMU_NO AS post_no,
                 C.COMMU_TITLE AS post_title,
                 COMMU_COMMENT as comment_content,
                 CASE
@@ -700,7 +700,7 @@
                     WHEN MOD(COMMU_COMMENT_WRITER, 10) = 2 THEN (SELECT CENTER_MEMBER_NAME FROM TBL_CENTER_MEMBER WHERE CENTER_MEMBER_NO = COMMU_COMMENT_WRITER)
                     END AS comment_writer,
                 COMMU_COMMENT_REGIDATE AS comment_update_date
-            FROM TBL_COMMU_COMMENT CC JOIN TBL_COMMU C ON CC.COMMU_NUMBER = C.COMMU_NUMBER
+            FROM TBL_COMMU_COMMENT CC JOIN TBL_COMMU C ON CC.COMMU_NO = C.COMMU_NO
             UNION ALL
             SELECT
                 'VOLUN' AS comment_type,
@@ -832,7 +832,7 @@
             SELECT
                 'COMMU' AS comment_type,
                 COMMU_COMMENT_NO AS comment_no,
-                CC.COMMU_NUMBER AS post_no,
+                CC.COMMU_NO AS post_no,
                 C.COMMU_TITLE AS post_title,
                 COMMU_COMMENT as comment_content,
                 CASE
@@ -841,7 +841,7 @@
                     END AS comment_writer,
                 COMMU_COMMENT_REGIDATE AS comment_update_date
             FROM TBL_COMMU_COMMENT CC
-                     JOIN TBL_COMMU C ON CC.COMMU_NUMBER = C.COMMU_NUMBER
+                     JOIN TBL_COMMU C ON CC.COMMU_NO = C.COMMU_NO
             WHERE C.COMMU_TITLE LIKE '%' || #{keyword} || '%'
                OR COMMU_COMMENT LIKE '%' || #{keyword} || '%'
                OR EXISTS (SELECT 1 FROM TBL_MEMBER WHERE MEMBER_NO = COMMU_COMMENT_WRITER AND MEMBER_NICKNAME LIKE '%' || #{keyword} || '%')
@@ -986,7 +986,7 @@
             <when test="postType == 'COMMU'">
                 SELECT
                 COMMU_COMMENT_NO AS commentNo,
-                COMMU_NUMBER AS postNo,
+                COMMU_NO AS postNo,
                 COMMU_COMMENT AS commentContent,
                 CASE
                 WHEN MOD(COMMU_COMMENT_WRITER, 10) = 1 THEN (SELECT MEMBER_NICKNAME FROM TBL_MEMBER WHERE MEMBER_NO = COMMU_COMMENT_WRITER)
@@ -994,7 +994,7 @@
                 END AS commentWriter,
                 COMMU_COMMENT_REGIDATE AS commentUpdateDate
                 FROM TBL_COMMU_COMMENT
-                WHERE COMMU_NUMBER = #{postNo}
+                WHERE COMMU_NO = #{postNo}
             </when>
             <when test="postType == 'VOLUN'">
                 SELECT
