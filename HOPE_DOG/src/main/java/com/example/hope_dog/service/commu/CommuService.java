@@ -162,6 +162,11 @@ public class CommuService {
         commuMapper.insertWrite(commuDTO);
     }
 
+    //게시글 수정
+    public void commuModify(CommuDetailDTO commuDetailDTO){
+        commuMapper.commuModify(commuDetailDTO);
+    }
+
     //게시글 삭제
     public boolean commuDelete(CommuDetailDTO commuDetailDTO) {
         commuMapper.commuDelete(commuDetailDTO);
