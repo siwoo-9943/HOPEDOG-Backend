@@ -51,6 +51,8 @@ public class CarController {
       }
 
       model.addAttribute("carList", carList);
+        model.addAttribute("memberNo", memberNo);
+        model.addAttribute("centerMemberNo", centerMemberNo);
 
         return "volun/car/volun-car-main";
 

@@ -53,6 +53,8 @@ public class commuController {
         }
 
         model.addAttribute("commuList", commuList); // 모델에 데이터 추가
+        model.addAttribute("memberNo", memberNo);
+        model.addAttribute("centerMemberNo", centerMemberNo);
 
         System.out.println("컨트롤러 글목록회원" + memberNo + ", 센터회원" + centerMemberNo);
         return "commu/commu-main"; // 뷰 이름을 반환
