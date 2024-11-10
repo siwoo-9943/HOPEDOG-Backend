@@ -81,16 +81,18 @@
                     <div class="notification-dropdown">
                         <div class="notification-header">
                             <span>알림</span>
-                            <button class="mark-all-read" type="submit" formaction="@{/main/markAllAsRead}">모두 읽음 처리</button>
+                            <a th:href="@{/markAllAsRead}">
+                                <button class="mark-all-read" type="button" formaction="@{/markAllAsRead}">모두 읽음 처리</button>
+                            </a>
                         </div>
                         <div class="notification-list">
                             <!-- 샘플 알림 -->
                             <div class="notification-item unread">
-                                <div class="notification-content">새로운 메시지가 있습니다.</div>
+                                <div class="notification-content"><a th:href="@{/mypage/noteboxReceiveList}">새로운 메시지가 있습니다.</a></div>
                             </div>
                         </div>
                         <div class="notification-footer">
-                            <a href="#" class="view-all">모든 알림 보기</a>
+                            <a th:href="@{/mypage/noteboxReceiveList}" class="view-all">쪽지함으로 이동</a>
                         </div>
                     </div>
                 </div>
@@ -114,15 +116,17 @@
                     <div class="notification-dropdown">
                         <div class="notification-header">
                             <span>알림</span>
-                            <button class="mark-all-read" type="submit" formaction="@{/main/markAllAsRead}">모두 읽음 처리</button>
+                            <a th:href="@{/markAllAsRead}">
+                            <button class="mark-all-read" type="button" formaction="@{/markAllAsRead}">모두 읽음 처리</button>
+                            </a>
                         </div>
-                        <div class="notification-list">
-                            <div class="notification-item unread">
-                                <div class="notification-content">새로운 메시지가 있습니다.</div>
+                        <div class="notification-list" th:if="${unreadCount > 0}">
+                            <div class="notification-item unread" >
+                                <div class="notification-content" ><a th:href="@{/centerMypage/noteboxReceiveList}">새로운 메시지가 있습니다.</a></div>
                             </div>
                         </div>
                         <div class="notification-footer">
-                            <a class="view-all">모든 알림 보기</a>
+                            <a th:href="@{/centerMypage/noteboxReceiveList}" class="view-all">쪽지함으로 이동</a>
                         </div>
                     </div>
                 </div>
