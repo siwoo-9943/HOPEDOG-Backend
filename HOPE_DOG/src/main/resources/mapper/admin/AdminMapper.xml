@@ -296,74 +296,98 @@
         WITH AllPosts AS (
             SELECT
                 'COMMU' AS post_type,
-                COMMU_NO AS post_no,
+                TO_CHAR(COMMU_NO) AS post_no,
                 COMMU_TITLE AS post_title,
                 COMMU_CONTENT as post_content,
-                CASE
-                    WHEN MOD(COMMU_WRITER, 10) = 1 THEN (SELECT MEMBER_NICKNAME FROM TBL_MEMBER WHERE MEMBER_NO = COMMU_WRITER)
-                    WHEN MOD(COMMU_WRITER, 10) = 2 THEN (SELECT CENTER_MEMBER_NAME FROM TBL_CENTER_MEMBER WHERE CENTER_MEMBER_NO = COMMU_WRITER)
-                    END AS post_writer,
+                CAST(
+                        CASE
+                            WHEN MOD(COMMU_WRITER, 10) = 1 THEN
+                                    (SELECT MEMBER_NICKNAME FROM TBL_MEMBER WHERE MEMBER_NO = COMMU_WRITER)
+                            WHEN MOD(COMMU_WRITER, 10) = 2 THEN
+                                (SELECT CENTER_MEMBER_NAME FROM TBL_CENTER_MEMBER WHERE CENTER_MEMBER_NO = COMMU_WRITER)
+                            END AS VARCHAR2(100)
+                ) AS post_writer,
                 COMMU_UPDATEDATE AS post_update_date
             FROM TBL_COMMU
+
             UNION ALL
+
             SELECT
                 'VOLUN' AS post_type,
-                VOLUN_NO AS post_no,
+                TO_CHAR(VOLUN_NO) AS post_no,
                 VOLUN_TITLE AS post_title,
                 VOLUN_CONTENT as post_content,
-                (SELECT CENTER_MEMBER_NAME FROM TBL_CENTER_MEMBER WHERE CENTER_MEMBER_NO = TBL_VOLUN.CENTER_MEMBER_NO) AS post_writer,
+                CAST((SELECT CENTER_MEMBER_NAME FROM TBL_CENTER_MEMBER
+                      WHERE CENTER_MEMBER_NO = TBL_VOLUN.CENTER_MEMBER_NO) AS VARCHAR2(100)) AS post_writer,
                 VOLUN_UPDATEDATE AS post_update_date
             FROM TBL_VOLUN
+
             UNION ALL
+
             SELECT
                 'DONA' AS post_type,
-                DONA_NO AS post_no,
+                TO_CHAR(DONA_NO) AS post_no,
                 DONA_TITLE AS post_title,
                 DONA_CONTENT as post_content,
-                (SELECT CENTER_MEMBER_NAME FROM TBL_CENTER_MEMBER WHERE CENTER_MEMBER_NO = TBL_DONA.CENTER_MEMBER_NO) AS post_writer,
+                CAST((SELECT CENTER_MEMBER_NAME FROM TBL_CENTER_MEMBER
+                      WHERE CENTER_MEMBER_NO = TBL_DONA.CENTER_MEMBER_NO) AS VARCHAR2(100)) AS post_writer,
                 DONA_UPDATEDATE AS post_update_date
             FROM TBL_DONA
+
             UNION ALL
+
             SELECT
                 'ADOPT' AS post_type,
-                ADOPT_NO AS post_no,
+                TO_CHAR(ADOPT_NO) AS post_no,
                 ADOPT_TITLE AS post_title,
                 ADOPT_CONTENT as post_content,
-                (SELECT CENTER_MEMBER_NAME FROM TBL_CENTER_MEMBER WHERE CENTER_MEMBER_NO = TBL_ADOPT.CENTER_MEMBER_NO) AS post_writer,
+                CAST((SELECT CENTER_MEMBER_NAME FROM TBL_CENTER_MEMBER
+                      WHERE CENTER_MEMBER_NO = TBL_ADOPT.CENTER_MEMBER_NO) AS VARCHAR2(100)) AS post_writer,
                 ADOPT_UPDATEDATE AS post_update_date
             FROM TBL_ADOPT
+
             UNION ALL
+
             SELECT
                 'CAR' AS post_type,
-                CAR_NO AS post_no,
+                TO_CHAR(CAR_NO) AS post_no,
                 CAR_TITLE AS post_title,
                 CAR_CONTENT as post_content,
-                CASE
-                    WHEN MOD(CAR_WRITER, 10) = 1 THEN (SELECT MEMBER_NICKNAME FROM TBL_MEMBER WHERE MEMBER_NO = CAR_WRITER)
-                    WHEN MOD(CAR_WRITER, 10) = 2 THEN (SELECT CENTER_MEMBER_NAME FROM TBL_CENTER_MEMBER WHERE CENTER_MEMBER_NO = CAR_WRITER)
-                    END AS post_writer,
+                CAST(
+                        CASE
+                            WHEN MOD(CAR_WRITER, 10) = 1 THEN
+                                    (SELECT MEMBER_NICKNAME FROM TBL_MEMBER WHERE MEMBER_NO = CAR_WRITER)
+                            WHEN MOD(CAR_WRITER, 10) = 2 THEN
+                                (SELECT CENTER_MEMBER_NAME FROM TBL_CENTER_MEMBER WHERE CENTER_MEMBER_NO = CAR_WRITER)
+                            END AS VARCHAR2(100)
+                ) AS post_writer,
                 CAR_UPDATEDATE AS post_update_date
             FROM TBL_CAR
+
             UNION ALL
+
             SELECT
                 'PROTECT' AS post_type,
-                PROTECT_NO AS post_no,
+                TO_CHAR(PROTECT_NO) AS post_no,
                 PROTECT_TITLE AS post_title,
                 PROTECT_CONTENT as post_content,
-                (SELECT CENTER_MEMBER_NAME FROM TBL_CENTER_MEMBER WHERE CENTER_MEMBER_NO = TBL_PROTECT.CENTER_MEMBER_NO) AS post_writer,
+                CAST((SELECT CENTER_MEMBER_NAME FROM TBL_CENTER_MEMBER
+                      WHERE CENTER_MEMBER_NO = TBL_PROTECT.CENTER_MEMBER_NO) AS VARCHAR2(100)) AS post_writer,
                 PROTECT_UPDATEDATE AS post_update_date
             FROM TBL_PROTECT
+
             UNION ALL
+
             SELECT
                 'REVIEW' AS post_type,
-                REVIEW_NO AS post_no,
+                TO_CHAR(REVIEW_NO) AS post_no,
                 REVIEW_TITLE AS post_title,
                 REVIEW_CONTENT as post_content,
-                (SELECT MEMBER_NICKNAME FROM TBL_MEMBER WHERE MEMBER_NO = TBL_REVIEW.MEMBER_NO) AS post_writer,
+                CAST((SELECT MEMBER_NICKNAME FROM TBL_MEMBER
+                      WHERE MEMBER_NO = TBL_REVIEW.MEMBER_NO) AS VARCHAR2(100)) AS post_writer,
                 REVIEW_UPDATEDATE AS post_update_date
             FROM TBL_REVIEW
         )
-
         SELECT
             post_type,
             post_no,
@@ -373,7 +397,6 @@
             post_update_date
         FROM AllPosts
         ORDER BY post_update_date DESC
-
     </select>
 <!--게시글 검색 목록 조회-->
     <select id="searchPostByKeyword" parameterType="String" resultType="AdminPostDTO">
