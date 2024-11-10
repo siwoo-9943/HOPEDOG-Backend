@@ -4,7 +4,6 @@ $(function() {
     // 게시글 수가 10개 이하인 경우 페이지네이션 처리
     if (items.length <= 10) {
         items.show(); // 모든 항목 표시
-        $('#pagination').hide(); // 페이지네이션 숨김
         return; // 페이지네이션 초기화 중지
     }
 
@@ -13,7 +12,7 @@ $(function() {
 
     // 페이지네이션 설정
     const container = $('#pagination');
-    const pageSize = 10; // 한 페이지에 보여줄 항목 수
+    const pageSize = 10; // 한 페이지에 보여줄 항목 수 (첫 페이지 10개)
 
     container.pagination({
         dataSource: items.toArray(), // 게시글 항목을 배열로 변환
@@ -23,24 +22,6 @@ $(function() {
             $.each(data, function(index, item) {
                 $(item).show(); // 현재 페이지에 해당하는 항목만 표시
             });
-
-            // 이전/다음 버튼 숨기기 로직
-            const totalPages = pagination.totalPage;
-            const currentPage = pagination.pageNumber;
-
-            // 이전 버튼 숨기기
-            if (currentPage === 1) {
-                $('.pagination-prev').hide();
-            } else {
-                $('.pagination-prev').show();
-            }
-
-            // 다음 버튼 숨기기
-            if (currentPage === totalPages) {
-                $('.pagination-next').hide();
-            } else {
-                $('.pagination-next').show();
-            }
         }
     });
 
