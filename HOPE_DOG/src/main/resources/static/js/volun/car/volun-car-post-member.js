@@ -13,6 +13,7 @@ function modifyClick() {
   }
 }
 
+
 //게시글 삭제
 function deleteAlert() {
   const carNo = document.querySelector('.carNo').textContent.trim();
@@ -55,7 +56,7 @@ function modifyCommentBtnClick(index) {
     //기존 댓글 div
 }
 
-//댓글 등록
+
 function editCommentBtnClick(index) {
     const commentBox1 = document.getElementById(`car-comment-buttonBox-${index}`); // 수정/삭제 버튼 div
     const commentBox2 = document.getElementById(`car-modifyInput-${index}`);       // 댓글 수정하는 div
@@ -129,7 +130,21 @@ function CommentReportClick() {
     const reportComment = prompt('신고사유를 100글자 이내로 입력해주세요');
     const carNo = document.querySelector('.carNo').textContent.trim();
     const carCommentNo = document.querySelector('.carCommentNo').textContent.trim();
+    console.log('carNo:', carNo);
+    console.log('carCommentNo:', carCommentNo);
+    console.log('reportComment:', reportComment);
 
     location.href = `/car/carCommentReport?carNo=${carNo}&reportComment=${encodeURIComponent(reportComment)}&carCommentNo=${carCommentNo}`;
+}
+
+// 댓글 미입력 방지
+function validateCommentForm() {
+    const commentInput = document.querySelector('.car-detail-commentregi');
+
+    if (!commentInput.value.trim()) { // 입력 값이 비어 있거나 공백만 있을 때
+        alert("댓글을 입력해 주세요.");
+        return false; // 폼 제출 중단
+    }
+    return true; // 폼 제출 허용
 }
 

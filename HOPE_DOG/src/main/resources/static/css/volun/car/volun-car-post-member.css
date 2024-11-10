@@ -60,6 +60,9 @@ a{
   font-weight: bold;
   display: flex;
   align-items: center;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
 }
 
 .volun-detail-info{
@@ -111,6 +114,7 @@ a{
   justify-content: space-between;
   align-items: center;
 }
+
 
 /* 수정 */
 .volun-modify-button{
@@ -251,3 +255,4 @@ a{
   background-color: #9B805D; /* 마우스를 올렸을 때 변경될 색상 */
   color: white;
 }
+

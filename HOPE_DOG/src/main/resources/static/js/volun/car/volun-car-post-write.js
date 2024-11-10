@@ -25,6 +25,7 @@ $(function () {
 });
 
 
+
 // 취소
 function Cancel() {
     if (confirm('작성중인 글은 저장되지 않습니다. 정말로 취소하시겠습니까?')) {
@@ -33,4 +34,18 @@ function Cancel() {
     } else {
         console.log('취소하지 않았습니다.');
     }
+}
+
+// 폼 제출 시 제목이나 내용이 비었을 경우 경고창 표시
+function validatePostForm() {
+    var title = document.getElementById("subject").value;
+    var content = document.getElementById("contents").value;
+
+    // 제목 또는 내용이 비어 있을 경우 경고창을 띄우고, 폼 제출을 막음
+    if (title.trim() === "" || content.trim() === "") {
+        alert("제목과 내용을 모두 입력해주세요.");
+        return false; // 폼 제출을 막음
+    }
+
+    return true; // 폼 제출 허용
 }
