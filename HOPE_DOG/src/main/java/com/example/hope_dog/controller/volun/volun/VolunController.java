@@ -180,9 +180,10 @@ public class VolunController {
     // 봉사 신청서 페이지 열기
     @GetMapping("/volun/volunrequest")
     public String volunRequest(@RequestParam(value = "centerMemberNo") Long centerMemberNo,
-                               HttpSession session, Model model) {
+                               HttpSession session, Model model, @RequestParam("volunNo") Long volunNo) {
         Long memberNo = (Long) session.getAttribute("memberNo");
 
+        model.addAttribute("volunNo", volunNo);
         model.addAttribute("memberNo", memberNo);
         model.addAttribute("centerMemberNo", centerMemberNo); // 이 부분이 중요합니다.
 
@@ -191,9 +192,16 @@ public class VolunController {
 
     // 봉사 신청서 등록
     @PostMapping("/volun/volunrequestRegi")
-    public String volunRequestRegi(@DateTimeFormat(pattern = "yyyy-MM-dd") VolunRequestDTO volunRequestDTO) {
+    public String volunRequestRegi(@DateTimeFormat(pattern = "yyyy-MM-dd") VolunRequestDTO volunRequestDTO,
+                                   RedirectAttributes redirectAttributes) {
         volunService.registerRequest(volunRequestDTO);
-        return "redirect:/volun/volun";
+
+        Long volunNo = volunRequestDTO.getVolunNo();
+
+        // 성공 메시지를 플래시 속성으로 추가
+        redirectAttributes.addFlashAttribute("requestSuccess", true);
+
+        return "redirect:/volun/volun/volundetail?volunNo=" + volunNo;
     }
 
     //봉사 댓글 등록
