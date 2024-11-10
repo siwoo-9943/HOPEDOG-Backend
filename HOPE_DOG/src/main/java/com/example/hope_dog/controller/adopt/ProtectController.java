@@ -189,9 +189,16 @@ public class ProtectController {
 
     // 임시보호 신청서 등록
     @PostMapping("/protect/protectrequestRegi")
-    public String protectRequestRegi(@DateTimeFormat(pattern = "yyyy-MM-dd") ProtectRequestDTO protectRequestDTO) {
+    public String protectRequestRegi(@DateTimeFormat(pattern = "yyyy-MM-dd") ProtectRequestDTO protectRequestDTO,
+                                     RedirectAttributes redirectAttributes) {
         protectService.registerRequest(protectRequestDTO);
-        return "redirect:/adopt/protect";
+
+        Long protectNo = protectRequestDTO.getProtectNo();
+
+        // 성공 메시지를 플래시 속성으로 추가
+        redirectAttributes.addFlashAttribute("requestSuccess", true);
+
+        return "redirect:/adopt/protect/protectdetail?protectNo=" + protectNo;
     }
 
     //임시보호 댓글 등록
