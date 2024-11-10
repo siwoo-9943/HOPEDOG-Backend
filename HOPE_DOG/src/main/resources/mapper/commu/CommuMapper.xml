@@ -141,6 +141,19 @@
         )
     </insert>
 
+<!--    게시글 수정-->
+    <update id="commuModify" parameterType="CommuDetailDTO">
+        UPDATE TBL_COMMU
+        SET
+            COMMU_CATE = #{commuCate},
+            COMMU_TITLE = #{commuTitle},
+            COMMU_CONTENT = #{commuContent},
+            COMMU_UPDATEDATE = SYSDATE,
+            COMMU_WRITER = #{commuWriter}
+        WHERE COMMU_NO = #{commuNo}
+    </update>
+
+
 <!--    게시글 삭제-->
     <delete id="commuDelete" parameterType="CommuDetailDTO">
         DELETE FROM TBL_COMMU
@@ -164,7 +177,7 @@
         SELECT
             cc.COMMU_COMMENT_NO,
             cc.COMMU_COMMENT,
-            cc.COMMU_COMMET_REGIDATE,
+            cc.COMMU_COMMENT_REGIDATE,
             cc.COMMU_COMMENT_WRITER,
             CASE
                 WHEN MOD(cc.COMMU_COMMENT_WRITER, 2) != 0 THEN m.MEMBER_NAME
@@ -186,7 +199,7 @@
             SELECT SEQ_COMMU_COMMENT.NEXTVAL FROM DUAL
         </selectKey>
         INSERT INTO TBL_COMMU_COMMENT(
-        COMMU_COMMENT_NO,COMMU_COMMENT,COMMU_COMMET_REGIDATE,
+        COMMU_COMMENT_NO,COMMU_COMMENT,COMMU_COMMENT_REGIDATE,
         COMMU_UPDATEDATE,COMMU_COMMENT_WRITER,COMMU_NO
         )VALUES(
         #{commuCommentNo},#{commuComment},SYSDATE,SYSDATE,#{commuCommentWriter},#{commuNo}

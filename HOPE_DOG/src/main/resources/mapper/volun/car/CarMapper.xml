@@ -103,25 +103,28 @@
     </insert>
 
     <!--    댓글불러오기-->
-    <select id="carComment" parameterType="Long" resultType="CarCommentDTO">
+        <select id="carComment" parameterType="Long" resultType="CarCommentDTO">
         SELECT
             cc.CAR_COMMENT_NO,
             cc.CAR_COMMENT,
             cc.CAR_COMMENT_REGIDATE,
             cc.CAR_COMMENT_WRITER,
             CASE
-                WHEN MOD(cc.CAR_COMMENT_WRITER, 2) != 0 THEN m.MEMBER_NICKNAME
-                WHEN MOD(cc.CAR_COMMENT_WRITER, 2) = 0 THEN cm.CENTER_MEMBER_NAME
+                WHEN MOD(cc.CAR_COMMENT_WRITER, 10) = 1 THEN m.MEMBER_NICKNAME
+                WHEN MOD(cc.CAR_COMMENT_WRITER, 10) = 2 THEN cm.CENTER_MEMBER_NAME
                 END AS COMMENT_WRITER_NAME
         FROM
             TBL_CAR_COMMENT cc
-                LEFT JOIN TBL_MEMBER m ON MOD(cc.CAR_COMMENT_WRITER, 2) != 0
-            AND cc.CAR_COMMENT_WRITER = m.MEMBER_NO
-            LEFT JOIN TBL_CENTER_MEMBER cm ON MOD(cc.CAR_COMMENT_WRITER, 2) = 0
-            AND cc.CAR_COMMENT_WRITER = cm.CENTER_MEMBER_NO
+                LEFT JOIN
+            TBL_MEMBER m ON MOD(cc.CAR_COMMENT_WRITER, 10) = 1 AND cc.CAR_COMMENT_WRITER = m.MEMBER_NO
+                LEFT JOIN
+            TBL_CENTER_MEMBER cm ON MOD(cc.CAR_COMMENT_WRITER, 10) = 2 AND cc.CAR_COMMENT_WRITER = cm.CENTER_MEMBER_NO
         WHERE
             cc.CAR_NO = #{carNo}
+        ORDER BY
+            cc.CAR_COMMENT_REGIDATE ASC
     </select>
+
 
 <!--    댓글 등록-->
     <insert id="carCommentRegi" parameterType="CarCommentDTO">
@@ -131,15 +134,11 @@
         INSERT INTO TBL_CAR_COMMENT (
         CAR_COMMENT_NO,
         CAR_COMMENT,
-        CAR_COMMENT_REGIDATE,
-        CAR_UPDATE_DATE,
         CAR_COMMENT_WRITER,
         CAR_NO
         ) VALUES (
         #{carCommentNo},
         #{carComment},
-        SYSDATE,
-        SYSDATE,
         #{carCommentWriter},
         #{carNo}
         )
@@ -163,16 +162,16 @@
     </delete>
 
 <!--    댓글 신고-->
-<!--    <insert id="carCommentReport" parameterType="CarCarReportDTO">-->
-<!--        <selectKey keyProperty="reportNo" resultType="Long" order="BEFORE">-->
-<!--            SELECT SEQ_COMMENT_REPORT.NEXTVAL FROM DUAL-->
-<!--        </selectKey>-->
-<!--        INSERT INTO TBL_COMMENT_REPORT (-->
-<!--        COMMENT_REPORT_NO, COMMENT_REPORT_CATE, COMMENT_REPORT, COMMENT_REPORT_WRITER, COMMENT_NO, CONTENT_NO-->
-<!--        ) VALUES (-->
-<!--        #{reportNo}, '카풀', #{reportComment}, #{reportWriter},#{reportCommentNo}, #{reportContentNo}-->
-<!--        )-->
-<!--    </insert>-->
+    <insert id="carCommentReport" parameterType="CarReportDTO">
+        <selectKey keyProperty="reportNo" resultType="Long" order="BEFORE">
+            SELECT SEQ_COMMENT_REPORT.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_COMMENT_REPORT (
+        COMMENT_REPORT_NO, COMMENT_REPORT_CATE, COMMENT_REPORT, COMMENT_REPORT_WRITER, COMMENT_NO, CONTENT_NO
+        ) VALUES (
+        #{reportNo}, '카풀', #{reportComment}, #{reportWriter},#{reportCommentNo}, #{reportContentNo}
+        )
+    </insert>
 
 
 
