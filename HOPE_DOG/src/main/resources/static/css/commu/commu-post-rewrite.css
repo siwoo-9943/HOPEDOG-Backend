@@ -137,15 +137,3 @@ textarea::placeholder {
   font-weight: bold;
 }
 
-@font-face {
-  font-family: 'gangwonEdu';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
-  font-style: normal;
-  font-weight: normal;
-}
-
-* {
-  padding: 0;
-  margin: 0;
-  font-family: 'gangwonEdu' !important;
-}

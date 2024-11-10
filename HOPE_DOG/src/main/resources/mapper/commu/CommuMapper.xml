@@ -177,7 +177,7 @@
         SELECT
             cc.COMMU_COMMENT_NO,
             cc.COMMU_COMMENT,
-            cc.COMMU_COMMET_REGIDATE,
+            cc.COMMU_COMMENT_REGIDATE,
             cc.COMMU_COMMENT_WRITER,
             CASE
                 WHEN MOD(cc.COMMU_COMMENT_WRITER, 2) != 0 THEN m.MEMBER_NAME
@@ -199,7 +199,7 @@
             SELECT SEQ_COMMU_COMMENT.NEXTVAL FROM DUAL
         </selectKey>
         INSERT INTO TBL_COMMU_COMMENT(
-        COMMU_COMMENT_NO,COMMU_COMMENT,COMMU_COMMET_REGIDATE,
+        COMMU_COMMENT_NO,COMMU_COMMENT,COMMU_COMMENT_REGIDATE,
         COMMU_UPDATEDATE,COMMU_COMMENT_WRITER,COMMU_NO
         )VALUES(
         #{commuCommentNo},#{commuComment},SYSDATE,SYSDATE,#{commuCommentWriter},#{commuNo}

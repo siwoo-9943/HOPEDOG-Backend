@@ -62,10 +62,14 @@ public class commuController {
 
     //카테고리 분류
     @GetMapping("/filter")
-    public String filterCommu(@RequestParam("cate") String cate, Model model) {
+    public String filterCommu(@RequestParam("cate") String cate, Model model,HttpSession session) {
         List<CommuDTO> commuList = commuService.getCommuListByCate(cate);
+        Long memberNo = (Long) session.getAttribute("memberNo");
+        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
         model.addAttribute("commuList", commuList);
         model.addAttribute("selectedCate", cate);
+        model.addAttribute("memberNo", memberNo);
+        model.addAttribute("centerMemberNo", centerMemberNo);
 
         // 콘솔에 출력
         System.out.println("Selected Category: " + cate);
