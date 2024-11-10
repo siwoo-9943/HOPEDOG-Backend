@@ -90,7 +90,7 @@
         <div id="search-results"></div>
 
         <div class="commu-admain-btuall">
-          <a class="commu-admain-btu" th:href="@{/commu/commuWrite}">
+          <a class="commu-admain-btu" th:href="@{/commu/commuWrite}" th:if="${(memberNo != null or centerMemberNo != null)}">
             <span class="commu-admain-btu-sp">글쓰기</span>
           </a>
         </div>

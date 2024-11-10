@@ -238,7 +238,6 @@ input[type="submit"]:hover{
 
 
 
-
 /* '글쓰기' 버튼 */
 .volun-write {
   display: flex;
@@ -280,6 +279,19 @@ input[type="submit"]:hover{
 .volun-write-botton:hover {
   background-color: #9B805D; /* 마우스를 올렸을 때 배경색 */
   color: white; /* 마우스를 올렸을 때 텍스트 색상 */
+}
+
+@font-face {
+  font-family: 'gangwonEdu';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+  font-style: normal;
+  font-weight: normal;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'gangwonEdu' !important;
 }
 
 

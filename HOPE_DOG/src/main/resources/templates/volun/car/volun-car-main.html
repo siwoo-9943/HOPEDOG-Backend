@@ -82,8 +82,8 @@
 
 <!--      글쓰기-->
       <div class="volun-write">
-        <a class="volun-write-botton" th:href="@{/car/carWrite}">
-          <span class="volun-write-botton-sp">글쓰기</span>
+        <a class="volun-write-botton" th:href="@{/car/carWrite}" th:if="${(memberNo != null or centerMemberNo != null)}">
+          <span class="volun-write-botton-sp"  >글쓰기</span>
         </a>
       </div>
 
