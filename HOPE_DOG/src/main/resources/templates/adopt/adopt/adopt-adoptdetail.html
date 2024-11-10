@@ -147,6 +147,12 @@
           alert('신고가 완료되었습니다.');
         </script>
       </div>
+      <!-- 신청성공시 -->
+      <div th:if="${requestSuccess}">
+        <script>
+          alert('신청이 완료되었습니다.');
+        </script>
+      </div>
   </main>
 
 </body>

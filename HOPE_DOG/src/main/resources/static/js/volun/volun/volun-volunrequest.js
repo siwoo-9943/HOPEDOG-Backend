@@ -190,7 +190,6 @@ function validateInputs() {
   if (!allValid) {
     alert('모든 질문을 입력해 주세요.');
   } else {
-    alert('신청이 완료되었습니다.');
     document.getElementById('volunRequest').submit(); // 폼 제출
   }
 }
