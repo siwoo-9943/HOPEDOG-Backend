@@ -194,9 +194,15 @@ public class AdoptController {
     // 입양 신청서 등록
     @PostMapping("/adopt/adoptrequestRegi")
     public String adoptRequestRegi(@DateTimeFormat(pattern = "yyyy-MM-dd") AdoptRequestDTO adoptRequestDTO
-                                   ) {
+                                   ,RedirectAttributes redirectAttributes) {
         adoptService.registerRequest(adoptRequestDTO);
-        return "redirect:/adopt/adopt";
+
+        Long adoptNo = adoptRequestDTO.getAdoptNo();
+
+        // 성공 메시지를 플래시 속성으로 추가
+        redirectAttributes.addFlashAttribute("requestSuccess", true);
+
+        return "redirect:/adopt/adopt/adoptdetail?adoptNo=" + adoptNo;
     }
     
     //입양 댓글 등록
