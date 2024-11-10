@@ -24,13 +24,26 @@ $(function () {
     });
 });
 
+// 게시글등록 버튼
+// function registration() {
+//     const commuNo = document.querySelector('.commuNo').textContent.trim(); // carNo를 HTML에서 가져옵니다.
+//     const commuWriter = document.querySelector('.commuWriter').textContent.trim();
+//
+//     if (confirm('정말 등록하시겠습니까?')) {
+//         console.log('카풀메인페이지로 이동합니다.');
+//         // centerMemberNo와 memberNo를 둘 다 URL에 포함
+//         location.href = `/commu/commuModifyRegi?commuNo=${commuNo}&?commuWriter=${commuWriter}`;
+//     } else {
+//         console.log('신청서페이지로 이동하지 않습니다.');
+//     }
+// }
 
 
 // 취소
 function Cancel() {
     if (confirm('작성중인 글은 저장되지 않습니다. 정말로 취소하시겠습니까?')) {
         console.log('취소되었습니다.');
-        location.href = '/car/main';
+        location.href = '/commu/main';
     } else {
         console.log('취소하지 않았습니다.');
     }
