@@ -1,38 +1,62 @@
 package com.example.hope_dog.controller.dogmap.map;
 
-import com.example.hope_dog.dto.dogmap.dogmap.ApiDTO;
+import com.example.hope_dog.dto.dogmap.dogmap.DogMapApiDTO;
+import com.example.hope_dog.service.dogmap.DogMapService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.net.URISyntaxException;
+import java.util.List;
 
 @Slf4j
-@Controller("/dogmap")
+@Controller
+@RequestMapping("/dogmap")
 public class DogMapController {
 
-    private final DogMapRestController dogMapRestController;
+    private final DogMapService dogMapService;
 
-    @Autowired
-    public DogMapController(DogMapRestController dogMapRestController) {
-        this.dogMapRestController = dogMapRestController;
+    public DogMapController(DogMapService dogMapService) {
+        this.dogMapService = dogMapService;
     }
 
-    @GetMapping("/dogmap")
-    public String getDogMap(Model model) {
 
-        try {
-            ApiDTO ApiDTO = dogMapRestController.getDogMapList(); // 데이터 가져오기
-            model.addAttribute("ApiDTO", ApiDTO); // 모델에 데이터 추가
-        } catch (URISyntaxException e) {
-//            throw new RuntimeException(e);
-            model.addAttribute("dogMapApiDTO", null);
-        }
+    @GetMapping("/shelters")
+    public String getShelters(Model model) {
 
-        return "dogmap/dogmap"; // dogmap.html 페이지로 반환
+        List<DogMapApiDTO> shelters = dogMapService.getShelterInfo(); // ShelterInfo 리스트로 변경
+
+        List<DogMapApiDTO> filteredByAddress = dogMapService.filterByAddress(shelters , "경기도" );
+
+
+        model.addAttribute("shelters", filteredByAddress); // 모델에 shelters 추가
+        return "dogmap/dogmap"; // Thymeleaf 템플릿 이름
     }
+
+
+
+//    private final DogMapRestController dogMapRestController;
+//
+//    @Autowired
+//    public DogMapController(DogMapRestController dogMapRestController) {
+//        this.dogMapRestController = dogMapRestController;
+//    }
+//
+//    @GetMapping("/dogmap")
+//    public String getDogMap(Model model) {
+//
+//        try {
+//            ApiDTO apiDTO = dogMapRestController.getDogMapList(); // 데이터 가져오기
+//            model.addAttribute("ApiDTO", apiDTO); // 모델에 데이터 추가
+//            log.info(apiDTO + "확인 ============ DogMapController");
+//        } catch (URISyntaxException e) {
+////            throw new RuntimeException(e);
+//            model.addAttribute("dogMapApiDTO", null);
+//        }
+//
+//        return "dogmap/dogmap"; // dogmap.html 페이지로 반환
+//    }
 
 }
 

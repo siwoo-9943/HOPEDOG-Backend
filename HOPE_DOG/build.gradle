@@ -56,6 +56,10 @@ dependencies {
 
 	// 썸네일레이터
 	implementation 'net.coobird:thumbnailator:0.4.20'
+
+	//공공데이터 JSON 변환
+	implementation 'com.fasterxml.jackson.core:jackson-databind' // JSON 파싱을 위한 라이브러리 Jackson사용
+	implementation 'org.json:json:20210307'
 }
 
 tasks.named('test') {
