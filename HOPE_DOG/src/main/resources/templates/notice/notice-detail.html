@@ -24,14 +24,34 @@
         <div class="notice-detail-box">
           <!--게시판 상단 (제목, 닉네임)-->
           <div class="notice-addetail-content">
+            <div class="notice-addetail-tcontent">분류</div>
+            <div class="notice-addetail-ttxt" th:text="${notice.noticeCate}"></div>
+          </div>
+          <div class="notice-addetail-content">
             <div class="notice-addetail-tcontent">작성자</div>
-            <div class="notice-addetail-ttxt" th:text="${notice.adminId}"></div>
+            <div class="notice-addetail-ttxt" th:text="${notice.adminId == 'admin' ? '관리자' : notice.adminId}"></div>
           </div>
           <div class="notice-addetail-content">
             <div class="notice-addetail-tcontent">작성일</div>
             <div class="notice-addetail-ttxt" th:text="${#dates.format(notice.noticeRegidate, 'yyyy-MM-dd HH:mm')}"></div>
           </div>
           <div class="notice-addetail-maincont" th:text="${notice.noticeContent}"></div>
+
+          <div style="display: flex">
+            <div class="post-images" th:each="file, iterStat : ${fileList}">
+              <a th:href="@{/download(from='notice', fileName=${file.fileName}, filePath=${file.filePath}, fileUuid=${file.fileUuid})}">
+                <!-- 이미지 파일인지 확인하고, 이미지로 표시 -->
+                <span th:if="${file.fileName.endsWith('.jpg') or file.fileName.endsWith('.png') or file.fileName.endsWith('.jpeg')}">
+                      <img style="max-width: 100px" th:src="@{/v1/files(from='notice', fileName=${file.fileName}, filePath=${file.filePath}, fileUuid=${file.fileUuid})}" alt="Image" class="file-image" />
+                    </span>
+                <!-- 이미지가 아닌 파일은 파일명만 표시 -->
+                <span th:if="${not (file.fileName.endsWith('.jpg') or file.fileName.endsWith('.png') or file.fileName.endsWith('.jpeg'))}">
+                      <span th:text="${file.fileName}">File Name</span>
+                    </span>
+              </a>
+            </div>
+          </div>
+
         </div>
 
 

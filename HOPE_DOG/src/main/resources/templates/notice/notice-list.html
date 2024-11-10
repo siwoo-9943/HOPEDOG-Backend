@@ -24,6 +24,7 @@
       <div class="notice">
         <!--게시글 칼럼 구분-->
         <div class="notice-container">
+          <div class="notice-container-title">분류</div>
           <div class="notice-container-title">제목</div>
           <div class="notice-container-audate">작성자</div>
           <div class="notice-container-audate">작성일</div>
@@ -31,8 +32,9 @@
         <!--게시글-->
         <div th:each="notice : ${noticeList}" class="notice-ul-all">
           <div class="notice-ul-main">
+            <div class="notice-cate" th:text="${notice.noticeCate}"></div>
             <div class="notice-title" th:text="${notice.noticeTitle}"></div>
-            <div class="notice-author" th:text="${notice.adminId}"></div>
+            <div class="notice-author" th:text="${notice.adminId == 'admin' ? '관리자' : notice.adminId}"></div>
             <div class="notice-date" th:text="${#dates.format(notice.noticeRegidate, 'yyyy-MM-dd')}"></div>
             <div class="noticeNo" th:text="${notice.noticeNo}" style="display: none;"></div>
           </div>
