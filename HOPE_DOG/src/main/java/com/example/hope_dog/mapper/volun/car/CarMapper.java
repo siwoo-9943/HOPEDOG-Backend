@@ -26,6 +26,10 @@ public interface CarMapper {
    // 게시글 상세페이지 조회 (게시글과 댓글 정보 포함)
  List<CarDetailDTO> selectCarDetail(Long carNo);
 
+ //카풀 검색
+    List<CarDetailDTO> carSearch(@Param("carTitle") String carTitle,
+                                 @Param("memberNickname")String memberNickname,
+                                 @Param("centerMemberName") String centerMemberName);
 
 
     //게시글 작성
