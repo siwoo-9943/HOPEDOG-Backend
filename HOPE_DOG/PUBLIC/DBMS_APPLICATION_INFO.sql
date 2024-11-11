@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBMS_APPLICATION_INFO for SYS.DBMS_APPLICATION_INFO
-/
-

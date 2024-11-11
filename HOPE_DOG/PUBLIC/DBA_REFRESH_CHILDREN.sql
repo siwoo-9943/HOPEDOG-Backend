@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_REFRESH_CHILDREN for SYS.DBA_REFRESH_CHILDREN
-/
-

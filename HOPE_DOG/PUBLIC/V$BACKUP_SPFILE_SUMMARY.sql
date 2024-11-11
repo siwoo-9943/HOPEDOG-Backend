@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$BACKUP_SPFILE_SUMMARY for SYS.V_$BACKUP_SPFILE_SUMMARY
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$SESSION_BLOCKERS for SYS.V_$SESSION_BLOCKERS
-/
-

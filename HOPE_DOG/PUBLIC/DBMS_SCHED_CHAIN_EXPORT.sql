@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBMS_SCHED_CHAIN_EXPORT for SYS.DBMS_SCHED_CHAIN_EXPORT
-/
-

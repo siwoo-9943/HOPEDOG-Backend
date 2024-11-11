@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".SDO_TXN_IDX_DELETES for MDSYS.SDO_TXN_IDX_DELETES
-/
-

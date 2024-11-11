@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_CONS_OBJ_COLUMNS for SYS.DBA_CONS_OBJ_COLUMNS
-/
-

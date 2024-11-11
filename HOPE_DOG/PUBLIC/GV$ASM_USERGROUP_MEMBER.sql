@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$ASM_USERGROUP_MEMBER for SYS.GV_$ASM_USERGROUP_MEMBER
-/
-

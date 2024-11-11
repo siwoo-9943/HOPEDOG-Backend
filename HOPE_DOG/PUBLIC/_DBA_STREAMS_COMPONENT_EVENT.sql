@@ -1,3 +1,0 @@
-create public synonym "PUBLIC"."_DBA_STREAMS_COMPONENT_EVENT" for SYS."_DBA_STREAMS_COMPONENT_EVENT"
-/
-

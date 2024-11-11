@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DM_SVM_LINEAR_COEFF_SET for SYS.DM_SVM_LINEAR_COEFF_SET
-/
-

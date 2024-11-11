@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".SDO_TRANSIENT_RULE_SET for MDSYS.SDO_TRANSIENT_RULE_SET
-/
-

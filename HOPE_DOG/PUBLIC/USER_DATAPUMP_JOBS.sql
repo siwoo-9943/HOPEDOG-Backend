@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_DATAPUMP_JOBS for SYS.USER_DATAPUMP_JOBS
-/
-

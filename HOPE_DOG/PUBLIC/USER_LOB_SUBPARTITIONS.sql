@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_LOB_SUBPARTITIONS for SYS.USER_LOB_SUBPARTITIONS
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_HIST_STREAMS_APPLY_SUM for SYS.DBA_HIST_STREAMS_APPLY_SUM
-/
-

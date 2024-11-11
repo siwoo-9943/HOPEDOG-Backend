@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_SUBSCRIBED_COLUMNS for SYS.DBA_SUBSCRIBED_COLUMNS
-/
-

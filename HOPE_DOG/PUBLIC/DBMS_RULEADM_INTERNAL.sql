@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBMS_RULEADM_INTERNAL for SYS.DBMS_RULEADM_INTERNAL
-/
-

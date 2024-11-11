@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$SYSMETRIC_HISTORY for SYS.V_$SYSMETRIC_HISTORY
-/
-

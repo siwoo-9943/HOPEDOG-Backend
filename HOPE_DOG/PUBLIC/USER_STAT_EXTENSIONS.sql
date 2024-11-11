@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_STAT_EXTENSIONS for SYS.USER_STAT_EXTENSIONS
-/
-

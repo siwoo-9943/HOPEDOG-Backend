@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_HIST_MEMORY_RESIZE_OPS for SYS.DBA_HIST_MEMORY_RESIZE_OPS
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$SQL_REDIRECTION for SYS.GV_$SQL_REDIRECTION
-/
-

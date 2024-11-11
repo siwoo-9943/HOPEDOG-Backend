@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_HIST_PARAMETER_NAME for SYS.DBA_HIST_PARAMETER_NAME
-/
-

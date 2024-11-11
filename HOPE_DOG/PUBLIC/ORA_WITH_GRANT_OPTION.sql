@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ORA_WITH_GRANT_OPTION for SYS.WITH_GRANT_OPTION
-/
-

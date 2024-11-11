@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".APEX_SITE_ADMIN_PRIVS for APEX_040000.APEX_SITE_ADMIN_PRIVS
-/
-

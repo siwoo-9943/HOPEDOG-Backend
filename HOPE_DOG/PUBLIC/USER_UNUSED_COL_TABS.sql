@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_UNUSED_COL_TABS for SYS.USER_UNUSED_COL_TABS
-/
-

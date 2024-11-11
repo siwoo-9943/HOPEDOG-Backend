@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_TRIGGER_ORDERING for SYS.ALL_TRIGGER_ORDERING
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$PARALLEL_DEGREE_LIMIT_MTH for SYS.V_$PARALLEL_DEGREE_LIMIT_MTH
-/
-

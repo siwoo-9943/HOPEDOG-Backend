@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBMS_AQJMS_INTERNAL for SYS.DBMS_AQJMS_INTERNAL
-/
-

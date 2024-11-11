@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$PGA_TARGET_ADVICE for SYS.GV_$PGA_TARGET_ADVICE
-/
-

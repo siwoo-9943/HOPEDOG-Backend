@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_APPLY_PROGRESS for SYS.ALL_APPLY_PROGRESS
-/
-

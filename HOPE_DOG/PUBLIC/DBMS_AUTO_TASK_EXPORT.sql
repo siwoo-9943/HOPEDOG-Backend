@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBMS_AUTO_TASK_EXPORT for SYS.DBMS_AUTO_TASK_EXPORT
-/
-

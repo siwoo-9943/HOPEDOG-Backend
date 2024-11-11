@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$SHARED_SERVER_MONITOR for SYS.V_$SHARED_SERVER_MONITOR
-/
-

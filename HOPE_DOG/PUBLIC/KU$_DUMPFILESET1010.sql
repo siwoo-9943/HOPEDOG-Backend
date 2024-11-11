@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".KU$_DUMPFILESET1010 for SYS.KU$_DUMPFILESET1010
-/
-

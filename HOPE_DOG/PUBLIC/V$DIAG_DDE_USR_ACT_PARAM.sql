@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$DIAG_DDE_USR_ACT_PARAM for SYS.V_$DIAG_DDE_USR_ACT_PARAM
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DEFDEFAULTDEST for SYS.DEFDEFAULTDEST
-/
-

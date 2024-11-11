@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".STMT_AUDIT_OPTION_MAP for SYS.STMT_AUDIT_OPTION_MAP
-/
-

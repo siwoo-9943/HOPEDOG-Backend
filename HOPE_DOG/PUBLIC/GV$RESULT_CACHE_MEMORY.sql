@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$RESULT_CACHE_MEMORY for SYS.GV_$RESULT_CACHE_MEMORY
-/
-

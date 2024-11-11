@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_HIST_IOSTAT_FILETYPE for SYS.DBA_HIST_IOSTAT_FILETYPE
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$DLM_CONVERT_REMOTE for SYS.GV_$DLM_CONVERT_REMOTE
-/
-

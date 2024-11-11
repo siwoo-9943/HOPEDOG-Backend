@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_DEPENDENCIES for SYS.DBA_DEPENDENCIES
-/
-

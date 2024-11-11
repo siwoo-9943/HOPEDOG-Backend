@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_LOGSTDBY_EVENTS for SYS.DBA_LOGSTDBY_EVENTS
-/
-

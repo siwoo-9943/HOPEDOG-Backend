@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$IOSTAT_FUNCTION for SYS.GV_$IOSTAT_FUNCTION
-/
-

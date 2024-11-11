@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_TAB_PARTITIONS for SYS.ALL_TAB_PARTITIONS
-/
-

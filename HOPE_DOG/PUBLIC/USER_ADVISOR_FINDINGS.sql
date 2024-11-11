@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_ADVISOR_FINDINGS for SYS.USER_ADVISOR_FINDINGS
-/
-

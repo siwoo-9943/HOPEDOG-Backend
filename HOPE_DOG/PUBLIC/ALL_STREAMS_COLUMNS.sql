@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_STREAMS_COLUMNS for SYS.ALL_STREAMS_COLUMNS
-/
-

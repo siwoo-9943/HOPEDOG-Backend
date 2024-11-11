@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".PRODUCT_PROFILE for SYSTEM.PRODUCT_PRIVS
-/
-

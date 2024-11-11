@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ORA_CLIENT_IP_ADDRESS for SYS.CLIENT_IP_ADDRESS
-/
-

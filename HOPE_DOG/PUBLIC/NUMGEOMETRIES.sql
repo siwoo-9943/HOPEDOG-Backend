@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".NUMGEOMETRIES for MDSYS.OGC_NUMGEOMETRIES
-/
-

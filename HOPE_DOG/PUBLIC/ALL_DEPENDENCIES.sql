@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_DEPENDENCIES for SYS.ALL_DEPENDENCIES
-/
-

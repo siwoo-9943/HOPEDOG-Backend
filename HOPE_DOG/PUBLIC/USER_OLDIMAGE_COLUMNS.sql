@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_OLDIMAGE_COLUMNS for SYS.USER_OLDIMAGE_COLUMNS
-/
-

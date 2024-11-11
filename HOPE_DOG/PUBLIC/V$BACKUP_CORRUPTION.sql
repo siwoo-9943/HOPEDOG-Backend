@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$BACKUP_CORRUPTION for SYS.V_$BACKUP_CORRUPTION
-/
-

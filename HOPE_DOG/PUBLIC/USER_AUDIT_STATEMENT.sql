@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_AUDIT_STATEMENT for SYS.USER_AUDIT_STATEMENT
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_SNAPSHOT_LOGS for SYS.USER_SNAPSHOT_LOGS
-/
-

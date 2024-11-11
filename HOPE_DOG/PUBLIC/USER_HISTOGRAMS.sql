@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_HISTOGRAMS for SYS.USER_TAB_HISTOGRAMS
-/
-

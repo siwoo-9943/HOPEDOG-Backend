@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$ACTIVE_SERVICES for SYS.GV_$ACTIVE_SERVICES
-/
-

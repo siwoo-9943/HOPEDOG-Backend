@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$RECOVERY_PROGRESS for SYS.GV_$RECOVERY_PROGRESS
-/
-

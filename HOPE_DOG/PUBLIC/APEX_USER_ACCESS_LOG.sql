@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".APEX_USER_ACCESS_LOG for APEX_040000.APEX_USER_ACCESS_LOG
-/
-
