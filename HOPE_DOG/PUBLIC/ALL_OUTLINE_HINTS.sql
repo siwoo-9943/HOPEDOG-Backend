@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_OUTLINE_HINTS for SYS.USER_OUTLINE_HINTS
+/
+

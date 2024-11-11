@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$DIAG_IPS_FILE_COPY_LOG for SYS.V_$DIAG_IPS_FILE_COPY_LOG
+/
+

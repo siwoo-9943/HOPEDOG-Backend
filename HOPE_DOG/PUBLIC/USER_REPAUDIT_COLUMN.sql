@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_REPAUDIT_COLUMN for SYS.USER_REPAUDIT_COLUMN
+/
+

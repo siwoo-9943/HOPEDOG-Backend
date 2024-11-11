@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$MAX_ACTIVE_SESS_TARGET_MTH for SYS.GV_$MAX_ACTIVE_SESS_TARGET_MTH
+/
+

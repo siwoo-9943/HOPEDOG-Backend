@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DM_NMF_ATTRIBUTE_SET for SYS.DM_NMF_ATTRIBUTE_SET
+/
+

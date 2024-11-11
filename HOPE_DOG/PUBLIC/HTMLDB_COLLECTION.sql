@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".HTMLDB_COLLECTION for APEX_040000.HTMLDB_COLLECTION
+/
+

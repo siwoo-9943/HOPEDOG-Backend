@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$SQL_WORKAREA_ACTIVE for SYS.V_$SQL_WORKAREA_ACTIVE
+/
+

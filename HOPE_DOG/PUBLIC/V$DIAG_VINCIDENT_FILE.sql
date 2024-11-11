@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$DIAG_VINCIDENT_FILE for SYS.V_$DIAG_VINCIDENT_FILE
+/
+

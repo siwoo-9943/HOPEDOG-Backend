@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_TYPE_VERSIONS for SYS.USER_TYPE_VERSIONS
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$LOGMNR_TRANSACTION for SYS.V_$LOGMNR_TRANSACTION
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".SDO_STRING2_ARRAY for MDSYS.SDO_STRING2_ARRAY
+/
+

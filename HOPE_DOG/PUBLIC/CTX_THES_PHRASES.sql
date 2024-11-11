@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".CTX_THES_PHRASES for CTXSYS.CTX_THES_PHRASES
+/
+

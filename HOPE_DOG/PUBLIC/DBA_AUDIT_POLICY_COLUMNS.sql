@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_AUDIT_POLICY_COLUMNS for SYS.DBA_AUDIT_POLICY_COLUMNS
+/
+

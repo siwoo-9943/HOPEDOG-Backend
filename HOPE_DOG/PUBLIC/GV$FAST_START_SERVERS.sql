@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$FAST_START_SERVERS for SYS.GV_$FAST_START_SERVERS
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_REPCONFLICT for SYS.USER_REPCONFLICT
+/
+

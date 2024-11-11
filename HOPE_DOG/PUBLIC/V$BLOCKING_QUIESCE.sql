@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$BLOCKING_QUIESCE for SYS.V_$BLOCKING_QUIESCE
+/
+

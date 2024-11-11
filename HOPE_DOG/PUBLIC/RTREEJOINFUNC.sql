@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".RTREEJOINFUNC for MDSYS.RTREEJOINFUNC
+/
+

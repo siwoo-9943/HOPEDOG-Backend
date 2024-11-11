@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_WARNING_SETTINGS for SYS.ALL_WARNING_SETTINGS
+/
+

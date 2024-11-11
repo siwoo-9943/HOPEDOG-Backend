@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$DATABASE_KEY_INFO for SYS.GV_$DATABASE_KEY_INFO
+/
+

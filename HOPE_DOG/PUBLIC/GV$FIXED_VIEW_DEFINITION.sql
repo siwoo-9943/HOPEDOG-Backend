@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$FIXED_VIEW_DEFINITION for SYS.GV_$FIXED_VIEW_DEFINITION
+/
+

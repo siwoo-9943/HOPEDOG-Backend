@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_REPGENOBJECTS for SYS.DBA_REPGENOBJECTS
+/
+

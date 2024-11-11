@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".SDO_ELEM_INFO_ARRAY for MDSYS.SDO_ELEM_INFO_ARRAY
+/
+

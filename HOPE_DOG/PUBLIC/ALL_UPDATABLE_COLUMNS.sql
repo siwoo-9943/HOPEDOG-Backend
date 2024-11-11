@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_UPDATABLE_COLUMNS for SYS.ALL_UPDATABLE_COLUMNS
+/
+

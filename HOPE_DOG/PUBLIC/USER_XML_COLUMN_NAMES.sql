@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_XML_COLUMN_NAMES for SYS.USER_XML_COLUMN_NAMES
+/
+

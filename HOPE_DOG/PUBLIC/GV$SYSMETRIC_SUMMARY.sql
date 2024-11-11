@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$SYSMETRIC_SUMMARY for SYS.GV_$SYSMETRIC_SUMMARY
+/
+

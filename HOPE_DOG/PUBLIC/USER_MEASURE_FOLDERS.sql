@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_MEASURE_FOLDERS for SYS.USER_MEASURE_FOLDERS
+/
+

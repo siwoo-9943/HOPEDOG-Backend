@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_IND_SUBPARTITIONS for SYS.ALL_IND_SUBPARTITIONS
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ST_GEOMCOLLECTION for MDSYS.ST_GEOMCOLLECTION
+/
+

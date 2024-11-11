@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".INTERSECTION for MDSYS.OGC_INTERSECTION
+/
+

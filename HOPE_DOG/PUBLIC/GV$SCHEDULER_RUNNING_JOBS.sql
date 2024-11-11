@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$SCHEDULER_RUNNING_JOBS for SYS.GV_$SCHEDULER_RUNNING_JOBS
+/
+

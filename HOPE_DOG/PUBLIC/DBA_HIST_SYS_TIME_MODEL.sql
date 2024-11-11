@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_HIST_SYS_TIME_MODEL for SYS.DBA_HIST_SYS_TIME_MODEL
+/
+

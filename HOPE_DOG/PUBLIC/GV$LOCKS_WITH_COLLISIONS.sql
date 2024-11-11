@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$LOCKS_WITH_COLLISIONS for SYS.GV_$LOCKS_WITH_COLLISIONS
+/
+

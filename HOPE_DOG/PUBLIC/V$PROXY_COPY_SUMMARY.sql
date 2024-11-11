@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$PROXY_COPY_SUMMARY for SYS.V_$PROXY_COPY_SUMMARY
+/
+

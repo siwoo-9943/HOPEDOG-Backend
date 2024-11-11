@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$CLUSTER_INTERCONNECTS for SYS.V_$CLUSTER_INTERCONNECTS
+/
+

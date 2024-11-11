@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$DIAG_VIPS_PKG_INC_CAND for SYS.V_$DIAG_VIPS_PKG_INC_CAND
+/
+

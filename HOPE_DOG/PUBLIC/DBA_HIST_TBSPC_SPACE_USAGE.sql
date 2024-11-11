@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_HIST_TBSPC_SPACE_USAGE for SYS.DBA_HIST_TBSPC_SPACE_USAGE
+/
+

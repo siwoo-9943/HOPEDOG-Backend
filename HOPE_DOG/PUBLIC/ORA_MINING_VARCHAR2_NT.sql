@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ORA_MINING_VARCHAR2_NT for SYS.ORA_MINING_VARCHAR2_NT
+/
+

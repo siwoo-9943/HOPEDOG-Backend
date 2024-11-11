@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBMS_RECTIFIER_DIFF for SYS.DBMS_RECTIFIER_DIFF
+/
+

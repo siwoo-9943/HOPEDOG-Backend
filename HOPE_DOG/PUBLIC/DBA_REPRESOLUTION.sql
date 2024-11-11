@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_REPRESOLUTION for SYS.DBA_REPRESOLUTION
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_UPDATABLE_COLUMNS for SYS.DBA_UPDATABLE_COLUMNS
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_HIST_SYSTEM_EVENT for SYS.DBA_HIST_SYSTEM_EVENT
+/
+

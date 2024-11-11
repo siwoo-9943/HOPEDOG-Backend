@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_XDS_ATTRIBUTE_SECS for SYS.DBA_XDS_ATTRIBUTE_SECS
+/
+

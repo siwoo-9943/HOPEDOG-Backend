@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_ADDM_INSTANCES for SYS.DBA_ADDM_INSTANCES
+/
+

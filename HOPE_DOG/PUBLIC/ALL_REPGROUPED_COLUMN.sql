@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_REPGROUPED_COLUMN for SYS.ALL_REPGROUPED_COLUMN
+/
+

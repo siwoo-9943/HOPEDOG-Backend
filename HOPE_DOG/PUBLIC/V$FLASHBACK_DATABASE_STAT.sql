@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$FLASHBACK_DATABASE_STAT for SYS.V_$FLASHBACK_DATABASE_STAT
+/
+

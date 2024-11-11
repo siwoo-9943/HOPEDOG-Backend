@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".PROXY_USERS_AND_ROLES for SYS.PROXY_USERS_AND_ROLES
+/
+

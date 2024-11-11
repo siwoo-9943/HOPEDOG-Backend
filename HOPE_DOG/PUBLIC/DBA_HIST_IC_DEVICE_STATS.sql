@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_HIST_IC_DEVICE_STATS for SYS.DBA_HIST_IC_DEVICE_STATS
+/
+

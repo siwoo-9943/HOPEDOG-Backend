@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBMS_DEBUG_JDWP_CUSTOM for SYS.DBMS_DEBUG_JDWP_CUSTOM
+/
+

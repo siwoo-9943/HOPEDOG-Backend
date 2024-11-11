@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_XMLSCHEMA_LEVEL_VIEW for SYS.DBA_XMLSCHEMA_LEVEL_VIEW
+/
+

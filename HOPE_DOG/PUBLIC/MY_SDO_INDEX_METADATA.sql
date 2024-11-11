@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".MY_SDO_INDEX_METADATA for MDSYS.MY_SDO_INDEX_METADATA
+/
+

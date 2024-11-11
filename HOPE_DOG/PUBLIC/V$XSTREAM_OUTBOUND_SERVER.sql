@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$XSTREAM_OUTBOUND_SERVER for SYS.V_$XSTREAM_OUTBOUND_SERVER
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".SDO_WITHIN_DISTANCE for MDSYS.SDO_WITHIN_DISTANCE
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_RSRC_IO_CALIBRATE for SYS.DBA_RSRC_IO_CALIBRATE
+/
+

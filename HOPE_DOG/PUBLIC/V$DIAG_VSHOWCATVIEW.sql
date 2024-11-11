@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$DIAG_VSHOWCATVIEW for SYS.V_$DIAG_VSHOWCATVIEW
+/
+

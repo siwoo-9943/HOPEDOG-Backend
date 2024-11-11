@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$WORKLOAD_REPLAY_THREAD for SYS.GV_$WORKLOAD_REPLAY_THREAD
+/
+

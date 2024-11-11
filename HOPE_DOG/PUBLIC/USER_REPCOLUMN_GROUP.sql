@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_REPCOLUMN_GROUP for SYS.USER_REPCOLUMN_GROUP
+/
+

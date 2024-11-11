@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$FILEMETRIC_HISTORY for SYS.GV_$FILEMETRIC_HISTORY
+/
+

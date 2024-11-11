@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_DEQUEUE_QUEUES for SYS.ALL_DEQUEUE_QUEUES
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_ADVISOR_ACTIONS for SYS.USER_ADVISOR_ACTIONS
+/
+

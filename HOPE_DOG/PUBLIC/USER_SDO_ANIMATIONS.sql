@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_SDO_ANIMATIONS for MDSYS.USER_SDO_ANIMATIONS
+/
+
