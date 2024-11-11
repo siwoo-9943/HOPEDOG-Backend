@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_INVALID_OBJECTS for SYS.DBA_INVALID_OBJECTS
+/
+

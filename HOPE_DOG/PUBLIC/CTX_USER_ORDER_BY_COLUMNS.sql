@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".CTX_USER_ORDER_BY_COLUMNS for CTXSYS.CTX_USER_ORDER_BY_COLUMNS
+/
+

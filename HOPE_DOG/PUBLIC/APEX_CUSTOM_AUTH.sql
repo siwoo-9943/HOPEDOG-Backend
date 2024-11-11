@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".APEX_CUSTOM_AUTH for APEX_040000.APEX_CUSTOM_AUTH
+/
+

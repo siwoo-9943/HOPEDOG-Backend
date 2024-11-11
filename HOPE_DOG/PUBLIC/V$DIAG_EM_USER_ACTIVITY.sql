@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$DIAG_EM_USER_ACTIVITY for SYS.V_$DIAG_EM_USER_ACTIVITY
+/
+

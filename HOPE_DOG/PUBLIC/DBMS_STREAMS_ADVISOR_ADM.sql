@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBMS_STREAMS_ADVISOR_ADM for SYS.DBMS_STREAMS_ADVISOR_ADM
+/
+

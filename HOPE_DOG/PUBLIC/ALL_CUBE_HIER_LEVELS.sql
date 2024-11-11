@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_CUBE_HIER_LEVELS for SYS.ALL_CUBE_HIER_LEVELS
+/
+

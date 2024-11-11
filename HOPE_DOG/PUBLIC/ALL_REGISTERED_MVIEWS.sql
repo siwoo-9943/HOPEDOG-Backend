@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_REGISTERED_MVIEWS for SYS.ALL_REGISTERED_MVIEWS
+/
+

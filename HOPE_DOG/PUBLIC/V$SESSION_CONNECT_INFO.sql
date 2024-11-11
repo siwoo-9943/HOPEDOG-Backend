@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$SESSION_CONNECT_INFO for SYS.V_$SESSION_CONNECT_INFO
+/
+

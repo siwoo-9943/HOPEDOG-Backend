@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$STREAMS_APPLY_SERVER for SYS.GV_$STREAMS_APPLY_SERVER
+/
+

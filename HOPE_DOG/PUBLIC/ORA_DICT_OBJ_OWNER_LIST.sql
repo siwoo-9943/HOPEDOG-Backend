@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ORA_DICT_OBJ_OWNER_LIST for SYS.DICTIONARY_OBJ_OWNER_LIST
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".LOADER_INTCOL_INFO for SYS.LOADER_INTCOL_INFO
+/
+

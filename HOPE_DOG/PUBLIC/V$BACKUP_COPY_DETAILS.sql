@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$BACKUP_COPY_DETAILS for SYS.V_$BACKUP_COPY_DETAILS
+/
+

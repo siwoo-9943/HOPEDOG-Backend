@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".SDO_TGL_OBJECT_ARRAY for MDSYS.SDO_TGL_OBJECT_ARRAY
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".SDO_TOPO_TRANSACT_DATA$ for MDSYS.SDO_TOPO_TRANSACT_DATA$
+/
+

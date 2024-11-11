@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$GES_BLOCKING_ENQUEUE for SYS.GV_$GES_BLOCKING_ENQUEUE
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_MVIEW_COMMENTS for SYS.ALL_MVIEW_COMMENTS
+/
+

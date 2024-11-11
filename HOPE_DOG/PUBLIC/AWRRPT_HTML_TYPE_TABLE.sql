@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".AWRRPT_HTML_TYPE_TABLE for SYS.AWRRPT_HTML_TYPE_TABLE
+/
+

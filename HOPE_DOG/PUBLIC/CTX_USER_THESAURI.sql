@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".CTX_USER_THESAURI for CTXSYS.CTX_USER_THESAURI
+/
+

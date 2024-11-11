@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$GOLDENGATE_CAPTURE for SYS.GV_$GOLDENGATE_CAPTURE
+/
+

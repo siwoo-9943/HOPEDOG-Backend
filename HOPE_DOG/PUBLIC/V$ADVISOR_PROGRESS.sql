@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$ADVISOR_PROGRESS for SYS.V_$ADVISOR_PROGRESS
+/
+

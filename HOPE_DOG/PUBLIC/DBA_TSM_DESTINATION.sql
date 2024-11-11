@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_TSM_DESTINATION for SYS.DBA_TSM_DESTINATION
+/
+

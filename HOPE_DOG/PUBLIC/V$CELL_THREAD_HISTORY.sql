@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$CELL_THREAD_HISTORY for SYS.V_$CELL_THREAD_HISTORY
+/
+

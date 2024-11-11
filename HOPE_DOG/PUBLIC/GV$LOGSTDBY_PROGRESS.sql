@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$LOGSTDBY_PROGRESS for SYS.GV_$LOGSTDBY_PROGRESS
+/
+

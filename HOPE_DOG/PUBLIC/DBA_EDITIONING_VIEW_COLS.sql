@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_EDITIONING_VIEW_COLS for SYS.DBA_EDITIONING_VIEW_COLS
+/
+

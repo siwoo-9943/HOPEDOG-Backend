@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".OLAP_EXPRESSION_DATE for SYS.OLAP_EXPRESSION_DATE
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_STORED_SETTINGS for SYS.DBA_STORED_SETTINGS
+/
+

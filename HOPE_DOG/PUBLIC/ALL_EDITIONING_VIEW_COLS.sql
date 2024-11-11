@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_EDITIONING_VIEW_COLS for SYS.ALL_EDITIONING_VIEW_COLS
+/
+

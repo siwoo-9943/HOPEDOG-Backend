@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_ENCRYPTED_COLUMNS for SYS.ALL_ENCRYPTED_COLUMNS
+/
+

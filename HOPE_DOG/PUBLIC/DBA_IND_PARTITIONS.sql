@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_IND_PARTITIONS for SYS.DBA_IND_PARTITIONS
+/
+

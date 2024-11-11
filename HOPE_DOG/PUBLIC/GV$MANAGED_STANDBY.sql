@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$MANAGED_STANDBY for SYS.GV_$MANAGED_STANDBY
+/
+

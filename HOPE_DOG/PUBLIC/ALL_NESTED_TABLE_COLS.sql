@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_NESTED_TABLE_COLS for SYS.ALL_NESTED_TABLE_COLS
+/
+

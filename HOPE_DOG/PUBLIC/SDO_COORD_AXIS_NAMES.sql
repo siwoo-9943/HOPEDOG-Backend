@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".SDO_COORD_AXIS_NAMES for MDSYS.SDO_COORD_AXIS_NAMES
+/
+

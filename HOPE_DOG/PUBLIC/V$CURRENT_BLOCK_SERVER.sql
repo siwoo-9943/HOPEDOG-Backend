@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$CURRENT_BLOCK_SERVER for SYS.V_$CURRENT_BLOCK_SERVER
+/
+

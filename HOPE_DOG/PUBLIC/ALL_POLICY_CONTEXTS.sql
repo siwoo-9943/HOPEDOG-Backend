@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_POLICY_CONTEXTS for SYS.ALL_POLICY_CONTEXTS
+/
+

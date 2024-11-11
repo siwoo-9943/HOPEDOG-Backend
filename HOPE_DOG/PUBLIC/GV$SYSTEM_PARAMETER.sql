@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$SYSTEM_PARAMETER for SYS.GV_$SYSTEM_PARAMETER
+/
+

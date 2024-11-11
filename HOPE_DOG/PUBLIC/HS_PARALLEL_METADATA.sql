@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".HS_PARALLEL_METADATA for SYS.HS_PARALLEL_METADATA
+/
+

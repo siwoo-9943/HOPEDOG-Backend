@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".SQL_PLAN_ALLSTAT_ROW_TYPE for SYS.SQL_PLAN_ALLSTAT_ROW_TYPE
+/
+

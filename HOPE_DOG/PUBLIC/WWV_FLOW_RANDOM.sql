@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".WWV_FLOW_RANDOM for APEX_040000.WWV_FLOW_RANDOM
+/
+

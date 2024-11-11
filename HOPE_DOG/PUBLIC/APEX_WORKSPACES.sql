@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".APEX_WORKSPACES for APEX_040000.APEX_WORKSPACES
+/
+

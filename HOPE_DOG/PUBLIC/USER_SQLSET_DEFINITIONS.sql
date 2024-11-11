@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_SQLSET_DEFINITIONS for SYS.USER_SQLSET
+/
+

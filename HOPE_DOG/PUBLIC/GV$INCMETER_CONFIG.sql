@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$INCMETER_CONFIG for SYS.GV_$INCMETER_CONFIG
+/
+

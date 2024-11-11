@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_TEMPLATE_REFGROUPS for SYS.DBA_TEMPLATE_REFGROUPS
+/
+

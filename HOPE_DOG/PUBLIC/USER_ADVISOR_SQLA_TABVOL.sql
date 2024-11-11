@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_ADVISOR_SQLA_TABVOL for SYS.USER_ADVISOR_SQLA_TABVOL
+/
+

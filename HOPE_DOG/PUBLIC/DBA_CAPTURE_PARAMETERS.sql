@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_CAPTURE_PARAMETERS for SYS.DBA_CAPTURE_PARAMETERS
+/
+

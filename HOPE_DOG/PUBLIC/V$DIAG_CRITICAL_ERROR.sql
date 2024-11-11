@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$DIAG_CRITICAL_ERROR for SYS.V_$DIAG_CRITICAL_ERROR
+/
+

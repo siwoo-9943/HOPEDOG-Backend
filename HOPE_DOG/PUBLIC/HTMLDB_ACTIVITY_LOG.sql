@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".HTMLDB_ACTIVITY_LOG for APEX_040000.HTMLDB_ACTIVITY_LOG
+/
+

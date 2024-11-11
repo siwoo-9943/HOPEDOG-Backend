@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$STREAMS_CAPTURE for SYS.GV_$STREAMS_CAPTURE
+/
+

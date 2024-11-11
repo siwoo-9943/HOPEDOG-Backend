@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_WORKLOAD_REPLAYS for SYS.DBA_WORKLOAD_REPLAYS
+/
+

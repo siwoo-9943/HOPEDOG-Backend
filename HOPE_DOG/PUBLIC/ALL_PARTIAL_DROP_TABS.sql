@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_PARTIAL_DROP_TABS for SYS.ALL_PARTIAL_DROP_TABS
+/
+

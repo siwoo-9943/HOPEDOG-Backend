@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_STORED_SETTINGS for SYS.USER_STORED_SETTINGS
+/
+

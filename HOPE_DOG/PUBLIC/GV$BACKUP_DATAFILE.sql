@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$BACKUP_DATAFILE for SYS.GV_$BACKUP_DATAFILE
+/
+

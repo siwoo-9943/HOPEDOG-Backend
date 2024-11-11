@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_SCHEDULER_WINDOW_LOG for SYS.DBA_SCHEDULER_WINDOW_LOG
+/
+

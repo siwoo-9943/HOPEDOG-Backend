@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_CUBE_HIERARCHIES for SYS.DBA_CUBE_HIERARCHIES
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBMS_REDEFINITION for SYS.DBMS_REDEFINITION
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$LOGMNR_DICTIONARY_LOAD for SYS.V_$LOGMNR_DICTIONARY_LOAD
+/
+

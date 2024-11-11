@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".APEX_COLLECTION for APEX_040000.APEX_COLLECTION
+/
+

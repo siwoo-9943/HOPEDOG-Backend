@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".TABLE_EXPORT_PATHS for SYS.TABLE_EXPORT_PATHS
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_APPLY_TABLE_COLUMNS for SYS.ALL_APPLY_TABLE_COLUMNS
+/
+
