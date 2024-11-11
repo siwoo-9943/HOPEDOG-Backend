@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$ACTIVE_SESSION_HISTORY for SYS.GV_$ACTIVE_SESSION_HISTORY
+/
+

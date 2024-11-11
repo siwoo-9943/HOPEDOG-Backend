@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_REPPRIORITY_GROUP for SYS.DBA_REPPRIORITY_GROUP
+/
+

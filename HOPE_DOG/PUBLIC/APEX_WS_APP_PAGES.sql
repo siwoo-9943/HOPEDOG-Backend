@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".APEX_WS_APP_PAGES for APEX_040000.APEX_WS_APP_PAGES
+/
+

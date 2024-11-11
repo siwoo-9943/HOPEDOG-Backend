@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_ADVISOR_OBJECTS for SYS.DBA_ADVISOR_OBJECTS
+/
+

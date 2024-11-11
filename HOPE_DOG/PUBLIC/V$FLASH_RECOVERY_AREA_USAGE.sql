@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$FLASH_RECOVERY_AREA_USAGE for SYS.V_$FLASH_RECOVERY_AREA_USAGE
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_LOG_GROUP_COLUMNS for SYS.DBA_LOG_GROUP_COLUMNS
+/
+

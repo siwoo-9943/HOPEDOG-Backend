@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".AWR_OBJECT_INFO_TABLE_TYPE for SYS.AWR_OBJECT_INFO_TABLE_TYPE
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_RSRC_CONSUMER_GROUPS for SYS.DBA_RSRC_CONSUMER_GROUPS
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".SDO_RELATEMASK_TABLE for MDSYS.SDO_RELATEMASK_TABLE
+/
+

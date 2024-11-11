@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$IO_CALIBRATION_STATUS for SYS.V_$IO_CALIBRATION_STATUS
+/
+

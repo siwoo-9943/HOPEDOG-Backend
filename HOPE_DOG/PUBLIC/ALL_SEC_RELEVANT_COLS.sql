@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_SEC_RELEVANT_COLS for SYS.ALL_SEC_RELEVANT_COLS
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_EXPORT_OBJECTS for SYS.DBA_EXPORT_OBJECTS
+/
+

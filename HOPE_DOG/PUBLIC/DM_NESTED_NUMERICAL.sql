@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DM_NESTED_NUMERICAL for SYS.DM_NESTED_NUMERICAL
+/
+

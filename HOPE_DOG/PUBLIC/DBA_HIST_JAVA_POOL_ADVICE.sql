@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_HIST_JAVA_POOL_ADVICE for SYS.DBA_HIST_JAVA_POOL_ADVICE
+/
+

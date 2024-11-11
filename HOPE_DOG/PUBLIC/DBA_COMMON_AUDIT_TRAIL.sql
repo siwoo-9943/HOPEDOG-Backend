@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_COMMON_AUDIT_TRAIL for SYS.DBA_COMMON_AUDIT_TRAIL
+/
+

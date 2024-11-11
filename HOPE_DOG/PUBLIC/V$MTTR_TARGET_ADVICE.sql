@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$MTTR_TARGET_ADVICE for SYS.V_$MTTR_TARGET_ADVICE
+/
+

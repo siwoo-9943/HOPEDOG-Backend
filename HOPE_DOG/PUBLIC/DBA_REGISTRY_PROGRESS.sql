@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_REGISTRY_PROGRESS for SYS.DBA_REGISTRY_PROGRESS
+/
+

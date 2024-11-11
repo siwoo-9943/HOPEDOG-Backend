@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$GLOBAL_TRANSACTION for SYS.GV_$GLOBAL_TRANSACTION
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_SQLSET_STATEMENTS for SYS.DBA_SQLSET_STATEMENTS
+/
+

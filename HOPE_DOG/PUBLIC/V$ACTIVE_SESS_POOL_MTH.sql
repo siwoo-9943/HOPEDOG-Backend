@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$ACTIVE_SESS_POOL_MTH for SYS.V_$ACTIVE_SESS_POOL_MTH
+/
+

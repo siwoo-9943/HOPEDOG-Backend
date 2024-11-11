@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$OBSOLETE_PARAMETER for SYS.V_$OBSOLETE_PARAMETER
+/
+

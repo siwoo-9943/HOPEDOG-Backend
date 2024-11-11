@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$FOREIGN_ARCHIVED_LOG for SYS.GV_$FOREIGN_ARCHIVED_LOG
+/
+

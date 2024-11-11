@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".CTX_TRACE_VALUES for CTXSYS.CTX_TRACE_VALUES
+/
+

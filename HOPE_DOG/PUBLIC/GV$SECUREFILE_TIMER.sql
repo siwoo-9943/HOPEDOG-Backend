@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$SECUREFILE_TIMER for SYS.GV_$SECUREFILE_TIMER
+/
+

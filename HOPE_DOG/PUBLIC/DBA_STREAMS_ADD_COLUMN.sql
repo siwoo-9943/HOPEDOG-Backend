@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_STREAMS_ADD_COLUMN for SYS.DBA_STREAMS_ADD_COLUMN
+/
+

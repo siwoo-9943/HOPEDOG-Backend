@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$ENCRYPTED_TABLESPACES for SYS.V_$ENCRYPTED_TABLESPACES
+/
+

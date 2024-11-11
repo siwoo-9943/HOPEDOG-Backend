@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$RMAN_CONFIGURATION for SYS.V_$RMAN_CONFIGURATION
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$JAVA_LIBRARY_CACHE_MEMORY for SYS.V_$JAVA_LIBRARY_CACHE_MEMORY
+/
+

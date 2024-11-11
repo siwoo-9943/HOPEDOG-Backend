@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_JOIN_IND_COLUMNS for SYS.USER_JOIN_IND_COLUMNS
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_STREAMS_RENAME_TABLE for SYS.DBA_STREAMS_RENAME_TABLE
+/
+

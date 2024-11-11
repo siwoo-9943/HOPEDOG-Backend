@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_DIM_ATTRIBUTES for SYS.ALL_DIM_ATTRIBUTES
+/
+

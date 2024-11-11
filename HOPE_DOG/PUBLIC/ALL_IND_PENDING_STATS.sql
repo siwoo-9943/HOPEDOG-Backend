@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_IND_PENDING_STATS for SYS.ALL_IND_PENDING_STATS
+/
+

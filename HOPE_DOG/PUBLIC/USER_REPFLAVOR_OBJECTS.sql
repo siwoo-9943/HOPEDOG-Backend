@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_REPFLAVOR_OBJECTS for SYS.USER_REPFLAVOR_OBJECTS
+/
+

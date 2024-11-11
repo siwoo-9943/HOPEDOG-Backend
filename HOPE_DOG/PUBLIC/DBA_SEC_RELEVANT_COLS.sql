@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_SEC_RELEVANT_COLS for SYS.DBA_SEC_RELEVANT_COLS
+/
+

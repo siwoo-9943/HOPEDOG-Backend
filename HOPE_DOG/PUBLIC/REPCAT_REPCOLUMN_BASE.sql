@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".REPCAT_REPCOLUMN_BASE for SYS.REPCAT_REPCOLUMN_BASE
+/
+

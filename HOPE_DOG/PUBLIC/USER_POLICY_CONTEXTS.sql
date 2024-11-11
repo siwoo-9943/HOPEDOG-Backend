@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_POLICY_CONTEXTS for SYS.USER_POLICY_CONTEXTS
+/
+

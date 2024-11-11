@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".SCHEMA_EXPORT_PATHS for SYS.SCHEMA_EXPORT_PATHS
+/
+

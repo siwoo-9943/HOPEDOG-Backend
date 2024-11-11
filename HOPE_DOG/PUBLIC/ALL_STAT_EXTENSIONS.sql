@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_STAT_EXTENSIONS for SYS.ALL_STAT_EXTENSIONS
+/
+

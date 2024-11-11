@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$PROPAGATION_SENDER for SYS.GV_$PROPAGATION_SENDER
+/
+

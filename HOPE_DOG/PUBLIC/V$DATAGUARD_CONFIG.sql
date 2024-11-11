@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$DATAGUARD_CONFIG for SYS.V_$DATAGUARD_CONFIG
+/
+

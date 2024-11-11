@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$RSRCMGRMETRIC_HISTORY for SYS.V_$RSRCMGRMETRIC_HISTORY
+/
+

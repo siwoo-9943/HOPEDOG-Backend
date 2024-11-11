@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_CUBE_HIER_VIEW_COLUMNS for SYS.DBA_CUBE_HIER_VIEW_COLUMNS
+/
+

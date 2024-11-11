@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$SESSION_BLOCKERS for SYS.GV_$SESSION_BLOCKERS
+/
+

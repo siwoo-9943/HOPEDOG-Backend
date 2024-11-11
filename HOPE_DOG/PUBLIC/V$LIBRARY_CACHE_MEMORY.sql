@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$LIBRARY_CACHE_MEMORY for SYS.V_$LIBRARY_CACHE_MEMORY
+/
+

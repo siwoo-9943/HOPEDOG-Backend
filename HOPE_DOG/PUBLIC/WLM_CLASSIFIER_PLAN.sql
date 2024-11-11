@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".WLM_CLASSIFIER_PLAN for APPQOSSYS.WLM_CLASSIFIER_PLAN
+/
+

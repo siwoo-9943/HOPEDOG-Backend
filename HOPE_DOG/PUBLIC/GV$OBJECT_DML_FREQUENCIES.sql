@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$OBJECT_DML_FREQUENCIES for SYS.GV_$OBJECT_DML_FREQUENCIES
+/
+

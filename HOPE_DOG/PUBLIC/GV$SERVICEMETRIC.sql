@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$SERVICEMETRIC for SYS.GV_$SERVICEMETRIC
+/
+

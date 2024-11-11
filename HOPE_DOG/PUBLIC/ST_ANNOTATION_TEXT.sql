@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ST_ANNOTATION_TEXT for MDSYS.ST_ANNOTATION_TEXT
+/
+

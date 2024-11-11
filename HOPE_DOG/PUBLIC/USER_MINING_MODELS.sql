@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_MINING_MODELS for SYS.USER_MINING_MODELS
+/
+

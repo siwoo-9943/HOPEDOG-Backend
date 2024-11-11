@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".CTX_PARAMETERS for CTXSYS.CTX_PARAMETERS
+/
+

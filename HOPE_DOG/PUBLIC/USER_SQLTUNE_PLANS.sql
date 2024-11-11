@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_SQLTUNE_PLANS for SYS.USER_SQLTUNE_PLANS
+/
+

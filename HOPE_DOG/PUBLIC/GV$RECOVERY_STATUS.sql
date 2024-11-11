@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$RECOVERY_STATUS for SYS.GV_$RECOVERY_STATUS
+/
+

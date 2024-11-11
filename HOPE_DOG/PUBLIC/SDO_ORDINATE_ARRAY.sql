@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".SDO_ORDINATE_ARRAY for MDSYS.SDO_ORDINATE_ARRAY
+/
+

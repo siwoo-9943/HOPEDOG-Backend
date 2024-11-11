@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$LOGMNR_CALLBACK for SYS.GV_$LOGMNR_CALLBACK
+/
+

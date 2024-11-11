@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ST_CURVEPOLYGON for MDSYS.ST_CURVEPOLYGON
+/
+

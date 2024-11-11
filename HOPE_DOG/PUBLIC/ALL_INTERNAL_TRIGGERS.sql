@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_INTERNAL_TRIGGERS for SYS.ALL_INTERNAL_TRIGGERS
+/
+

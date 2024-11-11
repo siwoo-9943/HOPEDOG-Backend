@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$BUFFERED_SUBSCRIBERS for SYS.GV_$BUFFERED_SUBSCRIBERS
+/
+

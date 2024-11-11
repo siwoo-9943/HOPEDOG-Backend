@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_MVIEW_REFRESH_TIMES for SYS.ALL_MVIEW_REFRESH_TIMES
+/
+

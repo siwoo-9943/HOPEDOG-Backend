@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$ARCHIVE_PROCESSES for SYS.GV_$ARCHIVE_PROCESSES
+/
+

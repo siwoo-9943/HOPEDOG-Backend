@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_POLICY_CONTEXTS for SYS.DBA_POLICY_CONTEXTS
+/
+

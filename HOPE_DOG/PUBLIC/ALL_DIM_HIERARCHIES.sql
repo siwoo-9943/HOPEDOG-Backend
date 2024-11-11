@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_DIM_HIERARCHIES for SYS.ALL_DIM_HIERARCHIES
+/
+

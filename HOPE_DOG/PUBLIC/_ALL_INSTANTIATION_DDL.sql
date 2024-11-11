@@ -1,0 +1,3 @@
+create public synonym "PUBLIC"."_ALL_INSTANTIATION_DDL" for SYS."_ALL_INSTANTIATION_DDL"
+/
+

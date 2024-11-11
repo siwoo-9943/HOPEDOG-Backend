@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$DISPATCHER_CONFIG for SYS.V_$DISPATCHER_CONFIG
+/
+

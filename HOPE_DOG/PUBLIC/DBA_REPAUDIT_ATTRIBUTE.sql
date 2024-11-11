@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_REPAUDIT_ATTRIBUTE for SYS.DBA_REPAUDIT_ATTRIBUTE
+/
+

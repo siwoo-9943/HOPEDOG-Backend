@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_COMPARISON_ROW_DIF for SYS.USER_COMPARISON_ROW_DIF
+/
+
