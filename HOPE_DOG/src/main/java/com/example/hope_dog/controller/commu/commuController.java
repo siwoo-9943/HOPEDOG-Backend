@@ -80,24 +80,43 @@ public class commuController {
 
     //인기게시글
     @GetMapping("/good")
-    public String getGoodCommuList(Model model) {
+    public String getGoodCommuList(Model model, @SessionAttribute(name = "memberNo", required = false) Long memberNo,
+                                   @SessionAttribute(name = "centerMemberNo", required = false) Long centerMemberNo) {
         List<CommuDTO> commuList = commuService.cateCommuGood();
         model.addAttribute("commuList", commuList);
 
+        // memberNo 또는 centerMemberNo가 있으면 글쓰기 버튼을 보이게 할 수 있도록 처리
+        model.addAttribute("memberNo", memberNo);
+        model.addAttribute("centerMemberNo", centerMemberNo);
 
         return "commu/commu-main";
     }
 
 
     //거지같은 검색 더럽게 안됨
-//    @GetMapping("/main/search")
-//    public String searchCommu(@RequestParam(required = false) String searchType,
-//                              @RequestParam(required = false) String keyword,
-//                              Model model) {
-//        List<CommuDTO> commuList = commuService.searchCommu(searchType, keyword);
-//        model.addAttribute("commuList", commuList);
-//        return "commu/commu-main";
-//    }
+    @GetMapping("/main/search")
+    public String search(@RequestParam(value = "searchType") String searchType,
+                         @RequestParam(value = "keyword") String keyword,
+                         Model model) {
+        // 검색 조건에 맞는 결과 가져오기
+        List<CommuDetailDTO> commuList = null;
+
+        // 검색 조건에 따라 처리
+        if ("commuTitle".equals(searchType)) {
+            commuList = commuService.commuSearch(keyword, null, null);  // 제목 검색
+        } else if ("memberNickname".equals(searchType)) {
+            commuList = commuService.commuSearch(null, keyword, null);  // 닉네임 검색
+        } else if ("centerMemberName".equals(searchType)) {
+            commuList = commuService.commuSearch(null, null, keyword);  // 센터명 검색
+        }
+
+        // 모델에 결과 추가
+        model.addAttribute("commuList", commuList);
+        model.addAttribute("searchType", searchType);
+        model.addAttribute("keyword", keyword);
+
+        return "commu/commu-main"; // search.html 페이지를 반환
+    }
 
 
     //게시글 상세

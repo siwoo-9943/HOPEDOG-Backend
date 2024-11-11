@@ -96,15 +96,14 @@ public class CommuService {
     }
 
     //검색
-//    public List<CommuDTO> searchCommu(String searchType, String keyword) {
-//        Map<String, Object> params = new HashMap<>();
-//        if ("nickname".equals(searchType)) {
-//            params.put("memberNickName", keyword);
-//        } else if ("title".equals(searchType)) {
-//            params.put("title", keyword);
-//        }
-//        return commuMapper.searchCommu(params);
-//    }
+    public List<CommuDetailDTO> commuSearch(String commuTitle, String memberNickname, String centerMemberName) {
+        return commuMapper.commuSearch(commuTitle, memberNickname, centerMemberName);
+    }
+
+
+
+
+
 
 
 

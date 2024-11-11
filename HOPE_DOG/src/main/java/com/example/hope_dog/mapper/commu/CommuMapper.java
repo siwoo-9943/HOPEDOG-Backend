@@ -30,8 +30,9 @@ public interface CommuMapper {
     List<CommuDTO> findCateByGood();
 
     // 커뮤니티 검색
-    List<CommuDTO> searchCommu(@Param("searchType") String searchType,
-                               @Param("keyword") String keyword);
+    List<CommuDetailDTO> commuSearch(@Param("commuTitle") String commuTitle,
+                               @Param("memberNickname")String memberNickname,
+                               @Param("centerMemberName") String centerMemberName);
 
 
 

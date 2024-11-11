@@ -43,6 +43,41 @@
         C.CAR_REGIDATE DESC, C.CAR_NO DESC
     </select>
 
+<!--    검색-->
+    <select id="carSearch" resultType="CarDetailDTO">
+        SELECT
+        c.CAR_NO,
+        c.CAR_CATE,
+        c.CAR_TITLE,
+        c.CAR_CONTENT,
+        c.CAR_REGIDATE,
+        c.CAR_UPDATEDATE,
+        c.CAR_WRITER,
+        m.MEMBER_NICKNAME AS memberNickname,
+        cm.CENTER_MEMBER_NAME AS centerMemberName
+        FROM
+        TBL_CAR c
+        LEFT JOIN
+        TBL_MEMBER m ON c.CAR_WRITER = m.MEMBER_NO
+        LEFT JOIN
+        TBL_CENTER_MEMBER cm ON c.CAR_WRITER = cm.CENTER_MEMBER_NO
+        WHERE
+        <choose>
+            <!-- 제목 검색 -->
+            <when test="carTitle != null">
+                c.CAR_TITLE LIKE '%' || #{carTitle} || '%'
+            </when>
+
+            <!-- 닉네임 검색 -->
+            <when test="memberNickname != null">
+                (m.MEMBER_NICKNAME LIKE '%' || #{memberNickname} || '%'
+                OR cm.CENTER_MEMBER_NAME LIKE '%' || #{memberNickname} || '%')
+            </when>
+        </choose>
+        ORDER BY c.CAR_REGIDATE DESC
+    </select>
+
+
 <!--    게시글 상세 조회 (게시글과 댓글 정보 포함)-->
     <select id="selectCarDetail" resultType="CarDetailDTO">
         SELECT c.CAR_NO, c.CAR_CATE, c.CAR_TITLE, c.CAR_CONTENT,
@@ -112,7 +147,7 @@
             CASE
                 WHEN MOD(cc.CAR_COMMENT_WRITER, 10) = 1 THEN m.MEMBER_NICKNAME
                 WHEN MOD(cc.CAR_COMMENT_WRITER, 10) = 2 THEN cm.CENTER_MEMBER_NAME
-                END AS COMMENT_WRITER_NAME
+                END AS CAR_COMMENT_WRITER_NAME
         FROM
             TBL_CAR_COMMENT cc
                 LEFT JOIN
