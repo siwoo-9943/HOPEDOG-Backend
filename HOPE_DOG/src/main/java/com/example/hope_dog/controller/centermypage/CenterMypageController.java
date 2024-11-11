@@ -487,8 +487,6 @@ class CenterMypageController {
     }
 
 
-
-
 //임시보호
     //임시보호 신청서 목록 조회
     @GetMapping("/protectRequestList")
