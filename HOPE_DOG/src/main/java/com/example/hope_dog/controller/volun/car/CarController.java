@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Collections;
 import java.util.List;
@@ -50,6 +51,8 @@ public class CarController {
       }
 
       model.addAttribute("carList", carList);
+        model.addAttribute("memberNo", memberNo);
+        model.addAttribute("centerMemberNo", centerMemberNo);
 
         return "volun/car/volun-car-main";
 
@@ -139,7 +142,9 @@ public class CarController {
 
         carDTO.setCarWriter(writerNo);
         carService.carWriter(carDTO);
-        return "redirect:/car/main";
+        // 글 등록 후 carNo를 얻어와서 리다이렉트 URL에 포함시킴
+        Long carNo = carDTO.getCarNo(); // carDTO에서 carNo를 가져옴
+        return "redirect:/car/post/" + carNo; // 상세페이지로 이동
     }
 
     //글 수정페이지로 이동
@@ -162,7 +167,9 @@ public class CarController {
     public String carModifyRegi(@DateTimeFormat(pattern = "yyyy-MM-dd") CarDetailDTO carDetailDTO, HttpSession session){
 
         carService.carModify(carDetailDTO);
-        return "redirect:/car/main";
+        // 글 등록 후 carNo를 얻어와서 리다이렉트 URL에 포함시킴
+        Long carNo = carDetailDTO.getCarNo(); // carDTO에서 carNo를 가져옴
+        return "redirect:/car/post/" + carNo; // 상세페이지로 이동
     }
 
     //글 삭제
@@ -180,7 +187,7 @@ public class CarController {
         //글 신고
     @GetMapping("/carContentReport")
     public String carContentReport(@RequestParam("carNo") Long carNo, @RequestParam("reportContent") String reportContent,
-                                   HttpSession session,CarReportDTO carReportDTO){
+                                   HttpSession session, CarReportDTO carReportDTO, RedirectAttributes redirectAttributes){
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
         Long memberNo = (Long) session.getAttribute("memberNo");
 
@@ -192,8 +199,13 @@ public class CarController {
 
 
         carService.carContentReport(carReportDTO);
+        Long reportNo = carReportDTO.getReportNo(); // carDTO에서 carNo를 가져옴
 
-        return "redirect:/car/main";
+
+        // 게시글 신고 메시지를 플래시 속성으로 추가
+        redirectAttributes.addFlashAttribute("ContentreportSuccess", true);
+
+        return "redirect:/car/post/" + carNo; // 상세페이지로 이동
 
     }
 
@@ -202,10 +214,14 @@ public class CarController {
     public String carComentWrite(HttpSession session, CarCommentDTO carCommentDTO){
         Long centerMemberNo =(Long) session.getAttribute("centerMemberNo");
         Long memberNo =(Long) session.getAttribute("memberNo");
+        System.out.println("컨트롤러 댓글 센터 :" + centerMemberNo);
+        System.out.println("컨트롤러 댓글 일반:" + memberNo);
 
         carCommentDTO.setCarCommentWriter(centerMemberNo!= null ? centerMemberNo : memberNo);
 
         Long carNo = carCommentDTO.getCarNo();
+        System.out.println("컨트롤러 댓글 carNo: "+ carNo);
+        carService.carCommentRegi(carCommentDTO);
         return "redirect:/car/post/" + carNo;
     }
 
@@ -243,21 +259,29 @@ public class CarController {
 
     //댓글 신고
     @GetMapping("/carCommentReport")
-    public String carCommentDelete(HttpSession session,CarReportDTO carReportDTO,
-                                   @RequestParam("carCommentNo") Long carCommentNO,
+    public String carCommentDelete(HttpSession session,
+                                   @RequestParam("carCommentNo") Long carCommentNo,
                                    @RequestParam("carNo")Long carNo,
-                                   @RequestParam("reportComment") String reportComment){
+                                   @RequestParam("reportComment") String reportComment,RedirectAttributes redirectAttributes){
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
         Long memberNo = (Long) session.getAttribute("memberNo");
 
-        carReportDTO.setReportWriter(centerMemberNo != null ? centerMemberNo : memberNo);
+        System.out.println("댓글신고 centerMemberNo: " + centerMemberNo);
+        System.out.println("댓글신고 memberNo: " + memberNo);
+
+        CarReportDTO carReportDTO = new CarReportDTO();
         carReportDTO.setReportComment(reportComment);
-        carReportDTO.setReportCommentNo(carCommentNO);
+        carReportDTO.setReportCommentNo(carCommentNo);
         carReportDTO.setReportContentNo(carNo);
+        carReportDTO.setReportWriter(centerMemberNo != null ? centerMemberNo : memberNo);
 
         carService.carCommentReport(carReportDTO);
 
-        return "redirect: /car/post/" + carNo;
+        // 게시글 신고 메시지를 플래시 속성으로 추가
+        redirectAttributes.addFlashAttribute("ContentreportSuccess", true);
+
+
+        return "redirect:/car/post/" + carNo;
     }
 
 

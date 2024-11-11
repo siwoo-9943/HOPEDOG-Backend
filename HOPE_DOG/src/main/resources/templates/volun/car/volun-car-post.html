@@ -48,22 +48,25 @@
     <br>
 
       <!-- 글 작성에서 수정,삭제,신고 버튼 -->
-      <div class="comm-detail-box3" th:each="car : ${carDetailList}">
-          <div>
+      <div class="volun-detail-box3" th:each="car : ${carDetailList}">
+          <div class="modify-button">
             <div style="display: none" class="carNo" th:text="${car.carNo}"></div>
             <div style="display: none" class="carWriter" th:text="${memberNo != null?memberNo : centerMemberNo}"></div>
               <!-- 작성자 ID가 일치할 때만 수정 버튼과 삭제 버튼 표시 -->
               <button class="volun-modify-button" type="button" onclick="modifyClick()"
-                      th:if="${memberNo == car.memberNo or centerMemberNo == car.centerMemberNo}">수정</button>
+                      th:if="${(memberNo != null or centerMemberNo != null) and (car.carWriter == memberNo or car.carWriter == centerMemberNo)}">
+                  수정</button>
 
               <button class="volun-delete-button" type="button" onclick="deleteAlert()"
-                      th:if="${memberNo == car.memberNo or centerMemberNo == car.centerMemberNo}">삭제</button>
+                      th:if="${(memberNo != null or centerMemberNo != null) and (car.carWriter == memberNo or car.carWriter == centerMemberNo)}">
+                  삭제</button>
           </div>
 
           <!-- 작성자 ID가 일치하지 않을 때 신고 버튼 표시 -->
-          <button class="volun-end-button" type="button" onclick="ReportAlert()"
+          <div class="report-button">
+            <button class="volun-end-button" type="button" onclick="ReportAlert()"
                   th:if="${memberNo != car.memberNo and centerMemberNo != car.centerMemberNo}">신고</button>
-
+          </div>
       </div>
 
 
@@ -117,12 +120,28 @@
 
       <!-- 댓글입력 -->
       <div th:if="${memberNo != null or centerMemberNo != null}">
-          <form action="/car/carCommentRegi" method="post" th:each="car : ${carCommentList}">
+          <form action="/car/carCommentRegi" method="post">
               <input class="car-detail-commentregi" type="text" name="carComment" placeholder="욕설 및 혐오감을 주는 댓글은 삼가주세요" maxlength="1000">
-              <input th:value="${car.carNo}" style="display: none" name="carNo">　
-              <button class="car-commentregi-button" type="submit">등록</button>
+              <input th:value="${carDetailList[0].carNo}" style="display: none" name="carNo">　
+              <button class="car-commentregi-button" type="submit" onclick="return validateCommentForm()">등록</button>
           </form>
       </div>
+
+      <!-- 게시글신고완료시 -->
+      <div th:if="${ContentreportSuccess}">
+          <script>
+              alert('신고가 완료되었습니다.');
+          </script>
+      </div>
+
+      <!-- 댓글신고완료시 -->
+      <div th:if="${CommentreportSuccess}">
+          <script>
+              alert('신고가 완료되었습니다.');
+          </script>
+      </div>
+
+
 
       <br>
   </div>
