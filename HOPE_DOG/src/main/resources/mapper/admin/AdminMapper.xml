@@ -12,7 +12,7 @@
         from TBL_ADMIN
         where ADMIN_ID=#{adminId} and ADMIN_PW=#{adminPw}
     </select>
-<!--회원 목록 조회-->
+    <!--회원 목록 조회-->
     <select id="selectMemberList" resultType="AdminMemberDTO">
         SELECT
             MEMBER_NO,
@@ -31,7 +31,7 @@
         ORDER BY
             MEMBER_NO DESC
     </select>
-<!--memberNo로 회원 정보 검색-->
+    <!--memberNo로 회원 정보 검색-->
     <select id="selectMemberByNo" resultType="AdminMemberDTO">
         SELECT
             MEMBER_NO,
@@ -51,7 +51,7 @@
         ORDER BY
             MEMBER_NO DESC
     </select>
-<!--검색어로 회원 검색-->
+    <!--검색어로 회원 검색-->
     <select id="searchMemberByKeyword" parameterType="String" resultType="AdminMemberDTO">
         SELECT
             MEMBER_NO,
@@ -69,11 +69,11 @@
             TBL_MEMBER
         WHERE
             MEMBER_ID LIKE '%' || #{keyword} || '%' OR MEMBER_NAME LIKE '%' || #{keyword} || '%'
-            OR MEMBER_NICKNAME LIKE '%' || #{keyword} || '%' OR MEMBER_EMAIL LIKE '%' || #{keyword} || '%'
+           OR MEMBER_NICKNAME LIKE '%' || #{keyword} || '%' OR MEMBER_EMAIL LIKE '%' || #{keyword} || '%'
         ORDER BY
             MEMBER_NO DESC
     </select>
-<!--회원 강제 탈퇴-->
+    <!--회원 강제 탈퇴-->
     <delete id="deleteMembers" parameterType="list">
         DELETE FROM TBL_MEMBER
         WHERE MEMBER_NO IN
@@ -81,7 +81,7 @@
             #{memberNo}
         </foreach>
     </delete>
-<!--센터 회원 목록 조회-->
+    <!--센터 회원 목록 조회-->
     <select id="selectCenterMemberList" resultType="AdminCenterMemberDTO">
         SELECT
             TBL_CENTER_MEMBER.CENTER_MEMBER_NO,
@@ -99,7 +99,7 @@
             CENTER_FILE_PATH
         FROM
             TBL_CENTER_MEMBER LEFT JOIN TBL_CENTER_FILE
-        ON TBL_CENTER_MEMBER.CENTER_MEMBER_NO = TBL_CENTER_FILE.CENTER_MEMBER_NO
+                                        ON TBL_CENTER_MEMBER.CENTER_MEMBER_NO = TBL_CENTER_FILE.CENTER_MEMBER_NO
         WHERE CENTER_MEMBER_STATUS = 'N'
         ORDER BY TBL_CENTER_MEMBER.CENTER_MEMBER_NO DESC
     </select>
@@ -150,11 +150,11 @@
             CENTER_FILE_PATH
         FROM
             TBL_CENTER_MEMBER LEFT JOIN TBL_CENTER_FILE
-                                   ON TBL_CENTER_MEMBER.CENTER_MEMBER_NO = TBL_CENTER_FILE.CENTER_MEMBER_NO
+                                        ON TBL_CENTER_MEMBER.CENTER_MEMBER_NO = TBL_CENTER_FILE.CENTER_MEMBER_NO
         WHERE CENTER_MEMBER_STATUS = 'Y'
         ORDER BY TBL_CENTER_MEMBER.CENTER_MEMBER_NO DESC
     </select>
-<!--센터 멤버 검색 목록 조회-->
+    <!--센터 멤버 검색 목록 조회-->
     <select id="searchPassedCenterMemberByKeyword" parameterType="String" resultType="AdminCenterMemberDTO">
         SELECT
             TBL_CENTER_MEMBER.CENTER_MEMBER_NO,
@@ -175,7 +175,7 @@
                                         ON TBL_CENTER_MEMBER.CENTER_MEMBER_NO = TBL_CENTER_FILE.CENTER_MEMBER_NO
         WHERE CENTER_MEMBER_STATUS = 'Y' AND
             (CENTER_MEMBER_ID LIKE '%' || #{keyword} || '%' OR CENTER_MEMBER_NAME LIKE '%' || #{keyword} || '%'
-           OR CENTER_MEMBER_EMAIL LIKE '%' || #{keyword} || '%')
+                OR CENTER_MEMBER_EMAIL LIKE '%' || #{keyword} || '%')
         ORDER BY
             TBL_CENTER_MEMBER.CENTER_MEMBER_NO DESC
     </select>
@@ -200,20 +200,20 @@
             TBL_CENTER_MEMBER LEFT JOIN TBL_CENTER_FILE
                                         ON TBL_CENTER_MEMBER.CENTER_MEMBER_NO = TBL_CENTER_FILE.CENTER_MEMBER_NO
         WHERE CENTER_MEMBER_STATUS = 'Y' AND
-              TBL_CENTER_MEMBER.CENTER_MEMBER_NO = #{centerMemberNo}
+            TBL_CENTER_MEMBER.CENTER_MEMBER_NO = #{centerMemberNo}
     </select>
-<!--신고 내역 조회-->
+    <!--신고 내역 조회-->
     <select id="selectReportList" resultType="AdminReportDTO">
         SELECT REPORT_NO, 'POST' AS REPORT_TYPE,
-            CASE
-                WHEN REPORT_CATE = '입양' THEN 'ADOPT'
-                WHEN REPORT_CATE = '임시보호' THEN 'PROTECT'
-                WHEN REPORT_CATE = '후기' THEN 'REVIEW'
-                WHEN REPORT_CATE = '봉사' THEN 'VOLUN'
-                WHEN REPORT_CATE = '기부' THEN 'DONA'
-                WHEN REPORT_CATE = '카풀' THEN 'CAR'
-                WHEN REPORT_CATE = '커뮤' THEN 'COMMU'
-            END AS REPORT_CATE, REPORT_CONTENT, TO_CHAR(REPORT_REGIDATE, 'YYYY-MM-DD') AS REPORT_REGIDATE,
+               CASE
+                   WHEN REPORT_CATE = '입양' THEN 'ADOPT'
+                   WHEN REPORT_CATE = '임시보호' THEN 'PROTECT'
+                   WHEN REPORT_CATE = '후기' THEN 'REVIEW'
+                   WHEN REPORT_CATE = '봉사' THEN 'VOLUN'
+                   WHEN REPORT_CATE = '기부' THEN 'DONA'
+                   WHEN REPORT_CATE = '카풀' THEN 'CAR'
+                   WHEN REPORT_CATE = '커뮤' THEN 'COMMU'
+                   END AS REPORT_CATE, REPORT_CONTENT, TO_CHAR(REPORT_REGIDATE, 'YYYY-MM-DD') AS REPORT_REGIDATE,
                CASE
                    WHEN MOD(REPORT_WRITER, 10) = 1 THEN (SELECT MEMBER_NICKNAME FROM TBL_MEMBER WHERE MEMBER_NO = REPORT_WRITER)
                    WHEN MOD(REPORT_WRITER, 10) = 2 THEN (SELECT CENTER_MEMBER_NAME FROM TBL_CENTER_MEMBER WHERE CENTER_MEMBER_NO = REPORT_WRITER)
@@ -244,7 +244,7 @@
 
         ORDER BY REPORT_REGIDATE DESC
     </select>
-<!--    신고 내역 검색 조회-->
+    <!--    신고 내역 검색 조회-->
     <select id="searchReportByKeyword" parameterType="String" resultType="AdminReportDTO">
         SELECT REPORT_NO, 'POST' AS REPORT_TYPE,
                CASE
@@ -291,141 +291,75 @@
 
         ORDER BY REPORT_REGIDATE DESC
     </select>
-<!--게시글 목록 조회-->
+    <!--게시글 목록 조회-->
     <select id="selectPostList" resultType="AdminPostDTO">
         WITH AllPosts AS (
             SELECT
                 'COMMU' AS post_type,
-                TO_CHAR(COMMU_NO) AS post_no,
+                COMMU_NO AS post_no,
                 COMMU_TITLE AS post_title,
-<<<<<<< HEAD
-                COMMU_CONTENT as post_content,
-                CAST(
-                        CASE
-                            WHEN MOD(COMMU_WRITER, 10) = 1 THEN
-                                    (SELECT MEMBER_NICKNAME FROM TBL_MEMBER WHERE MEMBER_NO = COMMU_WRITER)
-                            WHEN MOD(COMMU_WRITER, 10) = 2 THEN
-                                (SELECT CENTER_MEMBER_NAME FROM TBL_CENTER_MEMBER WHERE CENTER_MEMBER_NO = COMMU_WRITER)
-                            END AS VARCHAR2(100)
-                ) AS post_writer,
-=======
                 TO_CLOB(COMMU_CONTENT) as post_content,  -- CLOB을 VARCHAR로 변환
                 CASE
                     WHEN MOD(COMMU_WRITER, 10) = 1 THEN (SELECT MEMBER_NICKNAME FROM TBL_MEMBER WHERE MEMBER_NO = COMMU_WRITER)
                     WHEN MOD(COMMU_WRITER, 10) = 2 THEN (SELECT CENTER_MEMBER_NAME FROM TBL_CENTER_MEMBER WHERE CENTER_MEMBER_NO = COMMU_WRITER)
                     END AS post_writer,
->>>>>>> main
                 COMMU_UPDATEDATE AS post_update_date
             FROM TBL_COMMU
-
             UNION ALL
-
             SELECT
                 'VOLUN' AS post_type,
-                TO_CHAR(VOLUN_NO) AS post_no,
+                VOLUN_NO AS post_no,
                 VOLUN_TITLE AS post_title,
-<<<<<<< HEAD
-                VOLUN_CONTENT as post_content,
-                CAST((SELECT CENTER_MEMBER_NAME FROM TBL_CENTER_MEMBER
-                      WHERE CENTER_MEMBER_NO = TBL_VOLUN.CENTER_MEMBER_NO) AS VARCHAR2(100)) AS post_writer,
-=======
                 TO_CLOB(VOLUN_CONTENT) as post_content,  -- CLOB을 VARCHAR로 변환
                 (SELECT CENTER_MEMBER_NAME FROM TBL_CENTER_MEMBER WHERE CENTER_MEMBER_NO = TBL_VOLUN.CENTER_MEMBER_NO) AS post_writer,
->>>>>>> main
                 VOLUN_UPDATEDATE AS post_update_date
             FROM TBL_VOLUN
-
             UNION ALL
-
             SELECT
                 'DONA' AS post_type,
-                TO_CHAR(DONA_NO) AS post_no,
+                DONA_NO AS post_no,
                 DONA_TITLE AS post_title,
-<<<<<<< HEAD
-                DONA_CONTENT as post_content,
-                CAST((SELECT CENTER_MEMBER_NAME FROM TBL_CENTER_MEMBER
-                      WHERE CENTER_MEMBER_NO = TBL_DONA.CENTER_MEMBER_NO) AS VARCHAR2(100)) AS post_writer,
-=======
                 TO_CLOB(DONA_CONTENT) as post_content,  -- CLOB을 VARCHAR로 변환
                 (SELECT CENTER_MEMBER_NAME FROM TBL_CENTER_MEMBER WHERE CENTER_MEMBER_NO = TBL_DONA.CENTER_MEMBER_NO) AS post_writer,
->>>>>>> main
                 DONA_UPDATEDATE AS post_update_date
             FROM TBL_DONA
-
             UNION ALL
-
             SELECT
                 'ADOPT' AS post_type,
-                TO_CHAR(ADOPT_NO) AS post_no,
+                ADOPT_NO AS post_no,
                 ADOPT_TITLE AS post_title,
-<<<<<<< HEAD
-                ADOPT_CONTENT as post_content,
-                CAST((SELECT CENTER_MEMBER_NAME FROM TBL_CENTER_MEMBER
-                      WHERE CENTER_MEMBER_NO = TBL_ADOPT.CENTER_MEMBER_NO) AS VARCHAR2(100)) AS post_writer,
-=======
                 TO_CLOB(ADOPT_CONTENT) as post_content,  -- CLOB을 VARCHAR로 변환
                 (SELECT CENTER_MEMBER_NAME FROM TBL_CENTER_MEMBER WHERE CENTER_MEMBER_NO = TBL_ADOPT.CENTER_MEMBER_NO) AS post_writer,
->>>>>>> main
                 ADOPT_UPDATEDATE AS post_update_date
             FROM TBL_ADOPT
-
             UNION ALL
-
             SELECT
                 'CAR' AS post_type,
-                TO_CHAR(CAR_NO) AS post_no,
+                CAR_NO AS post_no,
                 CAR_TITLE AS post_title,
-<<<<<<< HEAD
-                CAR_CONTENT as post_content,
-                CAST(
-                        CASE
-                            WHEN MOD(CAR_WRITER, 10) = 1 THEN
-                                    (SELECT MEMBER_NICKNAME FROM TBL_MEMBER WHERE MEMBER_NO = CAR_WRITER)
-                            WHEN MOD(CAR_WRITER, 10) = 2 THEN
-                                (SELECT CENTER_MEMBER_NAME FROM TBL_CENTER_MEMBER WHERE CENTER_MEMBER_NO = CAR_WRITER)
-                            END AS VARCHAR2(100)
-                ) AS post_writer,
-=======
                 TO_CLOB(CAR_CONTENT) as post_content,  -- CLOB을 VARCHAR로 변환
                 CASE
                     WHEN MOD(CAR_WRITER, 10) = 1 THEN (SELECT MEMBER_NICKNAME FROM TBL_MEMBER WHERE MEMBER_NO = CAR_WRITER)
                     WHEN MOD(CAR_WRITER, 10) = 2 THEN (SELECT CENTER_MEMBER_NAME FROM TBL_CENTER_MEMBER WHERE CENTER_MEMBER_NO = CAR_WRITER)
                     END AS post_writer,
->>>>>>> main
                 CAR_UPDATEDATE AS post_update_date
             FROM TBL_CAR
-
             UNION ALL
-
             SELECT
                 'PROTECT' AS post_type,
-                TO_CHAR(PROTECT_NO) AS post_no,
+                PROTECT_NO AS post_no,
                 PROTECT_TITLE AS post_title,
-<<<<<<< HEAD
-                PROTECT_CONTENT as post_content,
-                CAST((SELECT CENTER_MEMBER_NAME FROM TBL_CENTER_MEMBER
-                      WHERE CENTER_MEMBER_NO = TBL_PROTECT.CENTER_MEMBER_NO) AS VARCHAR2(100)) AS post_writer,
-=======
                 TO_CLOB(PROTECT_CONTENT) as post_content,  -- CLOB을 VARCHAR로 변환
                 (SELECT CENTER_MEMBER_NAME FROM TBL_CENTER_MEMBER WHERE CENTER_MEMBER_NO = TBL_PROTECT.CENTER_MEMBER_NO) AS post_writer,
->>>>>>> main
                 PROTECT_UPDATEDATE AS post_update_date
             FROM TBL_PROTECT
-
             UNION ALL
-
             SELECT
                 'REVIEW' AS post_type,
-                TO_CHAR(REVIEW_NO) AS post_no,
+                REVIEW_NO AS post_no,
                 REVIEW_TITLE AS post_title,
-<<<<<<< HEAD
-                REVIEW_CONTENT as post_content,
-                CAST((SELECT MEMBER_NICKNAME FROM TBL_MEMBER
-                      WHERE MEMBER_NO = TBL_REVIEW.MEMBER_NO) AS VARCHAR2(100)) AS post_writer,
-=======
                 TO_CLOB(REVIEW_CONTENT) as post_content,  -- CLOB을 VARCHAR로 변환
                 (SELECT MEMBER_NICKNAME FROM TBL_MEMBER WHERE MEMBER_NO = TBL_REVIEW.MEMBER_NO) AS post_writer,
->>>>>>> main
                 REVIEW_UPDATEDATE AS post_update_date
             FROM TBL_REVIEW
         )
@@ -440,7 +374,7 @@
         ORDER BY post_update_date DESC
     </select>
 
-<!--게시글 검색 목록 조회-->
+    <!--게시글 검색 목록 조회-->
     <select id="searchPostByKeyword" parameterType="String" resultType="AdminPostDTO">
         WITH AllPosts AS (
             SELECT
@@ -594,7 +528,7 @@
 
 
 
-<!--게시글 상세 조회-->
+    <!--게시글 상세 조회-->
     <select id="selectPostDetail" parameterType="map" resultType="AdminPostDTO">
         <choose>
             <when test="postType == 'COMMU'">
@@ -891,7 +825,7 @@
         </choose>
     </delete>
 
-<!--댓글 검색 조회 목록-->
+    <!--댓글 검색 조회 목록-->
     <select id="searchCommentByKeyword" parameterType="String" resultType="AdminCommentDTO">
         WITH AllComments AS (
             SELECT
@@ -1164,7 +1098,7 @@
         ORDER BY NOTICE_UPDATEDATE DESC
     </select>
 
-<!--공지사항 검색 목록 조회-->
+    <!--공지사항 검색 목록 조회-->
     <select id="searchNoticeByKeyword" parameterType="String" resultType="AdminNoticeDTO">
         SELECT NOTICE_NO, ADMIN_NO, NOTICE_CATE, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATEDATE
         FROM TBL_NOTICE
@@ -1180,13 +1114,13 @@
         </foreach>
     </delete>
 
-<!--    공지사항 상세 조회-->
+    <!--    공지사항 상세 조회-->
     <select id="selectNoticeDetail" resultType="AdminNoticeDTO">
         SELECT NOTICE_NO, ADMIN_NO, NOTICE_CATE, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_UPDATEDATE
         FROM TBL_NOTICE
         WHERE NOTICE_NO = #{noticeNo}
     </select>
-<!--입양 신청서 목록 조회-->
+    <!--입양 신청서 목록 조회-->
     <select id="selectAdoptRequestList" resultType="AdminAdoptRequestDTO">
         SELECT
             ADOPT_REQUEST_NO,
@@ -1317,7 +1251,7 @@
                 JOIN TBL_CENTER_MEMBER ON TBL_ADOPT_REQUEST.CENTER_MEMBER_NO = TBL_CENTER_MEMBER.CENTER_MEMBER_NO
         WHERE ADOPT_REQUEST_NAME LIKE '%' || #{keyword} || '%' OR MEMBER_NICKNAME LIKE '%' || #{keyword} || '%' OR ADOPT_REQUEST_EMAIL LIKE '%' || #{keyword} || '%'
     </select>
-<!--임시보호 신청서 목록 조회-->
+    <!--임시보호 신청서 목록 조회-->
     <select id="selectProtectRequestList" resultType="AdminProtectRequestDTO">
         SELECT
             PROTECT_REQUEST_NO,
@@ -1329,26 +1263,26 @@
             PROTECT_REQUEST_AGE,
             PROTECT_REQUEST_ZIPCODE,
             PROTECT_REQUEST_ADDRESS,
-            PROTECT_REQUEST_ADDR_DETAIL,
+            PROTECT_REQUEST_ADDRESS_DETAIL,
             PROTECT_REQUEST_JOB,
             PROTECT_REQUEST_MARRY,
-            PROTECT_REQUEST_INFO_AGREE,
-            PROTECT_REQUEST_Q1,
-            PROTECT_REQUEST_Q2,
-            PROTECT_REQUEST_Q3,
-            PROTECT_REQUEST_Q4,
-            PROTECT_REQUEST_Q5,
-            PROTECT_REQUEST_Q6,
-            PROTECT_REQUEST_Q7,
-            PROTECT_REQUEST_Q8,
-            PROTECT_REQUEST_Q9,
-            PROTECT_REQUEST_Q10,
-            PROTECT_REQUEST_Q11,
-            PROTECT_REQUEST_Q12,
-            PROTECT_REQUEST_Q13,
-            PROTECT_REQUEST_Q14,
-            PROTECT_REQUEST_Q15,
-            PROTECT_REQUEST_PROTECT_AGREE,
+            PROTECT_REQUEST_INFO_AGREEMENT,
+            PRO_REQUEST_Q1,
+            PRO_REQUEST_Q2,
+            PRO_REQUEST_Q3,
+            PRO_REQUEST_Q4,
+            PRO_REQUEST_Q5,
+            PRO_REQUEST_Q6,
+            PRO_REQUEST_Q7,
+            PRO_REQUEST_Q8,
+            PRO_REQUEST_Q9,
+            PRO_REQUEST_Q10,
+            PRO_REQUEST_Q11,
+            PRO_REQUEST_Q12,
+            PRO_REQUEST_Q13,
+            PRO_REQUEST_Q14,
+            PRO_REQUEST_Q15,
+            PROTECT_REQUEST_AGREEMENT,
             PROTECT_NO,
             MEMBER_NAME,
             MEMBER_NICKNAME,
@@ -1372,26 +1306,26 @@
             PROTECT_REQUEST_AGE,
             PROTECT_REQUEST_ZIPCODE,
             PROTECT_REQUEST_ADDRESS,
-            PROTECT_REQUEST_ADDR_DETAIL,
+            PROTECT_REQUEST_ADDRESS_DETAIL,
             PROTECT_REQUEST_JOB,
             PROTECT_REQUEST_MARRY,
-            PROTECT_REQUEST_INFO_AGREE,
-            PROTECT_REQUEST_Q1,
-            PROTECT_REQUEST_Q2,
-            PROTECT_REQUEST_Q3,
-            PROTECT_REQUEST_Q4,
-            PROTECT_REQUEST_Q5,
-            PROTECT_REQUEST_Q6,
-            PROTECT_REQUEST_Q7,
-            PROTECT_REQUEST_Q8,
-            PROTECT_REQUEST_Q9,
-            PROTECT_REQUEST_Q10,
-            PROTECT_REQUEST_Q11,
-            PROTECT_REQUEST_Q12,
-            PROTECT_REQUEST_Q13,
-            PROTECT_REQUEST_Q14,
-            PROTECT_REQUEST_Q15,
-            PROTECT_REQUEST_PROTECT_AGREE,
+            PROTECT_REQUEST_INFO_AGREEMENT,
+            PRO_REQUEST_Q1,
+            PRO_REQUEST_Q2,
+            PRO_REQUEST_Q3,
+            PRO_REQUEST_Q4,
+            PRO_REQUEST_Q5,
+            PRO_REQUEST_Q6,
+            PRO_REQUEST_Q7,
+            PRO_REQUEST_Q8,
+            PRO_REQUEST_Q9,
+            PRO_REQUEST_Q10,
+            PRO_REQUEST_Q11,
+            PRO_REQUEST_Q12,
+            PRO_REQUEST_Q13,
+            PRO_REQUEST_Q14,
+            PRO_REQUEST_Q15,
+            PROTECT_REQUEST_AGREEMENT,
             PROTECT_NO,
             MEMBER_NAME,
             MEMBER_NICKNAME,
@@ -1416,26 +1350,26 @@
             PROTECT_REQUEST_AGE,
             PROTECT_REQUEST_ZIPCODE,
             PROTECT_REQUEST_ADDRESS,
-            PROTECT_REQUEST_ADDR_DETAIL,
+            PROTECT_REQUEST_ADDRESS_DETAIL,
             PROTECT_REQUEST_JOB,
             PROTECT_REQUEST_MARRY,
-            PROTECT_REQUEST_INFO_AGREE,
-            PROTECT_REQUEST_Q1,
-            PROTECT_REQUEST_Q2,
-            PROTECT_REQUEST_Q3,
-            PROTECT_REQUEST_Q4,
-            PROTECT_REQUEST_Q5,
-            PROTECT_REQUEST_Q6,
-            PROTECT_REQUEST_Q7,
-            PROTECT_REQUEST_Q8,
-            PROTECT_REQUEST_Q9,
-            PROTECT_REQUEST_Q10,
-            PROTECT_REQUEST_Q11,
-            PROTECT_REQUEST_Q12,
-            PROTECT_REQUEST_Q13,
-            PROTECT_REQUEST_Q14,
-            PROTECT_REQUEST_Q15,
-            PROTECT_REQUEST_PROTECT_AGREE,
+            PROTECT_REQUEST_INFO_AGREEMENT,
+            PRO_REQUEST_Q1,
+            PRO_REQUEST_Q2,
+            PRO_REQUEST_Q3,
+            PRO_REQUEST_Q4,
+            PRO_REQUEST_Q5,
+            PRO_REQUEST_Q6,
+            PRO_REQUEST_Q7,
+            PRO_REQUEST_Q8,
+            PRO_REQUEST_Q9,
+            PRO_REQUEST_Q10,
+            PRO_REQUEST_Q11,
+            PRO_REQUEST_Q12,
+            PRO_REQUEST_Q13,
+            PRO_REQUEST_Q14,
+            PRO_REQUEST_Q15,
+            PROTECT_REQUEST_AGREEMENT,
             PROTECT_NO,
             MEMBER_NAME,
             MEMBER_NICKNAME,
@@ -1448,7 +1382,7 @@
                 JOIN TBL_CENTER_MEMBER ON TBL_PROTECT_REQUEST.CENTER_MEMBER_NO = TBL_CENTER_MEMBER.CENTER_MEMBER_NO
         WHERE PROTECT_REQUEST_NAME LIKE '%' || #{keyword} || '%' OR MEMBER_NICKNAME LIKE '%' || #{keyword} || '%' OR PROTECT_REQUEST_EMAIL LIKE '%' || #{keyword} || '%'
     </select>
-<!--    봉사 목록 조회-->
+    <!--    봉사 목록 조회-->
     <select id="selectVolunRequestList" resultType="AdminVolunRequestDTO">
         SELECT
             VOLUN_REQUEST_NO,
@@ -1462,7 +1396,6 @@
             VOLUN_REQUEST_ADDRESS,
             VOLUN_REQUEST_ADDRESS_DETAIL,
             VOLUN_REQUEST_JOB,
-            VOLUN_REQUEST_MARRY,
             VOLUN_REQUEST_AGREEMENT,
             VOLUN_REQUEST_Q1,
             VOLUN_REQUEST_Q2,
@@ -1495,7 +1428,6 @@
             VOLUN_REQUEST_ADDRESS,
             VOLUN_REQUEST_ADDRESS_DETAIL,
             VOLUN_REQUEST_JOB,
-            VOLUN_REQUEST_MARRY,
             VOLUN_REQUEST_AGREEMENT,
             VOLUN_REQUEST_Q1,
             VOLUN_REQUEST_Q2,
@@ -1529,7 +1461,6 @@
             VOLUN_REQUEST_ADDRESS,
             VOLUN_REQUEST_ADDRESS_DETAIL,
             VOLUN_REQUEST_JOB,
-            VOLUN_REQUEST_MARRY,
             VOLUN_REQUEST_AGREEMENT,
             VOLUN_REQUEST_Q1,
             VOLUN_REQUEST_Q2,
@@ -1648,8 +1579,8 @@
             FROM TBL_ADMIN
             WHERE #{receiver} = '관리자'
         </selectKey>
-        INSERT INTO TBL_NOTEBOX_RECEIVE(notebox_receive_no, notebox_receive_title, notebox_receive_content, notebox_receive_regidate, notebox_receive_read, notebox_receive_readdate, notebox_receive_s, notebox_receive_r)
-        VALUES (SEQ_NOTE_RECEIVE.nextval, #{title}, #{content}, sysdate, 'N', null, 3, #{receiverNumber})
+        INSERT INTO TBL_NOTEBOX_RECEIVE(notebox_receive_no, notebox_receive_title, notebox_receive_content, notebox_receive_regidate, notebox_receive_read, notebox_receive_s, notebox_receive_r)
+        VALUES (SEQ_NOTE_RECEIVE.nextval, #{title}, #{content}, sysdate, 'N', 3, #{receiverNumber})
     </insert>
 
     <insert id="insertNoteWriteSend" parameterType="map">
