@@ -6,6 +6,7 @@
     <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
 </head>
 <body>
+<div class="header-container">
 <header class="header">
     <div class="logo-nav">
         <div class="logo">
@@ -38,8 +39,8 @@
                 <li class="nav-item">
                     <a th:href="@{/adopt/main}">입양</a>
                     <div class="dropdown-content">
-                        <a th:href="@{/adopt/safe}">안심 입양</a>
-                        <a th:href="@{/adopt/temp}">임시 보호</a>
+                        <a th:href="@{/adopt/adopt}">안심 입양</a>
+                        <a th:href="@{/adopt/protect}">임시 보호</a>
                         <a th:href="@{/adopt/review}">후기</a>
                     </div>
                 </li>
@@ -131,6 +132,7 @@
         </ul>
     </div>
 </header>
+</div>
 <script th:src="@{/js/fragment/header.js}"></script>
 </body>
 </html>
