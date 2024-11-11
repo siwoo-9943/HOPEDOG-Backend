@@ -24,4 +24,5 @@ public class VolunMainDTO {
     private String volunStatus;
     private Long centerMemberNo;
     private String centerMemberName;
+    private String centerMemberStatus;
 }

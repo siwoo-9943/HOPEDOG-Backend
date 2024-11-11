@@ -66,10 +66,12 @@
       <br>
 
       <!-- 봉사 등록 버튼 -->
-      <div class="volun-button-box" th:if="${centerMemberNo != null}">
+      <div th:each="centerMemberStatus : ${centerMemberStatus}">
+      <div class="volun-button-box" th:if="${centerMemberNo != null and centerMemberStatus.centerMemberStatus == 'Y'}">
         <a href="/volun/volunwrite">
           <button class="volun-button">등록</button>
         </a>
+      </div>
       </div>
 
       <!-- 페이지네이션 -->
