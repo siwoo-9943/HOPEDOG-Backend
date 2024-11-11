@@ -55,6 +55,13 @@
 </select>
     <!-- 여기까지 페이지네이션+게시글목록불러오기 -->
 
+    <!--회원상태조회-->
+    <select id="centerMemberStatus" resultType="VolunMainDTO">
+        select CENTER_MEMBER_STATUS
+        FROM TBL_CENTER_MEMBER
+        WHERE CENTER_MEMBER_NO = #{centerMemberNo}
+    </select>
+
     <!-- 봉사모집 진행중인 게시글-->
     <select id="selectTotalKeep" resultType="int">
         SELECT COUNT(VOLUN_NO) FROM TBL_VOLUN WHERE VOLUN_STATUS = 'T'
@@ -147,7 +154,7 @@
     <!-- 게시글 삭제 처리 -->
     <delete id="volunDelete" parameterType="VolunDetailDTO">
         DELETE FROM TBL_Volun
-        WHERE Volun_NO = #{volunNo}
+        WHERE VOLUN_NO = #{volunNo}
     </delete>
 
     <!-- 게시글 수정 -->
