@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_SYNC_CAPTURE_TABLES for SYS.DBA_SYNC_CAPTURE_TABLES
+/
+

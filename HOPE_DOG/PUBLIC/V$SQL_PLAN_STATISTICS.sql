@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$SQL_PLAN_STATISTICS for SYS.V_$SQL_PLAN_STATISTICS
+/
+

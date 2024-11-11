@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_SECONDARY_OBJECTS for SYS.DBA_SECONDARY_OBJECTS
+/
+

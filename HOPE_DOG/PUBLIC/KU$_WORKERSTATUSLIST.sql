@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".KU$_WORKERSTATUSLIST for SYS.KU$_WORKERSTATUSLIST1120
+/
+

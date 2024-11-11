@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBMS_TRANSACTION for SYS.DBMS_TRANSACTION
+/
+

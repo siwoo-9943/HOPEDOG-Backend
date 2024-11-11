@@ -42,7 +42,7 @@
             </div>
             <div class="center-container">
               <h1>회원 정보</h1>
-              <form id="center-signupForm" th:data-center-member-no="${centerMember.centerMemberNo}">
+              <form id="center-signupForm">
                 <div class="center-form-group">
                   <label for="center-name">이름 <span class="center-required">*</span></label>
                   <input type="text" id="center-name" name="center-name" readonly th:value="${centerMember.centerMemberName}" required>
@@ -108,8 +108,8 @@
 
                 <div class="delete-box-layout">
                   <div class="delete-box">
-                    <button type="button" class="approveOneButton delete-button">승인</button>
-                    <button type="button" class="refuseOneButton delete-button">거절</button>
+                    <button type="button" class="approveOneButton delete-button"  th:data-center-member-no="${centerMember.centerMemberNo}">승인</button>
+                    <button type="button" class="refuseOneButton delete-button"  th:data-center-member-no="${centerMember.centerMemberNo}">거절</button>
                   </div>
                 </div>
 

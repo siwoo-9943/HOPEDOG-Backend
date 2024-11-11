@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$INSTANCE_LOG_GROUP for SYS.GV_$INSTANCE_LOG_GROUP
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_CUBE_BUILD_PROCESSES for SYS.DBA_CUBE_BUILD_PROCESSES
+/
+

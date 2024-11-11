@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".QUEUE_PRIVILEGES for SYS.QUEUE_PRIVILEGES
+/
+

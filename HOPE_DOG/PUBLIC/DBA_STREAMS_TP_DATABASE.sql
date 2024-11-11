@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_STREAMS_TP_DATABASE for SYS.DBA_STREAMS_TP_DATABASE
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$CLASS_CACHE_TRANSFER for SYS.GV_$CLASS_CACHE_TRANSFER
+/
+

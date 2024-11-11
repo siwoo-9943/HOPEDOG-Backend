@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_SUMMARY_JOINS for SYS.USER_SUMMARY_JOINS
+/
+

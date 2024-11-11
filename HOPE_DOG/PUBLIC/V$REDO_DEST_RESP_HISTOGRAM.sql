@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$REDO_DEST_RESP_HISTOGRAM for SYS.V_$REDO_DEST_RESP_HISTOGRAM
+/
+

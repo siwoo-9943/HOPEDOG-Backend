@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$RSRCMGRMETRIC for SYS.GV_$RSRCMGRMETRIC
+/
+

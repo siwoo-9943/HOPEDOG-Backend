@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$DIAG_DIAGV_INCIDENT for SYS.V_$DIAG_DIAGV_INCIDENT
+/
+

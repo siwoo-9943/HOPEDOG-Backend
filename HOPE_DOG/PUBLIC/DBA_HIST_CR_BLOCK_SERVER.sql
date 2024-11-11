@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_HIST_CR_BLOCK_SERVER for SYS.DBA_HIST_CR_BLOCK_SERVER
+/
+

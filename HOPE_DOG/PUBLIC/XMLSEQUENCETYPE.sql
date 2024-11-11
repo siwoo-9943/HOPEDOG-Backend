@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".XMLSEQUENCETYPE for SYS.XMLSEQUENCETYPE
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$OBJECT_DEPENDENCY for SYS.GV_$OBJECT_DEPENDENCY
+/
+

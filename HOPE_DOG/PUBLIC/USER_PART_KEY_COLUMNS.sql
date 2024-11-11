@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_PART_KEY_COLUMNS for SYS.USER_PART_KEY_COLUMNS
+/
+

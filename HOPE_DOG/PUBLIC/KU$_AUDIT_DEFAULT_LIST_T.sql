@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".KU$_AUDIT_DEFAULT_LIST_T for SYS.KU$_AUDIT_DEFAULT_LIST_T
+/
+

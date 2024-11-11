@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".REWRITEMESSAGE for SYS.REWRITEMESSAGE
+/
+

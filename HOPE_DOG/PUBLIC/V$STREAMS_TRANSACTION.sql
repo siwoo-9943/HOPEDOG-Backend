@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$STREAMS_TRANSACTION for SYS.V_$STREAMS_TRANSACTION
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".SDO_TOPO_GEOMETRY for MDSYS.SDO_TOPO_GEOMETRY
+/
+

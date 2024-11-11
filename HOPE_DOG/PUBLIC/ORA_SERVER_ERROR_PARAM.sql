@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ORA_SERVER_ERROR_PARAM for SYS.SERVER_ERROR_PARAM
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$SYSTEM_WAIT_CLASS for SYS.GV_$SYSTEM_WAIT_CLASS
+/
+

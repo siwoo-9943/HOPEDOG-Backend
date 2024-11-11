@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$PERSISTENT_QMN_CACHE for SYS.GV_$PERSISTENT_QMN_CACHE
+/
+

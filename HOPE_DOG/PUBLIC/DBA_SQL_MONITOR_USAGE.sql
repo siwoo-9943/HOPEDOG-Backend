@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_SQL_MONITOR_USAGE for SYS.DBA_SQL_MONITOR_USAGE
+/
+

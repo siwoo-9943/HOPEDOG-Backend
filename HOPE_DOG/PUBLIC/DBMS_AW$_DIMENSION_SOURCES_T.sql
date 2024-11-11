@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBMS_AW$_DIMENSION_SOURCES_T for SYS.DBMS_AW$_DIMENSION_SOURCES_T
+/
+

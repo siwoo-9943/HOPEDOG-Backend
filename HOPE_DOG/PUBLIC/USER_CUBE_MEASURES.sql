@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_CUBE_MEASURES for SYS.USER_CUBE_MEASURES
+/
+

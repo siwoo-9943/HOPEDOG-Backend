@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBMS_INTERNAL_REPCAT for SYS.DBMS_INTERNAL_REPCAT
+/
+

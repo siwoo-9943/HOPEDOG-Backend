@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_REPEXTENSIONS for SYS.DBA_REPEXTENSIONS
+/
+

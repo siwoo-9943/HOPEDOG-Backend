@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_CUBE_VIEW_COLUMNS for SYS.ALL_CUBE_VIEW_COLUMNS
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$DIAG_VIPS_PACKAGE_SIZE for SYS.V_$DIAG_VIPS_PACKAGE_SIZE
+/
+

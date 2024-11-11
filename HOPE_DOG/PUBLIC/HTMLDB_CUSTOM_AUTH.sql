@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".HTMLDB_CUSTOM_AUTH for APEX_040000.HTMLDB_CUSTOM_AUTH
+/
+

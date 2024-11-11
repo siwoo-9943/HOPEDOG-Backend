@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_FILE_GROUP_FILES for SYS.USER_FILE_GROUP_FILES
+/
+

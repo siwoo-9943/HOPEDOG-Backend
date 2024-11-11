@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ST_MULTIPOLYGON for MDSYS.ST_MULTIPOLYGON
+/
+

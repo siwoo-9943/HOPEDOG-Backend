@@ -1,0 +1,3 @@
+create public synonym "PUBLIC"."_DBA_STREAMS_COMPONENT_STAT" for SYS."_DBA_STREAMS_COMPONENT_STAT"
+/
+

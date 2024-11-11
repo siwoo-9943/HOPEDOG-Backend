@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_COMPARISON_SCAN for SYS.USER_COMPARISON_SCAN
+/
+

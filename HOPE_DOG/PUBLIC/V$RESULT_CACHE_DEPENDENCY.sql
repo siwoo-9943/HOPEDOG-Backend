@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$RESULT_CACHE_DEPENDENCY for SYS.V_$RESULT_CACHE_DEPENDENCY
+/
+

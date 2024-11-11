@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$STANDBY_EVENT_HISTOGRAM for SYS.V_$STANDBY_EVENT_HISTOGRAM
+/
+

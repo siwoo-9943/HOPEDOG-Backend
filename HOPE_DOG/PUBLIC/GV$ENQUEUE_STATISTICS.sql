@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$ENQUEUE_STATISTICS for SYS.GV_$ENQUEUE_STATISTICS
+/
+

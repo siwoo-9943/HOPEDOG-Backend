@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_APPLICATION_ROLES for SYS.DBA_APPLICATION_ROLES
+/
+

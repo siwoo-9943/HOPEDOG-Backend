@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_EXTERNAL_TABLES for SYS.DBA_EXTERNAL_TABLES
+/
+

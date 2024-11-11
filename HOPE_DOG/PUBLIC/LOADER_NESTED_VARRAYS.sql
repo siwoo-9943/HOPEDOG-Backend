@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".LOADER_NESTED_VARRAYS for SYS.LOADER_NESTED_VARRAYS
+/
+

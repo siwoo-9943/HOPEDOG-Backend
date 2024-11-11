@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_FILE_GROUP_TABLES for SYS.ALL_FILE_GROUP_TABLES
+/
+

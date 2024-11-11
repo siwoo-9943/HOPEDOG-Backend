@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBMS_RULE_EXP_RS_INTERNAL for SYS.DBMS_RULE_EXP_RS_INTERNAL
+/
+

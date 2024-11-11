@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$IOSTAT_CONSUMER_GROUP for SYS.V_$IOSTAT_CONSUMER_GROUP
+/
+

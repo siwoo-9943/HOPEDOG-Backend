@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_XSTREAM_INBOUND for SYS.DBA_XSTREAM_INBOUND
+/
+

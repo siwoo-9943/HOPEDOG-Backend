@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_ADVISOR_JOURNAL for SYS.USER_ADVISOR_JOURNAL
+/
+

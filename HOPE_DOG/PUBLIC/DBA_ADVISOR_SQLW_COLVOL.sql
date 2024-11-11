@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_ADVISOR_SQLW_COLVOL for SYS.DBA_ADVISOR_SQLW_COLVOL
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_DIM_ATTRIBUTES for SYS.DBA_DIM_ATTRIBUTES
+/
+

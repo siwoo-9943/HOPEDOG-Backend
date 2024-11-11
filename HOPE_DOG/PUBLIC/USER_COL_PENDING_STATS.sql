@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_COL_PENDING_STATS for SYS.USER_COL_PENDING_STATS
+/
+

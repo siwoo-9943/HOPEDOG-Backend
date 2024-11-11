@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$MEMORY_TARGET_ADVICE for SYS.GV_$MEMORY_TARGET_ADVICE
+/
+

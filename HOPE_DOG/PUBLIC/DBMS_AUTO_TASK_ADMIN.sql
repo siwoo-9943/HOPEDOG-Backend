@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBMS_AUTO_TASK_ADMIN for SYS.DBMS_AUTO_TASK_ADMIN
+/
+

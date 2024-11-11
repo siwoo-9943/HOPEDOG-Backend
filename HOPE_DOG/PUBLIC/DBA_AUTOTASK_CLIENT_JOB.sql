@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_AUTOTASK_CLIENT_JOB for SYS.DBA_AUTOTASK_CLIENT_JOB
+/
+

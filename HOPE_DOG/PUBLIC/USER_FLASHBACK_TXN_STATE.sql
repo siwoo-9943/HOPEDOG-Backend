@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_FLASHBACK_TXN_STATE for SYS.USER_FLASHBACK_TXN_STATE
+/
+

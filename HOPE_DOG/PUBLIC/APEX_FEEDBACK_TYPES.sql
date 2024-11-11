@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".APEX_FEEDBACK_TYPES for APEX_040000.APEX_FEEDBACK_TYPES
+/
+

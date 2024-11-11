@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_OPERATOR_COMMENTS for SYS.DBA_OPERATOR_COMMENTS
+/
+

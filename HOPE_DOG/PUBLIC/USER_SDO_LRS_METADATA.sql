@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_SDO_LRS_METADATA for MDSYS.USER_SDO_LRS_METADATA
+/
+

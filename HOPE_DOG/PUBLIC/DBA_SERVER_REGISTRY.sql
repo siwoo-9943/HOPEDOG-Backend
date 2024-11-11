@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_SERVER_REGISTRY for SYS.DBA_SERVER_REGISTRY
+/
+

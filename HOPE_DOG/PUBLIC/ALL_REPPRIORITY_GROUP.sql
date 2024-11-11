@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_REPPRIORITY_GROUP for SYS.ALL_REPPRIORITY_GROUP
+/
+

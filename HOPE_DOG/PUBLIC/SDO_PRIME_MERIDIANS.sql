@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".SDO_PRIME_MERIDIANS for MDSYS.SDO_PRIME_MERIDIANS
+/
+

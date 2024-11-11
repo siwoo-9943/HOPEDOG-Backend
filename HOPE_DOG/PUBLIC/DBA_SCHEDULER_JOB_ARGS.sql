@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_SCHEDULER_JOB_ARGS for SYS.DBA_SCHEDULER_JOB_ARGS
+/
+

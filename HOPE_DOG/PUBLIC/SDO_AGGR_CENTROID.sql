@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".SDO_AGGR_CENTROID for MDSYS.SDO_AGGR_CENTROID
+/
+

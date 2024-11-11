@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_SQLTUNE_STATISTICS for SYS.DBA_SQLTUNE_STATISTICS
+/
+

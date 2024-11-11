@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".COLUMN_PRIVILEGES for SYS.COLUMN_PRIVILEGES
+/
+

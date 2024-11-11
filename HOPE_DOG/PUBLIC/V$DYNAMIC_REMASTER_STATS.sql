@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$DYNAMIC_REMASTER_STATS for SYS.V_$DYNAMIC_REMASTER_STATS
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_SQLJ_TYPE_METHODS for SYS.USER_SQLJ_TYPE_METHODS
+/
+

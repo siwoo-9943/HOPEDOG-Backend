@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".EXTERIORRING for MDSYS.OGC_EXTERIORRING
+/
+

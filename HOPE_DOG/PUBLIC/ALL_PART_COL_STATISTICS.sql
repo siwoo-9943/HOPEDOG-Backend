@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_PART_COL_STATISTICS for SYS.ALL_PART_COL_STATISTICS
+/
+

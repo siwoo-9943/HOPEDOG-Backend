@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_ASSOCIATIONS for SYS.USER_ASSOCIATIONS
+/
+

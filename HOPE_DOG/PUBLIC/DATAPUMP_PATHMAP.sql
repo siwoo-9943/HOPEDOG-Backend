@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DATAPUMP_PATHMAP for SYS.DATAPUMP_PATHMAP
+/
+

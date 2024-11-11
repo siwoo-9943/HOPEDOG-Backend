@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".SDO_COORD_OP_METHODS for MDSYS.SDO_COORD_OP_METHODS
+/
+
