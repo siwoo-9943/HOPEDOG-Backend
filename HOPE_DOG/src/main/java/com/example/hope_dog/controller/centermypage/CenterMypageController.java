@@ -7,6 +7,7 @@ import com.example.hope_dog.dto.centermypage.notebox.*;
 import com.example.hope_dog.dto.centermypage.request.*;
 import com.example.hope_dog.dto.centermypage.writeinfo.WriteInfoAdoptListDTO;
 import com.example.hope_dog.dto.centermypage.writeinfo.WriteInfoCommuListDTO;
+import com.example.hope_dog.dto.centermypage.writeinfo.WriteInfoDonaListDTO;
 import com.example.hope_dog.dto.centermypage.writeinfo.WriteInfoVolListDTO;
 import com.example.hope_dog.service.centermypage.CenterMypageService;
 import com.example.hope_dog.service.centermypage.NoteBoxService;
@@ -320,6 +321,23 @@ class CenterMypageController {
         model.addAttribute("commuWriteInfoList", commuWriteInfoList);
 
         return "centermypage/center-mypage-writeinfo-my";
+    }
+
+    //봉사 모집글 페이지
+    @GetMapping("/writeInfoDonaList")
+    public String centerWriteInfoDonaList(Model model) {
+        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo"); // 세션에서 센터회원 번호 가져오기
+
+        if (centerMemberNo == null) {
+            log.warn("세션에서 centerMemberNo가 존재하지 않습니다.");
+            return "redirect:/login"; // 세션이 없으면 로그인 페이지로 리다이렉트
+        }
+
+        // 커뮤니티 작성글 조회
+        List<WriteInfoDonaListDTO> donaWriteInfoList = writeInfoService.donationList(centerMemberNo);
+        model.addAttribute("donaWriteInfoList", donaWriteInfoList);
+
+        return "centermypage/center-mypage-writeinfo-dona";
     }
 
     //봉사 모집글 페이지
