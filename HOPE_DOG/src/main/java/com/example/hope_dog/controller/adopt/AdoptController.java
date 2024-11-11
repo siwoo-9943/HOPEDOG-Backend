@@ -35,11 +35,16 @@ public class AdoptController {
     @GetMapping("/adopt")
     public String adoptList(Criteria criteria, Model model, HttpSession session){
         List<AdoptMainDTO> adoptMainList = adoptService.findAllPage(criteria);
+
         int total = adoptService.findTotal();
         Page page = new Page(criteria, total);
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo"); //이것도 무시 세션값 자겨와서 저장
 
+        List<AdoptMainDTO> centerMemberStatus = adoptService.centerMemberStatus(centerMemberNo);
+
+
         model.addAttribute("AdoptMainList", adoptMainList);
+        model.addAttribute("centerMemberStatus", centerMemberStatus);
         model.addAttribute("page", page);
         model.addAttribute("centerMemberNo", centerMemberNo); //이건 나만 쓰는거 무시 세션값 html에서 쓸수있게 model추가
         model.addAttribute("All", true);
