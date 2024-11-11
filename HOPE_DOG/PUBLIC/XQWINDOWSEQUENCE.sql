@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".XQWINDOWSEQUENCE for SYS.XQWINDOWSEQUENCE
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$ACTIVE_INSTANCES for SYS.V_$ACTIVE_INSTANCES
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$FLASHBACK_TXN_GRAPH for SYS.V_$FLASHBACK_TXN_GRAPH
-/
-

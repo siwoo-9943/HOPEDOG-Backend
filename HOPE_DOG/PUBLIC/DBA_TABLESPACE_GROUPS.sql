@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_TABLESPACE_GROUPS for SYS.DBA_TABLESPACE_GROUPS
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_REFRESH_CHILDREN for SYS.ALL_REFRESH_CHILDREN
-/
-

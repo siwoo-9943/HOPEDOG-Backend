@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_JOIN_IND_COLUMNS for SYS.ALL_JOIN_IND_COLUMNS
-/
-

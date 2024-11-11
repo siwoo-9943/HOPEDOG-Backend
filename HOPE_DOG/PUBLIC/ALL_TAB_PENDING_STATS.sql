@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_TAB_PENDING_STATS for SYS.ALL_TAB_PENDING_STATS
-/
-

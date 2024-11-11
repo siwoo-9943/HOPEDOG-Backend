@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$LOGSTDBY_PROCESS for SYS.GV_$LOGSTDBY_PROCESS
-/
-

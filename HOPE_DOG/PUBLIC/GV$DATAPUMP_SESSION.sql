@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$DATAPUMP_SESSION for SYS.GV_$DATAPUMP_SESSION
-/
-

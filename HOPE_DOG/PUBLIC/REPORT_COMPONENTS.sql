@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".REPORT_COMPONENTS for SYS.REPORT_COMPONENTS
-/
-

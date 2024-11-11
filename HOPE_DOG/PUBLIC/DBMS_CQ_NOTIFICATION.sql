@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBMS_CQ_NOTIFICATION for SYS.DBMS_CHANGE_NOTIFICATION
-/
-

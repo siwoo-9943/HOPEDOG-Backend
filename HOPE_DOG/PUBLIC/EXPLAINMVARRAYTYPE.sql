@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".EXPLAINMVARRAYTYPE for SYS.EXPLAINMVARRAYTYPE
-/
-

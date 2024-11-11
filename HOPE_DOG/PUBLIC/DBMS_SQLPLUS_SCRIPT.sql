@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBMS_SQLPLUS_SCRIPT for SYS.DBMS_SQLPLUS_SCRIPT
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_REPGROUPED_COLUMN for SYS.DBA_REPGROUPED_COLUMN
-/
-

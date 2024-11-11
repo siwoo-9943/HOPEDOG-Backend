@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_TAB_STATS_HISTORY for SYS.DBA_TAB_STATS_HISTORY
-/
-

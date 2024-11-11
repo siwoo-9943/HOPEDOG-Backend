@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$ARCHIVE_DEST_STATUS for SYS.GV_$ARCHIVE_DEST_STATUS
-/
-

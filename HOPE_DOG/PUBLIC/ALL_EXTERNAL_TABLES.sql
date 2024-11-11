@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_EXTERNAL_TABLES for SYS.ALL_EXTERNAL_TABLES
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_CONSTRAINTS for SYS.USER_CONSTRAINTS
-/
-

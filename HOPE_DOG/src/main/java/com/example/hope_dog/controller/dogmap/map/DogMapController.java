@@ -1,6 +1,6 @@
 package com.example.hope_dog.controller.dogmap.map;
 
-import com.example.hope_dog.dto.dogmap.dogmap.DogMapApiDTO;
+import com.example.hope_dog.dto.dogmap.dogmap.Item;
 import com.example.hope_dog.service.dogmap.DogMapService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -25,9 +25,9 @@ public class DogMapController {
     @GetMapping("/shelters")
     public String getShelters(Model model) {
 
-        List<DogMapApiDTO> shelters = dogMapService.getShelterInfo(); // ShelterInfo 리스트로 변경
+        List<Item> shelters = dogMapService.getShelterInfo(); // ShelterInfo 리스트로 변경
 
-        List<DogMapApiDTO> filteredByAddress = dogMapService.filterByAddress(shelters , "경기도" );
+        List<Item> filteredByAddress = dogMapService.filterByAddress(shelters , "경기도" );
 
 
         model.addAttribute("shelters", filteredByAddress); // 모델에 shelters 추가

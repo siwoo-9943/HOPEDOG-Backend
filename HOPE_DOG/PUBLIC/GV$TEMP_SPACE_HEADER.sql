@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$TEMP_SPACE_HEADER for SYS.GV_$TEMP_SPACE_HEADER
-/
-

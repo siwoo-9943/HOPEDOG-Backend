@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_APPLY_DML_HANDLERS for SYS.DBA_APPLY_DML_HANDLERS
-/
-

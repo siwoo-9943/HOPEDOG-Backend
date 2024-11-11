@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_IND_EXPRESSIONS for SYS.USER_IND_EXPRESSIONS
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBMS_APPLY_POSITION for SYS.DBMS_APPLY_POSITION
-/
-

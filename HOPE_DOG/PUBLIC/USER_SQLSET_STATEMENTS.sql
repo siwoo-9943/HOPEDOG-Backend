@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_SQLSET_STATEMENTS for SYS.USER_SQLSET_STATEMENTS
-/
-

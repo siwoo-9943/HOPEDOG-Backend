@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$SQL_FEATURE_HIERARCHY for SYS.GV_$SQL_FEATURE_HIERARCHY
-/
-

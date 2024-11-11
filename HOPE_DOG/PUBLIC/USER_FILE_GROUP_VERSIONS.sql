@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_FILE_GROUP_VERSIONS for SYS.USER_FILE_GROUP_VERSIONS
-/
-

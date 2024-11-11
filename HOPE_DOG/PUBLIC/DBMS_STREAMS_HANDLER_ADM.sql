@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBMS_STREAMS_HANDLER_ADM for SYS.DBMS_STREAMS_HANDLER_ADM
-/
-

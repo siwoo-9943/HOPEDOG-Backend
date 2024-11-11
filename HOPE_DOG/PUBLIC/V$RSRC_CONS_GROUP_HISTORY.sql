@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$RSRC_CONS_GROUP_HISTORY for SYS.V_$RSRC_CONS_GROUP_HISTORY
-/
-

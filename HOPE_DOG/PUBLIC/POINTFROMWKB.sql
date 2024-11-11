@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".POINTFROMWKB for MDSYS.OGC_POINTFROMWKB
-/
-

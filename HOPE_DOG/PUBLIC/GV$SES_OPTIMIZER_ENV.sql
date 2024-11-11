@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$SES_OPTIMIZER_ENV for SYS.GV_$SES_OPTIMIZER_ENV
-/
-

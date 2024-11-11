@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_NESTED_TABLE_COLS for SYS.DBA_NESTED_TABLE_COLS
-/
-

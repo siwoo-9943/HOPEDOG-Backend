@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$ROWCACHE_PARENT for SYS.GV_$ROWCACHE_PARENT
-/
-

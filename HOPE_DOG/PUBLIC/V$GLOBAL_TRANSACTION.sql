@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$GLOBAL_TRANSACTION for SYS.V_$GLOBAL_TRANSACTION
-/
-

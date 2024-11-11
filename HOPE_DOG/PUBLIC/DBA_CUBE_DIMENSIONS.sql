@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_CUBE_DIMENSIONS for SYS.DBA_CUBE_DIMENSIONS
-/
-

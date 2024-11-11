@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".SCHEDULER_BATCH_ERRORS for SYS.SCHEDULER_BATCH_ERRORS
-/
-

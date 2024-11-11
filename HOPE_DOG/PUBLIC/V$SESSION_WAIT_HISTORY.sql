@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$SESSION_WAIT_HISTORY for SYS.V_$SESSION_WAIT_HISTORY
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".EXPLAINMVMESSAGE for SYS.EXPLAINMVMESSAGE
-/
-

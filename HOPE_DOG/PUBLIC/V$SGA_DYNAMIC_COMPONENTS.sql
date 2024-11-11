@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$SGA_DYNAMIC_COMPONENTS for SYS.V_$SGA_DYNAMIC_COMPONENTS
-/
-

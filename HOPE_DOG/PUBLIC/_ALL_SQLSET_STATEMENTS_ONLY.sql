@@ -1,3 +1,0 @@
-create public synonym "PUBLIC"."_ALL_SQLSET_STATEMENTS_ONLY" for SYS."_ALL_SQLSET_STATEMENTS_ONLY"
-/
-

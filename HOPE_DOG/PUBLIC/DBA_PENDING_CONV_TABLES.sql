@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_PENDING_CONV_TABLES for SYS.DBA_PENDING_CONV_TABLES
-/
-
