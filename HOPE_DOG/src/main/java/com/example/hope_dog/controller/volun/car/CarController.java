@@ -1,6 +1,7 @@
 package com.example.hope_dog.controller.volun.car;
 
 import com.example.hope_dog.dto.commu.CommuCommentDTO;
+import com.example.hope_dog.dto.commu.CommuDetailDTO;
 import com.example.hope_dog.dto.page.Criteria;
 import com.example.hope_dog.dto.page.Page;
 import com.example.hope_dog.dto.volun.car.CarCommentDTO;
@@ -74,23 +75,29 @@ public class CarController {
     }
 
     // 검색
-//    @GetMapping("/main/search")
-//    public String searchCars(@RequestParam("searchType") String searchType,
-//                             @RequestParam("keyword") String keyword,
-//                             Model model) {
-//        System.out.println("컨트롤러 검색 타입 : " + searchType);
-//        System.out.println("컨트롤러 키워드 : " + keyword);
-//
-//        // 검색 조건에 따른 차량 리스트 조회
-//        List<CarDTO> carList = carService.searchCars(searchType, keyword);
-//        System.out.println("컨트롤러 List : " + carList);
-//
-//        model.addAttribute("carList", carList); // 차량 리스트 추가
-//        model.addAttribute("searchType", searchType); // 검색 타입 추가
-//        model.addAttribute("keyword", keyword); // 검색어 추가
-//
-//        return "volun/car/volun-car-main"; // 결과 페이지로 이동
-//    }
+    @GetMapping("/main/search")
+    public String search(@RequestParam(value = "searchType") String searchType,
+                         @RequestParam(value = "keyword") String keyword,
+                         Model model) {
+        // 검색 조건에 맞는 결과 가져오기
+        List<CarDetailDTO> carList = null;
+
+        // 검색 조건에 따라 처리
+        if ("carTitle".equals(searchType)) {
+            carList = carService.carSearch(keyword, null, null);  // 제목 검색
+        } else if ("memberNickname".equals(searchType)) {
+            carList = carService.carSearch(null, keyword, null);  // 닉네임 검색
+        } else if ("centerMemberName".equals(searchType)) {
+            carList = carService.carSearch(null, null, keyword);  // 센터명 검색
+        }
+
+        // 모델에 결과 추가
+        model.addAttribute("carList", carList);
+        model.addAttribute("searchType", searchType);
+        model.addAttribute("keyword", keyword);
+
+        return "volun/car/volun-car-main"; // search.html 페이지를 반환
+    }
 
     //게시글 상세
     @GetMapping("/post/{carNo}")

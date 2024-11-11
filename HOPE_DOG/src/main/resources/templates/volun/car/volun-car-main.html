@@ -70,8 +70,8 @@
       <div class="bottom-search">
         <form method="get" action="/car/main/search" name="search">
           <select name="searchType" id="search-type">
-            <option value="title">제목</option>
-            <option value="nickname">닉네임</option>
+            <option value="carTitle">제목</option>
+            <option value="memberNickname">닉네임</option>
           </select>
           <span class="default">
             <input type="text" name="keyword" id="keyword" value="" placeholder="검색어를 입력하세요">
@@ -79,6 +79,9 @@
         </span>
         </form>
       </div>
+
+      <!-- 검색 결과를 표시할 공간 -->
+      <div id="search-results"></div>
 
 <!--      글쓰기-->
       <div class="volun-write">

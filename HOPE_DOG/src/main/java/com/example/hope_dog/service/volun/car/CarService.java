@@ -1,6 +1,7 @@
 package com.example.hope_dog.service.volun.car;
 
 import com.example.hope_dog.dto.centerMember.CenterMemberDTO;
+import com.example.hope_dog.dto.commu.CommuDetailDTO;
 import com.example.hope_dog.dto.member.MemberDTO;
 import com.example.hope_dog.dto.page.Criteria;
 import com.example.hope_dog.dto.volun.car.CarCommentDTO;
@@ -92,6 +93,11 @@ public class CarService {
         }
 
         return carList;
+    }
+
+    //검색
+    public List<CarDetailDTO> carSearch(String carTitle, String memberNickname, String centerMemberName) {
+        return carMapper.carSearch(carTitle, memberNickname, centerMemberName);
     }
 
 
