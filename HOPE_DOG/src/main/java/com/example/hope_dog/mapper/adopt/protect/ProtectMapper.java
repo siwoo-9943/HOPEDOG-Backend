@@ -19,6 +19,9 @@ public interface ProtectMapper {
 
     List<ProtectMainDTO> selectAllPage(Criteria criteria);
 
+    //센터회원 상태조회
+    List<ProtectMainDTO> centerMemberStatus(Long centerMemberNo);
+
     //임시보호 모집중 게시글(페이지네이션 포함)
     List<ProtectMainDTO> selectAllKeep();
 

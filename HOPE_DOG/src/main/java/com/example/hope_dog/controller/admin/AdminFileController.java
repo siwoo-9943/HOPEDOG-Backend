@@ -1,9 +1,7 @@
 package com.example.hope_dog.controller.admin;
 
 import com.example.hope_dog.dto.admin.AdminFileDTO;
-import com.example.hope_dog.dto.notice.file.FileDTO;
 import com.example.hope_dog.service.admin.AdminFileService;
-import com.example.hope_dog.service.notice.file.FileService;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;

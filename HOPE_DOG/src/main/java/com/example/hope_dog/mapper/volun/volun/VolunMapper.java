@@ -20,6 +20,9 @@ public interface VolunMapper {
 
     List<VolunMainDTO> selectAllPage(Criteria criteria);
 
+    //센터회원 상태조회
+    List<VolunMainDTO> centerMemberStatus(Long centerMemberNo);
+
     //봉사 모집중인 게시글(페이지네이션 포함)
     List<VolunMainDTO> selectAllKeep();
 
