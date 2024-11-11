@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$LOGMNR_PARAMETERS for SYS.V_$LOGMNR_PARAMETERS
-/
-

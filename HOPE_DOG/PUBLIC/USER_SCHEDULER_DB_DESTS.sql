@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_SCHEDULER_DB_DESTS for SYS.USER_SCHEDULER_DB_DESTS
-/
-

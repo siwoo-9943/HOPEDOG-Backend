@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".LOADER_TRIGGER_INFO for SYS.LOADER_TRIGGER_INFO
-/
-

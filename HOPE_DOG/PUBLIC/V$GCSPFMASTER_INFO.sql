@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$GCSPFMASTER_INFO for SYS.V_$GCSPFMASTER_INFO
-/
-

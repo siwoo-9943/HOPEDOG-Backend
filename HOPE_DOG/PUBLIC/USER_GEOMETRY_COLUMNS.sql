@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_GEOMETRY_COLUMNS for MDSYS.USER_GEOMETRY_COLUMNS
-/
-

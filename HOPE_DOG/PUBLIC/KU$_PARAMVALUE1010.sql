@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".KU$_PARAMVALUE1010 for SYS.KU$_PARAMVALUE1010
-/
-

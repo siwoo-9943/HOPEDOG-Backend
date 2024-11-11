@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$HM_RECOMMENDATION for SYS.V_$HM_RECOMMENDATION
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$OBJECT_PRIVILEGE for SYS.V_$OBJECT_PRIVILEGE
-/
-

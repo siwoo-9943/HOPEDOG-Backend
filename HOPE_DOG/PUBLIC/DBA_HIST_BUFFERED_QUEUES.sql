@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_HIST_BUFFERED_QUEUES for SYS.DBA_HIST_BUFFERED_QUEUES
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$DIAG_ADR_INVALIDATION for SYS.V_$DIAG_ADR_INVALIDATION
-/
-

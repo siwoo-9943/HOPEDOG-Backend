@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$DLM_TRAFFIC_CONTROLLER for SYS.V_$DLM_TRAFFIC_CONTROLLER
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_EDITIONING_VIEWS_AE for SYS.DBA_EDITIONING_VIEWS_AE
-/
-

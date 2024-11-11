@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".HS_PARALLEL_SAMPLE_DATA for SYS.HS_PARALLEL_SAMPLE_DATA
-/
-

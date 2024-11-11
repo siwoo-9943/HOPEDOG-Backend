@@ -1,3 +1,0 @@
-create public synonym "PUBLIC"."_USER_COMPARISON_ROW_DIF" for SYS."_USER_COMPARISON_ROW_DIF"
-/
-

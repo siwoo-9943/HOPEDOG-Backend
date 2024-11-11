@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_XSC_SECURITY_CLASS for SYS.ALL_XSC_SECURITY_CLASS
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DM_SVM_ATTRIBUTE_SET for SYS.DM_SVM_ATTRIBUTE_SET
-/
-

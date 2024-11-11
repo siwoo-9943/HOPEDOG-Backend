@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_ADVISOR_SQLW_SUM for SYS.DBA_ADVISOR_SQLW_SUM
-/
-

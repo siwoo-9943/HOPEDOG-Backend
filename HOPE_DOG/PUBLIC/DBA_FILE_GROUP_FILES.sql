@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_FILE_GROUP_FILES for SYS.DBA_FILE_GROUP_FILES
-/
-

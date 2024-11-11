@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$SHARED_POOL_RESERVED for SYS.GV_$SHARED_POOL_RESERVED
-/
-

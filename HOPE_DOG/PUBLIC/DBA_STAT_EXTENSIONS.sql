@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_STAT_EXTENSIONS for SYS.DBA_STAT_EXTENSIONS
-/
-

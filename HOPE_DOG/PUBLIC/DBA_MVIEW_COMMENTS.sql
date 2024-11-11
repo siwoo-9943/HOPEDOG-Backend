@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_MVIEW_COMMENTS for SYS.DBA_MVIEW_COMMENTS
-/
-

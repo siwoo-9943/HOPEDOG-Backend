@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_SUMMARY_AGGREGATES for SYS.ALL_SUMMARY_AGGREGATES
-/
-

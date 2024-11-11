@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_REPKEY_COLUMNS for SYS.DBA_REPKEY_COLUMNS
-/
-

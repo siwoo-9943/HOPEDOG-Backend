@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_QUEUE_SUBSCRIBERS for SYS.USER_QUEUE_SUBSCRIBERS
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".CTX_PREFERENCES for CTXSYS.CTX_PREFERENCES
-/
-

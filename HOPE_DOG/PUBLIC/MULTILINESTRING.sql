@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".MULTILINESTRING for MDSYS.ST_MULTILINESTRING
-/
-

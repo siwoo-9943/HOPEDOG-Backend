@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ODM_CLUSTERING_UTIL for SYS.ODM_CLUSTERING_UTIL
-/
-

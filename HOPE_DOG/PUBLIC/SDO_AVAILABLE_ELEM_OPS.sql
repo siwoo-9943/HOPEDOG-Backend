@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".SDO_AVAILABLE_ELEM_OPS for MDSYS.SDO_AVAILABLE_ELEM_OPS
-/
-

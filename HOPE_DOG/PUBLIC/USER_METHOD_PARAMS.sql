@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_METHOD_PARAMS for SYS.USER_METHOD_PARAMS
-/
-

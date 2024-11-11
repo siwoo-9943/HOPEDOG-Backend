@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_USERS_WITH_DEFPWD for SYS.DBA_USERS_WITH_DEFPWD
-/
-

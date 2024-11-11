@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".CIRCULARSTRING for MDSYS.ST_CIRCULARSTRING
-/
-

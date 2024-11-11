@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$PERSISTENT_PUBLISHERS for SYS.V_$PERSISTENT_PUBLISHERS
-/
-

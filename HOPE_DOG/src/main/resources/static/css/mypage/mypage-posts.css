@@ -116,7 +116,7 @@ main{
 .member-profile-cumuboard-contentsbox{
   width: 850px;
   height: 650px;
-  /* border: 1px solid blue; */
+   border: 1px solid blue;
 }
 
 .member-profile-cumuboard-content{
@@ -141,18 +141,35 @@ main{
   width: 10%;
   margin: 10px;
 }
+
 .member-profile-cumuboard-contentbox li:nth-child(2){
   width: 45%;
   margin: 10px 40px;
   text-align: left;
 }
+
 .member-profile-cumuboard-contentbox li:nth-child(3){
-  width: 15%;
+  width: 25%;
   margin: 10px;
 }
+
 .member-profile-cumuboard-contentbox li:nth-child(4){
   width: 15%;
   margin: 10px;
+}
+
+.myposts-title {
+  margin: 10px;
+}
+
+.myposts-writer {
+  margin-top: 10px;
+}
+
+.myposts-regidate{
+  margin-top: 10px;
+  position: relative; /* 상대 위치 지정 */
+  right: 0; /* 왼쪽으로 0만큼 위치 */
 }
 
 /* 페이지네이션 */

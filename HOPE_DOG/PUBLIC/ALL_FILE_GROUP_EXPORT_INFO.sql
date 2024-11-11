@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_FILE_GROUP_EXPORT_INFO for SYS.ALL_FILE_GROUP_EXPORT_INFO
-/
-

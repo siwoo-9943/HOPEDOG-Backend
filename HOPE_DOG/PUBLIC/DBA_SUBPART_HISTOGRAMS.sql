@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_SUBPART_HISTOGRAMS for SYS.DBA_SUBPART_HISTOGRAMS
-/
-

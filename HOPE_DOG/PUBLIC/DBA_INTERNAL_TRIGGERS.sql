@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_INTERNAL_TRIGGERS for SYS.DBA_INTERNAL_TRIGGERS
-/
-

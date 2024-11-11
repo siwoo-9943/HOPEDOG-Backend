@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_OPERATOR_COMMENTS for SYS.USER_OPERATOR_COMMENTS
-/
-

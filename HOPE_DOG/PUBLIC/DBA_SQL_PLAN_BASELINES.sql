@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_SQL_PLAN_BASELINES for SYS.DBA_SQL_PLAN_BASELINES
-/
-

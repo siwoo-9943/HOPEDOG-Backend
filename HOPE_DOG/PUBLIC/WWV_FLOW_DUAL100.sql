@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".WWV_FLOW_DUAL100 for APEX_040000.WWV_FLOW_DUAL100
-/
-

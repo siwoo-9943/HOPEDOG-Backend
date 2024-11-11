@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".XSLPROCESSOR for XDB.DBMS_XSLPROCESSOR
-/
-

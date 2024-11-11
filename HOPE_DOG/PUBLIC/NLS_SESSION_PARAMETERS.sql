@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".NLS_SESSION_PARAMETERS for SYS.NLS_SESSION_PARAMETERS
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$SYSMETRIC_SUMMARY for SYS.V_$SYSMETRIC_SUMMARY
-/
-

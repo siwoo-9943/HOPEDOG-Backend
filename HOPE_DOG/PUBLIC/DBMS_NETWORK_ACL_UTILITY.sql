@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBMS_NETWORK_ACL_UTILITY for SYS.DBMS_NETWORK_ACL_UTILITY
-/
-

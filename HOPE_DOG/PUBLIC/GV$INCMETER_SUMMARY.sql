@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$INCMETER_SUMMARY for SYS.GV_$INCMETER_SUMMARY
-/
-

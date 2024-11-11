@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_SEC_RELEVANT_COLS for SYS.USER_SEC_RELEVANT_COLS
-/
-

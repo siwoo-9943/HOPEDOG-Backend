@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_IDENTIFIERS for SYS.USER_IDENTIFIERS
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_STREAMS_GLOBAL_RULES for SYS.DBA_STREAMS_GLOBAL_RULES
-/
-

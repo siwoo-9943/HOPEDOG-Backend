@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_TRANSFORMATIONS for SYS.USER_TRANSFORMATIONS
-/
-

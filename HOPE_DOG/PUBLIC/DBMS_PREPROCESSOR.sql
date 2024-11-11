@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBMS_PREPROCESSOR for SYS.DBMS_PREPROCESSOR
-/
-

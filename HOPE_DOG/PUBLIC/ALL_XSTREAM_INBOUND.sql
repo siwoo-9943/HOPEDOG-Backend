@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_XSTREAM_INBOUND for SYS.ALL_XSTREAM_INBOUND
-/
-

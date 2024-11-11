@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_SCHEDULER_CHAINS for SYS.ALL_SCHEDULER_CHAINS
-/
-

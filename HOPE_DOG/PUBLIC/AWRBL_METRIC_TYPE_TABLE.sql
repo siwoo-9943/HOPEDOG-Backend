@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".AWRBL_METRIC_TYPE_TABLE for SYS.AWRBL_METRIC_TYPE_TABLE
-/
-

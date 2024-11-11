@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$SESSION_FIX_CONTROL for SYS.GV$SESSION_FIX_CONTROL
-/
-

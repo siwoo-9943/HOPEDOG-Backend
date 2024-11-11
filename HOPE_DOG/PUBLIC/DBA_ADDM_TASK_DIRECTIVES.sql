@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_ADDM_TASK_DIRECTIVES for SYS.DBA_ADDM_TASK_DIRECTIVES
-/
-

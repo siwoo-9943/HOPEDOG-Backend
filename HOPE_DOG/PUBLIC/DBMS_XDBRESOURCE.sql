@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBMS_XDBRESOURCE for XDB.DBMS_XDBRESOURCE
-/
-

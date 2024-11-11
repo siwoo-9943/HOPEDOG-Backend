@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_ADVISOR_SQLSTATS for SYS.USER_ADVISOR_SQLSTATS
-/
-
