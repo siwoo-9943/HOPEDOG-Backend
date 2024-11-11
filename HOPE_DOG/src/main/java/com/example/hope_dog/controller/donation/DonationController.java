@@ -34,6 +34,9 @@ public class DonationController {
         List<DonationListDTO> donationList = donationService.findAllPage(criteria);
         int total = donationService.findTotal();
         Page page = new Page(criteria, total);
+        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
+
+        model.addAttribute("centerMemberNo", centerMemberNo);
 
         model.addAttribute("donationList", donationList);
         model.addAttribute("page", page);

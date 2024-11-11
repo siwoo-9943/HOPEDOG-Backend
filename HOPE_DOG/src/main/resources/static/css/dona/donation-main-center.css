@@ -162,7 +162,6 @@ ul{
   justify-content: left;
   width: 400px;
   margin-top: 25px;
-  margin-left: 141px;
 }
 
 input[type="submit"] {
@@ -201,7 +200,7 @@ input[type="submit"]:hover{
   color: black;
   background-color:#F5EAD9;
   border: 0px none;
-  margin-right: 145px;
+  margin-right: 50px;
   margin-top: 20px;
   cursor: pointer;
 }
@@ -225,6 +224,7 @@ input[type="submit"]:hover{
 
 /* 페이지네이션 */
 .pagination {
+  margin-top: 100px;
   display: flex; /* 가로로 나열하기 위해 flexbox 사용 */
   justify-content: center; /* 중앙 정렬 */
   align-items: center; /* 수직 정렬 */

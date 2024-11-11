@@ -47,14 +47,6 @@
 <!--          </a>-->
         </div>
 
-<!--        <div class="dona-ul-all">-->
-<!--          <div class="dona-ul-main">-->
-<!--            <div class="dona-title"><a href="../../html/donation/donation-detail.html">아픈 유기견을 도와주세요 [2]</div></a>-->
-<!--            <div class="dona-author">행복유기견센터</div>-->
-<!--            <div class="dona-date">2024-10-08</div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
       <!-- 검색 창-->
         <div class="bottom-search">
           <form method="get" name="search" action="/zboard/zboard.php">
@@ -69,9 +61,11 @@
             <!-- </span> -->
           </form>
         </div>
-        <div class="dona-admain-btuall">
+
+        <div class="dona-admain-btuall"  th:if="${centerMemberNo != null}">
+<!--          <a class="volun-write-botton" th:if="${centerMemberNo != null}">-->
           <button class="dona-admain-btu" type="button">
-            <span class="dona-admain-btu-sp">글쓰기</span>
+              <span class="dona-admain-btu-sp">글쓰기</span>
           </button>
         </div>
         <!-- 페이지네이션 -->
