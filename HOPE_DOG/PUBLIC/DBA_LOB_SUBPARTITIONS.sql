@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_LOB_SUBPARTITIONS for SYS.DBA_LOB_SUBPARTITIONS
-/
-

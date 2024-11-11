@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DM_NESTED_CATEGORICALS for SYS.DM_NESTED_CATEGORICALS
-/
-

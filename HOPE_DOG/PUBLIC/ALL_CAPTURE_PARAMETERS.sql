@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_CAPTURE_PARAMETERS for SYS.ALL_CAPTURE_PARAMETERS
-/
-

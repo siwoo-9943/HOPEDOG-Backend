@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_AUTO_SEGADV_SUMMARY for SYS.DBA_AUTO_SEGADV_SUMMARY
-/
-

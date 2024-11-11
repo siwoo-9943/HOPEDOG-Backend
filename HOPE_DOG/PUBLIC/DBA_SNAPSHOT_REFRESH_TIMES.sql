@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_SNAPSHOT_REFRESH_TIMES for SYS.DBA_MVIEW_REFRESH_TIMES
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_DMT_USED_EXTENTS for SYS.DBA_DMT_USED_EXTENTS
-/
-

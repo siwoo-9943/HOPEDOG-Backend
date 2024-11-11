@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_EDITION_COMMENTS for SYS.ALL_EDITION_COMMENTS
-/
-

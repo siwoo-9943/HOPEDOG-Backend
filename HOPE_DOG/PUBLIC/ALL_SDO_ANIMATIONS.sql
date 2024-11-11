@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_SDO_ANIMATIONS for MDSYS.ALL_SDO_ANIMATIONS
-/
-

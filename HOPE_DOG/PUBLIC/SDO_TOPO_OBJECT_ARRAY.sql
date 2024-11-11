@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".SDO_TOPO_OBJECT_ARRAY for MDSYS.SDO_TOPO_OBJECT_ARRAY
-/
-

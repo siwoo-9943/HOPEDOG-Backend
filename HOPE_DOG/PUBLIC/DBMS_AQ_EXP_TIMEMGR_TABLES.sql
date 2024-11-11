@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBMS_AQ_EXP_TIMEMGR_TABLES for SYS.DBMS_AQ_EXP_TIMEMGR_TABLES
-/
-

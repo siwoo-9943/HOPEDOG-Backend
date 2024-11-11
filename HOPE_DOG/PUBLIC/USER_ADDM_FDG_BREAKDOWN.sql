@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_ADDM_FDG_BREAKDOWN for SYS.USER_ADDM_FDG_BREAKDOWN
-/
-

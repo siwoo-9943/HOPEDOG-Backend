@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$PERSISTENT_QUEUES for SYS.GV_$PERSISTENT_QUEUES
-/
-

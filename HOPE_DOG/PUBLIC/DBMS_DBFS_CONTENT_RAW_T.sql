@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBMS_DBFS_CONTENT_RAW_T for SYS.DBMS_DBFS_CONTENT_RAW_T
-/
-

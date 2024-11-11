@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$SGA_CURRENT_RESIZE_OPS for SYS.GV_$SGA_CURRENT_RESIZE_OPS
-/
-

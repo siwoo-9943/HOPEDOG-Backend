@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_FLASHBACK_ARCHIVE_TS for SYS.DBA_FLASHBACK_ARCHIVE_TS
-/
-

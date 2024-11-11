@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_ADVISOR_SQLA_COLVOL for SYS.USER_ADVISOR_SQLA_COLVOL
-/
-

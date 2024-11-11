@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_SUBSCRIPTIONS for SYS.USER_SUBSCRIPTIONS
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".REWRITEARRAYTYPE for SYS.REWRITEARRAYTYPE
-/
-

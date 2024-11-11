@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".POLYGONFROMWKB for MDSYS.OGC_POLYGONFROMWKB
-/
-

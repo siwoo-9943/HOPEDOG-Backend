@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".AWRSQRPT_TEXT_TYPE for SYS.AWRSQRPT_TEXT_TYPE
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".WWV_FLOW_FILE_MGR for APEX_040000.WWV_FLOW_FILE_MGR
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_HIST_MEM_DYNAMIC_COMP for SYS.DBA_HIST_MEM_DYNAMIC_COMP
-/
-

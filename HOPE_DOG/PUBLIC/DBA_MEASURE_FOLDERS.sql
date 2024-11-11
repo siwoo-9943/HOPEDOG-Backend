@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_MEASURE_FOLDERS for SYS.DBA_MEASURE_FOLDERS
-/
-

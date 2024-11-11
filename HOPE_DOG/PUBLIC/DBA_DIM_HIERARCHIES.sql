@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_DIM_HIERARCHIES for SYS.DBA_DIM_HIERARCHIES
-/
-

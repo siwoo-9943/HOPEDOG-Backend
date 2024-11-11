@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".SDO_COORD_OP_PARAM_VALS for MDSYS.SDO_COORD_OP_PARAM_VALS
-/
-

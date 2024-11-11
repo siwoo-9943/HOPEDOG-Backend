@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$BUFFER_POOL_STATISTICS for SYS.V_$BUFFER_POOL_STATISTICS
-/
-

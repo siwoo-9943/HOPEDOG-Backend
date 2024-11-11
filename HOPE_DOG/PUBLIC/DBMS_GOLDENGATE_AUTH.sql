@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBMS_GOLDENGATE_AUTH for SYS.DBMS_GOLDENGATE_AUTH
-/
-

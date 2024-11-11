@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_QUEUE_SUBSCRIBERS for SYS.DBA_QUEUE_SUBSCRIBERS
-/
-

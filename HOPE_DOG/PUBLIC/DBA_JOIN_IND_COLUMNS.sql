@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_JOIN_IND_COLUMNS for SYS.DBA_JOIN_IND_COLUMNS
-/
-

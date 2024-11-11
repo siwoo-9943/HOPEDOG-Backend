@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_SUBPART_KEY_COLUMNS for SYS.DBA_SUBPART_KEY_COLUMNS
-/
-

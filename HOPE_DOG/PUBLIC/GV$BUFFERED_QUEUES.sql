@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$BUFFERED_QUEUES for SYS.GV_$BUFFERED_QUEUES
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$ACTIVE_SESS_POOL_MTH for SYS.GV_$ACTIVE_SESS_POOL_MTH
-/
-

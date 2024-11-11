@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_SDO_CACHED_MAPS for MDSYS.USER_SDO_CACHED_MAPS
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_HIST_IC_CLIENT_STATS for SYS.DBA_HIST_IC_CLIENT_STATS
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$WLM_PCMETRIC_HISTORY for SYS.V_$WLM_PCMETRIC_HISTORY
-/
-

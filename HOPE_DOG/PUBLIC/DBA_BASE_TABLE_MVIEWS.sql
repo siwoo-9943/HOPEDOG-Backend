@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_BASE_TABLE_MVIEWS for SYS.DBA_BASE_TABLE_MVIEWS
-/
-

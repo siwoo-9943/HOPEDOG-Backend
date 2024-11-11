@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".POLYGONFROMTEXT for MDSYS.OGC_POLYGONFROMTEXT
-/
-

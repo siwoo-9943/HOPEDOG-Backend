@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_XML_SCHEMA_IMPORTS for SYS.DBA_XML_SCHEMA_IMPORTS
-/
-

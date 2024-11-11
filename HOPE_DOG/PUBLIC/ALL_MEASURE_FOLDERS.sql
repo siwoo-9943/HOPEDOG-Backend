@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_MEASURE_FOLDERS for SYS.ALL_MEASURE_FOLDERS
-/
-

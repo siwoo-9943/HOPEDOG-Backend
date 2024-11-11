@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_AUTOTASK_SCHEDULE for SYS.DBA_AUTOTASK_SCHEDULE
-/
-

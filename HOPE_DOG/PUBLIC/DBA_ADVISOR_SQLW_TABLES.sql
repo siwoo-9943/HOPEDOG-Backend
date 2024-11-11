@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_ADVISOR_SQLW_TABLES for SYS.DBA_ADVISOR_SQLW_TABLES
-/
-

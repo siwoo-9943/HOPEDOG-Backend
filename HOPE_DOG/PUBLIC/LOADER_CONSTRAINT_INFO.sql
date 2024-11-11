@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".LOADER_CONSTRAINT_INFO for SYS.LOADER_CONSTRAINT_INFO
-/
-

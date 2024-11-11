@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".WWV_RENDER_CHART2 for APEX_040000.WWV_RENDER_CHART2
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_SDO_INDEX_METADATA for MDSYS.ALL_SDO_INDEX_METADATA
-/
-

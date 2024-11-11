@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBMS_STREAMS_LCR_INT for SYS.DBMS_STREAMS_LCR_INT
-/
-

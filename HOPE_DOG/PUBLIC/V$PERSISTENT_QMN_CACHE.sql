@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$PERSISTENT_QMN_CACHE for SYS.V_$PERSISTENT_QMN_CACHE
-/
-

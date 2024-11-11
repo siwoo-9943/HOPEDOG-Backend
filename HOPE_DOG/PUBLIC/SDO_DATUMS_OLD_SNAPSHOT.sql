@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".SDO_DATUMS_OLD_SNAPSHOT for MDSYS.SDO_DATUMS_OLD_SNAPSHOT
-/
-

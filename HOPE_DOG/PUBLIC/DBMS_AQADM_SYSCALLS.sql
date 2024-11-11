@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBMS_AQADM_SYSCALLS for SYS.DBMS_AQADM_SYSCALLS
-/
-

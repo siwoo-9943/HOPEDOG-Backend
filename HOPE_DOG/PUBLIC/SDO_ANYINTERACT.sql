@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".SDO_ANYINTERACT for MDSYS.SDO_ANYINTERACT
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$CELL_REQUEST_TOTALS for SYS.GV_$CELL_REQUEST_TOTALS
-/
-

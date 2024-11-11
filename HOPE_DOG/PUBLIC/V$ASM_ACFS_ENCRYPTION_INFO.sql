@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$ASM_ACFS_ENCRYPTION_INFO for SYS.V_$ASM_ACFS_ENCRYPTION_INFO
-/
-

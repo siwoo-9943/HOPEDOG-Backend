@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$DIAG_VEM_USER_ACTLOG1 for SYS.V_$DIAG_VEM_USER_ACTLOG1
-/
-

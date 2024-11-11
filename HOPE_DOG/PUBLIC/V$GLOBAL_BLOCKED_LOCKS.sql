@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$GLOBAL_BLOCKED_LOCKS for SYS.V_$GLOBAL_BLOCKED_LOCKS
-/
-

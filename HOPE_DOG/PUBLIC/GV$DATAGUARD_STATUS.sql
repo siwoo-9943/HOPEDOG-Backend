@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$DATAGUARD_STATUS for SYS.GV_$DATAGUARD_STATUS
-/
-

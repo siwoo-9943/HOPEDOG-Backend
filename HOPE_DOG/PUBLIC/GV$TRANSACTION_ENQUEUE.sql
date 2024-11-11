@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$TRANSACTION_ENQUEUE for SYS.GV_$TRANSACTION_ENQUEUE
-/
-

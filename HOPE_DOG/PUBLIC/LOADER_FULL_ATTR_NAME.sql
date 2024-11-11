@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".LOADER_FULL_ATTR_NAME for SYS.LOADER_FULL_ATTR_NAME
-/
-
