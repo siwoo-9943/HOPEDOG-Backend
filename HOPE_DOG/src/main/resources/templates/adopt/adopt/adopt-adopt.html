@@ -69,10 +69,12 @@
       <br>
 
       <!-- 입양 등록 버튼 -->
-      <div class="adopt-button-box" th:if="${centerMemberNo != null}">
-        <a href="/adopt/adopt/adoptwrite">
-          <button class="adopt-button">등록</button>
-        </a>
+      <div th:each="centerMemberStatus : ${centerMemberStatus}">
+        <div class="adopt-button-box" th:if="${centerMemberNo != null and centerMemberStatus.centerMemberStatus == 'Y'}">
+          <a href="/adopt/adopt/adoptwrite">
+            <button class="adopt-button">등록</button>
+          </a>
+        </div>
       </div>
 
       <!-- 페이지네이션 -->
