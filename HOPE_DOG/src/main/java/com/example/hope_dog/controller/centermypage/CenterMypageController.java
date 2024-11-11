@@ -407,7 +407,7 @@ class CenterMypageController {
         VolunRequestDetailDTO volunRequestInfo = requestService.volunRequestDetail(volunRequestNo);
         model.addAttribute("volunRequestInfo", volunRequestInfo);
 
-        return "centermypage/center-mypage-adopt-volunrequest";
+        return "centermypage/center-mypage-volun-signup";
     }
 
     //봉사 신청서 상태처리
