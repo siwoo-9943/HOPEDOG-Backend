@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBMS_AQ_IMP_ZECURITY for SYS.DBMS_AQ_IMP_ZECURITY
-/
-

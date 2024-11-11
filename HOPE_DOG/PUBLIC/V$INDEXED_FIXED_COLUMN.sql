@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$INDEXED_FIXED_COLUMN for SYS.V_$INDEXED_FIXED_COLUMN
-/
-

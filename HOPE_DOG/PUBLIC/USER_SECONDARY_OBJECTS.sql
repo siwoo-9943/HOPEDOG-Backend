@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_SECONDARY_OBJECTS for SYS.USER_SECONDARY_OBJECTS
-/
-

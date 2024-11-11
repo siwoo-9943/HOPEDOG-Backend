@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_SUBPART_KEY_COLUMNS for SYS.ALL_SUBPART_KEY_COLUMNS
-/
-

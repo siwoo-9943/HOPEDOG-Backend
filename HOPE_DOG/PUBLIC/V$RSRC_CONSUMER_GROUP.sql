@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$RSRC_CONSUMER_GROUP for SYS.V_$RSRC_CONSUMER_GROUP
-/
-

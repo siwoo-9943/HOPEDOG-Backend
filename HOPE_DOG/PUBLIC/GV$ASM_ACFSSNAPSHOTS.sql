@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$ASM_ACFSSNAPSHOTS for SYS.GV_$ASM_ACFSSNAPSHOTS
-/
-

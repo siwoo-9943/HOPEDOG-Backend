@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_EXTERNAL_LOCATIONS for SYS.DBA_EXTERNAL_LOCATIONS
-/
-

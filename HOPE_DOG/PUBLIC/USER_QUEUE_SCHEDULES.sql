@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_QUEUE_SCHEDULES for SYS.USER_QUEUE_SCHEDULES
-/
-

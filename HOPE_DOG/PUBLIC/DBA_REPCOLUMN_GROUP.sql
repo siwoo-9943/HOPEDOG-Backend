@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_REPCOLUMN_GROUP for SYS.DBA_REPCOLUMN_GROUP
-/
-

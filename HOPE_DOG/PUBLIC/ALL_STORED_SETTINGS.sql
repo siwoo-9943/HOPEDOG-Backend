@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_STORED_SETTINGS for SYS.ALL_STORED_SETTINGS
-/
-

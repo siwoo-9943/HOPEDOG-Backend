@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_SCHEDULER_JOB_LOG for SYS.DBA_SCHEDULER_JOB_LOG
-/
-

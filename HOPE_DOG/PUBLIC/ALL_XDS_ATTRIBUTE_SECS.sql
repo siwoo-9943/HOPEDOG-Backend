@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_XDS_ATTRIBUTE_SECS for SYS.ALL_XDS_ATTRIBUTE_SECS
-/
-

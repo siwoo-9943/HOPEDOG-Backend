@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".CTX_USER_INDEX_SETS for CTXSYS.CTX_USER_INDEX_SETS
-/
-

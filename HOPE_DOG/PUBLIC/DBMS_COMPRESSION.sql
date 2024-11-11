@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBMS_COMPRESSION for SYS.DBMS_COMPRESSION
-/
-

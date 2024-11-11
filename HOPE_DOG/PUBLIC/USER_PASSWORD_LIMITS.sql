@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_PASSWORD_LIMITS for SYS.USER_PASSWORD_LIMITS
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$LOGMNR_CONTENTS for SYS.GV_$LOGMNR_CONTENTS
-/
-

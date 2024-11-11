@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_METHOD_RESULTS for SYS.USER_METHOD_RESULTS
-/
-

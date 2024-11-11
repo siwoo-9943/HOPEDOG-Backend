@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_REPAUDIT_ATTRIBUTE for SYS.ALL_REPAUDIT_ATTRIBUTE
-/
-

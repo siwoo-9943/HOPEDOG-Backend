@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBMS_SUM_RWEQ_EXPORT for SYS.DBMS_SUM_RWEQ_EXPORT
-/
-

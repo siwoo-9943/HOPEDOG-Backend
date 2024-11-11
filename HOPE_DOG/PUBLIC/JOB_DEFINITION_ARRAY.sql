@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".JOB_DEFINITION_ARRAY for SYS.JOB_DEFINITION_ARRAY
-/
-

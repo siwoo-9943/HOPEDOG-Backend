@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$PX_INSTANCE_GROUP for SYS.GV_$PX_INSTANCE_GROUP
-/
-

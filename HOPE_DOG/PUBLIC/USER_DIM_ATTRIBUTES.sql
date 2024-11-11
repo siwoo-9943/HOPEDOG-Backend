@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_DIM_ATTRIBUTES for SYS.USER_DIM_ATTRIBUTES
-/
-

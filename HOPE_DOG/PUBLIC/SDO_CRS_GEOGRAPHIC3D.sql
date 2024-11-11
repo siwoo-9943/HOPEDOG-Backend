@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".SDO_CRS_GEOGRAPHIC3D for MDSYS.SDO_CRS_GEOGRAPHIC3D
-/
-

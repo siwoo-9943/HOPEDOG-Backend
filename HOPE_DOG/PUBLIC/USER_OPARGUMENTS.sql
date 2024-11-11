@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_OPARGUMENTS for SYS.USER_OPARGUMENTS
-/
-

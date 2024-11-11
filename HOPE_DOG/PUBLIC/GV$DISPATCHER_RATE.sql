@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$DISPATCHER_RATE for SYS.GV_$DISPATCHER_RATE
-/
-

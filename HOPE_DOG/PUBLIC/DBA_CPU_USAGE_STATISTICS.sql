@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_CPU_USAGE_STATISTICS for SYS.DBA_CPU_USAGE_STATISTICS
-/
-

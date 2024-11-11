@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_REGISTRY_HISTORY for SYS.DBA_REGISTRY_HISTORY
-/
-

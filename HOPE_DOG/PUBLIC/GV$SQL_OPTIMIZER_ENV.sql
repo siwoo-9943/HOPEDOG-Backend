@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$SQL_OPTIMIZER_ENV for SYS.GV_$SQL_OPTIMIZER_ENV
-/
-

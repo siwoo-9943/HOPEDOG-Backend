@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_WARNING_SETTINGS for SYS.DBA_WARNING_SETTINGS
-/
-

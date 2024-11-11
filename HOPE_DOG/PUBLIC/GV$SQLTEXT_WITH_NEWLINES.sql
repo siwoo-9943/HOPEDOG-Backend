@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$SQLTEXT_WITH_NEWLINES for SYS.GV_$SQLTEXT_WITH_NEWLINES
-/
-

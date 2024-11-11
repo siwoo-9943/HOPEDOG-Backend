@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_PARTIAL_DROP_TABS for SYS.DBA_PARTIAL_DROP_TABS
-/
-

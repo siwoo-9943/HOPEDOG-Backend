@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$PX_PROCESS_SYSSTAT for SYS.GV_$PX_PROCESS_SYSSTAT
-/
-

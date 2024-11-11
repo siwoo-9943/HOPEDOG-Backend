@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$PROCESS_MEMORY_DETAIL for SYS.GV_$PROCESS_MEMORY_DETAIL
-/
-

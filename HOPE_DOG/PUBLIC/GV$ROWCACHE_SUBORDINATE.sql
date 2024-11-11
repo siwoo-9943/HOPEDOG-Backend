@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$ROWCACHE_SUBORDINATE for SYS.GV_$ROWCACHE_SUBORDINATE
-/
-

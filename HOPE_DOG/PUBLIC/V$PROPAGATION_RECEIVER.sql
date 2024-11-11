@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$PROPAGATION_RECEIVER for SYS.V_$PROPAGATION_RECEIVER
-/
-

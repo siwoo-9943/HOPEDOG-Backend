@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_NESTED_TABLES for SYS.USER_NESTED_TABLES
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$SYSTEM_PARAMETER2 for SYS.GV_$SYSTEM_PARAMETER2
-/
-

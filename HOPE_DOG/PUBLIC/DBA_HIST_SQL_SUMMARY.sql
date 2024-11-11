@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_HIST_SQL_SUMMARY for SYS.DBA_HIST_SQL_SUMMARY
-/
-

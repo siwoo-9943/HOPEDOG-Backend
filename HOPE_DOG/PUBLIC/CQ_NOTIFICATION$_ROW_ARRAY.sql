@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".CQ_NOTIFICATION$_ROW_ARRAY for SYS.CHNF$_RDESC_ARRAY
-/
-

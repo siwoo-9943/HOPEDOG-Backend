@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".CONTENTSCHEMAIS for XDB.CONTENTSCHEMAIS
-/
-

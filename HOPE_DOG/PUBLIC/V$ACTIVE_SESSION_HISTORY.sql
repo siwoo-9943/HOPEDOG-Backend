@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$ACTIVE_SESSION_HISTORY for SYS.V_$ACTIVE_SESSION_HISTORY
-/
-

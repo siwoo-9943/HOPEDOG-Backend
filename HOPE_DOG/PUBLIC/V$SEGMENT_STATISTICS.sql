@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$SEGMENT_STATISTICS for SYS.V_$SEGMENT_STATISTICS
-/
-

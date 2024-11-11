@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$STATISTICS_LEVEL for SYS.GV_$STATISTICS_LEVEL
-/
-

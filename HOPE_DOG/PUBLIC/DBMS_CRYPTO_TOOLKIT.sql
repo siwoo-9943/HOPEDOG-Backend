@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBMS_CRYPTO_TOOLKIT for SYS.DBMS_CRYPTO_TOOLKIT
-/
-

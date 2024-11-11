@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$SYSAUX_OCCUPANTS for SYS.GV_$SYSAUX_OCCUPANTS
-/
-

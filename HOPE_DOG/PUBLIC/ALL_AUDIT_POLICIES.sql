@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_AUDIT_POLICIES for SYS.ALL_AUDIT_POLICIES
-/
-

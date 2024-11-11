@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_REPGENOBJECTS for SYS.USER_REPGENOBJECTS
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$FILE_CACHE_TRANSFER for SYS.GV_$FILE_CACHE_TRANSFER
-/
-

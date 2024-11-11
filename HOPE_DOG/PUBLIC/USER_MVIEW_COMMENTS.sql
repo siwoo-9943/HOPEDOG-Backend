@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_MVIEW_COMMENTS for SYS.USER_MVIEW_COMMENTS
-/
-

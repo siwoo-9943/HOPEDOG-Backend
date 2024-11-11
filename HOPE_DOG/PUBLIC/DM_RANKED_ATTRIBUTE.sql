@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DM_RANKED_ATTRIBUTE for SYS.DM_RANKED_ATTRIBUTE
-/
-

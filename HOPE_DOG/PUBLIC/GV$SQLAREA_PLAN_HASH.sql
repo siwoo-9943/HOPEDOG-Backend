@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$SQLAREA_PLAN_HASH for SYS.GV_$SQLAREA_PLAN_HASH
-/
-

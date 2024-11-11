@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_ADVISOR_DIR_TASK_INST for SYS.DBA_ADVISOR_DIR_TASK_INST
-/
-

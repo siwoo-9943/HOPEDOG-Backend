@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$RESULT_CACHE_STATISTICS for SYS.V_$RESULT_CACHE_STATISTICS
-/
-

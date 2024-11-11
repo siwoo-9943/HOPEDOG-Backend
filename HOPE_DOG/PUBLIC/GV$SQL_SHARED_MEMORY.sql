@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$SQL_SHARED_MEMORY for SYS.GV_$SQL_SHARED_MEMORY
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".SDO_DATUM_GEODETIC for MDSYS.SDO_DATUM_GEODETIC
-/
-

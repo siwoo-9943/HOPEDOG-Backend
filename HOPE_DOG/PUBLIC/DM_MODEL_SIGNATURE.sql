@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DM_MODEL_SIGNATURE for SYS.DM_MODEL_SIGNATURE
-/
-

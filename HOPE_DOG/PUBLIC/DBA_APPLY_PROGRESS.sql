@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_APPLY_PROGRESS for SYS.DBA_APPLY_PROGRESS
-/
-
