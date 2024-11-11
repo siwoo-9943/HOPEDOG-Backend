@@ -48,6 +48,11 @@ public class VolunService {
         return volunMapper.selectAllPageKeep(criteria);
     }
 
+    //센터회원상태조회
+    public List<VolunMainDTO> centerMemberStatus(Long centerMemberNo){
+        return volunMapper.centerMemberStatus(centerMemberNo);
+    }
+
     //게시글 조회
     public List<VolunDetailDTO> getVolunDetail(Long volunNo) {
         return volunMapper.volunDetail(volunNo); // adoptMapper의 메서드 호출

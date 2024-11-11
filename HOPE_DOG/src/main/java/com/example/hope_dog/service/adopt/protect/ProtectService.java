@@ -35,6 +35,11 @@ public class ProtectService {
         return protectMapper.selectAllPage(criteria);
     }
 
+    //센터회원상태조회
+    public List<ProtectMainDTO> centerMemberStatus(Long centerMemberNo){
+        return protectMapper.centerMemberStatus(centerMemberNo);
+    }
+
     //임시보호 모집중 게시글 조회 + 페이지네이션 포함
     public List<ProtectMainDTO> findAllKeep() {
         return protectMapper.selectAllKeep();

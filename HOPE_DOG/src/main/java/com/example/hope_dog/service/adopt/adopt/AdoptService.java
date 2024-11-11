@@ -53,6 +53,11 @@ public class AdoptService {
         return adoptMapper.selectAllPageKeep(criteria);
     }
 
+    //센터회원상태조회
+    public List<AdoptMainDTO> centerMemberStatus(Long centerMemberNo){
+        return adoptMapper.centerMemberStatus(centerMemberNo);
+    }
+
     
     //게시글 작성
     public void registerAdoption(AdoptWriteDTO adoptWriteDTO) {
