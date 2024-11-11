@@ -49,6 +49,15 @@ a {
   display: flex;
 }
 
+/* 분류 */
+.notice-container-cate {
+  flex-basis: 100px;  /* 원하는 너비로 설정 */
+  text-align: center;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+
 /* 제목 */
 .notice-container-title {
   -webkit-box-flex: 1;
@@ -93,11 +102,18 @@ a {
 
 }
 
+/* 분류 */
+.notice-cate {
+  text-align: center;
+  margin-left: 10px;
+  width: 80px;
+}
+
 /* 제목 */
 .notice-title {
   text-align: left;
-  margin-left: 15px;
-  width: 500px;
+  margin-left: 20px;
+  width: 400px;
 }
 
 .notice-title:hover {
@@ -124,7 +140,7 @@ a {
   justify-content: left;
   width: 400px;
   margin-top: 25px;
-  margin-left: 141px;
+  margin-left: 25px;
 }
 
 input[type="submit"] {

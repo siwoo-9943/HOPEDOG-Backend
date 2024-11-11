@@ -372,6 +372,28 @@ public class MypageController {
         return "redirect:/mypage/updateAdoptRequest?adoptRequestNo=" + adoptRequestNo;
     }
 
+    @GetMapping("/updateVolunRequest")
+    public String updateVolunRequest(@RequestParam("volunRequestNo") Long volunRequestNo, Model model) {
+        MpVolunRequestDTO volunRequest = mypageService.volunRequestInfo(volunRequestNo);
+        Long memberNo = (Long) session.getAttribute("memberNo");
+        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
+
+        model.addAttribute("memberNo", memberNo);
+        model.addAttribute("centerMemberNo", centerMemberNo);
+
+        model.addAttribute("volunRequest", volunRequest);
+        return "mypage/mypage-volun-form";
+    }
+
+    @PostMapping("/updateVolunRequestOk")
+    public String updateVolunRequestOk(@RequestParam("volunRequestNo") Long volunRequestNo, MpVolunRequestDTO mpVolunRequestDTO, Model model) {
+        MpVolunRequestDTO volunRequest = mypageService.volunRequestInfo(volunRequestNo);
+        model.addAttribute("volunRequest", volunRequest);
+
+        mypageService.updateVolunRequest(mpVolunRequestDTO);
+
+        return "redirect:/mypage/updateVolunRequest?volunRequestNo=" + volunRequestNo;
+    }
 
     @GetMapping("/withdrawal")
     public String withdrawal(Model model) {

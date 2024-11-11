@@ -67,5 +67,11 @@ public interface MypageMapper {
 
     // 입양신청서 수정
     void updateAdoptRequest(MpAdoptRequestDTO mpAdoptRequestDTO);
+
+    // 봉사 상세페이지 정보 조회
+    MpVolunRequestDTO volunRequestInfo(Long volunRequestNo);
+
+    // 봉사신청서 수정
+    void updateVolunRequest(MpVolunRequestDTO mpVolunRequestDTO);
 }
 

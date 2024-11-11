@@ -100,7 +100,8 @@
         SELECT
             V.VOLUN_TITLE,
             V.VOLUN_STATUS,
-            V.VOLUN_PERIODEND
+            V.VOLUN_PERIODEND,
+            VR.VOLUN_REQUEST_NO
         FROM TBL_VOLUN V
             JOIN TBL_VOLUN_REQUEST VR ON V.VOLUN_NO = VR.VOLUN_NO
         WHERE VR.MEMBER_NO = #{memberNo}
@@ -153,89 +154,6 @@
 
     </select>
 
-<!--    <select id="selectTotal" resultType="int">-->
-<!--        SELECT COUNT(*) AS TOTAL_COUNT-->
-<!--        FROM (-->
-<!--                 SELECT-->
-<!--                     'CAR' AS TYPE,-->
-<!--                     C.CAR_TITLE AS TITLE,-->
-<!--                     M.MEMBER_NICKNAME AS WRITER,-->
-<!--                     C.CAR_REGIDATE AS REGIDATE-->
-<!--                 FROM-->
-<!--                     TBL_CAR C-->
-<!--                         JOIN TBL_MEMBER M ON C.CAR_WRITER = M.MEMBER_NO-->
-<!--                 WHERE M.MEMBER_NO = #{memberNo}-->
-
-<!--                 UNION ALL-->
-
-<!--                 SELECT-->
-<!--                     'COMMU' AS TYPE,-->
-<!--                     CO.COMMU_TITLE AS TITLE,-->
-<!--                     M.MEMBER_NICKNAME AS WRITER,-->
-<!--                     CO.COMMU_REGIDATE AS REGIDATE-->
-<!--                 FROM-->
-<!--                     TBL_COMMU CO-->
-<!--                         JOIN TBL_MEMBER M ON CO.COMMU_WRITER = M.MEMBER_NO-->
-<!--                 WHERE M.MEMBER_NO = #{memberNo}-->
-
-<!--                 UNION ALL-->
-
-<!--                 SELECT-->
-<!--                     'REVIEW' AS TYPE,-->
-<!--                     R.REVIEW_TITLE AS TITLE,-->
-<!--                     M.MEMBER_NICKNAME AS WRITER,-->
-<!--                     R.REVIEW_REGIDATE AS REGIDATE-->
-<!--                 FROM-->
-<!--                     TBL_REVIEW R-->
-<!--                         JOIN TBL_MEMBER M ON R.MEMBER_NO = M.MEMBER_NO-->
-<!--                 WHERE M.MEMBER_NO = #{memberNo}-->
-<!--             ) AS SUBQUERY-->
-<!--    </select>-->
-
-<!--    <select id="selectAllPage" parameterType="Criteria" resultType="MypagePostsDTO">-->
-<!--    <![CDATA[-->
-<!--        SELECT TYPE, TITLE, WRITER, REGIDATE-->
-<!--        FROM (-->
-<!--                 SELECT-->
-<!--                     'CAR' AS TYPE,-->
-<!--                     C.CAR_TITLE AS TITLE,-->
-<!--                     M.MEMBER_NICKNAME AS WRITER,-->
-<!--                     C.CAR_REGIDATE AS REGIDATE,-->
-<!--                     ROWNUM AS RNUM-->
-<!--                 FROM-->
-<!--                     TBL_CAR C-->
-<!--                         JOIN TBL_MEMBER M ON C.CAR_WRITER = M.MEMBER_NO-->
-<!--                 WHERE M.MEMBER_NO = #{memberNo}-->
-
-<!--                 UNION ALL-->
-
-<!--                 SELECT-->
-<!--                     'COMMU' AS TYPE,-->
-<!--                     CO.COMMU_TITLE AS TITLE,-->
-<!--                     M.MEMBER_NICKNAME AS WRITER,-->
-<!--                     CO.COMMU_REGIDATE AS REGIDATE,-->
-<!--                     ROWNUM AS RNUM-->
-<!--                 FROM-->
-<!--                     TBL_COMMU CO-->
-<!--                         JOIN TBL_MEMBER M ON CO.COMMU_WRITER = M.MEMBER_NO-->
-<!--                 WHERE M.MEMBER_NO = #{memberNo}-->
-
-<!--                 UNION ALL-->
-
-<!--                 SELECT-->
-<!--                     'REVIEW' AS TYPE,-->
-<!--                     R.REVIEW_TITLE AS TITLE,-->
-<!--                     M.MEMBER_NICKNAME AS WRITER,-->
-<!--                     R.REVIEW_REGIDATE AS REGIDATE,-->
-<!--                     ROWNUM AS RNUM-->
-<!--                 FROM-->
-<!--                     TBL_REVIEW R-->
-<!--                         JOIN TBL_MEMBER M ON R.MEMBER_NO = M.MEMBER_NO-->
-<!--                 WHERE M.MEMBER_NO = #{memberNo}-->
-<!--             ) AS SUBQUERY-->
-<!--        WHERE RNUM > (#{page} - 1) * #{amount} AND RNUM <= #{page} * #{amount}-->
-<!--        ]]>-->
-<!--</select>-->
 
     <!--    임시보호 신청서 상세페이지-->
     <select id="protectRequestInfo" parameterType="Long" resultType="MpProtectRequestDTO">
@@ -406,6 +324,62 @@
             tar.ADOPT_REQUEST_ADOPT_AGREEMENT = #{adoptRequestAdoptAgreement}
         WHERE tar.ADOPT_REQUEST_NO = #{adoptRequestNo}  -- 특정 신청서 번호로 업데이트
 
+    </update>
+
+    <select id="volunRequestInfo" parameterType="Long" resultType="MpVolunRequestDTO">
+        SELECT
+            vr.VOLUN_REQUEST_NO,                        -- 신청서 번호
+            vr.VOLUN_REQUEST_NAME,                      -- 신청인
+            vr.VOLUN_REQUEST_PHONE,                     -- 연락처
+            vr.VOLUN_REQUEST_PHONE_SUB,                 -- 대체 연락처
+            vr.VOLUN_REQUEST_EMAIL,                     -- 이메일
+            vr.VOLUN_REQUEST_GENDER,                    -- 신청자 성별
+            vr.VOLUN_REQUEST_AGE,                       -- 신청자 나이 (생일)
+            vr.VOLUN_REQUEST_ZIPCODE,                   -- 우편번호
+            vr.VOLUN_REQUEST_ADDRESS,                   -- 주소
+            vr.VOLUN_REQUEST_ADDRESS_DETAIL,            -- 상세주소
+            vr.VOLUN_REQUEST_JOB,                       -- 직업
+            vr.VOLUN_REQUEST_AGREEMENT,            -- 개인정보 수집 동의
+            vr.VOLUN_REQUEST_Q1,                        -- 질문1
+            vr.VOLUN_REQUEST_Q2,                        -- 질문2
+            vr.VOLUN_REQUEST_Q3,                        -- 질문3
+            vr.VOLUN_REQUEST_Q4,                        -- 질문4
+            vr.VOLUN_NO,                                -- 신청한 게시글 번호
+            vr.MEMBER_NO,                               -- 일반회원 FK
+            vr.CENTER_MEMBER_NO,                        -- 센터 회원 FK
+            tv.VOLUN_TITLE,                              -- 자원봉사 제목
+            tv.VOLUN_REGIDATE,                           -- 자원봉사 게시글 등록일
+            tm.MEMBER_NICKNAME,                          -- 회원 닉네임
+            tcm.CENTER_MEMBER_NAME                    -- 센터 회원 이름
+        FROM
+            TBL_VOLUN_REQUEST vr
+                LEFT JOIN TBL_VOLUN tv ON vr.VOLUN_NO = tv.VOLUN_NO  -- 자원봉사 게시글 관련 JOIN
+                LEFT JOIN TBL_MEMBER tm ON vr.MEMBER_NO = tm.MEMBER_NO  -- 회원 테이블 JOIN
+                LEFT JOIN TBL_CENTER_MEMBER tcm ON vr.CENTER_MEMBER_NO = tcm.CENTER_MEMBER_NO  -- 센터 회원 테이블 JOIN
+        WHERE
+            vr.VOLUN_REQUEST_NO = #{volunRequestNo}   -- 특정 신청서 번호로 조회
+
+    </select>
+
+    <update id="updateVolunRequest" parameterType="MpVolunRequestDTO">
+        UPDATE TBL_VOLUN_REQUEST vr
+        SET
+            vr.VOLUN_REQUEST_NAME = #{volunRequestName},
+            vr.VOLUN_REQUEST_PHONE = #{volunRequestPhone},
+            vr.VOLUN_REQUEST_PHONE_SUB = #{volunRequestPhoneSub},
+            vr.VOLUN_REQUEST_EMAIL = #{volunRequestEmail},
+            vr.VOLUN_REQUEST_GENDER = #{volunRequestGender},
+            vr.VOLUN_REQUEST_AGE = #{volunRequestAge},
+            vr.VOLUN_REQUEST_ZIPCODE = #{volunRequestZipcode},
+            vr.VOLUN_REQUEST_ADDRESS = #{volunRequestAddress},
+            vr.VOLUN_REQUEST_ADDRESS_DETAIL = #{volunRequestAddressDetail},
+            vr.VOLUN_REQUEST_JOB = #{volunRequestJob},
+            vr.VOLUN_REQUEST_AGREEMENT = #{volunRequestAgreement},
+            vr.VOLUN_REQUEST_Q1 = #{volunRequestQ1},
+            vr.VOLUN_REQUEST_Q2 = #{volunRequestQ2},
+            vr.VOLUN_REQUEST_Q3 = #{volunRequestQ3},
+            vr.VOLUN_REQUEST_Q4 = #{volunRequestQ4}
+        WHERE vr.VOLUN_REQUEST_NO = #{volunRequestNo}  -- 특정 신청서 번호로 업데이트
     </update>
 
 </mapper>

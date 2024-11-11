@@ -51,11 +51,11 @@
         <div>
             <ul class="member-notebox-titlebox">
                 <li><b>상태</b></li>
-<!--                <li><b>수신자</b></li>-->
                 <li><b>송신자</b></li>
                 <li><b>제목</b></li>
                 <li><b>내용</b></li>
                 <li><b>날짜</b></li>
+                <li><b>답장/삭제</b></li>
             </ul>
         </div>
         <div class="member-notebox-contentsbox" th:each="noteR : ${noteboxReceiveList}">
@@ -63,9 +63,6 @@
                 <li>
                     <div th:text="${noteR.readStatus}"></div>
                 </li>
-<!--                <li>-->
-<!--                    <div th:text="${noteR.noteboxReceiveS}"></div>-->
-<!--                </li>-->
                 <li>
                     <div th:text="${noteR.noteboxSenderName}"></div>
                 </li>
@@ -76,7 +73,7 @@
                     <div th:text="${noteR.noteboxReceiveContent}"></div>
                 </li>
                 <li>
-                    <div th:text="${noteR.noteboxReceiveRegiDate != null ? #dates.format(noteR.noteboxReceiveRegiDate, 'yyyy.MM.dd HH:mm:ss') : ''}"></div>
+                    <div th:text="${noteR.noteboxReceiveRegiDate != null ? #dates.format(noteR.noteboxReceiveRegiDate, 'yy.MM.dd HH:mm') : ''}"></div>
                 </li>
                 <li>
                     <div class="button-box">

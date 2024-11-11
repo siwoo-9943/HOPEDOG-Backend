@@ -59,6 +59,16 @@ public class MypageService {
         return mypageMapper.mypageVolunList(memberNo);
     }
 
+    // 봉사 신청서 조회
+    public MpVolunRequestDTO volunRequestInfo(Long volunRequestNo) {
+        return mypageMapper.volunRequestInfo(volunRequestNo);
+    }
+
+    // 봉사 신청서 업데이트
+    public void updateVolunRequest(MpVolunRequestDTO mpVolunRequestDTO) {
+        mypageMapper.updateVolunRequest(mpVolunRequestDTO);
+    }
+
     //posts
     public List<MypagePostsDTO> getMypagePostsProfile(Long memberNo) {
         return mypageMapper.mypagePostsList(memberNo);
@@ -93,26 +103,10 @@ public class MypageService {
 
 
     // 프로필 업데이트 메서드
-//    public void updateProfile(MypageUpdateProfileDTO mypageUpdateProfileDTO) {
-//        mypageMapper.updateProfile(mypageUpdateProfileDTO);
-//    }
-
     public int updateProfile(MypageUpdateProfileDTO mypageUpdateProfileDTO) {
         return mypageMapper.updateProfile(mypageUpdateProfileDTO);
     }
 
-    // 페이지네이션
-//    public List<MypagePostsDTO> findAll() {
-//        return mypageMapper.selectAll();
-//    }
-//
-//    public int findTotal(){
-//        return mypageMapper.selectTotal();
-//    }
-//
-//    public List<MypagePostsDTO> findAllPage(Criteria criteria) {
-//        return mypageMapper.selectAllPage(criteria);
-//    }
 
     // 회원 탈퇴
     public boolean withdrawal(Long memberNo) {

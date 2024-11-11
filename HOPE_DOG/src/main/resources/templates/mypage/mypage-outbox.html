@@ -74,7 +74,7 @@
                         <div th:text="${noteS.noteboxSendContent}"></div>
                     </li>
                     <li>
-                        <div th:text="${noteS.noteboxSendRegiDate != null ? #dates.format(noteS.noteboxSendRegiDate, 'yyyy.MM.dd HH:mm:ss') : ''}"></div>
+                        <div th:text="${noteS.noteboxSendRegiDate != null ? #dates.format(noteS.noteboxSendRegiDate, 'yy.MM.dd HH:mm') : ''}"></div>
                     </li>
                 </ul>
             <div class="noteboxSendNo" th:text="${noteS.noteboxSendNo}" style="display: none;"></div>
@@ -89,6 +89,7 @@
         </div>
         <!-- 페이지네이션 -->
         <div id="pagination"></div>
+    </div>
 </main>
 <footer th:replace="~{/fragment/footer :: footer}"></footer>
 
