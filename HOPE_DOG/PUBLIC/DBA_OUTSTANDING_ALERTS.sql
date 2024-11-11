@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_OUTSTANDING_ALERTS for SYS.DBA_OUTSTANDING_ALERTS
+/
+

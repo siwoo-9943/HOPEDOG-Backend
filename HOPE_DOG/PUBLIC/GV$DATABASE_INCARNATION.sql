@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$DATABASE_INCARNATION for SYS.GV_$DATABASE_INCARNATION
+/
+

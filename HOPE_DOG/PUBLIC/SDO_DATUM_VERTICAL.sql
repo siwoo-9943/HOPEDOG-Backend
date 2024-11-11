@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".SDO_DATUM_VERTICAL for MDSYS.SDO_DATUM_VERTICAL
+/
+

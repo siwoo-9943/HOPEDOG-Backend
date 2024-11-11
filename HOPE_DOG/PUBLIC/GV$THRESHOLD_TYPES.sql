@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$THRESHOLD_TYPES for SYS.GV_$THRESHOLD_TYPES
+/
+

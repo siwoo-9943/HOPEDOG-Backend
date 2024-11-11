@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".APEX_PLSQL_JOBS for APEX_040000.APEX_PLSQL_JOBS
+/
+

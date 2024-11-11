@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_STREAMS_TP_PATH_STAT for SYS.DBA_STREAMS_TP_PATH_STAT
+/
+

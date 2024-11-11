@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_REPKEY_COLUMNS for SYS.USER_REPKEY_COLUMNS
+/
+

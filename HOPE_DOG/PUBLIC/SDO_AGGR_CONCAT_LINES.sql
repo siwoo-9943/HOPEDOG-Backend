@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".SDO_AGGR_CONCAT_LINES for MDSYS.SDO_AGGR_CONCAT_LINES
+/
+

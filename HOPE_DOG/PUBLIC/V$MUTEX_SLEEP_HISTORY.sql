@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$MUTEX_SLEEP_HISTORY for SYS.V_$MUTEX_SLEEP_HISTORY
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_DBFS_HS_COMMANDS for SYS.DBA_DBFS_HS_COMMANDS
+/
+

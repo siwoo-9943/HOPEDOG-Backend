@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_APPLICATION_ROLES for SYS.USER_APPLICATION_ROLES
+/
+

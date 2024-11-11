@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$PARAMETER_VALID_VALUES for SYS.V_$PARAMETER_VALID_VALUES
+/
+

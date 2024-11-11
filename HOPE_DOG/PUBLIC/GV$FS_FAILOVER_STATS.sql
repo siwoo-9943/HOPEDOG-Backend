@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$FS_FAILOVER_STATS for SYS.GV_$FS_FAILOVER_STATS
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$DIAG_V_INC_METER_INFO_PROB for SYS.V_$DIAG_V_INC_METER_INFO_PROB
+/
+

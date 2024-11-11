@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$PROXY_ARCHIVEDLOG for SYS.GV_$PROXY_ARCHIVEDLOG
+/
+

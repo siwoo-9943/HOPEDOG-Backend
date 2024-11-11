@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_TAB_COL_STATISTICS for SYS.ALL_TAB_COL_STATISTICS
+/
+

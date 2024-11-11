@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBMS_RESOURCE_MANAGER for SYS.DBMS_RESOURCE_MANAGER
+/
+

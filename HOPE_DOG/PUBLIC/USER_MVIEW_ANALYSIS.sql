@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_MVIEW_ANALYSIS for SYS.USER_MVIEW_ANALYSIS
+/
+

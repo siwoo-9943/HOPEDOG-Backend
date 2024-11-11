@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_FREE_SPACE_COALESCED for SYS.DBA_FREE_SPACE_COALESCED
+/
+

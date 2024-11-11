@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_REPFLAVOR_OBJECTS for SYS.DBA_REPFLAVOR_OBJECTS
+/
+

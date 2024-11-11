@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".CTX_USER_PENDING for CTXSYS.CTX_USER_PENDING
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".TABLE_PRIVILEGE_MAP for SYS.TABLE_PRIVILEGE_MAP
+/
+

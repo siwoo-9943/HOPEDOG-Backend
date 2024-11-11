@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$DATAPUMP_SESSION for SYS.V_$DATAPUMP_SESSION
+/
+

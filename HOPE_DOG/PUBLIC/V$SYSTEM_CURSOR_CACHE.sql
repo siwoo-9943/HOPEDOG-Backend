@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$SYSTEM_CURSOR_CACHE for SYS.V_$SYSTEM_CURSOR_CACHE
+/
+

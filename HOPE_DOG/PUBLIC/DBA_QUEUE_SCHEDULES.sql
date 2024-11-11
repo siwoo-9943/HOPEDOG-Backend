@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_QUEUE_SCHEDULES for SYS.DBA_QUEUE_SCHEDULES
+/
+

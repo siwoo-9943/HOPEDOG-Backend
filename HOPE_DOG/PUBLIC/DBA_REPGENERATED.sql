@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_REPGENERATED for SYS.DBA_REPGENERATED
+/
+

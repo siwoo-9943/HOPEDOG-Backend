@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$DIAG_DFW_CONFIG_CAPTURE for SYS.V_$DIAG_DFW_CONFIG_CAPTURE
+/
+

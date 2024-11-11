@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$SQL_SHARED_CURSOR for SYS.GV_$SQL_SHARED_CURSOR
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$SQLSTATS_PLAN_HASH for SYS.V_$SQLSTATS_PLAN_HASH
+/
+

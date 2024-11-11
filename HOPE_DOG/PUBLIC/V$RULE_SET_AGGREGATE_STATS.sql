@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$RULE_SET_AGGREGATE_STATS for SYS.V_$RULE_SET_AGGREGATE_STATS
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".HTMLDB_PLSQL_JOBS for APEX_040000.HTMLDB_PLSQL_JOBS
+/
+

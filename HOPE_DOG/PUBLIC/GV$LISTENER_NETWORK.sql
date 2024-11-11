@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$LISTENER_NETWORK for SYS.GV_$LISTENER_NETWORK
+/
+

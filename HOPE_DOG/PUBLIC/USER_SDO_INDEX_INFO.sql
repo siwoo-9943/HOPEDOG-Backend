@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_SDO_INDEX_INFO for MDSYS.USER_SDO_INDEX_INFO
+/
+

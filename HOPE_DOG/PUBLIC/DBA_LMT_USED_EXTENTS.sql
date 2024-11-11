@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_LMT_USED_EXTENTS for SYS.DBA_LMT_USED_EXTENTS
+/
+

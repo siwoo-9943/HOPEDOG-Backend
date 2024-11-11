@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_HIST_IOSTAT_DETAIL for SYS.DBA_HIST_IOSTAT_DETAIL
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$STREAMS_POOL_ADVICE for SYS.GV_$STREAMS_POOL_ADVICE
+/
+

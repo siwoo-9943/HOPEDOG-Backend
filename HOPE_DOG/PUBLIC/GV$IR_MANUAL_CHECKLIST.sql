@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$IR_MANUAL_CHECKLIST for SYS.GV_$IR_MANUAL_CHECKLIST
+/
+

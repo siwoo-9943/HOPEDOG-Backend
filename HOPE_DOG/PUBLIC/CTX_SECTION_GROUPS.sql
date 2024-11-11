@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".CTX_SECTION_GROUPS for CTXSYS.CTX_SECTION_GROUPS
+/
+

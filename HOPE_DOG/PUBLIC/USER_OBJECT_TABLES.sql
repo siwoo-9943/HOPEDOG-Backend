@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_OBJECT_TABLES for SYS.USER_OBJECT_TABLES
+/
+

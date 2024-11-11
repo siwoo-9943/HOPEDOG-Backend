@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$DATABASE_INCARNATION for SYS.V_$DATABASE_INCARNATION
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".SDO_AVAILABLE_OPS for MDSYS.SDO_AVAILABLE_OPS
+/
+

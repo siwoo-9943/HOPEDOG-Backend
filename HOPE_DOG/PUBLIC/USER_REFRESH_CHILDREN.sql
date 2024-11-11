@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_REFRESH_CHILDREN for SYS.USER_REFRESH_CHILDREN
+/
+

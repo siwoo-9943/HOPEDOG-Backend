@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".MULTISURFACE for MDSYS.ST_MULTISURFACE
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_ASSOCIATIONS for SYS.DBA_ASSOCIATIONS
+/
+

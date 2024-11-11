@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_CUBE_BUILD_PROCESSES for SYS.ALL_CUBE_BUILD_PROCESSES
+/
+

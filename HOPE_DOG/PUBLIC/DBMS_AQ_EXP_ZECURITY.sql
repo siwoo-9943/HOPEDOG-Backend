@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBMS_AQ_EXP_ZECURITY for SYS.DBMS_AQ_EXP_ZECURITY
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$BUFFERED_PUBLISHERS for SYS.GV_$BUFFERED_PUBLISHERS
+/
+

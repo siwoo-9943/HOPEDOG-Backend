@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$SESSION_OBJECT_CACHE for SYS.V_$SESSION_OBJECT_CACHE
+/
+

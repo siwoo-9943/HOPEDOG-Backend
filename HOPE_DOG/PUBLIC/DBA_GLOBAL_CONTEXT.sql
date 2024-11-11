@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_GLOBAL_CONTEXT for SYS.DBA_GLOBAL_CONTEXT
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBMS_RULE_COMPATIBLE_90 for SYS.DBMS_RULE_COMPATIBLE_90
+/
+

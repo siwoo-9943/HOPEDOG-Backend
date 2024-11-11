@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_OPANCILLARY for SYS.USER_OPANCILLARY
+/
+

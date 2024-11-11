@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".V$RECOVERY_PROGRESS for SYS.V_$RECOVERY_PROGRESS
+/
+

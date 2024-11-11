@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_CUBE_DIMENSIONS for SYS.ALL_CUBE_DIMENSIONS
+/
+

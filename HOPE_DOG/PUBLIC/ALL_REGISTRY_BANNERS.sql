@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_REGISTRY_BANNERS for SYS.ALL_REGISTRY_BANNERS
+/
+

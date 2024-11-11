@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBMS_TRANSFORM_EXIMP for SYS.DBMS_TRANSFORM_EXIMP
+/
+

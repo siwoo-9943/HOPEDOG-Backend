@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_TAB_PENDING_STATS for SYS.DBA_TAB_PENDING_STATS
+/
+

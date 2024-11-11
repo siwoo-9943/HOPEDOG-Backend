@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".GV$SESSION_LONGOPS for SYS.GV_$SESSION_LONGOPS
+/
+

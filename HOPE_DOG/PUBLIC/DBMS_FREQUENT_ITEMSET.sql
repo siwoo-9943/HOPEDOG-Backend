@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBMS_FREQUENT_ITEMSET for SYS.DBMS_FREQUENT_ITEMSET
+/
+

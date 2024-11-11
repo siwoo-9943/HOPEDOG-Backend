@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".ALL_XDS_INSTANCE_SETS for SYS.ALL_XDS_INSTANCE_SETS
+/
+

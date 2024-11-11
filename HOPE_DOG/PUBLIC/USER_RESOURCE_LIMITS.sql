@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_RESOURCE_LIMITS for SYS.USER_RESOURCE_LIMITS
+/
+

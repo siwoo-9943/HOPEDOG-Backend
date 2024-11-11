@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".DBA_DATAPUMP_SESSIONS for SYS.DBA_DATAPUMP_SESSIONS
+/
+

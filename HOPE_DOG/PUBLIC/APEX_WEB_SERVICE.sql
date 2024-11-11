@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".APEX_WEB_SERVICE for APEX_040000.APEX_WEB_SERVICE
+/
+

@@ -1,0 +1,3 @@
+create public synonym "PUBLIC".USER_PART_HISTOGRAMS for SYS.USER_PART_HISTOGRAMS
+/
+
