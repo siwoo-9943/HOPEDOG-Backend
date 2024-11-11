@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_SCHEDULER_JOB_DESTS for SYS.ALL_SCHEDULER_JOB_DESTS
-/
-

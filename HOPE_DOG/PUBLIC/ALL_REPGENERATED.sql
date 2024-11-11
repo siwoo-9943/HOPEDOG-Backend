@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_REPGENERATED for SYS.ALL_REPGENERATED
-/
-

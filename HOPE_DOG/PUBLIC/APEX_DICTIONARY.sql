@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".APEX_DICTIONARY for APEX_040000.APEX_DICTIONARY
-/
-

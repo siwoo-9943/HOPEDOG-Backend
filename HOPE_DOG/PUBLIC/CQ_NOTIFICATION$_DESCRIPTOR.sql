@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".CQ_NOTIFICATION$_DESCRIPTOR for SYS.CHNF$_DESC
-/
-

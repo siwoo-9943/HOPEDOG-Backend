@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".SDO_KEYWORDARRAY for MDSYS.SDO_KEYWORDARRAY
-/
-

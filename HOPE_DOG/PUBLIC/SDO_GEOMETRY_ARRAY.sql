@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".SDO_GEOMETRY_ARRAY for MDSYS.SDO_GEOMETRY_ARRAY
-/
-

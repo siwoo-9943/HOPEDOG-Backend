@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_EXTERNAL_LOCATIONS for SYS.ALL_EXTERNAL_LOCATIONS
-/
-

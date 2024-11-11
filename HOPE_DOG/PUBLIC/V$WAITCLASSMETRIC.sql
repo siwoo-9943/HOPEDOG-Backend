@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$WAITCLASSMETRIC for SYS.V_$WAITCLASSMETRIC
-/
-

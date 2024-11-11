@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_REPPRIORITY_GROUP for SYS.USER_REPPRIORITY_GROUP
-/
-

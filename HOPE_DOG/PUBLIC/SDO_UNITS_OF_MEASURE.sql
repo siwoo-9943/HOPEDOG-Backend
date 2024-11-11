@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".SDO_UNITS_OF_MEASURE for MDSYS.SDO_UNITS_OF_MEASURE
-/
-

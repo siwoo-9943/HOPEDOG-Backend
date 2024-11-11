@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_AUDIT_STATEMENT for SYS.DBA_AUDIT_STATEMENT
-/
-

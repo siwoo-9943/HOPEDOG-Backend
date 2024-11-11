@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_XSTREAM_OUTBOUND for SYS.DBA_XSTREAM_OUTBOUND
-/
-

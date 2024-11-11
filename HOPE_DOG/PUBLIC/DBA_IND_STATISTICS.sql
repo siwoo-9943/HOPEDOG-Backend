@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_IND_STATISTICS for SYS.DBA_IND_STATISTICS
-/
-

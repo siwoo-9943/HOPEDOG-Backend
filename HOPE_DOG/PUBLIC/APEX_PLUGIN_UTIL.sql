@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".APEX_PLUGIN_UTIL for APEX_040000.APEX_PLUGIN_UTIL
-/
-

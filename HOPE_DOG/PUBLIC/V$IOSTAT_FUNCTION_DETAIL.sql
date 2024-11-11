@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$IOSTAT_FUNCTION_DETAIL for SYS.V_$IOSTAT_FUNCTION_DETAIL
-/
-

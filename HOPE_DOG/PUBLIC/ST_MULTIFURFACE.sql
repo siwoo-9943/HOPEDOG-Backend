@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ST_MULTIFURFACE for MDSYS.ST_MULTISURFACE
-/
-

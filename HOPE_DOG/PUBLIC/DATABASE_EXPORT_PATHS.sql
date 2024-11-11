@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DATABASE_EXPORT_PATHS for SYS.DATABASE_EXPORT_PATHS
-/
-

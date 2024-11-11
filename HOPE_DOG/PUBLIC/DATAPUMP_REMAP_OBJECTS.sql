@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DATAPUMP_REMAP_OBJECTS for SYS.DATAPUMP_REMAP_OBJECTS
-/
-

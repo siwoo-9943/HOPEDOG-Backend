@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$ASM_ACFSVOLUMES for SYS.GV_$ASM_ACFSVOLUMES
-/
-

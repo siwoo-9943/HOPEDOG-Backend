@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$BACKUP_SET_SUMMARY for SYS.V_$BACKUP_SET_SUMMARY
-/
-

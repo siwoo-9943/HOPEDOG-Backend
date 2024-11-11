@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_INDEXTYPE_COMMENTS for SYS.ALL_INDEXTYPE_COMMENTS
-/
-

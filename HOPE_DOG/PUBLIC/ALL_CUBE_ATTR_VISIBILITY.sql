@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_CUBE_ATTR_VISIBILITY for SYS.ALL_CUBE_ATTR_VISIBILITY
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$DETACHED_SESSION for SYS.V_$DETACHED_SESSION
-/
-

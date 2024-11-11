@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBMS_METADATA_BUILD for SYS.DBMS_METADATA_BUILD
-/
-

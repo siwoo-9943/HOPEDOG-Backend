@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$ASM_DISKGROUP_STAT for SYS.GV_$ASM_DISKGROUP_STAT
-/
-

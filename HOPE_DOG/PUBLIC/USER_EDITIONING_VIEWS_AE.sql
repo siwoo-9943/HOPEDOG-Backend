@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_EDITIONING_VIEWS_AE for SYS.USER_EDITIONING_VIEWS_AE
-/
-

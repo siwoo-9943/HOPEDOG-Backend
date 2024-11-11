@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".SDO_AGGR_LRS_CONCAT_3D for MDSYS.SDO_AGGR_LRS_CONCAT_3D
-/
-

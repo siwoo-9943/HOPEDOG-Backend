@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_OPTSTAT_OPERATIONS for SYS.DBA_OPTSTAT_OPERATIONS
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$FILESPACE_USAGE for SYS.GV_$FILESPACE_USAGE
-/
-

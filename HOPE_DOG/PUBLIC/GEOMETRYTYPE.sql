@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GEOMETRYTYPE for MDSYS.OGC_GEOMETRYTYPE
-/
-

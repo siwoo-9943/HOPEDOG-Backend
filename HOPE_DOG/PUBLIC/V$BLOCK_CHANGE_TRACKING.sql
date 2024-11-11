@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$BLOCK_CHANGE_TRACKING for SYS.V_$BLOCK_CHANGE_TRACKING
-/
-

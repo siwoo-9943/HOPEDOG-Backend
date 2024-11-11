@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".POINTONSURFACE for MDSYS.OGC_POINTONSURFACE
-/
-

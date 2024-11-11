@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_TEMPLATE_TARGETS for SYS.DBA_TEMPLATE_TARGETS
-/
-

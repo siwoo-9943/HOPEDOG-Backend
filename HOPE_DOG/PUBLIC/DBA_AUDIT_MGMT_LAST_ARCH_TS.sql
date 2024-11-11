@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_AUDIT_MGMT_LAST_ARCH_TS for SYS.DBA_AUDIT_MGMT_LAST_ARCH_TS
-/
-

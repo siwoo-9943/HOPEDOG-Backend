@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_ADVISOR_TASKS for SYS.USER_ADVISOR_TASKS
-/
-

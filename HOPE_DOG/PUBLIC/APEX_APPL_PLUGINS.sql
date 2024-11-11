@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".APEX_APPL_PLUGINS for APEX_040000.APEX_APPL_PLUGINS
-/
-

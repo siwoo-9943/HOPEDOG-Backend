@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".SDO_TXN_IDX_EXP_UPD_RGN for MDSYS.SDO_TXN_IDX_EXP_UPD_RGN
-/
-

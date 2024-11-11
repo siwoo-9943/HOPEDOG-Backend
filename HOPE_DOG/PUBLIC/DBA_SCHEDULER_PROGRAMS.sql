@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_SCHEDULER_PROGRAMS for SYS.DBA_SCHEDULER_PROGRAMS
-/
-

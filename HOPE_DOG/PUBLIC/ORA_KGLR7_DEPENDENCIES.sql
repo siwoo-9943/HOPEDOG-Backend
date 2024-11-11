@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ORA_KGLR7_DEPENDENCIES for SYS.ORA_KGLR7_DEPENDENCIES
-/
-

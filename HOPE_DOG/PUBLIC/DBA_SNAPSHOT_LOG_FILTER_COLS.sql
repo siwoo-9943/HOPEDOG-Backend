@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_SNAPSHOT_LOG_FILTER_COLS for SYS.DBA_MVIEW_LOG_FILTER_COLS
-/
-

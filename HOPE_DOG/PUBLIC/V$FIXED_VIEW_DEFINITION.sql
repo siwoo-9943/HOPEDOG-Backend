@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$FIXED_VIEW_DEFINITION for SYS.V_$FIXED_VIEW_DEFINITION
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_SQLJ_TYPE_ATTRS for SYS.USER_SQLJ_TYPE_ATTRS
-/
-

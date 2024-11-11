@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_REPRESOLUTION for SYS.ALL_REPRESOLUTION
-/
-

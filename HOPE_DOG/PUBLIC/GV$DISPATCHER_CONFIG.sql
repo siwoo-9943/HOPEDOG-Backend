@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$DISPATCHER_CONFIG for SYS.GV_$DISPATCHER_CONFIG
-/
-

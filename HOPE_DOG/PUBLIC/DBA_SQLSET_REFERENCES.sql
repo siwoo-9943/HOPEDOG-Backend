@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_SQLSET_REFERENCES for SYS.DBA_SQLSET_REFERENCES
-/
-

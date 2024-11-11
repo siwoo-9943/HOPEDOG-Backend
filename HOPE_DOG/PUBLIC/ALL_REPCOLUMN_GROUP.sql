@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_REPCOLUMN_GROUP for SYS.ALL_REPCOLUMN_GROUP
-/
-

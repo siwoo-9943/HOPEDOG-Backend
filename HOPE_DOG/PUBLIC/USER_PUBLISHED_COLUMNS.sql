@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".USER_PUBLISHED_COLUMNS for SYS.USER_PUBLISHED_COLUMNS
-/
-

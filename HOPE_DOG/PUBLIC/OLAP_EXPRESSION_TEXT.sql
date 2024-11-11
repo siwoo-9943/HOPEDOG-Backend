@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".OLAP_EXPRESSION_TEXT for SYS.OLAP_EXPRESSION_TEXT
-/
-

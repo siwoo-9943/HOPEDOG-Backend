@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBA_RSRC_PLAN_DIRECTIVES for SYS.DBA_RSRC_PLAN_DIRECTIVES
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$SQL_WORKAREA_HISTOGRAM for SYS.V_$SQL_WORKAREA_HISTOGRAM
-/
-

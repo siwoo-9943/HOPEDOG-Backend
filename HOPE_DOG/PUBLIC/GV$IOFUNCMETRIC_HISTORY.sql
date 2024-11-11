@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$IOFUNCMETRIC_HISTORY for SYS.GV_$IOFUNCMETRIC_HISTORY
-/
-

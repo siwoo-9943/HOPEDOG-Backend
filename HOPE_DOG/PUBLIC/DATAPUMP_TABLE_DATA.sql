@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DATAPUMP_TABLE_DATA for SYS.DATAPUMP_TABLE_DATA
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".V$INSTANCE_RECOVERY for SYS.V_$INSTANCE_RECOVERY
-/
-

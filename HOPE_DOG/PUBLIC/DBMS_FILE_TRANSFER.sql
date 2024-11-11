@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".DBMS_FILE_TRANSFER for SYS.DBMS_FILE_TRANSFER
-/
-

@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".ALL_CONS_OBJ_COLUMNS for SYS.ALL_CONS_OBJ_COLUMNS
-/
-

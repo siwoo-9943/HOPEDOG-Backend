@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$SQL_FEATURE_DEPENDENCY for SYS.GV_$SQL_FEATURE_DEPENDENCY
-/
-

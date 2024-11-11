@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$ENCRYPTION_WALLET for SYS.GV_$ENCRYPTION_WALLET
-/
-

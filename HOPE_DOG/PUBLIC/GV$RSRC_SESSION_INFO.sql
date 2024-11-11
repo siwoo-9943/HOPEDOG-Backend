@@ -1,3 +1,0 @@
-create public synonym "PUBLIC".GV$RSRC_SESSION_INFO for SYS.GV_$RSRC_SESSION_INFO
-/
-
