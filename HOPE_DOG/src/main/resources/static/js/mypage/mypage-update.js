@@ -27,26 +27,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-
-
     function checkPhoneInput() {
         const inputField = document.getElementById('phonenumber');
         const phoneError = document.getElementById('phoneError');
-        var phoneNumber = document.getElementById('phonenumber').value;
-        // 입력값을 hidden 필드에 업데이트
-        document.getElementById('memberPhoneNumber').value = phoneNumber;
+
         if (inputField.value.trim() === '') {
             phoneError.style.display = 'block';
         } else {
             phoneError.style.display = 'none';
         }
     }
-
-    function sendVerification() {
-        var phoneNumber = document.getElementById('memberPhoneNumber').value;
-        console.log(phoneNumber);  // 이 값이 인증번호 발송 전에 제대로 업데이트되었는지 확인
-    }
-
 
     function checkPnumberInput() {
         const inputField = document.getElementById('phonecheckInput');
@@ -197,8 +187,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     stopTimer();
 
                     // 인증 완료 후 입력 필드와 버튼 비활성화
-                    document.getElementById('phonecheckInput').setAttribute('readonly', 'true');
-                    document.getElementById('phonenumber').setAttribute('readonly', 'true');
+                    document.getElementById('phonecheckInput').setAttribute('disabled', 'true');
+                    document.getElementById('phonenumber').setAttribute('disabled', 'true');
 
                     // 인증된 전화번호를 hidden input에 저장
                     const verifiedPhoneInput = document.createElement('input');
@@ -382,7 +372,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 각 입력 필드에 blur 이벤트 리스너 추가
     document.getElementById('nickname').addEventListener('blur', checkNicknameInput);
     document.getElementById('email').addEventListener('blur', checkEmailInput);
-    document.getElementById('phonenumber').addEventListener('blur', checkPhoneInput);
+    document.getElementById(' ').addEventListener('blur', checkPhoneInput);
     document.getElementById('phonecheckInput').addEventListener('blur', checkPnumberInput);
     document.getElementById('addressInput').addEventListener('blur', checkAddressInput);
     document.getElementById('addInput').addEventListener('blur', checkAddInput);

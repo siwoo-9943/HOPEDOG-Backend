@@ -1,6 +1,12 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+
 .post-guest-main{
   width: 1080px;
-  /*height: 600px;*/
+  height: 600px;
   justify-content: center;
   align-items: center;
   background-color: white;
@@ -131,664 +137,294 @@
   text-align: left;
 }
 
-
-/*!* 수정 버튼 *!*/
-/*.btn-modify {*/
-/*  display: block;*/
-/*  padding: 0px 10px;*/
-/*  text-align: center;*/
-/*  overflow: hidden;*/
-/*  width: 80px;*/
-/*  height: 40px;*/
-/*  border-radius: 15px;*/
-/*  color: black;*/
-/*  background-color:#F5EAD9;*/
-/*  border: 0px none;*/
-/*  margin-top: 20px;*/
-/*  cursor: pointer;*/
-/*}*/
-
-/*!* 수정 폰트사이즈 *!*/
-/*.dona-admain-btuall span {*/
-/*  font-size: 13px;*/
-/*}*/
-
-/*!* 수정 폰트 두께 *!*/
-/*.btn-modify-sp {*/
-/*  display: inline-block;*/
-/*  font-size: 16px;*/
-/*  font-weight: 500;*/
-/*}*/
-
-/*.btn-modify:hover {*/
-/*  background-color: #9B805D; !* 마우스를 올렸을 때 배경색 *!*/
-/*  color: white; !* 마우스를 올렸을 때 텍스트 색상 *!*/
-/*}*/
-
-/*!* 삭제 버튼 *!*/
-/*.btn-remove {*/
-/*  display: block;*/
-/*  padding: 0px 10px;*/
-/*  text-align: center;*/
-/*  overflow: hidden;*/
-/*  width: 80px;*/
-/*  height: 40px;*/
-/*  border-radius: 15px;*/
-/*  color: black;*/
-/*  background-color:#F5EAD9;*/
-/*  border: 0px none;*/
-/*  margin-top: 20px;*/
-/*  cursor: pointer;*/
-/*}*/
-
-/*!* 삭제 폰트사이즈 *!*/
-/*.btn-remove span {*/
-/*  font-size: 13px;*/
-/*}*/
-
-/*!* 삭제 폰트 두께 *!*/
-/*.btn-remove-sp {*/
-/*  display: inline-block;*/
-/*  font-size: 16px;*/
-/*  font-weight: 500;*/
-/*}*/
-
-/*.btn-remove:hover {*/
-/*  background-color: #9B805D; !* 마우스를 올렸을 때 배경색 *!*/
-/*  color: white; !* 마우스를 올렸을 때 텍스트 색상 *!*/
-/*}*/
-
-/*!* 신고 버튼 *!*/
-
-/*.dona-admain-btuall-complaint{*/
-/*  margin-left: 540px;*/
-/*}*/
-/*.dona-admain-btu-complaint {*/
-/*  display: block;*/
-/*  padding: 0px 10px;*/
-/*  text-align: center;*/
-/*  overflow: hidden;*/
-/*  width: 80px;*/
-/*  height: 40px;*/
-/*  border-radius: 15px;*/
-/*  color: black;*/
-/*  background-color:#F5EAD9;*/
-/*  border: 0px none;*/
-/*  margin-top: 20px;*/
-/*  cursor: pointer;*/
-/*}*/
-
-/*!* 신고 폰트사이즈 *!*/
-/*.dona-admain-btuall-complaint span {*/
-/*  font-size: 13px;*/
-/*}*/
-
-/*!* 신고 폰트 두께 *!*/
-/*.dona-admain-btu-complaint-sp {*/
-/*  display: inline-block;*/
-/*  font-size: 16px;*/
-/*  font-weight: 500;*/
-/*}*/
-
-/*.dona-admain-btu-complaint:hover {*/
-/*  background-color: #9B805D; !* 마우스를 올렸을 때 배경색 *!*/
-/*  color: white; !* 마우스를 올렸을 때 텍스트 색상 *!*/
-/*}*/
-
-/*.dona-detail-commentbox{*/
-/*  margin: 10px;*/
-/*  width: 780px;*/
-/*  height: auto;*/
-/*  !*border-bottom: 2px solid #F5EAD9;*!*/
-/*}*/
-
-/*.dona-detail-name{*/
-/*  font-size: 14px;*/
-/*  font-weight: bold;*/
-/*}*/
-
-/*.dona-detail-comment{*/
-/*  font-size: 14px;*/
-/*}*/
-
-/*.dona-detail-date{*/
-/*  font-size: 12px;*/
-/*  border-bottom: 2px solid #F5EAD9;*/
-/*  margin-top: 10px;*/
-/*  margin-bottom: 10px;*/
-/*}*/
-
-/*.dona-detail-commentregi{*/
-/*  width: 620px;*/
-/*  height: 50px;*/
-/*}*/
-
-/*.dona-commentregi-button{*/
-/*  width: 100px;*/
-/*  height: 50px;*/
-/*  background-color: #F5EAD9;*/
-/*  border: none;*/
-/*  border-radius: 15px;*/
-/*  font-size: 15px;*/
-/*  font-weight: bold;*/
-/*  cursor: pointer;*/
-/*}*/
-
-/*.dona-commentregi-button:hover {*/
-/*  background-color: #9B805D; !* 마우스를 올렸을 때 변경될 색상 *!*/
-/*  color: white;*/
-/*}*/
-
-/*!* 댓글버튼 *!*/
-/*.dona-comment-button {*/
-/*  width: 50px;*/
-/*  height: 25px;*/
-/*  background-color: #F5EAD9;*/
-/*  border: none;*/
-/*  border-radius: 8px;*/
-/*  font-size: 10px;*/
-/*  font-weight: bold;*/
-/*  cursor: pointer;*/
-/*  margin-right: 5px; !* 버튼 간 간격 조절 *!*/
-/*}*/
-
-/*.dona-comment-button:hover {*/
-/*  background-color: #9B805D; !* 마우스를 올렸을 때 변경될 색상 *!*/
-/*  color: white;*/
-/*}*/
-
-/*!* 댓글수정 input 박스 *!*/
-/*.dona-modify-comment{*/
-/*  width: 300px;*/
-/*  height: 30px;*/
-/*  !*margin-top: 20px;*!*/
-/*}*/
-
-/*.dona-detail-commentregi{*/
-/*  width: 620px;*/
-/*  height: 50px;*/
-/*}*/
-
-/*.dona-commentregi-button{*/
-/*  width: 100px;*/
-/*  height: 50px;*/
-/*  background-color: #F5EAD9;*/
-/*  border: none;*/
-/*  border-radius: 15px;*/
-/*  font-size: 15px;*/
-/*  font-weight: bold;*/
-/*  cursor: pointer;*/
-/*}*/
-
-/*.dona-commentregi-button:hover {*/
-/*  background-color: #9B805D; !* 마우스를 올렸을 때 변경될 색상 *!*/
-/*  color: white;*/
-/*}*/
-
-
-/*!*댓글관련 css*!*/
-/*.dona-detail-commentNum{*/
-/*  width: 745px;*/
-/*  height: 35px;*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*  font-size: 16px;*/
-/*  font-weight: bold;*/
-/*}*/
-
-/*.dona-detail-commentbox{*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  justify-content: center;*/
-/*  width: 745px;*/
-/*  min-height: 95px;*/
-/*}*/
-
-/*.dona-detail-name{*/
-/*  font-size: 14px;*/
-/*  font-weight: bold;*/
-/*  display: flex;*/
-/*  justify-content: space-between;*/
-/*}*/
-
-/*.dona-detail-comment{*/
-/*  font-size: 14px;*/
-/*}*/
-
-/*.dona-detail-date{*/
-/*  font-size: 12px;*/
-/*}*/
-
-/*.dona-detail-commentregi{*/
-/*  width: 620px;*/
-/*  height: 50px;*/
-/*}*/
-
-/*.dona-commentregi-button{*/
-/*  width: 100px;*/
-/*  height: 50px;*/
-/*  background-color: #F5EAD9;*/
-/*  border: none;*/
-/*  border-radius: 15px;*/
-/*  font-size: 15px;*/
-/*  font-weight: bold;*/
-/*  cursor: pointer;*/
-/*}*/
-
-/*.dona-commentregi-button:hover {*/
-/*  background-color: #9B805D; !* 마우스를 올렸을 때 변경될 색상 *!*/
-/*  color: white;*/
-/*}*/
-
-/*!* 댓글버튼 *!*/
-/*.dona-comment-button{*/
-/*  width: 50px;*/
-/*  height: 25px;*/
-/*  background-color: #F5EAD9;*/
-/*  border: none;*/
-/*  border-radius: 8px;*/
-/*  font-size: 10px;*/
-/*  font-weight: bold;*/
-/*  cursor: pointer;*/
-/*}*/
-
-/*.dona-comment-button:hover {*/
-/*  background-color: #9B805D; !* 마우스를 올렸을 때 변경될 색상 *!*/
-/*  color: white;*/
-/*}*/
-
-/*!* 댓글수정 input 박스 *!*/
-/*.dona-modify-comment{*/
-/*  width: 300px;*/
-/*  height: 30px;*/
-/*}*/
-
-/*.dona-comment-buttonBox{*/
-/*  display: flex;*/
-/*  justify-content: flex-end;*/
-/*  gap: 5px;*/
-/*}*/
-
-/*a {*/
-/*  text-decoration: none;*/
-/*  color: inherit;*/
-/*}*/
-
-
-/**/
-/*!* 수정, 삭제, 목록 버튼 *!*/
-/*.btn-wrap {*/
-/*  display: flex;*/
-/*  gap: 10px;*/
-/*  width: 100%;*/
-/*}*/
-
-/*.btn-modify, .btn-remove, .dona-admain-btu-complaint {*/
-/*  width: 80px;*/
-/*  height: 40px;*/
-/*  border-radius: 15px;*/
-/*  background-color: #F5EAD9;*/
-/*  border: none;*/
-/*  color: black;*/
-/*  cursor: pointer;*/
-/*  font-size: 16px;*/
-/*  font-weight: 500;*/
-/*}*/
-
-/*.btn-modify:hover, .btn-remove:hover, .dona-admain-btu-complaint:hover {*/
-/*  background-color: #9B805D;*/
-/*  color: white;*/
-/*}*/
-
-/*.dona-admain-btuall-complaint {*/
-/*  margin-left: auto;*/
-/*}*/
-
-/*!* 댓글 영역 *!*/
-/*.reply-wrap {*/
-/*  width: 100%;*/
-/*  margin-top: 20px;*/
-/*  padding: 20px;*/
-/*  border-top: 2px solid #9B805D;*/
-/*}*/
-
-/*.reply-wrap__box {*/
-/*  display: flex;*/
-/*  gap: 10px;*/
-/*  margin-bottom: 20px;*/
-/*}*/
-
-/*.reply-content__box {*/
-/*  flex: 1;*/
-/*}*/
-
-/*.reply-writer {*/
-/*  font-weight: bold;*/
-/*}*/
-
-/*#reply-content {*/
-/*  width: 100%;*/
-/*  height: 60px;*/
-/*  border: 1px solid #ddd;*/
-/*  border-radius: 8px;*/
-/*  padding: 10px;*/
-/*  resize: none;*/
-/*  font-size: 14px;*/
-/*}*/
-
-/*.btn-reply {*/
-/*  width: 100px;*/
-/*  height: 50px;*/
-/*  background-color: #F5EAD9;*/
-/*  border: none;*/
-/*  border-radius: 15px;*/
-/*  font-size: 15px;*/
-/*  font-weight: bold;*/
-/*  cursor: pointer;*/
-/*}*/
-
-/*.btn-reply:hover {*/
-/*  background-color: #9B805D;*/
-/*  color: white;*/
-/*}*/
-
-/*!* 댓글 리스트 *!*/
-/*.reply-list-wrap {*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  gap: 15px;*/
-/*}*/
-
-/*.reply-item {*/
-/*  padding: 10px;*/
-/*  border-bottom: 1px solid #ddd;*/
-/*}*/
-
-/*.reply-header {*/
-/*  display: flex;*/
-/*  justify-content: space-between;*/
-/*  align-items: center;*/
-/*}*/
-
-/*.reply-date {*/
-/*  font-size: 12px;*/
-/*  color: #999;*/
-/*}*/
-
-/*.reply-content {*/
-/*  margin-top: 5px;*/
-/*  font-size: 14px;*/
-/*}*/
-
-/*.reply-buttons {*/
-/*  display: flex;*/
-/*  gap: 5px;*/
-/*}*/
-
-/*!* 댓글 버튼 (삭제, 수정, 신고) *!*/
-/*.dona-comment-button, .reply-report-btn {*/
-/*  width: 50px;*/
-/*  height: 25px;*/
-/*  background-color: #F5EAD9;*/
-/*  border: none;*/
-/*  border-radius: 8px;*/
-/*  font-size: 10px;*/
-/*  font-weight: bold;*/
-/*  cursor: pointer;*/
-/*}*/
-
-/*.dona-comment-button:hover, .reply-report-btn:hover {*/
-/*  background-color: #9B805D;*/
-/*  color: white;*/
-/*}*/
-
-/*+++++++++++++++++++++++*/
-/* 댓글 작성 영역 */
-/*.reply-wrap__box {*/
-/*  display: flex;*/
-/*  gap: 10px;*/
-/*  width:auto;*/
-/*  align-items: end;*/
-/*  margin-bottom: 20px;*/
-/*}*/
-
-/*.reply-content__box {*/
-/*  flex: 1;*/
-/*  position: relative;*/
-/*}*/
-
-/*#reply-content {*/
-/*  width: 665px;*/
-/*  height: 60px;*/
-/*  border: 1px solid #ddd;*/
-/*  border-radius: 8px;*/
-/*  padding: 10px;*/
-/*  resize: none;*/
-/*  font-size: 14px;*/
-/*}*/
-
-/*.reply-btn-wrap {*/
-/*  position: relative;*/
-/*  right: 10px;*/
-/*  top:-15px;*/
-/*}*/
-
-/*!* 댓글 작성 완료 버튼 *!*/
-/*.btn-reply {*/
-/*  width: 100px;*/
-/*  height: 40px;*/
-/*  background-color: #F5EAD9;*/
-/*  border: none;*/
-/*  border-radius: 15px;*/
-/*  font-size: 14px;*/
-/*  font-weight: bold;*/
-/*  cursor: pointer;*/
-/*  text-align: center;*/
-/*}*/
-
-/*.btn-reply:hover {*/
-/*  background-color: #9B805D;*/
-/*  color: white;*/
-/*}*/
-
-/*!* 댓글 리스트 *!*/
-/*.reply-list-wrap {*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  gap: 15px;*/
-/*}*/
-
-/*.reply-item {*/
-/*  padding: 10px;*/
-/*  border-bottom: 1px solid #ddd;*/
-/*}*/
-
-/*.reply-header {*/
-/*  display: flex;*/
-/*  justify-content: space-between;*/
-/*  align-items: center;*/
-/*}*/
-
-/*.reply-date {*/
-/*  font-size: 12px;*/
-/*  color: #999;*/
-/*}*/
-
-/*#reply-content {*/
-/*  margin-top: 5px;*/
-/*  font-size: 14px;*/
-/*}*/
-
-/*.reply-buttons {*/
-/*  display: flex;*/
-/*  gap: 10px;*/
-/*  margin-top: 5px;*/
-/*}*/
-
-/*!* 댓글 버튼 (삭제, 수정, 신고) *!*/
-/*.dona-comment-button, .reply-report-btn {*/
-/*  width: 50px;*/
-/*  height: 25px;*/
-/*  background-color: #F5EAD9;*/
-/*  border: none;*/
-/*  border-radius: 8px;*/
-/*  font-size: 12px;*/
-/*  font-weight: bold;*/
-/*  cursor: pointer;*/
-/*  text-align: center;*/
-/*}*/
-
-/*.dona-comment-button:hover, .reply-report-btn:hover {*/
-/*  background-color: #9B805D;*/
-/*  color: white;*/
-/*}*/
-
-/* 댓글 작성 영역 */
-.reply-wrap__box {
-  display: flex;
-  gap: 10px;
-  width: auto;
-  align-items: end;
-  margin-bottom: 20px;
+/* 수정 , 취소,신고 버튼들*/
+.dona-button{
+  display: flex; /* 수평 정렬을 위한 flexbox 사용 */
+  justify-content: flex-start; /* 버튼들을 왼쪽으로 정렬 */
+  gap: 10px; /* 버튼 간 간격 조절 */
+  /* margin-left: 136px; */
+  border-bottom: 2px solid #9B805D; /* 아래쪽 경계선 추가 */
+  padding-bottom: 10px; /* 여백 추가 */
+  width: 800px;
 }
 
-.reply-content__box {
-  flex: 1;
-  position: relative;
+/* 수정 버튼 */
+.btn-modify {
+  display: block;
+  padding: 0px 10px;
+  text-align: center;
+  overflow: hidden;
+  width: 80px;
+  height: 40px;
+  border-radius: 15px;
+  color: black;
+  background-color:#F5EAD9;
+  border: 0px none;
+  margin-top: 20px;
+  cursor: pointer;
 }
 
-#reply-content {
-  width: 665px;
-  height: 60px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 10px;
-  resize: none;
+/* 수정 폰트사이즈 */
+.dona-admain-btuall span {
+  font-size: 13px;
+}
+
+/* 수정 폰트 두께 */
+.btn-modify-sp {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.btn-modify:hover {
+  background-color: #9B805D; /* 마우스를 올렸을 때 배경색 */
+  color: white; /* 마우스를 올렸을 때 텍스트 색상 */
+}
+
+/* 삭제 버튼 */
+.btn-remove {
+  display: block;
+  padding: 0px 10px;
+  text-align: center;
+  overflow: hidden;
+  width: 80px;
+  height: 40px;
+  border-radius: 15px;
+  color: black;
+  background-color:#F5EAD9;
+  border: 0px none;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+/* 삭제 폰트사이즈 */
+.btn-remove span {
+  font-size: 13px;
+}
+
+/* 삭제 폰트 두께 */
+.btn-remove-sp {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.btn-remove:hover {
+  background-color: #9B805D; /* 마우스를 올렸을 때 배경색 */
+  color: white; /* 마우스를 올렸을 때 텍스트 색상 */
+}
+
+/* 신고 버튼 */
+
+.dona-admain-btuall-complaint{
+  margin-left: 540px; 
+}
+.dona-admain-btu-complaint {
+  display: block;
+  padding: 0px 10px;
+  text-align: center;
+  overflow: hidden;
+  width: 80px;
+  height: 40px;
+  border-radius: 15px;
+  color: black;
+  background-color:#F5EAD9;
+  border: 0px none;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+/* 신고 폰트사이즈 */
+.dona-admain-btuall-complaint span {
+  font-size: 13px;
+}
+
+/* 신고 폰트 두께 */
+.dona-admain-btu-complaint-sp {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.dona-admain-btu-complaint:hover {
+  background-color: #9B805D; /* 마우스를 올렸을 때 배경색 */
+  color: white; /* 마우스를 올렸을 때 텍스트 색상 */
+}
+
+.dona-detail-commentbox{
+  margin: 10px;
+  width: 780px;
+  height: auto;
+  /*border-bottom: 2px solid #F5EAD9;*/
+}
+
+.dona-detail-name{
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.dona-detail-comment{
   font-size: 14px;
 }
 
-.reply-btn-wrap {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.dona-detail-date{
+  font-size: 12px;
+  border-bottom: 2px solid #F5EAD9;
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-/* 댓글 작성 완료 버튼 */
-.btn-reply {
+.dona-detail-commentregi{
+  width: 620px;
+  height: 50px;
+}
+
+.dona-commentregi-button{
   width: 100px;
-  height: 40px;
+  height: 50px;
   background-color: #F5EAD9;
   border: none;
   border-radius: 15px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: bold;
   cursor: pointer;
-  text-align: center;
 }
 
-.btn-reply:hover {
-  background-color: #9B805D;
+.dona-commentregi-button:hover {
+  background-color: #9B805D; /* 마우스를 올렸을 때 변경될 색상 */
   color: white;
 }
 
-/* 댓글 리스트 */
-.reply-list-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.reply-item {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-}
-
-.reply-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.reply-date {
-  font-size: 12px;
-  color: #999;
-}
-
-.reply-content {
-  margin-top: 5px;
-  font-size: 14px;
-}
-
-.reply-buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 5px;
-}
-
-/* 댓글 버튼 (삭제, 수정, 신고) */
-.reply-btn-box {
-  display: flex;
-  gap: 5px;
-  margin-top: 10px;
-}
-
-.reply-btns__box {
-  display: flex;
-  gap: 8px;
-}
-
-.reply-btns {
-  cursor: pointer;
-}
-
-/* 각 버튼 스타일 */
-.reply-remove-btn, .reply-modify-btn, .reply-report-btn {
+/* 댓글버튼 */
+.dona-comment-button{
   width: 50px;
   height: 25px;
   background-color: #F5EAD9;
   border: none;
   border-radius: 8px;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: bold;
   cursor: pointer;
-  text-align: center;
 }
 
-.reply-remove-btn:hover, .reply-modify-btn:hover, .reply-report-btn:hover {
-  background-color: #9B805D;
+.dona-comment-button:hover {
+  background-color: #9B805D; /* 마우스를 올렸을 때 변경될 색상 */
   color: white;
 }
 
-/* 신고 버튼 스타일 */
-.reply-report-btn {
-  background-color: #FFC1C1; /* 연한 빨간색으로 신고 버튼을 강조 */
+/* 댓글수정 input 박스 */
+.dona-modify-comment{
+  width: 300px;
+  height: 30px;
+  margin-top: 20px;
 }
 
-.reply-report-btn:hover {
-  background-color: #FF6B6B; /* 강조된 색상 */
+.dona-detail-commentregi{
+  width: 620px;
+  height: 50px;
+}
+
+.dona-commentregi-button{
+  width: 100px;
+  height: 50px;
+  background-color: #F5EAD9;
+  border: none;
+  border-radius: 15px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.dona-commentregi-button:hover {
+  background-color: #9B805D; /* 마우스를 올렸을 때 변경될 색상 */
   color: white;
 }
 
-/* 수정 입력 박스 */
-.modify-box {
+
+/*댓글관련 css*/
+.dona-detail-commentNum{
+  width: 745px;
+  height: 35px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  font-size: 16px;
+  font-weight: bold;
 }
 
-.modify-content {
-  width: 70%;
-  height: 40px;
-  padding: 5px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  resize: none;
+.dona-detail-commentbox{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 745px;
+  min-height: 95px;
+}
+
+.dona-detail-name{
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+}
+
+.dona-detail-comment{
   font-size: 14px;
 }
 
-/* 댓글 수정 박스 none */
-.reply-btns__box.none {
-  display: none;
+.dona-detail-date{
+  font-size: 12px;
+}
+
+.dona-detail-commentregi{
+  width: 620px;
+  height: 50px;
+}
+
+.dona-commentregi-button{
+  width: 100px;
+  height: 50px;
+  background-color: #F5EAD9;
+  border: none;
+  border-radius: 15px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.dona-commentregi-button:hover {
+  background-color: #9B805D; /* 마우스를 올렸을 때 변경될 색상 */
+  color: white;
+}
+
+/* 댓글버튼 */
+.dona-comment-button{
+  width: 50px;
+  height: 25px;
+  background-color: #F5EAD9;
+  border: none;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.dona-comment-button:hover {
+  background-color: #9B805D; /* 마우스를 올렸을 때 변경될 색상 */
+  color: white;
+}
+
+/* 댓글수정 input 박스 */
+.dona-modify-comment{
+  width: 300px;
+  height: 30px;
+}
+
+.dona-comment-buttonBox{
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }

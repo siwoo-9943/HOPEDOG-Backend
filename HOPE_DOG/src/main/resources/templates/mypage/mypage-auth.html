@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>마이페이지-2차인증</title>
+  <link rel="stylesheet" th:href="@{/css/mypage/mypage-auth.css}" />
+  <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+  <link rel="stylesheet" th:href="@{/css/main/main.css}">
+  <script defer th:src="@{/js/main/main.js}"></script>
+</head>
+
+<body>
+
+<header th:replace="~{fragment/header :: header}"></header>
+  <main>
+    <div class="member-profile-navbox">
+      <nav>
+        <ul class="member-profile-nav-ul">
+          <li id="profile"><a href="../../html/mypage/mypage-update.html">개인정보수정</li></a>
+          <li id="posts"><a href="../../html/mypage/mypage-posts.html">작성글조회</li></a>
+          <li id="volunteer"><a href="../../html/mypage/mypage-volunteer.html">봉사</li></a>
+          <li id="adopt"><a href="../../html/mypage/mypage-adopt.html">입양</li></a>
+          <li id="inbox"><a href="../../html/mypage/mypage-inbox.html">쪽지함</li></a>
+          <li id="auth"><a href="#">2차인증</li>
+          <div id="choice"></div></a>
+          <li id="withdrawal"><a href="../../html/mypage/mypage-quit.html">회원탈퇴</li></a>
+        </ul>
+      </nav>
+    </div>
+    <div class="member-auth-navbox">
+      <nav>
+        <ul class="member-auth-nav-ul">
+          <li id="auth"><a href="#">2차 인증</li></a>
+        </ul>
+      </nav>
+    </div>
+    <div id="line"></div>
+    <div class="auth-title">
+      <h3>계정의 보안을 강화하기 위해 일반적인 비밀번호 외에<br>
+        추가적인 인증 단계가 필요합니다.
+        <br><br><br>
+        2차 인증 시 기부 & 카풀 을 사용하실 수 있습니다.</h3>
+      <div class="auth-admain-btuall">
+        <button class="auth-admain-btu" type="button" onclick="location.href='#'">
+            <span class="auth-admain-btu-sp">2차 인증</span>
+        </button>
+      </div>
+    </div>
+
+
+  </main>
+</body>
+
+<footer th:replace="~{/fragment/footer :: footer}"></footer>
+
+
+</html>

@@ -73,11 +73,13 @@
                                         <div id="labelname">연락처 : </div>
                                         <div><input type="text" id="phonenumber" name="memberPhoneNumber" th:value="${profile.memberPhoneNumber}" onblur="checkPhoneInput()"></div>
                                         <button type="button" class="member-profile-button-small" onclick="sendVerification()">인증번호발송</button>
+
                                     </div>
                                     <div class="Error">
                                         <div class="myupdate-content-title" id="phoneError2" style="display: none;"></div>
                                         <div id="phoneError" style="color: red; display: none;">연락처를 정확히 입력해주세요</div>
                                     </div>
+                                    <input type="hidden" id="memberPhoneNumber" th:value="${profile.memberPhoneNumber}">
                                 </label>
 
                                 <label for="phonecheckInput">
@@ -162,6 +164,7 @@
 <!--                                </div>-->
 
                                 <div class="member-profile-button">
+                                    <input th:value="${profile.memberPhoneNumber}" style="display: none" name="memberPhoneNumber">
                                     <button type="submit" class="member-profile-button-small" onclick="validateInputs()">수정하기</button>
                                 </div>
                             </div>
