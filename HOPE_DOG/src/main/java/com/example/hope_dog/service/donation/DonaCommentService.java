@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -20,6 +19,10 @@ public class DonaCommentService {
     private final DonaCommentMapper donaCommentMapper;
 
     public void registerComment(DonaCommentWriteDTO donaCommentWriteDTO){
+//        Long memberNo = donaCommentWriteDTO.getMemberNo();
+        if(donaCommentWriteDTO.getDonaCommentWriter() == null) {
+            donaCommentWriteDTO.setDonaCommentWriter(donaCommentWriteDTO.getMemberNo());
+        }
         donaCommentMapper.insertComment(donaCommentWriteDTO);
     }
 
@@ -37,7 +40,7 @@ public class DonaCommentService {
 
 
     public Slice<DonaCommentListDTO> findSlice(Criteria criteria, Long donaNo){
-        List<DonaCommentListDTO> commentList = donaCommentMapper.selectSlice(criteria, donaNo);
+        List<DonaCommentListDTO> commentList = donaCommentMapper.selectCommentSlice(criteria, donaNo);
 
         boolean hasNext = commentList.size() > criteria.getAmount();
 
