@@ -198,42 +198,44 @@
 /*  color: white; !* 마우스를 올렸을 때 텍스트 색상 *!*/
 /*}*/
 
-/*!* 신고 버튼 *!*/
+/* 신고 버튼 */
 
-/*.dona-admain-btuall-complaint{*/
-/*  margin-left: 540px;*/
-/*}*/
-/*.dona-admain-btu-complaint {*/
-/*  display: block;*/
-/*  padding: 0px 10px;*/
-/*  text-align: center;*/
-/*  overflow: hidden;*/
-/*  width: 80px;*/
-/*  height: 40px;*/
-/*  border-radius: 15px;*/
-/*  color: black;*/
-/*  background-color:#F5EAD9;*/
-/*  border: 0px none;*/
-/*  margin-top: 20px;*/
-/*  cursor: pointer;*/
-/*}*/
+.dona-admain-btuall-complaint{
+  margin-left: 700px;
+}
 
-/*!* 신고 폰트사이즈 *!*/
-/*.dona-admain-btuall-complaint span {*/
-/*  font-size: 13px;*/
-/*}*/
+.dona-admain-btu-complaint {
+  display: block;
+  padding: 0px 10px;
+  text-align: center;
+  overflow: hidden;
+  width: 80px;
+  height: 40px;
+  border-radius: 15px;
+  color: black;
+  background-color:#F5EAD9;
+  border: 0px none;
+  margin-top: 20px;
+  margin-bottom: 100px;
+  cursor: pointer;
+}
 
-/*!* 신고 폰트 두께 *!*/
-/*.dona-admain-btu-complaint-sp {*/
-/*  display: inline-block;*/
-/*  font-size: 16px;*/
-/*  font-weight: 500;*/
-/*}*/
+/* 신고 폰트사이즈 */
+.dona-admain-btuall-complaint span {
+  font-size: 13px;
+}
 
-/*.dona-admain-btu-complaint:hover {*/
-/*  background-color: #9B805D; !* 마우스를 올렸을 때 배경색 *!*/
-/*  color: white; !* 마우스를 올렸을 때 텍스트 색상 *!*/
-/*}*/
+/* 신고 폰트 두께 */
+.dona-admain-btu-complaint-sp {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.dona-admain-btu-complaint:hover {
+  background-color: #9B805D; /* 마우스를 올렸을 때 배경색 */
+  color: white; /* 마우스를 올렸을 때 텍스트 색상 */
+}
 
 /*.dona-detail-commentbox{*/
 /*  margin: 10px;*/
@@ -792,3 +794,4 @@
 /*.reply-btns__box.none {*/
 /*  display: none;*/
 /*}*/
+

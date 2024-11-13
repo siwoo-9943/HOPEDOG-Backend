@@ -51,7 +51,7 @@
                 <button class="btn-modify" type="button" onclick="modifyClick()" th:if="${centerMemberNo == donation.centerMemberNo}">수정</button>
                 <button class="btn-remove" type="button" onclick="deleteClick()" th:if="${centerMemberNo == donation.centerMemberNo}">삭제</button>
             </div>
-
+            <div id="bottom-line"></div>
             <div class="dona-admain-btuall-complaint">
                 <a th:href="@{/dona/list}">
                     <button class="dona-admain-btu-complaint" type="button">
@@ -59,7 +59,7 @@
                     </button>
                 </a>
             </div>
-            <div id="bottom-line"></div>
+
 
             <!--            <div class="dona-detail-box4">-->
             <!--                <button type="button" class="dona-comment-button" th:data-id="${donation.donaNo}">수정</button>-->
@@ -85,7 +85,7 @@
                 <div class="reply-list-wrap">
                     <!-- 댓글 내용을 여기서 추가할 수 있습니다 -->
                 </div>
-                <div class="pagination"></div> <!-- 페이지네이션을 표시할 컨테이너 -->
+
             </div>
 
         </section>

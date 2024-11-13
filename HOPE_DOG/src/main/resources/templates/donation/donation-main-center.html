@@ -45,7 +45,6 @@
                     <li class="dona-author" th:text="${donation.centerMemberName}"></li>
                     <li class="dona-date" th:text="${#dates.format(donation.donaRegidate, 'yyyy-MM-dd')}"></li>
                 </ul>
-
                 <div class="dona-content" th:text="${donation.donaContent}" style="display: none;"></div>
                 <div class="donaNo" th:text="${donation.donaNo}" style="display: none;"></div>
             </div>
@@ -69,7 +68,7 @@
             <!-- 검색 결과를 표시할 공간 -->
             <div id="search-results"></div>
 
-
+            <div id="pagination"></div>
             <div class="dona-admain-btuall"  th:if="${centerMemberNo != null}">
                 <!--          <a class="volun-write-botton" th:if="${centerMemberNo != null}">-->
                 <button class="dona-admain-btu" type="button">
@@ -77,9 +76,8 @@
                 </button>
             </div>
 
-            <div id="pagination"></div>
-
         </div>
+<!--        <div id="pagination"></div>-->
     </div>
 </main>
 </body>
