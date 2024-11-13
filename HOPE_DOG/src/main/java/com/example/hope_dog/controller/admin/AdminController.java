@@ -227,7 +227,11 @@ public class AdminController {
     }
 
     @PostMapping("/noticeWrite")
-    public String noticeWrite(@RequestParam("files") List<MultipartFile> files, @RequestParam("cate") String cate, @RequestParam("title") String title, @RequestParam("content") String content, Model model, HttpSession session) throws IOException {
+    public String noticeWrite(@RequestParam("files") List<MultipartFile> files,
+                              @RequestParam("cate") String cate,
+                              @RequestParam("title") String title,
+                              @RequestParam("content") String content,
+                              Model model, HttpSession session) throws IOException {
         if (!isAdminLoggedIn(session)) {
             return "redirect:/admin/login";
         }
