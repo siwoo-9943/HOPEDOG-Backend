@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.util.List;
@@ -34,14 +35,23 @@ public class AdminController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam("adminId") String adminId, @RequestParam("adminPw") String adminPw, HttpSession session) {
+    public String login(@RequestParam("adminId") String adminId,
+                        @RequestParam("adminPw") String adminPw,
+                        HttpSession session) {
         AdminSessionDTO loginInfo = adminService.findLoginInfo(adminId, adminPw);
 
+        if (loginInfo == null) {
+            // 로그인 실패 시 error 파라미터를 URL에 직접 추가
+            return "redirect:/admin/login?error=true";
+        }
+
+        // 로그인 성공 시 세션에 관리자 정보 저장
         session.setAttribute("adminNo", loginInfo.getAdminNo());
         session.setAttribute("adminId", loginInfo.getAdminId());
 
         return "redirect:/admin/main";
     }
+
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
