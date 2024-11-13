@@ -273,23 +273,32 @@ function CommentReportClick(e) {
       centerMemberNo: centerMemberNo,
       donaCommentWriter:centerMemberNo == null ? memberNo : centerMemberNo,
     };
+
     console.log("====================확인=========");
-    console.log(replyInfo);
+    // console.log(replyInfo);
     reply.register(replyInfo, () => {
       document.querySelector('#reply-content').value = '';
       console.log("댓글 작성 완료");
+
+      // 댓글 등록 후 목록 재갱신
+      page = 1;
+      reply.getList2(donaNo, page, function (data) {
+        hasNext = data.hasNext;
+        displayReply(data.contentList);
+      });
     });
   });
-
-
-  // 초기 댓글 목록 가져오기
-  // fetchComments();
 
   reply.getList2(donaNo, page, function (data) {
     console.log(donaNo + "getList2 확인===");
     hasNext = data.hasNext;
     displayReply(data.contentList);
   });
+
+
+  // 초기 댓글 목록 가져오기
+  // fetchComments();
+
 
   window.addEventListener('scroll', function () {
     if(!hasNext) return;
@@ -338,9 +347,6 @@ function displayReply(replyList) {
         </div>
       </div>`;
 
-
-
-
   });
   $replyWrap.innerHTML = tags;
 }
@@ -369,7 +375,7 @@ function appendReply(replyList) {
         <div class="reply-time">${reply.timeForToday(r.donaCommentRegidate)}</div>
         <div class="reply-btn-box">
           <span class="reply-btns"></span>
-          <div class="reply-btns__box none">
+          <div class="reply-btns__box.none">
             <div class="reply-remove-btn">삭제</div>
             <div class="reply-modify-btn">수정</div>
             <div class="reply-report-btn">신고</div>
