@@ -87,5 +87,34 @@ public class DogMapService {
         return filteredItems;
     }
 
+    // 제한 데이터 페이지 메소드
+    public Item[] getStaticShelterInfo() {
+        Item[] staticShelters = new Item[10];
+
+        staticShelters[0] = createItem(1, "24시아이동물메디컬", "경기도 부천시 오정구 소사로 779 (원종동) 201호", "032-677-5262", 37.52566, 126.804565);
+        staticShelters[1] = createItem(2, "가나동물병원", "경기도 부천시 소사구 경인로 72 (송내동)", "032-665-0075", 37.48555, 126.76318);
+        staticShelters[2] = createItem(3, "가평군유기동물보호소", "경기도 가평군 가평읍 아랫마장길 59 (가평읍, 농업기술센터)", "031-580-4794", 37.845997, 127.4987);
+        staticShelters[3] = createItem(4, "고양시동물보호센터", "경기도 고양시 덕양구 고양대로 1695 (원흥동, 고양시 농업기술센터)", "031-962-3232", 37.64964, 126.87027);
+        staticShelters[4] = createItem(5, "광주TNR동물병원송정", "경기도 광주시 경안천로 142 (송정동)", "031-798-7583", 37.41734, 127.275024);
+        staticShelters[5] = createItem(6, "광주TNR동물병원초월", "경기도 광주시 초월읍 현산로385번길 74-12 (초월읍)", "031-798-7581", 37.41589, 127.27616);
+        staticShelters[6] = createItem(7, "구리반려동물문화센터", "경기도 구리시 동구릉로136번길 57 (인창동) 2층", "031-566-0059", 37.61347, 127.14054);
+        staticShelters[7] = createItem(8, "남양동물보호센터", "경기도 화성시 남양읍 화성로 1483-27 (남양읍)", "031-356-2281", 37.22495, 126.84342);
+        staticShelters[8] = createItem(9, "남양주시동물보호센터", "경기도 남양주시 경강로163번길 32-27 (이패동)", "031-590-2785", 37.60878, 127.191536);
+        staticShelters[9] = createItem(10, "부천시수의사회", "경기도 부천시 원미구 중동로 100 (중동) 아이파크 상가동 213호", "032-661-7575", 37.488747, 126.76579);
+
+        return staticShelters;
+    }
+
+    private Item createItem(int index, String careNm, String careAddr, String careTel, double lat, double lng) {
+        Item item = new Item();
+        item.setIndex(index);
+        item.setCareNm(careNm);
+        item.setCareAddr(careAddr);
+        item.setCareTel(careTel);
+        item.setLat(lat);
+        item.setLng(lng);
+        return item;
+    }
+
 }
 
