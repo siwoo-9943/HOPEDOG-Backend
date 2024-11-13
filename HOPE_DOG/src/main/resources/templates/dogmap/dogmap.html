@@ -26,22 +26,6 @@
 
     <!-- 보호소 목록 -->
     <div class="doghouse-main">
-<<<<<<< HEAD
-      <div class="doghouse-box">
-        <div th:if="${shelters != null and !#lists.isEmpty(shelters)}">
-          <div class="doghouse-item" th:each="row : ${shelters}">
-            <div class="doghouse-list-title">
-              <div class="doghouse-name">
-                <span th:text="${row.careNm}">센터명</span> <!-- 보호소 이름 -->
-              </div>
-              <img th:src="@{/img/map1.jpg}" alt="보호소 이미지" class="doghouse-image"> <!-- 이미지 경로 수정 -->
-            </div>
-            <div class="doghouse-list-info">
-              <div class="doghouse">
-                <div class="doghouse-information">
-                  <span th:text="'주소 : ' + ${row.careAddr}">주소</span> <!-- 보호소 주소 -->
-                  <span th:text="'전화번호 : ' + ${row.careTel}">전화번호</span> <!-- 보호소 전화번호 -->
-=======
         <div class="doghouse-box">
             <div th:each="shelter, iterStat : ${shelters}">
                 <div class="doghouse-item">
@@ -72,7 +56,6 @@
                             </div>
                         </div>
                     </div>
->>>>>>> main
                 </div>
             </div>
         </div>
