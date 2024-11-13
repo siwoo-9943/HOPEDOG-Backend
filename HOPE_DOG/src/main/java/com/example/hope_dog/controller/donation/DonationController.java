@@ -2,6 +2,7 @@ package com.example.hope_dog.controller.donation;
 
 import com.example.hope_dog.dto.donation.*;
 import com.example.hope_dog.mapper.donation.DonationMapper;
+import com.example.hope_dog.service.donation.DonaCommentService;
 import com.example.hope_dog.service.donation.DonationService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,7 @@ public class DonationController {
     // 의존성 주입: DonationService와 DonationMapper를 private final로 선언하여 주입받음
     private final DonationService donationService;
     private final DonationMapper donationMapper;
+    private final DonaCommentService donaCommentService;
 
     // 글 목록 조회 (페이징 처리)
     @GetMapping("/list")
@@ -166,6 +168,28 @@ public class DonationController {
         // 수정 후 기부 목록 페이지로 리다이렉트
         return "redirect:/dona/list";
     }
+
+    //댓글 신고
+//    @GetMapping("/donaCommentReport")
+//    public String donaCommentReport(HttpSession session, DonaCommentReportDTO donaCommentReportDTO,
+//                                     @RequestParam("donaCommentNo") Long donaCommentNo,
+//                                     @RequestParam("donaNo") Long donaNo,
+//                                     @RequestParam("commentReport") String commentReport,RedirectAttributes redirectAttributes) {
+//        Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
+//        Long memberNo = (Long) session.getAttribute("memberNo");
+//
+//        donaCommentReportDTO.setCommentReportWriter(centerMemberNo != null ? centerMemberNo : memberNo);
+//        donaCommentReportDTO.setCommentReport(commentReport);
+//        donaCommentReportDTO.setCommentReport(donaCommentNo);
+//        donaCommentReportDTO.setCommentReportNo(donaNo);
+//
+//        donaCommentService.donaCommentReport(donaCommentReportDTO);
+//
+//        // 게시글 신고 메시지를 플래시 속성으로 추가
+//        redirectAttributes.addFlashAttribute("ContentreportSuccess", true);
+//
+//        return "redirect:/dona/view/" + donaNo; // 상세페이지로 이동
+//    }
 
 
 

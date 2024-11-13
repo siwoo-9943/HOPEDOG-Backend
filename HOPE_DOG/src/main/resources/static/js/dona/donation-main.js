@@ -14,7 +14,7 @@ document.querySelector('.dona-admain-btu').addEventListener('click', function() 
 
 //페이지네이션
 document.addEventListener("DOMContentLoaded", function() {
-    const items = $('.dona-ul-all ul'); // 게시글 항목들을 li로 선택
+    const items = $('.dona-ul-all li'); // 게시글 항목들을 li로 선택
 
     // 게시글 수가 10개 이하인 경우 페이지네이션 처리
     if (items.length <= 10) {

@@ -44,22 +44,32 @@
                 </div>
             </div>
         </section>
+
         <section class="dona-bottom">
+          <section class="dona-bottom-btn">
             <div class="btn-wrap">
                 <div class="donaNo" th:text="${donation.donaNo}" style="display: none;"></div>
                 <div class="centerMemberNo" th:text="${donation.centerMemberNo}" style="display: none;"></div>
                 <button class="btn-modify" type="button" onclick="modifyClick()" th:if="${centerMemberNo == donation.centerMemberNo}">수정</button>
                 <button class="btn-remove" type="button" onclick="deleteClick()" th:if="${centerMemberNo == donation.centerMemberNo}">삭제</button>
-            </div>
-            <div id="bottom-line"></div>
-            <div class="dona-admain-btuall-complaint">
-                <a th:href="@{/dona/list}">
-                    <button class="dona-admain-btu-complaint" type="button">
-                        <span class="dona-admain-btu-complaint-sp">목록</span>
-                    </button>
-                </a>
+                <div class="dona-admain-btuall-complaint">
+                    <a th:href="@{/dona/list}">
+                        <button class="dona-admain-btu-complaint" type="button">
+                            <span class="dona-admain-btu-complaint-sp">목록</span>
+                        </button>
+                    </a>
+                </div>
+
             </div>
 
+<!--            <div class="dona-admain-btuall-complaint">-->
+<!--                <a th:href="@{/dona/list}">-->
+<!--                    <button class="dona-admain-btu-complaint" type="button">-->
+<!--                        <span class="dona-admain-btu-complaint-sp">목록</span>-->
+<!--                    </button>-->
+<!--                </a>-->
+<!--            </div>-->
+          </section>
 
             <!--            <div class="dona-detail-box4">-->
             <!--                <button type="button" class="dona-comment-button" th:data-id="${donation.donaNo}">수정</button>-->
@@ -67,6 +77,10 @@
             <!--                <button class="dona-comment-button" type="button" onclick="CommentReportClick()">신고</button>-->
             <!--            </div>-->
             <div class="reply-wrap">
+                <!-- 댓글 리스트 -->
+                <div class="reply-list-wrap">
+                    <!-- 댓글 내용을 여기서 추가할 수 있습니다 -->
+                </div>
                 <th:block th:if="${session.memberNo != null || session.centerMemberNo != null}">
                     <div class="reply-wrap__box">
                         <div class="reply-content__box">
@@ -76,15 +90,12 @@
                             <textarea name="replyContent" id="reply-content" cols="30" rows="10"></textarea>
                         </div>
                         <div class="reply-btn-wrap">
-                            <button type="button" class="btn-reply">작성 완료</button>
+                            <button type="button" class="btn-reply">등록</button>
                         </div>
                     </div>
                 </th:block>
 
-                <!-- 댓글 리스트 -->
-                <div class="reply-list-wrap">
-                    <!-- 댓글 내용을 여기서 추가할 수 있습니다 -->
-                </div>
+
 
             </div>
 

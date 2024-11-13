@@ -12,7 +12,7 @@
 }
 
 #notice-top-title {
-  margin: 50px 0px 20px 180px; /* 상 우 하 좌 */
+  margin: 0px 0px 20px 180px; /* 상 우 하 좌 */
   display: flex;
   text-decoration: none;
   list-style: none;

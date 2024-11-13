@@ -194,9 +194,23 @@ main{
   font-size: 13px;
 }
 
+.note-Rtitle {
+  width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .member-notebox-contentbox li:nth-child(4) {
   width: 50%;
   margin: 20px;
+}
+
+.note-Rcontent {
+  width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .member-notebox-contentbox li:nth-child(5){

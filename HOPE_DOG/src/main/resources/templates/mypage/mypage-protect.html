@@ -61,8 +61,8 @@
               <ul class="member-profile-protect-contentbox">
 <!--                <a th:href="@{/mypage/updateProtectRequest(protectRequestNo=${myprotect.protectRequestNo})}"><li th:text="${myprotect.protectTitle}"></li></a>-->
                 <li th:text="${myprotect.protectTitle}"></li>
-                <li th:if="${myprotect.protectStatus} == 'T'" th:text="검토중"></li>
-                <li th:if="${myprotect.protectStatus} == 'F'" th:text="마감"></li>
+                <li th:if="${myprotect.protectStatus} == 'T'" th:text="[심사중]"></li>
+                <li th:if="${myprotect.protectStatus} == 'F'" th:text="[마감]"></li>
                 <li th:text="${#dates.format(myprotect.protectPeriodend, 'yyyy-MM-dd')}"></li>
               </ul>
               <div class="memberNo" th:text="${myprotect.memberNo}" style="display: none;"></div>

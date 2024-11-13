@@ -211,7 +211,7 @@ function CommentReportClick(e) {
       $contentBox.innerHTML = `
         <div class="modify-box">
             <textarea class="modify-content">${oldContent}</textarea>
-            <button type="button" class="modify-content-btn">수정 완료</button>
+            <button type="button" class="modify-content-btn">등록</button>
         </div>
       `;
     }
@@ -320,8 +320,9 @@ function displayReply(replyList) {
   let $replyWrap = document.querySelector('.reply-list-wrap');
   let tags = '';
 
-  replyList.forEach(r => {
-    console.log("===== 댓글 내용 ====")
+  // 댓글 목록을 역순으로 정렬하여 최신 댓글이 밑에 오도록 처리
+  replyList.reverse().forEach(r => {
+    console.log("===== 댓글 내용 ====");
     console.log(r); // 각 댓글 데이터 객체 확인
 
     tags += `
@@ -335,27 +336,29 @@ function displayReply(replyList) {
           <span class="reply-btns"></span>
           <div class="reply-btns__box">`;
 
-    if(r.donaCommentWriter == centerMemberNo || r.donaCommentWriter == memberNo) {
+    if (r.donaCommentWriter == centerMemberNo || r.donaCommentWriter == memberNo) {
       console.log('작성자 일치 =====');
       tags += `<div class="reply-remove-btn">삭제</div>
-      <div class="reply-modify-btn">수정</div>`;
-    }else{
+               <div class="reply-modify-btn">수정</div>`;
+    } else {
       tags += `<div class="reply-report-btn">신고</div>`;
     }
 
     tags += `</div>
         </div>
       </div>`;
-
   });
+
   $replyWrap.innerHTML = tags;
 }
+
 // 댓글 목록 추가
 function appendReply(replyList) {
   let $replyWrap = document.querySelector('.reply-list-wrap');
   let tags = '';
 
-  replyList.forEach(r => {
+  // 댓글 목록을 역순으로 정렬하여 최신 댓글이 밑에 오도록 처리
+  replyList.reverse().forEach(r => {
     r.center_member_name = undefined;
     r.member_nickname = undefined;
     console.log(r); // 각 댓글 데이터 객체 확인
@@ -375,9 +378,9 @@ function appendReply(replyList) {
         <div class="reply-time">${reply.timeForToday(r.donaCommentRegidate)}</div>
         <div class="reply-btn-box">
           <span class="reply-btns"></span>
-          <div class="reply-btns__box.none">
-            <div class="reply-remove-btn">삭제</div>
+          <div class="reply-btns__box none">
             <div class="reply-modify-btn">수정</div>
+            <div class="reply-remove-btn">삭제</div>
             <div class="reply-report-btn">신고</div>
           </div>
         </div>

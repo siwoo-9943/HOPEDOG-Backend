@@ -50,9 +50,7 @@
         <!-- 게시글 제목 -->
         <div>
             <ul class="member-notebox-titlebox">
-                <!-- <li><b>상태</b></li> -->
                 <li><b>수신자</b></li>
-<!--                <li><b>송신자</b></li>-->
                 <li><b>제목</b></li>
                 <li><b>내용</b></li>
                 <li><b>날짜</b></li>
@@ -64,14 +62,11 @@
                     <li>
                         <div th:text="${noteS.noteboxReceiverName}"></div>
                     </li>
-<!--                    <li>-->
-<!--                        <div th:text="${noteS.noteboxSendR}"></div>-->
-<!--                    </li>-->
                     <li>
-                        <div th:text="${noteS.noteboxSendTitle}"></div>
+                        <div class="note-Stitle" th:text="${noteS.noteboxSendTitle}"></div>
                     </li>
                     <li>
-                        <div th:text="${noteS.noteboxSendContent}"></div>
+                        <div class="note-Scontent" th:text="${noteS.noteboxSendContent}"></div>
                     </li>
                     <li>
                         <div th:text="${noteS.noteboxSendRegiDate != null ? #dates.format(noteS.noteboxSendRegiDate, 'yy.MM.dd HH:mm') : ''}"></div>

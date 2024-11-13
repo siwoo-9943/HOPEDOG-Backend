@@ -2,6 +2,7 @@ package com.example.hope_dog.mapper.donation;
 
 import com.example.hope_dog.dto.donation.DonaCommentListDTO;
 //import com.example.hope_dog.dto.donation.DonaCommentReportDTO;
+import com.example.hope_dog.dto.donation.DonaCommentReportDTO;
 import com.example.hope_dog.dto.donation.DonaCommentUpdateDTO;
 import com.example.hope_dog.dto.donation.DonaCommentWriteDTO;
 import com.example.hope_dog.dto.page.Criteria;
@@ -24,5 +25,5 @@ public interface DonaCommentMapper {
     List<DonaCommentListDTO> selectCommentSlice(@Param("criteria") Criteria criteria, @Param("donaNo") Long donaNo);
 
     //댓글신고
-//    void insertCommentReport(DonaCommentReportDTO donaCommentReportDTO);
+    void insertCommentReport(DonaCommentReportDTO donaCommentReportDTO);
 }

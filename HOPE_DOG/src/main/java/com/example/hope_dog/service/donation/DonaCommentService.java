@@ -1,6 +1,8 @@
 package com.example.hope_dog.service.donation;
 
+import com.example.hope_dog.dto.commu.CommuReportDTO;
 import com.example.hope_dog.dto.donation.DonaCommentListDTO;
+import com.example.hope_dog.dto.donation.DonaCommentReportDTO;
 import com.example.hope_dog.dto.donation.DonaCommentUpdateDTO;
 import com.example.hope_dog.dto.donation.DonaCommentWriteDTO;
 import com.example.hope_dog.dto.page.Criteria;
@@ -49,5 +51,14 @@ public class DonaCommentService {
         }
 
         return new Slice<DonaCommentListDTO>(hasNext, commentList);
+    }
+
+    //댓글 신고
+//    public void commuCommentReport(CommuReportDTO commuReportDTO){
+//        commuMapper.commuCommentReport(commuReportDTO);
+//    }
+
+    public void donaCommentReport(DonaCommentReportDTO donaCommentReportDTO){
+        donaCommentMapper.insertCommentReport(donaCommentReportDTO);
     }
 }

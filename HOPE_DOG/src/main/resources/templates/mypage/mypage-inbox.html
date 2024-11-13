@@ -67,10 +67,10 @@
                     <div th:text="${noteR.noteboxSenderName}"></div>
                 </li>
                 <li>
-                    <div th:text="${noteR.noteboxReceiveTitle}"></div>
+                    <div class="note-Rtitle" th:text="${noteR.noteboxReceiveTitle}"></div>
                 </li>
                 <li>
-                    <div th:text="${noteR.noteboxReceiveContent}"></div>
+                    <div class="note-Rcontent" th:text="${noteR.noteboxReceiveContent}"></div>
                 </li>
                 <li>
                     <div th:text="${noteR.noteboxReceiveRegiDate != null ? #dates.format(noteR.noteboxReceiveRegiDate, 'yy.MM.dd HH:mm') : ''}"></div>

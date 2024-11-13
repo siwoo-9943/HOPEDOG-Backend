@@ -190,6 +190,21 @@ main{
   font-size: 13px;
 }
 
+.note-Stitle {
+  width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.note-Scontent {
+  width: 320px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .member-notebox-contentbox li:nth-child(3){
   width: 60%;
   margin: 20px;
