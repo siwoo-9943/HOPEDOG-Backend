@@ -25,28 +25,10 @@ public class DogMapService {
     private String serviceKey2;
 
     public List<Item> getShelterInfo() {
-<<<<<<< HEAD
-        String baseurl = "http://apis.data.go.kr/1543061/animalShelterSrvc/shelterInfo";
-        String subType = "_type=json";
-        String numOfRows = "numOfRows=200";
-        String pageNo = "pageNo=1";
-        String KeyStr = "serviceKey=";
-
-
-        // URL 인코딩
-//        String encodedServiceKey;
-//        try {
-//            encodedServiceKey = URLEncoder.encode(serviceKey, StandardCharsets.UTF_8.toString());
-//        } catch (Exception e) {
-//            log.error("서비스 키 인코딩 중 오류 발생: " + e.getMessage());
-//            return new ArrayList<>(); // 인코딩 오류 발생 시 빈 리스트 반환
-//        }
-=======
         String baseurl = "https://apis.data.go.kr/1543061/animalShelterSrvc/shelterInfo";
         String subType = "json";
         String numOfRows = "250";
         String pageNo = "1";
->>>>>>> main
 
         // URL 생성
         String url = baseurl + "?serviceKey=" + serviceKey1 + "&numOfRows=" + numOfRows + "&pageNo=" + pageNo + "&_type=" + subType;
