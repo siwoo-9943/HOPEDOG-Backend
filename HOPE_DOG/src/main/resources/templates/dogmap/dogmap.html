@@ -2,29 +2,31 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>유기견 보호소</title>
-  <link rel="stylesheet" th:href="@{/css/dogmap/dogmap.css}">
-  <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
-  <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>유기견 보호소</title>
+    <link rel="stylesheet" th:href="@{/css/dogmap/dogmap.css}">
+    <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+    <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
+
 </head>
 
 <body>
 <header th:replace="~{fragment/header :: header}"></header>
-  <main>
+<main>
     <!-- 메인페이지 목록 -->
     <div class="doghouse-navbox">
-      <nav>
-        <div class="doghouse-nav">
-          <div id="doghouse"><a href="#">유기견 보호소</a></div>
-          <div id="choice"></div>
-        </div>
-      </nav>
+        <nav>
+            <div class="doghouse-nav">
+                <div id="doghouse"><a th:href="@{/dogmap/shelters}">유기견 보호소</a></div>
+                <div class="choice"></div>
+            </div>
+        </nav>
     </div>
 
     <!-- 보호소 목록 -->
     <div class="doghouse-main">
+<<<<<<< HEAD
       <div class="doghouse-box">
         <div th:if="${shelters != null and !#lists.isEmpty(shelters)}">
           <div class="doghouse-item" th:each="row : ${shelters}">
@@ -39,270 +41,50 @@
                 <div class="doghouse-information">
                   <span th:text="'주소 : ' + ${row.careAddr}">주소</span> <!-- 보호소 주소 -->
                   <span th:text="'전화번호 : ' + ${row.careTel}">전화번호</span> <!-- 보호소 전화번호 -->
+=======
+        <div class="doghouse-box">
+            <div th:each="shelter, iterStat : ${shelters}">
+                <div class="doghouse-item">
+                    <div class="doghouse-list-title">
+                        <div class="doghouse-name">
+                            <span th:text="${shelter.careNm}"></span>
+                            <!--<span th:text="${shelter.index}"></span>-->
+                        </div>
+                        <img th:src="@{/img/mapicon.jpg}" alt="보호소이미지" class="doghouse-image">
+                    </div>
+                    <div class="doghouse-list-info">
+                        <div class="doghouse">
+                            <div class="doghouse-information">
+                                <span>주소 : <span th:text="${shelter.careAddr}"></span></span>
+                                <span>전화번호 : <span th:text="${shelter.careTel}"></span></span>
+                            </div>
+                        </div>
+                        <div class="doghouse-map">
+                            <div
+                                    th:id="'map' + ${shelter.index}"
+                                    style="margin:5px;width:100%;height:290px;"
+                                    th:data-lat="${shelter.lat}"
+                                    th:data-lng="${shelter.lng}">
+                            </div>
+                            <div style="display: none">
+                                <img th:src="@{/img/dogmap-marker.png}" alt="Dog Map Marker" data-marker-src="/img/dogmap-marker.png"/>
+<!--                            <img th:src="@{/img/dogmap-marker.png}" alt="Dog Map Marker" data-marker-src="@{/img/dogmap-marker.png}"/>-->
+                            </div>
+                        </div>
+                    </div>
+>>>>>>> main
                 </div>
-              </div>
-              <div class="doghouse-map">
-                <div style="display: none" th:text="${row.lat} + ',' + ${row.lng}"> <!-- 위도, 경도 값 저장 -->
-                  <!-- 위도, 경도 값은 JavaScript에서 사용하기 위해 숨김 처리 -->
-                </div>
-                <!-- 여기서 지도를 표시할 수 있는 JavaScript 코드 추가 -->
-                <div id="map-${row.careNm.replaceAll(' ', '_')}" style="width: 100%; height: 300px;"></div> <!-- 각 보호소마다 고유한 ID -->
-              </div>
             </div>
-          </div>
         </div>
-        <div th:if="${shelters == null or #lists.isEmpty(shelters)}">
-          <p>데이터를 가져올 수 없습니다.</p>
-        </div>
-      </div>
     </div>
 
-
-<!--    <div class="doghouse-main">-->
-<!--      <div class="doghouse-box">-->
-<!--        <div th:if="${shelters != null and !#lists.isEmpty(shelters)}">-->
-<!--          <div class="doghouse-item" th:each="row : ${shelters}">-->
-<!--            <div class="doghouse-list-title">-->
-<!--              <div class="doghouse-name"><span th:text="${row.careNm}">센터명</span></div>-->
-<!--              <img src="../../img/map1.jpg" alt="보호소 이미지" class="doghouse-image">-->
-<!--            </div>-->
-<!--            <div class="doghouse-list-info">-->
-<!--              <div class="doghouse">-->
-<!--                <div class="doghouse-information">-->
-<!--                  <span th:text="'주소 : ' + ${row.careAddr}">주소</span>-->
-<!--                  <span th:text="'전화번호 : ' + ${row.careTel}">전화번호</span>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <div class="doghouse-map">-->
-<!--                <div style="display: none" th:text="${row.lat}, ${row.lng}"> &lt;!&ndash; 위도, 경도 값 저장 &ndash;&gt; </div>-->
-<!--                지도 보여줄거야-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div th:if="${shelters == null or #lists.isEmpty(shelters)}">-->
-<!--          <p>데이터를 가져올 수 없습니다.</p>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-
-    <!--    <div class="doghouse-main">-->
-<!--      <div class="doghouse-box">-->
-<!--        <div th:if="${dogMapApiDTOList != null and !#lists.isEmpty(dogMapApiDTOList)}">-->
-<!--          <div class="doghouse-item" th:each="row : ${dogMapApiDTOList}">-->
-<!--            <div class="doghouse-list-title">-->
-<!--              <div class="doghouse-name"><span th:text="${row.careNm}">센터명</span></div>-->
-<!--              <img src="../../img/map1.jpg" alt="보호소 이미지" class="doghouse-image">-->
-<!--            </div>-->
-<!--            <div class="doghouse-list-info">-->
-<!--              <div class="doghouse">-->
-<!--                <div class="doghouse-information">-->
-<!--                  <span th:text="'주소 : ' + ${row.careAddr}">주소</span>-->
-<!--                  <span th:text="'전화번호 : ' + ${row.careTel}">전화번호</span>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <div class="doghouse-map">-->
-<!--                <div style="display: none" th:text="${row.lat}, ${row.lng}"> &lt;!&ndash; 위도, 경도 값 저장 &ndash;&gt; </div>-->
-<!--                지도 보여줄거야-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div th:if="${dogMapApiDTOList == null or #lists.isEmpty(dogMapApiDTOList)}">-->
-<!--          <p>데이터를 가져올 수 없습니다.</p>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-
-
-
-    <!--    <div class="doghouse-main">-->
-<!--      <div class="doghouse-box">-->
-
-<!--        <div th:if="${dogMapApiDTO != null and !#lists.isEmpty(dogMapApiDTO.row)}">-->
-<!--          <div class="doghouse-item" th:each="row : ${dogMapApiDTO.row}">-->
-<!--            <div class="doghouse-list-title">-->
-<!--              <div class="doghouse-name"><span th:text="${row.entrpsNm}">센터명</span></div>-->
-<!--              <img src="../../img/map1.jpg" alt="보호소 이미지" class="doghouse-image">-->
-<!--            </div>-->
-<!--            <div class="doghouse-list-info">-->
-<!--              <div class="doghouse">-->
-<!--                <div class="doghouse-information">-->
-<!--                  <span th:text="'주소 : ' + ${row.refineLotnoAddr}">주소</span>-->
-<!--                  <span th:text="'전화번호 : ' + ${row.entrpsTelno}">전화번호</span>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <div class="doghouse-map">-->
-<!--                <div style="display: none" th:text=""> &lt;!&ndash;위도, 경도 값 저장&ndash;&gt; </div>-->
-<!--                지도 보여줄거야-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div th:if="${dogMapApiDTO == null or #lists.isEmpty(dogMapApiDTO.row)}">-->
-<!--          <p>데이터를 가져올 수 없습니다.</p>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-
-
-
-    <!--    <div class="doghouse-main">-->
-<!--      <div class="doghouse-box">-->
-<!--        <div class="doghouse-item">-->
-<!--          <div class="doghouse-list-title">-->
-<!--            <div class="doghouse-name"><span>아이조아요양보호소 동탄점</span></div>-->
-<!--            <img src="../../img/map1.jpg" alt="보호소 이미지" class="doghouse-image">-->
-<!--          </div>-->
-<!--          <div class="doghouse-list-info">-->
-<!--            <div class="doghouse">-->
-<!--              <div class="doghouse-information"><span>주소 : 경기 화성시 중리북길 39</span>-->
-<!--                <span> 전화번호 : 0507-1375-9331</span>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <div class="doghouse-map">-->
-<!--              지도 보여줄거야-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        -->
-
-<!--        <div class="doghouse-item">-->
-<!--          <div class="doghouse-list-title">-->
-<!--            <div class="doghouse-name"><span>안다 동물보호소</span></div>-->
-<!--            <img src="../../img/map1.jpg" alt="보호소 이미지" class="doghouse-image">-->
-<!--          </div>-->
-<!--          <div class="doghouse-list-info">-->
-<!--            <div class="doghouse">-->
-<!--              <div class="doghouse-information"><span>주소 : 경기 평택시 오좌동길 47-48 안다 동물보호소</span>-->
-<!--                <span> 전화번호 : 0507-1333-0783</span>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <div class="doghouse-map">-->
-<!--              지도 보여줄거야-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="doghouse-item">-->
-<!--          <div class="doghouse-list-title">-->
-<!--            <div class="doghouse-name"><span>안다 동물보호소</span></div>-->
-<!--            <img src="../../img/map1.jpg" alt="보호소 이미지" class="doghouse-image">-->
-<!--          </div>-->
-<!--          <div class="doghouse-list-info">-->
-<!--            <div class="doghouse">-->
-<!--              <div class="doghouse-information"><span>주소 : 경기 평택시 오좌동길 47-48 안다 동물보호소</span>-->
-<!--                <span> 전화번호 : 0507-1333-0783</span>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <div class="doghouse-map">-->
-<!--              지도 보여줄거야-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="doghouse-item">-->
-<!--          <div class="doghouse-list-title">-->
-<!--            <div class="doghouse-name"><span>안다 동물보호소</span></div>-->
-<!--            <img src="../../img/map1.jpg" alt="보호소 이미지" class="doghouse-image">-->
-<!--          </div>-->
-<!--          <div class="doghouse-list-info">-->
-<!--            <div class="doghouse">-->
-<!--              <div class="doghouse-information"><span>주소 : 경기 평택시 오좌동길 47-48 안다 동물보호소</span>-->
-<!--                <span> 전화번호 : 0507-1333-0783</span>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <div class="doghouse-map">-->
-<!--              지도 보여줄거야-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="doghouse-item">-->
-<!--          <div class="doghouse-list-title">-->
-<!--            <div class="doghouse-name"><span>안다 동물보호소</span></div>-->
-<!--            <img src="../../img/map1.jpg" alt="보호소 이미지" class="doghouse-image">-->
-<!--          </div>-->
-<!--          <div class="doghouse-list-info">-->
-<!--            <div class="doghouse">-->
-<!--              <div class="doghouse-information"><span>주소 : 경기 평택시 오좌동길 47-48 안다 동물보호소</span>-->
-<!--                <span> 전화번호 : 0507-1333-0783</span>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <div class="doghouse-map">-->
-<!--              지도 보여줄거야-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="doghouse-item">-->
-<!--          <div class="doghouse-list-title">-->
-<!--            <div class="doghouse-name"><span>안다 동물보호소</span></div>-->
-<!--            <img src="../../img/map1.jpg" alt="보호소 이미지" class="doghouse-image">-->
-<!--          </div>-->
-<!--          <div class="doghouse-list-info">-->
-<!--            <div class="doghouse">-->
-<!--              <div class="doghouse-information"><span>주소 : 경기 평택시 오좌동길 47-48 안다 동물보호소</span>-->
-<!--                <span> 전화번호 : 0507-1333-0783</span>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <div class="doghouse-map">-->
-<!--              지도 보여줄거야-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="doghouse-item">-->
-<!--          <div class="doghouse-list-title">-->
-<!--            <div class="doghouse-name"><span>안다 동물보호소</span></div>-->
-<!--            <img src="../../img/map1.jpg" alt="보호소 이미지" class="doghouse-image">-->
-<!--          </div>-->
-<!--          <div class="doghouse-list-info">-->
-<!--            <div class="doghouse">-->
-<!--              <div class="doghouse-information"><span>주소 : 경기 평택시 오좌동길 47-48 안다 동물보호소</span>-->
-<!--                <span> 전화번호 : 0507-1333-0783</span>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <div class="doghouse-map">-->
-<!--              지도 보여줄거야-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="doghouse-item">-->
-<!--          <div class="doghouse-list-title">-->
-<!--            <div class="doghouse-name"><span>안다 동물보호소</span></div>-->
-<!--            <img src="../../img/map1.jpg" alt="보호소 이미지" class="doghouse-image">-->
-<!--          </div>-->
-<!--          <div class="doghouse-list-info">-->
-<!--            <div class="doghouse">-->
-<!--              <div class="doghouse-information"><span>주소 : 경기 평택시 오좌동길 47-48 안다 동물보호소</span>-->
-<!--                <span> 전화번호 : 0507-1333-0783</span>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <div class="doghouse-map">-->
-<!--              지도 보여줄거야-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="doghouse-item">-->
-<!--          <div class="doghouse-list-title">-->
-<!--            <div class="doghouse-name"><span>안다 동물보호소</span></div>-->
-<!--            <img src="../../img/map1.jpg" alt="보호소 이미지" class="doghouse-image">-->
-<!--          </div>-->
-<!--          <div class="doghouse-list-info">-->
-<!--            <div class="doghouse">-->
-<!--              <div class="doghouse-information"><span>주소 : 경기 평택시 오좌동길 47-48 안다 동물보호소</span>-->
-<!--                <span> 전화번호 : 0507-1333-0783</span>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <div class="doghouse-map">-->
-<!--              지도 보여줄거야-->
-<!--            </div>-->
-<!--          </div> -->
-<!--        </div>-->
-<!--      </div>-->
-<!--      </div>-->
-<!--    </div>-->
-  </main>
+</main>
 
 <footer th:replace="~{/fragment/footer :: footer}"></footer>
-</body>
-
+<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=25d08d681602b7d3ae9a06f65fdefadb&autoload=false"></script>
 <script defer th:src="@{/js/dogmap/dogmap.js}"></script>
+
+
+</body>
 
 </html>
