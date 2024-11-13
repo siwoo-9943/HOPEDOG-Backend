@@ -40,12 +40,12 @@
         <div class="volun-banner3-notice">유기견 봉사 안내</div>
         <div class="volun-banner3-inner">
           <div class="volun-banner3-list" th:each="volun : ${VolunMainList}">
-            <div class="volun-banner3-cate">[봉사모집]</div>
+            <div class="volun-banner3-cate" style="font-weight: bold">[봉사모집]</div>
             <div class="volun-banner3-title" th:text="${volun.volunTitle}"></div>
             <div class="volun-banner3-nickname" th:text="${volun.centerMemberName}"></div>
             <div class="volun-banner3-date" th:text="${#dates.format(volun.volunRegidate, 'yyyy-MM-dd')}"></div>
-            <div class="volun-banner3-status" th:if="${volun.volunStatus == 'T'}" th:text="[모집중]"></div>
-            <div class="volun-banner3-status" th:if="${volun.volunStatus == 'F'}" th:text="[마감]"></div>
+            <div class="volun-banner3-status" th:if="${volun.volunStatus == 'T'}" style="font-weight: bold" th:text="[모집중]"></div>
+            <div class="volun-banner3-status" th:if="${volun.volunStatus == 'F'}" style="font-weight: bold" th:text="[마감]"></div>
             <div class="volunNo" th:text="${volun.volunNo}" style="display: none;"></div>
           </div>
         </div>

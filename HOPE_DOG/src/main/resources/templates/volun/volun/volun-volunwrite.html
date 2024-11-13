@@ -38,7 +38,8 @@
 
       <!-- 글작성 박스 -->
       <div class="volun-write-area">
-        <form th:action="@{/volun/volun/volunWriteRegi}" method="post" onsubmit="return validatePostForm()">
+        <form th:action="@{/volun/volun/volunWriteRegi}" enctype="multipart/form-data"
+              method="post" onsubmit="return validatePostForm()">
           <br>
           <!-- 모집 기간 입력 -->
           <div class="volun-write-box">
@@ -95,13 +96,8 @@
               <textarea id="contents" name="volunContent"></textarea>
           </div>
 
-<!--          <div class="mb-3">-->
-<!--            <label for="upload" class="form-label">썸네일</label>-->
-<!--            <input type="file" class="form-control" id="upload" name="files" multiple>-->
-<!--          </div>-->
-
           <!-- 등록/취소 버튼 -->
-          <div class="volun-write-button-box">
+          <div class="volun-write-button-box">`
               <button class="volun-write-button" type="submit">등록</button>
               <button class="volun-cancle-button" type="button" onclick="cancleClick()">취소</button>
           </div>
