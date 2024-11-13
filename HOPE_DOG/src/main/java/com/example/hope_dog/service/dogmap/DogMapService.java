@@ -29,6 +29,7 @@ public class DogMapService {
         String pageNo = "pageNo=1";
         String KeyStr = "serviceKey=";
 
+
         // URL 인코딩
 //        String encodedServiceKey;
 //        try {
