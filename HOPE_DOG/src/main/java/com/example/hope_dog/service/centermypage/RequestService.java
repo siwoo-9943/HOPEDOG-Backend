@@ -19,7 +19,7 @@ public class RequestService {
     }
 
 //    봉사 신청서 상세페이지
-    public VolunRequestDetailDTO volunRequestDetail(Long volunRequestNo){
+    public VolunRequestDetailDTO volunRequestDetail(Long volunRequestNo , Long volunRequestName){
         return requestMapper.volunRequestDetailInfo(volunRequestNo);
     }
 

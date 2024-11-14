@@ -378,7 +378,7 @@ class CenterMypageController {
     private final RequestService requestService;
 
 //봉사
-    //봉사 신청서 목록 조회
+    //봉사신청서 목록 조회
     @GetMapping("/volunRequestList")
     public String centerMypageVolunRequestList(Model model) {
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
@@ -394,9 +394,9 @@ class CenterMypageController {
         return "centermypage/center-mypage-volun-list";
     }
 
-    //봉사 신청서 상세 조회
+    //봉사신청서 상세 조회
     @GetMapping("/volunRequestDetail")
-    public String getVolunRequestDetail(@RequestParam("volunRequestNo") Long volunRequestNo, Model model) {
+    public String getVolunRequestDetail(@RequestParam("volunRequestNo") Long volunRequestNo,@RequestParam("volunRequestName") Long volunRequestName, Model model) {
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
 
         if (centerMemberNo == null) {
@@ -404,13 +404,13 @@ class CenterMypageController {
             return "redirect:/login"; // 세션이 없으면 로그인 페이지로 리다이렉트
         }
 
-        VolunRequestDetailDTO volunRequestInfo = requestService.volunRequestDetail(volunRequestNo);
+        VolunRequestDetailDTO volunRequestInfo = requestService.volunRequestDetail(volunRequestNo , volunRequestName);
         model.addAttribute("volunRequestInfo", volunRequestInfo);
 
         return "centermypage/center-mypage-volun-signup";
     }
 
-    //봉사 신청서 상태처리
+    //봉사신청서 상태처리
     @GetMapping("/volunStatus")
     public String centerMypageVolunStatus(@RequestParam("volunRequestStatus") String volunRequestStatus,
                                           @RequestParam("volunRequestNo") Long volunRequestNo, Model model) {
@@ -433,7 +433,7 @@ class CenterMypageController {
 
 
 //입양
-    //입양 신청서 목록 조회
+    //입양신청서 목록 조회
     @GetMapping("/adoptRequestList")
     public String centerMypageAdoptRequestList(Model model) {
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
@@ -450,7 +450,7 @@ class CenterMypageController {
     }
 
 
-    //입양 신청서 상세 조회
+    //입양신청서 상세 조회
     @GetMapping("/adoptRequestDetail")
     public String getAdoptRequestDetail(@RequestParam("adoptRequestNo") Long adoptRequestNo, Model model) {
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
@@ -466,7 +466,7 @@ class CenterMypageController {
         return "centermypage/center-mypage-adopt-adoptrequest";
     }
 
-    //입양 신청서 상태처리
+    //입양신청서 상태처리
     @GetMapping("/adoptStatus")
     public String centerMypageAdoptStatus(@RequestParam("adoptRequestStatus") String adoptRequestStatus,
                                           @RequestParam("adoptRequestNo") Long adoptRequestNo, Model model) {
@@ -488,7 +488,7 @@ class CenterMypageController {
 
 
 //임시보호
-    //임시보호 신청서 목록 조회
+    //임시보호신청서 목록 조회
     @GetMapping("/protectRequestList")
     public String centerMypageProtectRequestList(Model model) {
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
@@ -504,7 +504,7 @@ class CenterMypageController {
         return "centermypage/center-mypage-adopt-protect-list";
     }
 
-    //임시보호 신청서 상세 조회
+    //임시보호신청서 상세 조회
     @GetMapping("/protectRequestDetail")
     public String getProtectRequestDetail(@RequestParam("protectRequestNo") Long protectRequestNo, Model model) {
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
@@ -520,7 +520,7 @@ class CenterMypageController {
         return "centermypage/center-mypage-adopt-protectrequest";
     }
 
-    //임시보호 신청서 상태처리
+    //임시보호신청서 상태처리
     @GetMapping("/protectStatus")
     public String centerMypageProtectStatus(@RequestParam("protectRequestStatus") String protectRequestStatus,
                                             @RequestParam("protectRequestNo") Long protectRequestNo, Model model) {

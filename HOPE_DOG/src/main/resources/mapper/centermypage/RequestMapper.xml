@@ -53,7 +53,7 @@
                  LEFT JOIN TBL_VOLUN tv ON tvr.VOLUN_NO = tv.VOLUN_NO
                  LEFT JOIN TBL_MEMBER tm ON tm.MEMBER_NO = tm.MEMBER_NO
                  LEFT JOIN TBL_CENTER_MEMBER tcm ON tvr.CENTER_MEMBER_NO =tcm.CENTER_MEMBER_NO
-        WHERE tvr.VOLUN_REQUEST_NO = #{volunRequestNo}
+        WHERE tvr.VOLUN_REQUEST_NO = #{volunRequestNo} AND tm
     </select>
 
 <!--    봉사 신청서 승인/거절-->
