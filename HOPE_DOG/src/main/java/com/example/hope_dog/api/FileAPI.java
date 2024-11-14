@@ -53,17 +53,16 @@ public class FileAPI {
         //Resource는 인터페이스이므로 객체화를 할 때는 자식 클래스를 사용한다
 
         String filePath1 = fileDir + from + "/" + filePath + "/" + fileUuid + "_" + fileName;
-        String filePath2 = fileDir + "/" + fileUuid;
 
         File file1 = new File(filePath1);
-        File file2 = new File(filePath2);
+        File file2 = new File(filePath);
 
         Resource resource;
 
         if (file1.exists() && file1.isFile()) {
             resource = new FileSystemResource(filePath1);  // 경로1이 존재하면 이 경로로 설정
         } else if (file2.exists() && file2.isFile()) {
-            resource = new FileSystemResource(filePath2);  // 경로1이 없으면 경로2로 설정
+            resource = new FileSystemResource(filePath);  // 경로1이 없으면 경로2로 설정
         } else {
             // 파일이 존재하지 않으면 에러 처리
             resource = null;
