@@ -1675,6 +1675,6 @@
     </select>
 
     <select id="selectCurNoticeNo" resultType="Long">
-        select seq_notice_no.currval from dual
+        select SEQ_NOTICE_NO.nextval - 1 from dual
     </select>
 </mapper>

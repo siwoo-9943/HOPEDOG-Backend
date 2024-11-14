@@ -34,8 +34,9 @@ public class AdminService {
 //        return adminMapper.selectId(adminId, adminPw).orElseThrow(() -> new IllegalStateException("존재하지 않는 관리자 정보"));
 //    }
 
-    public AdminSessionDTO findLoginInfo(String adminId, String adminPw) { return adminMapper.selectLoginInfo(adminId, adminPw).orElseThrow(() -> new IllegalStateException("존재하지 않는 관리자 정보")); }
-
+    public AdminSessionDTO findLoginInfo(String adminId, String adminPw) {
+        return adminMapper.selectLoginInfo(adminId, adminPw).orElse(null);
+    }
     public List<AdminMemberDTO> selectMemberList(){
         return adminMapper.selectMemberList();
     }
