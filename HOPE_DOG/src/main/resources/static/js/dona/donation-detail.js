@@ -5,14 +5,14 @@ import * as reply from "./comment.js";
 let page = 1;          // 현재 페이지
 let totalPages = 1;    // 총 페이지 수 (현재 사용되지 않음)
 let hasNext = true;    // 다음 페이지가 있는지 여부
-let donaNo = document.getElementById('donaNo').value;  // 도나 번호를 DOM에서 가져오기
+let donaNo = document.getElementById('donaNo').value;  // 게시글 번호를 DOM에서 가져오기
 console.log("============");
-console.log(donaNo);   // donaNo 출력 (디버깅)
-console.log(memberNo); // memberNo 출력 (디버깅)
-console.log(centerMemberNo); // centerMemberNo 출력 (디버깅)
+console.log(donaNo);
+console.log(memberNo);
+console.log(centerMemberNo);
 console.log("============");
 
-// URL에서 파라미터를 가져오는 함수 (ex. 페이지 URL에 포함된 query parameter)
+// URL에서 파라미터를 가져오는 함수
 function getParameter(name) {
   const urlParams = new URLSearchParams(window.location.search);  // URLSearchParams를 사용하여 query 파라미터 추출
   return urlParams.get(name);  // 원하는 파라미터를 반환
@@ -64,7 +64,7 @@ window.modifyClick = modifyClick;
 function CommentReportClick(donaCommentNo) {
   const reportComment = prompt('신고 사유를 100글자 이내로 입력해주세요'); // 신고 사유를 입력받는 프롬프트
   if (reportComment && reportComment.length <= 100) {
-    const donaNo = document.querySelector('.donaNo').textContent.trim();  // 도나 번호
+    const donaNo = document.querySelector('.donaNo').textContent.trim();  // 게시글 번호
 
     // 신고 데이터를 서버에 전송할 형식으로 준비
     const reportData = {
@@ -223,6 +223,10 @@ function CommentReportClick(donaCommentNo) {
   });
 }
 
+// displayReply 함수:
+//     이 함수는 replyList에 담긴 댓글 목록을 HTML 형식으로 변환하여 화면에 표시
+//     댓글 작성자가 본인(센터 회원 혹은 일반 사용자)일 경우 수정 및 삭제 버튼을 표시하고, 다른 사용자는 신고 버튼만 표시
+
 // 댓글 목록 표시 함수
 function displayReply(replyList) {
   console.log("displayReply 확인 ===== ");
@@ -264,7 +268,12 @@ function displayReply(replyList) {
   $replyWrap.innerHTML = tags;
 }
 
-// 댓글 목록 추가 함수 (스크롤 시 추가 로딩)
+// appendReply 함수:
+//     이 함수는 스크롤을 내려서 더 많은 댓글을 로드할 때 사용
+//     새로운 댓글이 로드되면 기존 댓글 목록에 추가하는 방식으로 동작
+// insertAdjacentHTML("beforeend", tags)를 사용하여 기존 댓글 목록의 끝에 새로운 댓글을 추가
+
+// 댓글 목록 추가 함수
 function appendReply(replyList) {
   let $replyWrap = document.querySelector('.reply-list-wrap');
   let tags = '';

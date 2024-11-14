@@ -444,3 +444,8 @@
   text-align: center;
   /*padding-top: 5px;*/
 }
+
+.modify-content-btn:hover {
+  background-color: #9B805D; /* 마우스를 올렸을 때 배경색 */
+  color: white; /* 마우스를 올렸을 때 텍스트 색상 */
+}

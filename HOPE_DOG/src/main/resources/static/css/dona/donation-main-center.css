@@ -145,7 +145,8 @@ ul{
 .dona-author {
   text-align: center;
   padding: 20px 0px;
-  flex-basis: 130px;
+  flex-basis: 140px;
+  font-size: 13px;
 }
 
 /* 작성날짜 */
