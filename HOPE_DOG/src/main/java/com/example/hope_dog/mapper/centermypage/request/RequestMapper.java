@@ -12,7 +12,7 @@ public interface RequestMapper {
     List<VolunRequestListDTO> volunRequestList(Long centerMemberNo);
 
 //    봉사신청서 상세페이지 정보 조회
-    VolunRequestDetailDTO volunRequestDetailInfo(Long volunRequestNo);
+    VolunRequestDetailDTO volunRequestDetailInfo(VolunRequestListDTO volunRequestListDTO);
 
 //    봉사신청서 수락/거절
     void volunRequestStatusChoice(VolunRequestChoiceDTO volunRequestChoiceDTO);
@@ -22,7 +22,7 @@ public interface RequestMapper {
     List<AdoptRequestListDTO> adoptRequestList(Long centerMemberNo);
 
 //    입양신청서 상세페이지 정보 조회
-    AdoptRequestDetailDTO adoptRequestDetailInfo(Long adoptRequestNo);
+    AdoptRequestDetailDTO adoptRequestDetailInfo(AdoptRequestListDTO adoptRequestListDTO);
 
 //    입양신청서 수락/거절
     void adoptRequestStatusChoice(AdoptRequestChoiceDTO adoptRequestChoiceDTO);
@@ -32,7 +32,7 @@ public interface RequestMapper {
     List<ProtectRequestListDTO> protectRequestList(Long centerMemberNo);
 
 //    임시보호신청서 상세페이지 정보 조회
-    ProtectRequestDetailDTO protectRequestDetailInfo(Long protectRequestNo);
+    ProtectRequestDetailDTO protectRequestDetailInfo(ProtectRequestListDTO protectRequestListDTO);
 
 //    임시보호신청서 수락/거절
     void protectRequestStatusChoice(ProtectRequestChoiceDTO protectRequestChoiceDTO);

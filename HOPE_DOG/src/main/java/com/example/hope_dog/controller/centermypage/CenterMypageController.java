@@ -396,15 +396,18 @@ class CenterMypageController {
 
     //봉사신청서 상세 조회
     @GetMapping("/volunRequestDetail")
-    public String getVolunRequestDetail(@RequestParam("volunRequestNo") Long volunRequestNo,@RequestParam("volunRequestName") Long volunRequestName, Model model) {
+    public String getVolunRequestDetail(@RequestParam("volunRequestNo") Long volunRequestNo,@RequestParam("memberNo") Long memberNo, Model model) {
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
 
         if (centerMemberNo == null) {
             log.warn("세션에서 centerMemberNo가 존재하지 않습니다.");
             return "redirect:/login"; // 세션이 없으면 로그인 페이지로 리다이렉트
         }
+        VolunRequestListDTO volunRequestListDTO = new VolunRequestListDTO();
+        volunRequestListDTO.setVolunRequestNo(volunRequestNo);
+        volunRequestListDTO.setMemberNo(memberNo);
 
-        VolunRequestDetailDTO volunRequestInfo = requestService.volunRequestDetail(volunRequestNo , volunRequestName);
+        VolunRequestDetailDTO volunRequestInfo = requestService.volunRequestDetail(volunRequestListDTO);
         model.addAttribute("volunRequestInfo", volunRequestInfo);
 
         return "centermypage/center-mypage-volun-signup";
@@ -421,7 +424,7 @@ class CenterMypageController {
         }
 
         try {
-            requestService.updateAdoptRequestStatus(volunRequestNo, volunRequestStatus);
+            requestService.updateVolunRequestStatus(volunRequestNo, volunRequestStatus);
         } catch (Exception e) {
             log.error("요청 상태 업데이트 중 오류 발생: ", e);
             return "redirect:/error"; // 에러 페이지로 리다이렉트
@@ -452,15 +455,18 @@ class CenterMypageController {
 
     //입양신청서 상세 조회
     @GetMapping("/adoptRequestDetail")
-    public String getAdoptRequestDetail(@RequestParam("adoptRequestNo") Long adoptRequestNo, Model model) {
+    public String getAdoptRequestDetail(@RequestParam("adoptRequestNo") Long adoptRequestNo,@RequestParam("memberNo") Long memberNo, Model model) {
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
 
         if (centerMemberNo == null) {
             log.warn("세션에서 centerMemberNo가 존재하지 않습니다.");
             return "redirect:/login"; // 세션이 없으면 로그인 페이지로 리다이렉트
         }
+        AdoptRequestListDTO adoptRequestListDTO = new AdoptRequestListDTO();
+        adoptRequestListDTO.setAdoptRequestNo(adoptRequestNo);
+        adoptRequestListDTO.setMemberNo(memberNo);
 
-        AdoptRequestDetailDTO adoptRequestInfo = requestService.adoptRequestDetail(adoptRequestNo);
+        AdoptRequestDetailDTO adoptRequestInfo = requestService.adoptRequestDetail(adoptRequestListDTO);
         model.addAttribute("adoptRequestInfo", adoptRequestInfo);
 
         return "centermypage/center-mypage-adopt-adoptrequest";
@@ -506,15 +512,18 @@ class CenterMypageController {
 
     //임시보호신청서 상세 조회
     @GetMapping("/protectRequestDetail")
-    public String getProtectRequestDetail(@RequestParam("protectRequestNo") Long protectRequestNo, Model model) {
+    public String getProtectRequestDetail(@RequestParam("protectRequestNo") Long protectRequestNo,@RequestParam("memberNo") Long memberNo, Model model) {
         Long centerMemberNo = (Long) session.getAttribute("centerMemberNo");
 
         if (centerMemberNo == null) {
             log.warn("세션에서 centerMemberNo가 존재하지 않습니다.");
             return "redirect:/login"; // 세션이 없으면 로그인 페이지로 리다이렉트
         }
+        ProtectRequestListDTO protectRequestListDTO = new ProtectRequestListDTO();
+        protectRequestListDTO.setProtectRequestNo(protectRequestNo);
+        protectRequestListDTO.setMemberNo(memberNo);
 
-        ProtectRequestDetailDTO protectRequestInfo = requestService.protectRequestDetail(protectRequestNo);
+        ProtectRequestDetailDTO protectRequestInfo = requestService.protectRequestDetail(protectRequestListDTO);
         model.addAttribute("protectRequestInfo", protectRequestInfo);
 
         return "centermypage/center-mypage-adopt-protectrequest";
