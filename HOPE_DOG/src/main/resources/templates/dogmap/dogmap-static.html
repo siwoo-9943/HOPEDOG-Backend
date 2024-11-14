@@ -27,10 +27,6 @@
     <!-- 보호소 목록 -->
     <div class="doghouse-main">
         <div class="doghouse-box">
-            <!-- 데이터가 없을 경우 오류 메시지 표시 -->
-            <div th:if="${shelters == null or #lists.isEmpty(shelters)}" class="error-message" style="margin-bottom: 50px">
-                <span>서버로부터 데이터를 가져오는 데 실패했습니다.</span>
-            </div>
             <div th:each="shelter, iterStat : ${shelters}">
                 <div class="doghouse-item">
                     <div class="doghouse-list-title">
