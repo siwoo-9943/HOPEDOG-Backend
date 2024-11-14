@@ -51,7 +51,24 @@ public class FileAPI {
         //이미지 파일이라는 리소스를 다운로드 처리하기 위해 사용하고 있으며 File 객체보다 많은 종류의 리소스를 다룰수 있고
         //스프링과의 호환성이 좋다
         //Resource는 인터페이스이므로 객체화를 할 때는 자식 클래스를 사용한다
-        Resource resource = new FileSystemResource(fileDir + from + "/"+ filePath + "/" + fileUuid + "_" + fileName);
+
+        String filePath1 = fileDir + from + "/" + filePath + "/" + fileUuid + "_" + fileName;
+        String filePath2 = fileDir + "/" + fileUuid;
+
+        File file1 = new File(filePath1);
+        File file2 = new File(filePath2);
+
+        Resource resource;
+
+        if (file1.exists() && file1.isFile()) {
+            resource = new FileSystemResource(filePath1);  // 경로1이 존재하면 이 경로로 설정
+        } else if (file2.exists() && file2.isFile()) {
+            resource = new FileSystemResource(filePath2);  // 경로1이 없으면 경로2로 설정
+        } else {
+            // 파일이 존재하지 않으면 에러 처리
+            resource = null;
+            // 예: throw new FileNotFoundException("파일을 찾을 수 없습니다.");
+        }
         //Resource의 구현체, fileDir + fileName을 통해 전체 파일 경로 구성하여 Resource 객체 생성
 
         HttpHeaders headers = new HttpHeaders();
