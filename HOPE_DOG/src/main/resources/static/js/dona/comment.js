@@ -116,3 +116,25 @@ export function timeForToday(value) {
 
     return `${Math.floor(betweenTimeDay / 365)}년 전`;
 }
+
+// 댓글 신고
+export function report(DonaCommentReportDTO, callback) {
+
+
+    fetch('/v1/comments/report', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(reportData),
+    })
+        .then(response => {
+            if (response.ok) {
+                callback();
+            } else {
+                console.error("신고 처리 응답 오류:", response.status);
+                response.text().then(text => console.error("신고 처리 서버 응답 본문:", text));
+            }
+        })
+        .catch(error => {
+            console.error('신고 처리 중 오류 발생:', error);
+        });
+}

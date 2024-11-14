@@ -1,3 +1,4 @@
+
 // 찐 최조옹
 
 // 모듈 가져오기
@@ -175,20 +176,40 @@ function modifyClick() {
 window.modifyClick = modifyClick;
 
 
-// 댓글 신고 버튼
-function CommentReportClick(e) {
+// 댓글 신고 처리 함수 수정
+function CommentReportClick(donaCommentNo) {
   const reportComment = prompt('신고 사유를 100글자 이내로 입력해주세요');
   if (reportComment && reportComment.length <= 100) {
-    e.target.closest('reply').getAttribute('data-id')
-    //detail.html에서 name으로 뿌려주고 있으니 donaNo을 name으로 가져오기
     const donaNo = document.querySelector('.donaNo').textContent.trim();
-    const donaCommentNo = document.querySelector('.donaCommentNo').textContent.trim();
 
-    location.href = `/dona/donation/donaCommentReport?donaNo=${donaNo}&reportComment=${encodeURIComponent(reportComment)}&donaCommentNo=${donaCommentNo}`;
+    // 서버에 전달할 신고 데이터
+    const reportData = {
+      reportCommentNo: donaCommentNo,
+      reportContentNo: donaNo,
+      commentReport: reportComment,
+      commentReportWriter: memberNo,  // 현재 로그인된 사용자 번호
+      commentReportCate: "기부",       // 카테고리 설정
+    };
+
+    // 신고 API 호출
+    fetch('/v1/comments/report', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(reportData),
+    }).then(response => {
+      if (response.ok) {
+        alert("신고가 정상적으로 접수되었습니다.");
+      } else {
+        alert("신고 처리에 실패했습니다.");
+      }
+    }).catch(error => {
+      console.error("신고 중 오류 발생:", error);
+    });
   } else if (reportComment) {
     alert("신고 사유는 100글자 이내로 입력해주세요.");
   }
 }
+
 
 
 // ------------------------댓글 메뉴 처리-------------------------------------------

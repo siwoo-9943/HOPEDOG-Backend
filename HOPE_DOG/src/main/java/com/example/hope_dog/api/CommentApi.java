@@ -1,6 +1,7 @@
 package com.example.hope_dog.api;
 
 import com.example.hope_dog.dto.donation.DonaCommentListDTO;
+import com.example.hope_dog.dto.donation.DonaCommentReportDTO;
 import com.example.hope_dog.dto.donation.DonaCommentUpdateDTO;
 import com.example.hope_dog.dto.donation.DonaCommentWriteDTO;
 import com.example.hope_dog.dto.page.Criteria;
@@ -8,6 +9,7 @@ import com.example.hope_dog.dto.page.Slice;
 import com.example.hope_dog.service.donation.DonaCommentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -56,5 +58,14 @@ public class CommentApi {
     public void removeComment(@PathVariable("donaCommentNo") Long donaCommentNo){
         donaCommentService.removeComment(donaCommentNo);
     }
+
+
+    @PostMapping("/v1/comments/report")
+    public ResponseEntity<String> reportComment(@RequestBody DonaCommentReportDTO donaCommentReportDTO) {
+        log.info("신고 데이터 수신: " + donaCommentReportDTO);
+        donaCommentService.donaCommentReport(donaCommentReportDTO);
+        return ResponseEntity.ok("신고가 정상적으로 처리되었습니다.");
+    }
+
 }
 
