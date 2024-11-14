@@ -93,8 +93,8 @@
                     <!-- 나이 -->
                     <div class="volunrequest-content-box">
                         <div class="volunrequest-content-title">나이</div>
-                        <input class="volunrequest-input-small" type="number"
-                               th:field="${volunRequestInfo.volunRequestAge}" readonly>
+                        <input class="volunrequest-input-small" type="date"
+                               th:value="${#dates.format(volunRequestInfo.volunRequestAge, 'yyyy-MM-dd')}"  readonly>
                     </div>
                     <div class="Error">
                         <div id="ageError" style="color: red; display: none;">나이를 정확히 입력해주세요</div>
@@ -142,7 +142,10 @@
                     </div>
                     <div class="agreement-checkbox">
                         <input type="checkbox" id="info-agreement"
-                               th:field="${volunRequestInfo.volunRequestInfoAgreement}" readonly>
+                               th:field="${volunRequestInfo.volunRequestAgreement}"
+                               th:value="'Y'"
+                               th:checked="${volunRequestInfo.volunRequestAgreement == 'Y'}"
+                               disabled>
                         <label for="info-agreement">위 약관에 동의합니다.</label>
                     </div>
 

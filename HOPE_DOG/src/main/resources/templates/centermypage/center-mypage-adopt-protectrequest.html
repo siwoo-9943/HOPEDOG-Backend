@@ -159,7 +159,9 @@
                 </div>
                 <div class="agreement-checkbox">
                     <input type="checkbox" id="info-agreement"
-                           th:checked="${protectRequestInfo.protectRequestInfoAgreement}" disabled>
+                           th:checked="${protectRequestInfo.protectRequestInfoAgreement}"
+                           th:value="'Y'"
+                           disabled>
                     <label for="info-agreement">위 약관에 동의합니다.</label>
                 </div>
 
