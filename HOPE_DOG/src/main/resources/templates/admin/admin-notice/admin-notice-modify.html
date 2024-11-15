@@ -45,7 +45,7 @@
               </div>
               <!-- 글작성 박스 -->
               <div class="notice-write-area">
-                <form th:action="@{/admin/noticeModify(noticeNo=${notice.noticeNo})}" method="post">
+                <form th:action="@{/admin/noticeModify(noticeNo=${notice.noticeNo})}" method="post" enctype="multipart/form-data">
                   <div><input type="text" name="title" value="제목을 입력해주세요" class="title" th:value="${notice.noticeTitle}"></div>
                   <br>
                   <div>
@@ -92,27 +92,4 @@
     </div>
   </div>
 </body>
-
-<script>
-  function deleteFileByFileNo(fileNo) {
-    fetch(`/deleteFileByFileNo/${fileNo}`, {
-      method: 'DELETE'
-    })
-            .then(response => {
-              if (response.ok) {
-                alert("파일이 삭제되었습니다.");
-                location.reload(); // 페이지를 새로고침하여 목록을 업데이트
-              } else {
-                response.text().then(text => alert(text));
-              }
-            })
-            .catch(error => {
-              console.error('Error:', error);
-              alert("파일 삭제 중 오류가 발생했습니다.");
-            });
-  }
-
-
-
-</script>
 </html>
