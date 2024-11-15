@@ -262,7 +262,11 @@ public class AdminController {
     }
 
     @PostMapping("/noticeModify")
-    public String noticeModify(@RequestParam("noticeNo") Long noticeNo, @RequestParam("cate") String cate, @RequestParam("title") String title, @RequestParam("content") String content, Model model, HttpSession session) {
+    public String noticeModify(@RequestParam("noticeNo") Long noticeNo,
+                               @RequestParam("files") List<MultipartFile> files,
+                               @RequestParam("cate") String cate,
+                               @RequestParam("title") String title,
+                               @RequestParam("content") String content, Model model, HttpSession session) throws IOException {
         if (!isAdminLoggedIn(session)) {
             return "redirect:/admin/login";
         }
@@ -274,8 +278,10 @@ public class AdminController {
         notice.setNoticeContent(content);
 
         adminService.modifyNotice(notice);
+        adminService.deleteFileByNoticeNo(noticeNo);
+        adminService.saveFiles(files);
 
-        return "redirect:/admin/noticeDetail?noticeNo=" + noticeNo;
+        return "redirect:/admin/noticeDetail?noticeNo=" + (noticeNo);
     }
 
     @GetMapping("/noticeList")
