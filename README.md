@@ -62,21 +62,81 @@
 
 ## 🏷담당 작업
 <details>
-<summary>카풀 게시판(게시글)</summary>
+<summary>카풀 게시판(비회원)</summary>
 
-<img src="https://github.com/user-attachments/assets/a4f52058-71d5-4e6e-8a85-4258f6d58d7e" width="500">
+<img src="https://github.com/user-attachments/assets/b5ab974f-cdad-489d-aea6-f03d70c0d58a" width="800">
 <br>
--일반회원, 센터회원 로그인 한 경우에만 글쓰기 버튼이 활성화 되고, 일반회원,센터회원 모두 카풀 게시판을 사용할 수 있습니다.
+- 로그인하지 않은 경우 게시글 등록,수정, 삭제, 신고버튼 비활성화
 <br>
-- 본인이 작성한 게시글의 경우 수정,삭제 버튼이 활성화 되고,본인이 작성한 글이 아닐 경우 신고버튼이 활성화 됩니다.
+- 댓글 등록, 수정, 삭제, 신고 버튼 비활성화
+
+</details>
+<details>
+<summary>카풀 게시판(회원,게시글)</summary>
+
+<img src="https://github.com/user-attachments/assets/a4f52058-71d5-4e6e-8a85-4258f6d58d7e" width="800">
 <br>
-- 로그인을 하지 않을 경우 수정,삭제,신고버튼은 비활성화 됩니다.
+- 일반회원과 센터회원 로그인 시 글쓰기 버튼 활성화
+<br>
+- 로그인하지 않은 경우 수정, 삭제, 신고 버튼 비활성화
+<br>
+- 일반회원과 센터회원 모두 카풀 게시판 이용 가능
+<br>
+- 본인 작성 글일 경우 수정, 삭제 버튼 활성화
+<br>
+- 타인 작성 글일 경우 신고 버튼 활성화
+
 </details>
 
+<details>
+<summary>카풀 게시판(회원,댓글)</summary>
 
+<img src="https://github.com/user-attachments/assets/e359bdf4-072f-4440-8555-aa99b7229792" width="800">
+<br>
+- 일반회원과 센터회원 로그인 시 댓글등록 버튼 활성화
+<br>
+- 본인 작성 댓글일 경우 수정, 삭제 버튼 활성화
+<br>
+- 타인 작성 댓글일 경우 신고 버튼 활성화
 
+</details>
+<br>
+<details>
+<summary>커뮤니티 게시판(비회원)</summary>
+<img src="https://github.com/user-attachments/assets/986ff9a2-daf6-4f67-a0a9-6754018e1f2c" width="800">
+<br>
+- 로그인하지 않은 경우 게시글 등록,수정, 삭제, 신고버튼 비활성화
+<br>
+- 댓글 등록, 수정, 삭제, 신고 버튼 비활성화
 
+</details>
 
+<details>
+<summary>커뮤니티 게시판(회원,게시글)</summary>
+
+<img src="https://github.com/user-attachments/assets/1911b309-871b-485d-affe-c4c3e46eda87" width="800">
+<br>
+- 일반회원과 센터회원 로그인 시 글쓰기 버튼 활성화
+<br>
+- 로그인하지 않은 경우 수정, 삭제, 신고 버튼 비활성화
+<br>
+- 일반회원과 센터회원 모두 카풀 게시판 이용 가능
+<br>
+- 본인 작성 글일 경우 수정, 삭제 버튼 활성화
+<br>
+- 타인 작성 글일 경우 신고 버튼 활성화
+
+</details>
+<details>
+<summary>커뮤니티 게시판(회원,댓글)</summary>
+
+<img src="https://github.com/user-attachments/assets/58ff937c-807d-4922-b891-f8eae257ec45" width="800">
+<br>
+- 일반회원과 센터회원 로그인 시 댓글등록 버튼 활성화
+<br>
+- 본인 작성 댓글일 경우 수정, 삭제 버튼 활성화
+<br>
+- 타인 작성 댓글일 경우 신고 버튼 활성화
 
 
 
