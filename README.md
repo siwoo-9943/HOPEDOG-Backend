@@ -105,7 +105,7 @@
 </details>
 <br>
 <details>
-<summary>커뮤니티 게시판(비회원)</summary>
+<summary>커뮤니티 게시판(비회원)<a href="https://github.com/siwoo-9943/HOPEDOG-Backend/wiki/%EC%BB%A4%EB%AE%A4%EB%8B%88%ED%8B%B0-%EA%B2%8C%EC%8B%9C%ED%8C%90"> WIKI로 이동 </a></summary>
 <img src="https://github.com/user-attachments/assets/986ff9a2-daf6-4f67-a0a9-6754018e1f2c" width="800">
 <br>
 - 로그인하지 않은 경우 게시글 등록,수정, 삭제, 신고버튼 비활성화
