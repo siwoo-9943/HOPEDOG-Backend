@@ -77,7 +77,7 @@
 
 </details>
 <details>
-<summary>카풀 게시판(회원,게시글)</summary>
+<summary>카풀 게시판(회원)</summary>
 
 <img src="https://github.com/user-attachments/assets/a4f52058-71d5-4e6e-8a85-4258f6d58d7e" width="800">
 <br>
@@ -94,7 +94,7 @@
 </details>
 
 <details>
-<summary>카풀 게시판(회원,댓글)</summary>
+<summary>카풀 댓글(회원)</summary>
 
 <img src="https://github.com/user-attachments/assets/e359bdf4-072f-4440-8555-aa99b7229792" width="800">
 <br>
@@ -120,7 +120,7 @@
 </details>
 
 <details>
-<summary>커뮤니티 게시판(회원,게시글)</summary>
+<summary>커뮤니티 게시판(회원)</summary>
 
 <img src="https://github.com/user-attachments/assets/1911b309-871b-485d-affe-c4c3e46eda87" width="800">
 <br>
@@ -136,7 +136,7 @@
 
 </details>
 <details>
-<summary>커뮤니티 게시판(회원,댓글)</summary>
+<summary>커뮤니티 댓글(회원)</summary>
 
 <img src="https://github.com/user-attachments/assets/58ff937c-807d-4922-b891-f8eae257ec45" width="800">
 <br>
