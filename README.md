@@ -65,6 +65,8 @@
 
 카풀 게시판과 커뮤니티 게시판은 **회원과 비회원**의 접근 권한에 따라 기능이 다르게 제공됩니다.
 <details>
+ <summary>카풀<a href="https://github.com/siwoo-9943/HOPEDOG-Backend/wiki/%EC%BB%A4%EB%AE%A4%EB%8B%88%ED%8B%B0-%EA%B2%8C%EC%8B%9C%ED%8C%90"> WIKI로 이동 </a></summary>
+<details>
 <summary>카풀 게시판(비회원)</summary>
 
 <img src="https://github.com/user-attachments/assets/b5ab974f-cdad-489d-aea6-f03d70c0d58a" width="800">
@@ -103,9 +105,12 @@
 - 타인 작성 댓글일 경우 신고 버튼 활성화
 
 </details>
+</details>
 <br>
 <details>
-<summary>커뮤니티 게시판(비회원)<a href="https://github.com/siwoo-9943/HOPEDOG-Backend/wiki/%EC%BB%A4%EB%AE%A4%EB%8B%88%ED%8B%B0-%EA%B2%8C%EC%8B%9C%ED%8C%90"> WIKI로 이동 </a></summary>
+ <summary>커뮤니티<a href="https://github.com/siwoo-9943/HOPEDOG-Backend/wiki/%EC%BB%A4%EB%AE%A4%EB%8B%88%ED%8B%B0-%EA%B2%8C%EC%8B%9C%ED%8C%90"> WIKI로 이동 </a></summary>
+<details>
+<summary>커뮤니티 게시판(비회원)</summary>
 <img src="https://github.com/user-attachments/assets/986ff9a2-daf6-4f67-a0a9-6754018e1f2c" width="800">
 <br>
 - 로그인하지 않은 경우 게시글 등록,수정, 삭제, 신고버튼 비활성화
@@ -140,6 +145,9 @@
 - 본인 작성 댓글일 경우 수정, 삭제 버튼 활성화
 <br>
 - 타인 작성 댓글일 경우 신고 버튼 활성화
+
+</details>
+</details>
 
 
 
